@@ -6,7 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div>
+        <h1>TIM_DB</h1>
+        <hr>
+    </div>
+    <a href="{% url 'employees_form' %}">Register employees</a>
+    <a href="{% url 'uut_form' %}">Register UUT</a>
     {% block content %}
         
     {% endblock  %}

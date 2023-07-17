@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Employes
+from .models import Employes, Uut
 
 # Register your models here.
 class FormEmployees(admin.ModelAdmin):
@@ -10,3 +10,4 @@ class FormEmployees(admin.ModelAdmin):
 
 
 admin.site.register(Employes, FormEmployees)
+admin.site.register(Uut)
