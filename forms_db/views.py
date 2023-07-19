@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import EmployeesForm, UutForm, FailureForm, BoomForm, RejectedForm
+from .forms import EmployeesForm, UutForm, FailureForm, BoomForm, RejectedForm, ErrorMessageForm, StationForm, MaintenanceForm, SpareForm
 from .models import Uut
 
 # Create your views here.
@@ -67,3 +67,51 @@ def rejectedForm(request):
     
     context = {'form': form}
     return render(request=request, template_name='base/rejected_form.html', context=context)
+
+def errorMessageForm(request):
+    form = ErrorMessageForm()
+    
+    if request.method == 'POST':
+        form = ErrorMessageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    
+    context = {'form': form}
+    return render(request=request, template_name='base/errorMessage.html', context=context)
+
+def stationForm(request):
+    form = StationForm()
+    
+    if request.method == 'POST':
+        form = StationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    
+    context = {'form': form}
+    return render(request=request, template_name='base/station_form.html', context=context)
+
+def maintenanceForm(request):
+    form = MaintenanceForm()
+    
+    if request.method == 'POST':
+        form = MaintenanceForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    
+    context = {'form': form}
+    return render(request=request, template_name='base/maintenance_form.html', context=context)
+
+def spareForm(request):
+    form = SpareForm()
+    
+    if request.method == 'POST':
+        form = SpareForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    
+    context = {'form': form}
+    return render(request=request, template_name='base/spare_form.html', context=context)

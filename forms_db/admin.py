@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Employes, Uut, Failures, Booms
+from .models import Employes, Uut, Failures, Booms, Rejected, ErrorMessages, Station, Maintenance, SparePart
 
 # Register your models here.
 class FormEmployees(admin.ModelAdmin):
@@ -24,3 +24,8 @@ admin.site.register(Employes, FormEmployees)
 admin.site.register(Uut, FormUuts)
 admin.site.register(Failures, FormFailures)
 admin.site.register(Booms)
+admin.site.register(Rejected)
+admin.site.register(ErrorMessages)
+admin.site.register(Station)
+admin.site.register(Maintenance)
+admin.site.register(SparePart)
