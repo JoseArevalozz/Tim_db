@@ -7,11 +7,14 @@
 </head>
 <body>
     <div>
-        <h1>TIM_DB</h1>
+        <a href="{% url 'home' %}">TIM_DB</a>
         <hr>
     </div>
     <a href="{% url 'employees_form' %}">Register employees</a>
     <a href="{% url 'uut_form' %}">Register UUT</a>
+    <a href="{% url 'failure_form' %}">Register Failure</a>
+    <a href="{% url 'boom_form' %}">Register BOOM</a>
+    <a href="{% url 'rejected_form' %}">Register BOOM</a>
     {% block content %}
         
     {% endblock  %}
