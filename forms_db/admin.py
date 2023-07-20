@@ -19,13 +19,31 @@ class FormFailures(admin.ModelAdmin):
     search_fields = ("sn_f", "status", "failureDate")
     list_filter = ("sn_f", "status", "failureDate")
     ordering = ("sn_f",)
+
+class FormBooms(admin.ModelAdmin):
+    list_display = ("pn", "description", "project")
+    search_fields = ("pn", "description", "project")
+    list_filter = ("pn", "description", "project")
+    ordering = ("pn",)
     
+class FormRejecteds(admin.ModelAdmin):
+    list_display = ("id_f", "pn_b", "dateRejected")
+    search_fields = ("id_f", "pn_b", "dateRejected")
+    list_filter = ("id_f", "pn_b", "dateRejected")
+    ordering = ("id_f",)
+    
+class FormErrors(admin.ModelAdmin):
+    list_display = ("message", "date", "employee_e")
+    search_fields = ("message", "date", "employee_e")
+    list_filter = ("message", "date", "employee_e")
+    ordering = ("date",)
+       
 admin.site.register(Employes, FormEmployees)
 admin.site.register(Uut, FormUuts)
 admin.site.register(Failures, FormFailures)
-admin.site.register(Booms)
-admin.site.register(Rejected)
-admin.site.register(ErrorMessages)
+admin.site.register(Booms, FormBooms)
+admin.site.register(Rejected, FormRejecteds)
+admin.site.register(ErrorMessages, FormErrors)
 admin.site.register(Station)
 admin.site.register(Maintenance)
 admin.site.register(SparePart)
