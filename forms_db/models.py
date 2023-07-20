@@ -31,7 +31,7 @@ class Uut(models.Model):
     sn = models.CharField(max_length=50, primary_key=True)
     date = models.DateTimeField(auto_now=True)
     pn_b = models.ForeignKey(Booms, on_delete=models.CASCADE)
-    employee_e = models.ForeignKey(Employes, on_delete=models.CASCADE)
+    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, default='ex', blank=True, null=True,)
     status = models.BooleanField(default=True)
     
     def __str__(self):
@@ -60,7 +60,7 @@ class Maintenance(models.Model):
     id_sp = models.ForeignKey(SparePart, on_delete=models.CASCADE, null=True) 
     maintenanceType = models.CharField(max_length=100)
     statition_s = models.ForeignKey(Station, on_delete=models.CASCADE)
-    employee_e = models.ForeignKey(Employes, on_delete=models.CASCADE)
+    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, default='ex', blank=True, null=True,)
     failureM = models.CharField(max_length=100)
     causeCategoryS = models.CharField(max_length=100)
     dateStart = models.DateTimeField(auto_now=True)
@@ -74,7 +74,7 @@ class ErrorMessages(models.Model):
     # id_er = models.AutoField(primary_key=True)
     message = models.CharField(max_length=150)
     date = models.DateTimeField(auto_now=True)
-    employee_e = models.ForeignKey(Employes, on_delete=models.CASCADE)
+    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, default='ex', blank=True, null=True,)
     pn_b = models.ForeignKey(Booms, on_delete=models.CASCADE)
     
     def __str__(self):
@@ -89,7 +89,7 @@ class Failures(models.Model):
     rootCause = models.CharField(max_length=100)
     status = models.BooleanField(default=True)
     defectSymptom = models.CharField(max_length=100)
-    employee_e  = models.ForeignKey(Employes, on_delete=models.CASCADE)
+    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, default='ex', blank=True, null=True,)
     shiftFailure = models.CharField(max_length=13)
     correctiveActions = models.CharField(max_length=100)
     comments = models.TextField()
@@ -104,7 +104,7 @@ class Rejected(models.Model):
     snDamaged = models.CharField(max_length=50)
     snNew = models.CharField(max_length=50)
     folio = models.CharField(max_length=15)
-    employee_e = models.ForeignKey(Employes, on_delete=models.CASCADE)
+    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, default='ex', blank=True, null=True,)
     
     def __str__(self):
         return ''
