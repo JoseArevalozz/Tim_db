@@ -36,14 +36,31 @@ class Uut(models.Model):
     
     def __str__(self):
          return self.sn
+
+class Station(models.Model):
+    idi = models.AutoField(primary_key=True)
+    stationProject = models.CharField(max_length=100)
+    stationName = models.CharField(max_length=50)
+    description = models.CharField(max_length=150)
+    date = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.stationProject
+
+class ErrorMessages(models.Model):
+    message = models.CharField(max_length=150)
+    date = models.DateTimeField(auto_now=True)
+    employee_e = models.ForeignKey(Employes, on_delete=models.CASCADE)
+    pn_b = models.ForeignKey(Booms, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.message
     
 class Failures(models.Model):
-    # pendiente a apuntar a Estacion y mensaje de error 
-    
-    # id_station = 
-    sn_f = models.ForeignKey(Uut, on_delete=models.CASCADE)
+    id_s = models.ForeignKey(Station, on_delete=models.CASCADE, null=True)
+    sn_f = models.ForeignKey(Uut, on_delete=models.CASCADE, null=True)
     failureDate = models.DateTimeField(auto_now=True)
-    errorMessage = models.CharField(max_length=160)
+    id_er = models.ForeignKey(ErrorMessages, on_delete=models.CASCADE, null=True)
     analysis = models.CharField(max_length=100)
     rootCause = models.CharField(max_length=100)
     status = models.BooleanField(default=True)
@@ -57,7 +74,7 @@ class Failures(models.Model):
         return self.analysis
     
 class Rejected(models.Model):
-    id_f = models.ForeignKey(Failures, on_delete=models.CASCADE)
+    id_f = models.ForeignKey(Failures, on_delete=models.CASCADE, null=True)
     dateRejected = models.DateTimeField(auto_now=True)
     pn_b = models.ForeignKey(Booms, on_delete=models.CASCADE)
     snDamaged = models.CharField(max_length=50)
@@ -68,43 +85,7 @@ class Rejected(models.Model):
     def __str__(self):
         return ''
 
-class ErrorMessages(models.Model):
-    # id = 
-    message = models.CharField(max_length=150)
-    date = models.DateTimeField(auto_now=True)
-    employee_e = models.ForeignKey(Employes, on_delete=models.CASCADE)
-    pn_b = models.ForeignKey(Booms, on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return self.message
-    
-class Station(models.Model):
-    # id_station = 
-    stationProject = models.CharField(max_length=100)
-    stationName = models.CharField(max_length=50)
-    description = models.CharField(max_length=150)
-    date = models.DateTimeField(auto_now=True)
-    
-    def __str__(self):
-        return self.stationProject
-    
-class Maintenance(models.Model):
-    # id = 
-    # id_sp = 
-    maintenanceType = models.CharField(max_length=100)
-    statition_s = models.ForeignKey(Station, on_delete=models.CASCADE)
-    employee_e = models.ForeignKey(Employes, on_delete=models.CASCADE)
-    failureM = models.CharField(max_length=100)
-    causeCategoryS = models.CharField(max_length=100)
-    dateStart = models.DateTimeField(auto_now=True)
-    dateFinish = models.DateTimeField() 
-    status = models.BooleanField(default=True)
-    
-    def __str__(self):
-        return self.maintenanceType
-    
 class SparePart(models.Model):
-    # id = 
     date = models.DateTimeField(auto_now=True)
     quantity = models.IntegerField()
     description = models.CharField(max_length=100)
@@ -113,4 +94,16 @@ class SparePart(models.Model):
     def __str__(self):
         return self.description
     
+class Maintenance(models.Model):
+    id_sp = models.ForeignKey(SparePart, on_delete=models.CASCADE, null=True) 
+    maintenanceType = models.CharField(max_length=100)
+    station_s = models.ForeignKey(Station, on_delete=models.CASCADE, null=True)
+    employee_e = models.ForeignKey(Employes, on_delete=models.CASCADE)
+    failureM = models.CharField(max_length=100)
+    causeCategoryS = models.CharField(max_length=100)
+    dateStart = models.DateTimeField(auto_now=True)
+    dateFinish = models.DateTimeField()
+    status = models.BooleanField(default=True)
     
+    def __str__(self):
+        return self.maintenanceType
