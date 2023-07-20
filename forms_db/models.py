@@ -36,12 +36,55 @@ class Uut(models.Model):
     
     def __str__(self):
          return self.sn
+
+class Station(models.Model):
+    # idS = models.AutoField(primary_key=True)
+    stationProject = models.CharField(max_length=100)
+    stationName = models.CharField(max_length=50)
+    description = models.CharField(max_length=150)
+    date = models.DateTimeField(auto_now=True)
     
+    def __str__(self):
+        return self.stationProject
+    
+class SparePart(models.Model):
+    date = models.DateTimeField(auto_now=True)
+    quantity = models.IntegerField()
+    description = models.CharField(max_length=100)
+    pn = models.CharField(max_length=50)
+    
+    def __str__(self):
+        return self.description
+    
+class Maintenance(models.Model):
+    id_sp = models.ForeignKey(SparePart, on_delete=models.CASCADE, null=True) 
+    maintenanceType = models.CharField(max_length=100)
+    statition_s = models.ForeignKey(Station, on_delete=models.CASCADE)
+    employee_e = models.ForeignKey(Employes, on_delete=models.CASCADE)
+    failureM = models.CharField(max_length=100)
+    causeCategoryS = models.CharField(max_length=100)
+    dateStart = models.DateTimeField(auto_now=True)
+    dateFinish = models.DateTimeField()
+    status = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return self.maintenanceType
+
+class ErrorMessages(models.Model):
+    # id_er = models.AutoField(primary_key=True)
+    message = models.CharField(max_length=150)
+    date = models.DateTimeField(auto_now=True)
+    employee_e = models.ForeignKey(Employes, on_delete=models.CASCADE)
+    pn_b = models.ForeignKey(Booms, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.message    
+
 class Failures(models.Model):
-    id_station = models.ForeignKey(Station, on_delete=models.CASCADE)
+    id_s = models.ForeignKey(Station, on_delete=models.CASCADE, null=True)
     sn_f = models.ForeignKey(Uut, on_delete=models.CASCADE)
     failureDate = models.DateTimeField(auto_now=True)
-    id_er = models.ForeignKey(ErrorMessages, on_delete=models.CASCADE)
+    id_er = models.ForeignKey(ErrorMessages, on_delete=models.CASCADE, null=True)
     analysis = models.CharField(max_length=100)
     rootCause = models.CharField(max_length=100)
     status = models.BooleanField(default=True)
@@ -55,7 +98,6 @@ class Failures(models.Model):
         return self.analysis
     
 class Rejected(models.Model):
-    id_Rejected =  models.AutoField(primary_key=True)#Agregado
     id_f = models.ForeignKey(Failures, on_delete=models.CASCADE)
     dateRejected = models.DateTimeField(auto_now=True)
     pn_b = models.ForeignKey(Booms, on_delete=models.CASCADE)
@@ -67,49 +109,7 @@ class Rejected(models.Model):
     def __str__(self):
         return ''
 
-class ErrorMessages(models.Model):
-    id_er = models.AutoField(primary_key=True)
-    message = models.CharField(max_length=150)
-    date = models.DateTimeField(auto_now=True)
-    employee_e = models.ForeignKey(Employes, on_delete=models.CASCADE)
-    pn_b = models.ForeignKey(Booms, on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return self.message
-    
-class Station(models.Model):
-    id_station = models.CharField(max_length=100, primary_key=True)
-    stationProject = models.CharField(max_length=100)
-    stationName = models.CharField(max_length=50)
-    description = models.CharField(max_length=150)
-    date = models.DateTimeField(auto_now=True)
-    
-    def __str__(self):
-        return self.stationProject
-    
-class Maintenance(models.Model):
-    id_m = models.AutoField(primary_key=True) 
-    id_sp = models.ForeignKey(SparePart, on_delete=models.CASCADE) 
-    maintenanceType = models.CharField(max_length=100)
-    statition_s = models.ForeignKey(Station, on_delete=models.CASCADE)
-    employee_e = models.ForeignKey(Employes, on_delete=models.CASCADE)
-    failureM = models.CharField(max_length=100)
-    causeCategoryS = models.CharField(max_length=100)
-    dateStart = models.DateTimeField(auto_now=True)
-    dateFinish = models.DateTimeField()
-    status = models.BooleanField(default=True)
-    
-    def __str__(self):
-        return self.maintenanceType
-    
-class SparePart(models.Model):
-    id_sp = models.CharField(primary_key=True, max_length=100)
-    date = models.DateTimeField(auto_now=True)
-    quantity = models.IntegerField()
-    description = models.CharField(max_length=100)
-    pn = models.CharField(max_length=50)
-    
-    def __str__(self):
-        return self.description
+
+
     
     
