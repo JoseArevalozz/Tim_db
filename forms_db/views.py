@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import EmployeesForm, UutForm, FailureForm, BoomForm, RejectedForm, ErrorMessageForm, StationForm, MaintenanceForm, SpareForm
-from .models import Uut, Failures
+from .models import Uut
 
 # Create your views here.
 def home(request):
-    uuts = Failures.objects.all()
+    uuts = Uut.objects.all()
     context={'uuts':uuts}
     return render(request=request, template_name='base/first.html', context=context)
 
