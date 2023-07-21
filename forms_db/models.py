@@ -30,7 +30,7 @@ class Booms(models.Model):
 class Uut(models.Model):
     sn = models.CharField(max_length=50, primary_key=True)
     date = models.DateTimeField(auto_now=True)
-    pn_b = models.ForeignKey(Booms, on_delete=models.CASCADE)
+    pn_b = models.ForeignKey(Booms,on_delete=models.SET_NULL, blank=True, null=True,)
     employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, default='ex', blank=True, null=True,)
     status = models.BooleanField(default=True)
     
@@ -57,7 +57,7 @@ class SparePart(models.Model):
         return self.description
     
 class Maintenance(models.Model):
-    id_sp = models.ForeignKey(SparePart, on_delete=models.CASCADE, null=True) 
+    id_sp = models.ForeignKey(SparePart, on_delete=models.SET_NULL, blank=True, null=True) 
     maintenanceType = models.CharField(max_length=100)
     statition_s = models.ForeignKey(Station, on_delete=models.CASCADE)
     employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, default='ex', blank=True, null=True,)
@@ -71,7 +71,6 @@ class Maintenance(models.Model):
         return self.maintenanceType
 
 class ErrorMessages(models.Model):
-    # id_er = models.AutoField(primary_key=True)
     message = models.CharField(max_length=150)
     date = models.DateTimeField(auto_now=True)
     employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, default='ex', blank=True, null=True,)
@@ -81,15 +80,15 @@ class ErrorMessages(models.Model):
         return self.message    
 
 class Failures(models.Model):
-    id_s = models.ForeignKey(Station, on_delete=models.CASCADE, null=True)
+    id_s = models.ForeignKey(Station, on_delete=models.SET_NULL, blank=True, null=True,)
     sn_f = models.ForeignKey(Uut, on_delete=models.CASCADE)
     failureDate = models.DateTimeField(auto_now=True)
-    id_er = models.ForeignKey(ErrorMessages, on_delete=models.CASCADE, null=True)
+    id_er = models.ForeignKey(ErrorMessages, on_delete=models.SET_NULL, blank=True, null=True)
     analysis = models.CharField(max_length=100)
     rootCause = models.CharField(max_length=100)
     status = models.BooleanField(default=True)
     defectSymptom = models.CharField(max_length=100)
-    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, default='ex', blank=True, null=True,)
+    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, blank=True, null=True,)
     shiftFailure = models.CharField(max_length=13)
     correctiveActions = models.CharField(max_length=100)
     comments = models.TextField()
@@ -100,7 +99,7 @@ class Failures(models.Model):
 class Rejected(models.Model):
     id_f = models.ForeignKey(Failures, on_delete=models.CASCADE)
     dateRejected = models.DateTimeField(auto_now=True)
-    pn_b = models.ForeignKey(Booms, on_delete=models.CASCADE)
+    pn_b = models.ForeignKey(Booms, on_delete=models.SET_NULL, blank=True, null=True)
     snDamaged = models.CharField(max_length=50)
     snNew = models.CharField(max_length=50)
     folio = models.CharField(max_length=15)
