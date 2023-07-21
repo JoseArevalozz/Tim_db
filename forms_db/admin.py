@@ -37,13 +37,31 @@ class FormErrors(admin.ModelAdmin):
     search_fields = ("message", "date", "employee_e")
     list_filter = ("message", "date", "employee_e")
     ordering = ("date",)
+    
+class FormStations(admin.ModelAdmin):
+    list_display = ("stationName", "stationProject", "date")
+    search_fields = ("stationName", "stationProject", "date")
+    list_filter = ("stationName", "stationProject", "date")
+    ordering = ("stationName",)
+    
+class FormMaintenances(admin.ModelAdmin):
+    list_display = ("id_sp", "maintenanceType", "employee_e")
+    search_fields = ("id_sp", "maintenanceType", "employee_e")
+    list_filter = ("id_sp", "maintenanceType", "employee_e")
+    ordering = ("id_sp",)
        
+class FormSpares(admin.ModelAdmin):
+    list_display = ("pn", "description", "quantity")
+    search_fields = ("pn", "description", "quantity")
+    list_filter = ("pn", "description", "quantity")
+    ordering = ("pn",)
+    
 admin.site.register(Employes, FormEmployees)
 admin.site.register(Uut, FormUuts)
 admin.site.register(Failures, FormFailures)
 admin.site.register(Booms, FormBooms)
 admin.site.register(Rejected, FormRejecteds)
 admin.site.register(ErrorMessages, FormErrors)
-admin.site.register(Station)
-admin.site.register(Maintenance)
-admin.site.register(SparePart)
+admin.site.register(Station, FormStations)
+admin.site.register(Maintenance, FormMaintenances)
+admin.site.register(SparePart, FormSpares)
