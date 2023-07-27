@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import EmployeesForm, UutForm, FailureForm, BoomForm, RejectedForm, ErrorMessageForm, StationForm, MaintenanceForm, SpareForm
-from .models import Uut
+from .models import Uut, Employes
+from django.contrib.auth.models import User
 
 # Create your views here.
 def home(request):
@@ -115,3 +116,9 @@ def spareForm(request):
     
     context = {'form': form}
     return render(request=request, template_name='base/spare_form.html', context=context)
+
+def userPage(request, pk):
+    user = Employes.objects.get(employeeNumber=pk)
+    
+    context = {'user': user}
+    return render(request=request, template_name='base/user.html', context=context)
