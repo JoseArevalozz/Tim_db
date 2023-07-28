@@ -16,12 +16,14 @@ class UutForm(ModelForm):
 class FailureForm(ModelForm):
     class Meta:
         model = Failures
-        fields = '__all__'  
-
+        fields = ['id_s', 'sn_f', 'id_er', 'analysis', 'rootCause', 'status', 'defectSymptom', 'shiftFailure', 'correctiveActions', 'comments'] 
+        labels = {'id_s': 'Station', 'sn_f':'SN UUT', 'id_er': 'Error Message', 'analysis': 'Analysis', 'rootCause': 'Root Cause', 'status': 'Status', 'defectSymptom': 'Defect Symptom', 'shiftFailure': 'Shift Failure', 'correctiveActions': 'Corrective Actions', 'comments': 'Comments'}
+        
 class BoomForm(ModelForm):
     class Meta:
         model = Booms
-        fields = '__all__'  
+        fields = '__all__'
+        labels = {'ubiLogic':'Logic ubication'}
 
 class RejectedForm(ModelForm):
     class Meta:
