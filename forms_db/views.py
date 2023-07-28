@@ -79,6 +79,7 @@ def failureForm(request):
         station = request.POST.get('id_s')
         uut = request.POST.get('sn_f')
         errorMessage = request.POST.get('id_er')
+        user = Employes.objects.get(employeeNumber=request.user)
         
         Failures.objects.create(
             id_s=Station.objects.get(id=(station)),
@@ -88,7 +89,7 @@ def failureForm(request):
             rootCause=request.POST.get('rootCause'),
             status= True if request.POST.get('status') == 'on' else False,
             defectSymptom=request.POST.get('defectSymptom'),
-            employee_e=request.user,
+            employee_e=user,
             shiftFailure=request.POST.get('shiftFailure'),
             correctiveActions=request.POST.get('correctiveActions'),
             comments=request.POST.get('comments'),
