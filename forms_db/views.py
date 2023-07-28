@@ -16,6 +16,7 @@ def home(request):
 def loginUser(request):
     uuts = Uut.objects.all()
     
+    
     if request.user.is_authenticated:
         return redirect('home')
     
