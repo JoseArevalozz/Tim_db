@@ -6,6 +6,11 @@
     <form method="POST">
         {% csrf_token %}
         {{form.as_p}}
+        <!-- {% for row in form %}
+            <label for="">{{row.label}}</label>
+            {{row}}
+            <br>
+        {% endfor %} -->
         <input type="submit" value="Submit">
     </form>
 </div> 
