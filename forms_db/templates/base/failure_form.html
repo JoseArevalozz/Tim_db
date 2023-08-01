@@ -5,12 +5,14 @@
     <h1>Failure Form</h1>
     <form method="POST">
         {% csrf_token %}
-        {{form.as_p}}
-        <!-- {% for row in form %}
-            <label for="">{{row.label}}</label>
-            {{row}}
+        <!-- {{form.as_p}} -->
+        {% for row in form %}
+            <div class="form-group">
+                <label for="">{{row.label}}</label>
+                {{row}}
+            </div>
             <br>
-        {% endfor %} -->
+        {% endfor %}
         <input type="submit" value="Submit">
     </form>
 </div> 
