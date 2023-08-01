@@ -36,14 +36,34 @@ class ErrorMessageForm(ModelForm):
 class StationForm(ModelForm):
     class Meta:
         model = Station
-        fields = '__all__'  
+        fields = ['stationProject', 'stationName', 'description']
+        labels = {
+            'stationProject': 'Station Project',
+            'stationName': 'Station Name',
+            'description': 'Description',
+        } 
         
 class MaintenanceForm(ModelForm):
     class Meta:
         model = Maintenance
-        fields = '__all__'  
+        fields = ['id_sp', 'maintenanceType', 'statition_s', 'employee_e', 'failureM', 'causeCategoryS', 'dateFinish', 'status']
+        labels = {
+            'id_sp': 'ID Spare Part',
+            'maintenanceType': 'Maintenance Type',
+            'statition_s': 'Station',
+            'employee_e': 'Number Employe',
+            'failureM': 'Failure Message',
+            'causeCategoryS': 'Cause Category',
+            'dateFinish': 'Date Finish',
+            'status': 'Status',
+        } 
 
 class SpareForm(ModelForm):
     class Meta:
         model = SparePart
-        fields = '__all__'  
+        fields = ['quantity', 'description', 'pn']
+        labels = {
+            'quantity': 'Quantity',
+            'description': 'Descripción',
+            'pn': 'Part Number (PN)',
+        }  
