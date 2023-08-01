@@ -14,6 +14,16 @@ class UutForm(ModelForm):
         fields = '__all__'
 
 class FailureForm(ModelForm):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            if visible.name == 'status':
+                visible.field.widget.attrs['class'] = 'form-check-input'
+            else:
+                visible.field.widget.attrs['class'] = 'form-control mb-2 col-md-6 col-sm-6'
+        
+        print(dir(visible.label_tag))
     class Meta:
         model = Failures
         fields = ['id_s', 'sn_f', 'id_er', 'analysis', 'rootCause', 'status', 'defectSymptom', 'shiftFailure', 'correctiveActions', 'comments'] 
