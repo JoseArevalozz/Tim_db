@@ -1,19 +1,25 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<div>
+<div class="container">
     <h1>Failure Form</h1>
     <form method="POST">
         {% csrf_token %}
         <!-- {{form.as_p}} -->
-        {% for row in form %}
-            <div class="form-group">
-                <label for="">{{row.label}}</label>
-                {{row}}
-            </div>
-            <br>
-        {% endfor %}
-        <input type="submit" value="Submit">
+        
+        <div class="row">
+            {% for row in form %}
+                <div class="form-group col-4">
+                    <label for="">{{row.label}}</label>
+                    {{row}}
+                </div>
+                <br>
+            {% endfor %}
+        </div>
+
+        
+
+        <input class="btn btn-primary" type="submit" value="Submit">
     </form>
 </div> 
 {% endblock %}

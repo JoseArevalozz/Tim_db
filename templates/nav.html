@@ -1,0 +1,53 @@
+<nav class="navbar bg-body-tertiary fixed-top">
+                
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">TIM</a>
+    
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">TIM</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'employees_form' %}">Register employees</a>
+                    <a class="nav-link" href="{% url 'uut_form' %}">Register UUT</a>
+                    <a class="nav-link" href="{% url 'failure_form' %}">Register Failure</a>
+                    <a class="nav-link" href="{% url 'boom_form' %}">Register BOOM</a>
+                    <a class="nav-link" href="{% url 'rejected_form' %}">Register Rejected</a>
+                    <a class="nav-link" href="{% url 'errorMessage_form' %}">Register ErrorMessage</a>
+                    <a class="nav-link" href="{% url 'station_form' %}">Register Station</a>
+                    <a class="nav-link" href="{% url 'maintenance_form' %}">Register Maintenance</a>
+                    <a class="nav-link" href="{% url 'spare_form' %}">Register Spare</a>
+                    <a class="nav-link" href="{% url 'user' 1 %}">User</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown
+                    </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li>
+                    <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+                </li>
+            </ul>
+            <form class="d-flex mt-3" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            </div>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+    </div>
+</nav>
