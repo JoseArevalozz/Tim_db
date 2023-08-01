@@ -7,13 +7,15 @@
         {% csrf_token %}
         <!-- {{form.as_p}} -->
         
-        {% for row in form %}
-            <div class="form-group">
-                <label for="">{{row.label}}</label>
-                {{row}}
-            </div>
-            <br>
-        {% endfor %}
+        <div class="row">
+            {% for row in form %}
+                <div class="form-group col-4">
+                    <label for="">{{row.label}}</label>
+                    {{row}}
+                </div>
+                <br>
+            {% endfor %}
+        </div>
 
         <input type="submit" value="Submit">
     </form>

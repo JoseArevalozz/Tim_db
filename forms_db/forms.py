@@ -30,6 +30,10 @@ class FailureForm(ModelForm):
         labels = {'id_s': 'Station', 'sn_f':'SN UUT', 'id_er': 'Error Message', 'analysis': 'Analysis', 'rootCause': 'Root Cause', 'status': 'Status', 'defectSymptom': 'Defect Symptom', 'shiftFailure': 'Shift Failure', 'correctiveActions': 'Corrective Actions', 'comments': 'Comments'}
         
 class BoomForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control mb-2 col-md-6 col-sm-6'
     class Meta:
         model = Booms
         fields = '__all__'

@@ -10,37 +10,20 @@
 </head>
 <body>
     <!-- login -->
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li>{{message}}</li>
-        {% endfor %}
-
-    </ul>
-    {% endif %}
     
     {% if request.user.is_active  %}
     <div>
         <!-- nav -->
-        <div>
+        <div >
+            <br>
+            <br><br>
             {% include 'nav.html' %}
         </div>
     </div>
     {% else %}
     <!-- logout -->
     <div>
-        <h1>Login</h1>
-
-        <form method="POST">
-            {% csrf_token %}
-            <label for="">Username: </label>
-            <input type="text" name="user" placeholder="User name...">
-            <br>
-            <label for="">Password: </label>
-            <input type="password" name="password">
-            <br>
-            <input type="submit" value='Login'>
-        </form>
+        {% include 'login.html' %}
     </div>
     {% endif %}
 

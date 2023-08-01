@@ -11,7 +11,10 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required(login_url='login')
 def home(request):
-    return render(request=request, template_name='base/first.html',)
+    employe = Employes.objects.get(employeeNumber=request.user)
+    context = {'employe': employe}
+    
+    return render(request=request, template_name='base/first.html', context=context)
 
 def loginUser(request):
     uuts = Uut.objects.all()
@@ -46,6 +49,7 @@ def logoutUser(request):
 
 @login_required(login_url='login')
 def employeesForm(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
     form = EmployeesForm()
     
     if request.method == 'POST':
@@ -54,11 +58,12 @@ def employeesForm(request):
             form.save()
             return redirect('home')
     
-    context = {'form': form}
+    context = {'form': form, 'employe': employe}
     return render(request=request, template_name='base/employee_form.html', context=context)
 
 @login_required(login_url='login')
 def uutForm(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
     form = UutForm()
     
     if request.method == 'POST':
@@ -67,11 +72,13 @@ def uutForm(request):
             form.save()
             return redirect('home')
     
-    context = {'form':form}
+    context = {'form':form, 'employe': employe}
     return render(request=request, template_name='base/uut_form.html', context=context)
 
 @login_required(login_url='login')
 def failureForm(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
     form = FailureForm()
    
     if request.method == 'POST':       
@@ -97,11 +104,13 @@ def failureForm(request):
         )
         return redirect('home')
     
-    context = {'form': form}
+    context = {'form': form, 'employe': employe}
     return render(request=request, template_name='base/failure_form.html', context=context)
 
 @login_required(login_url='login')
 def boomForm(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
     form = BoomForm()
     
     if request.method == 'POST':
@@ -110,11 +119,13 @@ def boomForm(request):
             form.save()
             return redirect('home')
     
-    context = {'form': form}
+    context = {'form': form, 'employe': employe}
     return render(request=request, template_name='base/boom_form.html', context=context)
 
 @login_required(login_url='login')
 def rejectedForm(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
     form = RejectedForm()
     
     if request.method == 'POST':
@@ -123,11 +134,13 @@ def rejectedForm(request):
             form.save()
             return redirect('home')
     
-    context = {'form': form}
+    context = {'form': form, 'employe': employe}
     return render(request=request, template_name='base/rejected_form.html', context=context)
 
 @login_required(login_url='login')
 def errorMessageForm(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
     form = ErrorMessageForm()
     
     if request.method == 'POST':
@@ -136,11 +149,13 @@ def errorMessageForm(request):
             form.save()
             return redirect('home')
     
-    context = {'form': form}
+    context = {'form': form, 'employe': employe}
     return render(request=request, template_name='base/errorMessage.html', context=context)
 
 @login_required(login_url='login')
 def stationForm(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
     form = StationForm()
     
     if request.method == 'POST':
@@ -149,11 +164,13 @@ def stationForm(request):
             form.save()
             return redirect('home')
     
-    context = {'form': form}
+    context = {'form': form, 'employe': employe}
     return render(request=request, template_name='base/station_form.html', context=context)
 
 @login_required(login_url='login')
 def maintenanceForm(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
     form = MaintenanceForm()
     
     if request.method == 'POST':
@@ -162,11 +179,13 @@ def maintenanceForm(request):
             form.save()
             return redirect('home')
     
-    context = {'form': form}
+    context = {'form': form, 'employe': employe}
     return render(request=request, template_name='base/maintenance_form.html', context=context)
 
 @login_required(login_url='login')
 def spareForm(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
     form = SpareForm()
     
     if request.method == 'POST':
@@ -175,12 +194,14 @@ def spareForm(request):
             form.save()
             return redirect('home')
     
-    context = {'form': form}
+    context = {'form': form, 'employe': employe}
     return render(request=request, template_name='base/spare_form.html', context=context)
 
 @login_required(login_url='login')
 def userPage(request, pk):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
     user = Employes.objects.get(employeeNumber=pk)
     
-    context = {'user': user}
+    context = {'user': user, 'employe':employe}
     return render(request=request, template_name='base/user.html', context=context)
