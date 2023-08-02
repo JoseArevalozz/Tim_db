@@ -63,20 +63,20 @@
                 {% if employe.pmd == True%}
                 <form action="" method="POST">
                     {% csrf_token %}
-                    <li><button class="dropdown-item" value="DELL" name="bt-project" type="submit">PMDU</button></li>
+                    <li><button class="dropdown-item" value="PMDU" name="bt-project" type="submit">PMDU</button></li>
                 
                 <!-- <li><a class="dropdown-item" href="{% url 'dell' %}">PMDU</a></li> -->
                 {% endif %}
                 
                 {% if employe.dell == True%}
                 <li>
-                    <button class="dropdown-item" value="DELL" name="bt-project" type="submit" href="{% url 'dell' %}">DELL</button>
+                    <button class="dropdown-item" value="DELL" name="bt-project" type="submit">DELL</button>
                 </li>
                 {% endif %}
                 
                 {% if employe.switch == True%}
                 <li>
-                    <button class="dropdown-item" value="1G" name="bt-project" type="submit" href="{% url 'dell' %}">1G-SW</button>
+                    <button class="dropdown-item" value="1G" name="bt-project" type="submit">1G-SW</button>
                 </li>
                 {% endif %}
                 </form>

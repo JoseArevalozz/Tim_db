@@ -11,7 +11,14 @@ class EmployeesForm(ModelForm):
 class UutForm(ModelForm):
     class Meta:
         model = Uut
-        fields = '__all__'
+        fields = [
+                "sn",
+                "pn_b"
+        ]
+        labels = {
+                'sn':'Serial Number',
+                'pn_b':'Part Number',
+        }
 
 class FailureForm(ModelForm):
     
@@ -42,12 +49,30 @@ class BoomForm(ModelForm):
 class RejectedForm(ModelForm):
     class Meta:
         model = Rejected
-        fields = '__all__'  
+        fields = [
+            "pn_b",
+            "snDamaged",
+            "snNew",
+            "folio",
+        ] 
+        labels = {
+            'pn_b':'Part Number',
+            'snDamaged':'Sn Damaged',
+            'snNew': 'Sn New',
+            'folio':'Folio',
+        } 
         
 class ErrorMessageForm(ModelForm):
     class Meta:
         model = ErrorMessages
-        fields = '__all__'  
+        fields = [
+            "message",
+            "pn_b"
+        ]  
+        labels = {
+            'message':'Error Message',
+            'pn_b':'Part Number'
+        }
 
 class StationForm(ModelForm):
     class Meta:

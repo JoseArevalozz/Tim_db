@@ -7,18 +7,18 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-
-# Create your views here.
+def validateProject(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    if request.method == 'POST':
+        employe.privileges = request.POST.get('bt-project')
+        employe.save()
+        return redirect('home')
+    
 @login_required(login_url='login')
 def home(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     context = {'employe': employe}
-    
-    if request.method == 'POST':
-        if employe.privileges == 'NA':
-            employe.privileges = request.POST.get('bt-project')
-            employe.save()
-        return redirect('home')
+    validateProject(request)
     
     return render(request=request, template_name='base/first.html', context=context)
 
@@ -68,6 +68,7 @@ def logoutUser(request):
 def employeesForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     form = EmployeesForm()
+    validateProject(request)
     
     if request.method == 'POST':
         form = EmployeesForm(request.POST)
@@ -82,6 +83,7 @@ def employeesForm(request):
 def uutForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     form = UutForm()
+    validateProject(request)
     
     if request.method == 'POST':
         form = UutForm(request.POST)
@@ -97,7 +99,7 @@ def failureForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
     form = FailureForm()
-   
+    validateProject(request)
     if request.method == 'POST':       
         if 'bt-project' not in request.POST: 
             print(request.POST)
@@ -130,6 +132,7 @@ def boomForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
     form = BoomForm()
+    validateProject(request)
     
     if request.method == 'POST':
         form = BoomForm(request.POST)
@@ -145,6 +148,7 @@ def rejectedForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
     form = RejectedForm()
+    validateProject(request)
     
     if request.method == 'POST':
         form = RejectedForm(request.POST)
@@ -160,6 +164,7 @@ def errorMessageForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
     form = ErrorMessageForm()
+    validateProject(request)
     
     if request.method == 'POST':
         form = ErrorMessageForm(request.POST)
@@ -175,6 +180,7 @@ def stationForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
     form = StationForm()
+    validateProject(request)
     
     if request.method == 'POST':
         form = StationForm(request.POST)
@@ -190,6 +196,7 @@ def maintenanceForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
     form = MaintenanceForm()
+    validateProject(request)
     
     if request.method == 'POST':
         form = MaintenanceForm(request.POST)
@@ -205,6 +212,7 @@ def spareForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
     form = SpareForm()
+    validateProject(request)
     
     if request.method == 'POST':
         form = SpareForm(request.POST)
