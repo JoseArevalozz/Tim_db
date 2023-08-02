@@ -17,44 +17,71 @@
             </div>
             <hr>
             <div class="offcanvas-body">
+            {% if employe.privileges != 'NA' %}
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{% url 'employees_form' %}">Register employees</a>
+                </li>
+                <li>
                     <a class="nav-link text-white" href="{% url 'uut_form' %}">Register UUT</a>
+                </li>
+                <li>
                     <a class="nav-link text-white" href="{% url 'failure_form' %}">Register Failure</a>
+                </li>
+                <li>
                     <a class="nav-link text-white" href="{% url 'boom_form' %}">Register BOOM</a>
+                </li>
+                <li>
                     <a class="nav-link text-white" href="{% url 'rejected_form' %}">Register Rejected</a>
+                </li>
+                <li>
                     <a class="nav-link text-white" href="{% url 'errorMessage_form' %}">Register ErrorMessage</a>
+                </li>
+                <li>
                     <a class="nav-link text-white" href="{% url 'station_form' %}">Register Station</a>
+                </li>
+                <li>
                     <a class="nav-link text-white" href="{% url 'maintenance_form' %}">Register Maintenance</a>
+                </li>
+                <li>
                     <a class="nav-link text-white" href="{% url 'spare_form' %}">Register Spare</a>
+                </li>
+                <li>
                     <a class="nav-link text-white" href="{% url 'user' 1 %}">User</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Projects
-                    </a>
-                <ul class="dropdown-menu">
-                    {% if employe.pmd == True%}
-                    <li><a class="dropdown-item" href="#">PMDU</a></li>
-                    {% endif %}
-                    {% if employe.dell == True%}
-                    <li><a class="dropdown-item" href="#">DELL</a></li>
-                    {% endif %}
-                    {% if employe.switch == True%}
-                    <li><a class="dropdown-item" href="#">1G-SW</a></li>
-                    {% endif %}
-                    <li>
-                    <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-                </li>
+                
             </ul>
-            
+            {% endif %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Projects
+                </a>
+            <ul class="dropdown-menu">
+                {% if employe.pmd == True%}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <li><button class="dropdown-item" value="DELL" name="bt-project" type="submit">PMDU</button></li>
+                
+                <!-- <li><a class="dropdown-item" href="{% url 'dell' %}">PMDU</a></li> -->
+                {% endif %}
+                
+                {% if employe.dell == True%}
+                <li>
+                    <button class="dropdown-item" value="DELL" name="bt-project" type="submit" href="{% url 'dell' %}">DELL</button>
+                </li>
+                {% endif %}
+                
+                {% if employe.switch == True%}
+                <li>
+                    <button class="dropdown-item" value="1G" name="bt-project" type="submit" href="{% url 'dell' %}">1G-SW</button>
+                </li>
+                {% endif %}
+                </form>
+            </ul>
+            </li>
             </div>
             <a href="{% url 'logout' %}">Logout</a>
         </div>

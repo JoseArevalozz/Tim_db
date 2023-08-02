@@ -14,6 +14,23 @@ def home(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     context = {'employe': employe}
     
+    if request.method == 'POST':
+        if employe.privileges == 'NA':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+        return redirect('home')
+    
+    return render(request=request, template_name='base/first.html', context=context)
+
+@login_required(login_url='login')
+def dellView(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
+    # if employe.privileges == 'NA':
+    #     employe.privileges = 'DELL'
+    #     employe.save()
+    context = {'employe': employe, 'project': 'dell'}
+    
     return render(request=request, template_name='base/first.html', context=context)
 
 def loginUser(request):
@@ -82,27 +99,28 @@ def failureForm(request):
     form = FailureForm()
    
     if request.method == 'POST':       
-    
-        station = request.POST.get('id_s')
-        uut = request.POST.get('sn_f')
-        errorMessage = request.POST.get('id_er')
-        user = Employes.objects.get(employeeNumber=request.user)
-        
-        Failures.objects.create(
-            id_s=Station.objects.get(id=(station)),
-            sn_f=Uut.objects.get(sn=uut),
-            id_er=ErrorMessages.objects.get(id=errorMessage),
-            analysis=request.POST.get('analysis'),
-            rootCause=request.POST.get('rootCause'),
-            status= True if request.POST.get('status') == 'on' else False,
-            defectSymptom=request.POST.get('defectSymptom'),
-            employee_e=user,
-            shiftFailure=request.POST.get('shiftFailure'),
-            correctiveActions=request.POST.get('correctiveActions'),
-            comments=request.POST.get('comments'),
+        if 'bt-project' not in request.POST: 
+            print(request.POST)
+            station = request.POST.get('id_s')
+            uut = request.POST.get('sn_f')
+            errorMessage = request.POST.get('id_er')
+            user = Employes.objects.get(employeeNumber=request.user)
             
-        )
-        return redirect('home')
+            Failures.objects.create(
+                id_s=Station.objects.get(id=station),
+                sn_f=Uut.objects.get(sn=uut),
+                id_er=ErrorMessages.objects.get(id=errorMessage),
+                analysis=request.POST.get('analysis'),
+                rootCause=request.POST.get('rootCause'),
+                status= True if request.POST.get('status') == 'on' else False,
+                defectSymptom=request.POST.get('defectSymptom'),
+                employee_e=user,
+                shiftFailure=request.POST.get('shiftFailure'),
+                correctiveActions=request.POST.get('correctiveActions'),
+                comments=request.POST.get('comments'),
+                
+            )
+            return redirect('home')
     
     context = {'form': form, 'employe': employe}
     return render(request=request, template_name='base/failure_form.html', context=context)
