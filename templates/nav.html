@@ -4,6 +4,7 @@
         <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <p style="color: white;">{{employe.privileges}}</p>
         <a class="text-white navbar-brand" href="#">TIM</a>
         <form class="d-flex mt-3" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -76,7 +77,7 @@
                 
                 {% if employe.switch == True%}
                 <li>
-                    <button class="dropdown-item" value="1G" name="bt-project" type="submit">1G-SW</button>
+                    <a href="{% url 'home' %}"> <button class="dropdown-item" value="1G" name="bt-project" type="submit">1G-SW</button></a>
                 </li>
                 {% endif %}
                 </form>

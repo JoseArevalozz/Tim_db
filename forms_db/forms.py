@@ -17,7 +17,7 @@ class UutForm(ModelForm):
         ]
         labels = {
                 'sn':'Serial Number',
-                'pn_b':'Part Number',
+                'pn_b':'Part Number (PN)',
         }
 
 class FailureForm(ModelForm):
@@ -44,7 +44,8 @@ class BoomForm(ModelForm):
     class Meta:
         model = Booms
         fields = '__all__'
-        labels = {'ubiLogic':'Logic ubication'}
+        labels = {'ubiLogic':'Logic ubication',
+        'pn':'Part Number (PN)'}
 
 class RejectedForm(ModelForm):
     class Meta:
@@ -56,7 +57,7 @@ class RejectedForm(ModelForm):
             "folio",
         ] 
         labels = {
-            'pn_b':'Part Number',
+            'pn_b':'Part Number (PN)',
             'snDamaged':'Sn Damaged',
             'snNew': 'Sn New',
             'folio':'Folio',
@@ -71,7 +72,7 @@ class ErrorMessageForm(ModelForm):
         ]  
         labels = {
             'message':'Error Message',
-            'pn_b':'Part Number'
+            'pn_b':'Part Number (PN)'
         }
 
 class StationForm(ModelForm):
@@ -81,7 +82,7 @@ class StationForm(ModelForm):
         labels = {
             'stationProject': 'Station Project',
             'stationName': 'Station Name',
-            'description': 'Description',
+            'description': 'Descripción',
         } 
         
 class MaintenanceForm(ModelForm):
