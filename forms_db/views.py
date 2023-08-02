@@ -9,17 +9,17 @@ from django.contrib.auth.decorators import login_required
 
 def validateProject(request):
     employe = Employes.objects.get(employeeNumber=request.user)
-    if request.method == 'POST':
-        employe.privileges = request.POST.get('bt-project')
-        employe.save()
-        return redirect('home')
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('home')
     
 @login_required(login_url='login')
 def home(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     context = {'employe': employe}
     validateProject(request)
-    
     return render(request=request, template_name='base/first.html', context=context)
 
 @login_required(login_url='login')
