@@ -1,51 +1,87 @@
-<nav class="navbar bg-body-tertiary fixed-top">
+<nav  class="navbar fixed-top " style="background-color: #0049BF;">
                 
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+    <div class="container-fluid" >
+        <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">TIM</a>
-    
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <a class="text-white navbar-brand" href="#">TIM</a>
+        <form class="d-flex mt-3" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
+        </form>
+        <div class=" offcanvas offcanvas-start " style="background-color: #0049BF;" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">TIM</h5>
+            <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">TIM</h5>
+            <span class="offcanvas-title ">{{employe}}</span>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
+            <hr>
             <div class="offcanvas-body">
+            {% if employe.privileges != 'NA' %}
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'employees_form' %}">Register employees</a>
-                    <a class="nav-link" href="{% url 'uut_form' %}">Register UUT</a>
-                    <a class="nav-link" href="{% url 'failure_form' %}">Register Failure</a>
-                    <a class="nav-link" href="{% url 'boom_form' %}">Register BOOM</a>
-                    <a class="nav-link" href="{% url 'rejected_form' %}">Register Rejected</a>
-                    <a class="nav-link" href="{% url 'errorMessage_form' %}">Register ErrorMessage</a>
-                    <a class="nav-link" href="{% url 'station_form' %}">Register Station</a>
-                    <a class="nav-link" href="{% url 'maintenance_form' %}">Register Maintenance</a>
-                    <a class="nav-link" href="{% url 'spare_form' %}">Register Spare</a>
-                    <a class="nav-link" href="{% url 'user' 1 %}">User</a>
+                    <a class="nav-link text-white" href="{% url 'employees_form' %}">Register employees</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown
-                    </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li>
-                    <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
+                <li>
+                    <a class="nav-link text-white" href="{% url 'uut_form' %}">Register UUT</a>
                 </li>
+                <li>
+                    <a class="nav-link text-white" href="{% url 'failure_form' %}">Register Failure</a>
+                </li>
+                <li>
+                    <a class="nav-link text-white" href="{% url 'boom_form' %}">Register BOOM</a>
+                </li>
+                <li>
+                    <a class="nav-link text-white" href="{% url 'rejected_form' %}">Register Rejected</a>
+                </li>
+                <li>
+                    <a class="nav-link text-white" href="{% url 'errorMessage_form' %}">Register ErrorMessage</a>
+                </li>
+                <li>
+                    <a class="nav-link text-white" href="{% url 'station_form' %}">Register Station</a>
+                </li>
+                <li>
+                    <a class="nav-link text-white" href="{% url 'maintenance_form' %}">Register Maintenance</a>
+                </li>
+                <li>
+                    <a class="nav-link text-white" href="{% url 'spare_form' %}">Register Spare</a>
+                </li>
+                <li>
+                    <a class="nav-link text-white" href="{% url 'user' 1 %}">User</a>
+                </li>
+                
             </ul>
-            <form class="d-flex mt-3" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            {% endif %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Projects
+                </a>
+            <ul class="dropdown-menu">
+                {% if employe.pmd == True%}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <li><button class="dropdown-item" value="DELL" name="bt-project" type="submit">PMDU</button></li>
+                
+                <!-- <li><a class="dropdown-item" href="{% url 'dell' %}">PMDU</a></li> -->
+                {% endif %}
+                
+                {% if employe.dell == True%}
+                <li>
+                    <button class="dropdown-item" value="DELL" name="bt-project" type="submit" href="{% url 'dell' %}">DELL</button>
+                </li>
+                {% endif %}
+                
+                {% if employe.switch == True%}
+                <li>
+                    <button class="dropdown-item" value="1G" name="bt-project" type="submit" href="{% url 'dell' %}">1G-SW</button>
+                </li>
+                {% endif %}
+                </form>
+            </ul>
+            </li>
             </div>
             <a href="{% url 'logout' %}">Logout</a>
         </div>
