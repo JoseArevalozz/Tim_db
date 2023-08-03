@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import EmployeesForm, UutForm, FailureForm, BoomForm, RejectedForm, ErrorMessageForm, StationForm, MaintenanceForm, SpareForm
-from .models import Uut, Employes, Failures, Station, ErrorMessages
+from .models import Uut, Employes, Failures, Station, ErrorMessages, Booms
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -90,7 +90,7 @@ def employeesForm(request):
 def uutForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     form = UutForm()
-    
+    form.fields['pn_b'].queryset = Booms.objects.filter(project=employe.privileges)
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')
@@ -101,10 +101,15 @@ def uutForm(request):
         return redirect('home')
     
     if request.method == 'POST':
-        form = UutForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
+        
+        pn_booms = Booms.objects.get(pn=request.POST.get('pn_b'))
+        Uut.objects.create(
+            sn=request.POST.get('sn'),
+            pn_b=pn_booms,
+            employee_e=employe,
+            status = True if request.POST.get('status') == 'on' else False,
+        )
+        return redirect('home')
     
     context = {'form':form, 'employe': employe}
     return render(request=request, template_name='base/uut_form.html', context=context)
@@ -113,6 +118,12 @@ def uutForm(request):
 def failureForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     form = FailureForm()
+    
+    form.fields['id_s'].queryset = Station.objects.filter(stationProject=employe.privileges)
+    form.fields['sn_f'].queryset = Uut.objects.filter(status=True ).filter(pn_b__project=employe.privileges)
+    form.fields['id_er'].queryset = ErrorMessages.objects.filter(pn_b__project=employe.privileges)
+    
+    # form.fields['sn_f'].queryset = Uut.objects.filter(status=True)
     
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
@@ -125,12 +136,9 @@ def failureForm(request):
     
     if request.method == 'POST':  
         if 'bt-project' not in request.POST:
-            print('!!!!!!!!!!!!!!!!!!!!')     
-
             station = request.POST.get('id_s')
             uut = request.POST.get('sn_f')
             errorMessage = request.POST.get('id_er')
-            user = Employes.objects.get(employeeNumber=request.user)
             
             Failures.objects.create(
                 id_s=Station.objects.get(id=station),
@@ -140,7 +148,7 @@ def failureForm(request):
                 rootCause=request.POST.get('rootCause'),
                 status= True if request.POST.get('status') == 'on' else False,
                 defectSymptom=request.POST.get('defectSymptom'),
-                employee_e=user,
+                employee_e=employe,
                 shiftFailure=request.POST.get('shiftFailure'),
                 correctiveActions=request.POST.get('correctiveActions'),
                 comments=request.POST.get('comments'),
@@ -166,10 +174,16 @@ def boomForm(request):
         return redirect('home')
     
     if request.method == 'POST':
-        form = BoomForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
+        Booms.objects.create(
+            pn=request.POST.get('pn'),
+            description=request.POST.get('description'),
+            commodity=request.POST.get('commodity'),
+            product=request.POST.get('product'),
+            ubiLogic=request.POST.get('ubiLogic'),
+            employee_e=employe,
+            project=request.POST.get('project'),
+        )
+        return redirect('home')
     
     context = {'form': form, 'employe': employe}
     return render(request=request, template_name='base/boom_form.html', context=context)
@@ -179,6 +193,9 @@ def rejectedForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
     form = RejectedForm()
+    
+    form.fields['pn_b'].queryset = Booms.objects.filter(project=employe.privileges)
+    # form.fields['sn_f'].queryset = Uut.objects.filter(status=True ).filter(pn_b__project=employe.privileges)
     
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
@@ -249,6 +266,9 @@ def maintenanceForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
     form = MaintenanceForm()
+    
+    form.fields['statition_s'].queryset = Station.objects.filter(stationProject=employe.privileges)
+    
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')

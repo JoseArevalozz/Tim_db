@@ -13,7 +13,7 @@
         <div class=" offcanvas offcanvas-start " style="background-color: #0049BF;" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
             <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">TIM</h5>
-            <span class="offcanvas-title ">{{employe}}</span>
+            <span class="text-white offcanvas-title ">{{employe}}</span>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <hr>
@@ -21,10 +21,7 @@
                 {% if employe.privileges != 'NA' %}
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="{% url 'employees_form' %}">Register employees</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                     </li>
                     <li>
                         <a class="nav-link text-white" href="{% url 'uut_form' %}">Register UUT</a>
@@ -77,7 +74,7 @@
                             
                             {% if employe.switch == True%}
                             <li>
-                                <button class="dropdown-item" value="1G" name="bt-project" type="submit">1G-SW</button>
+                                <button class="dropdown-item" value="1G-SW" name="bt-project" type="submit">1G-SW</button>
                             </li>
                             {% endif %}
                         </form>

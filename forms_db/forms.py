@@ -68,6 +68,7 @@ class BoomForm(ModelForm):
     class Meta:
         model = Booms
         fields = '__all__'
+        exclude = ['employee_e']
         labels = {'ubiLogic':'Logic ubication',
         'pn':'Part Number (PN)'}
 

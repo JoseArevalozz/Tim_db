@@ -19,12 +19,15 @@ class Employes(models.Model):
          return self.employeeName
       
 class Booms(models.Model):
+    projects = (('DELL', 'DELL'), ('PMDU', 'PMDU'), ('1G-SW', '1G-SW'))
+    
     pn = models.CharField(max_length=50, primary_key=True,)
+    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, blank=True, null=True,)
     description = models.CharField(max_length=125)
     commodity = models.CharField(max_length=50)
-    product = models.CharField(max_length=30)
-    ubiLogic = models.CharField(max_length=15)
-    project = models.CharField(max_length=20)
+    product = models.CharField(max_length=30,)
+    ubiLogic = models.CharField(max_length=15,)
+    project = models.CharField(max_length=20, choices=projects)
             
     def __str__(self):
         return self.pn
@@ -33,21 +36,22 @@ class Uut(models.Model):
     sn = models.CharField(max_length=50, primary_key=True)
     date = models.DateTimeField(auto_now=True)
     pn_b = models.ForeignKey(Booms,on_delete=models.SET_NULL, blank=True, null=True,)
-    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, default='ex', blank=True, null=True,)
+    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, blank=True, null=True,)
     status = models.BooleanField(default=True)
     
     def __str__(self):
          return self.sn
 
 class Station(models.Model):
-    # idS = models.AutoField(primary_key=True)
-    stationProject = models.CharField(max_length=100)
+    projects = (('DELL', 'DELL'), ('PMDU', 'PMDU'), ('1G-SW', '1G-SW'))
+    
+    stationProject = models.CharField(max_length=50, choices=projects )
     stationName = models.CharField(max_length=50)
     description = models.CharField(max_length=150)
     date = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return self.stationProject
+        return self.stationName
     
 class SparePart(models.Model):
     date = models.DateTimeField(auto_now=True)
@@ -75,13 +79,15 @@ class Maintenance(models.Model):
 class ErrorMessages(models.Model):
     message = models.CharField(max_length=150)
     date = models.DateTimeField(auto_now=True)
-    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, default='ex', blank=True, null=True,)
+    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, blank=True, null=True,)
     pn_b = models.ForeignKey(Booms, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.message    
 
 class Failures(models.Model):
+    shifts = (('1', '1'), ('2', '2'), ('3', '3') )
+    
     id_s = models.ForeignKey(Station, on_delete=models.SET_NULL, blank=True, null=True,)
     sn_f = models.ForeignKey(Uut, on_delete=models.CASCADE)
     failureDate = models.DateTimeField(auto_now=True)
@@ -91,7 +97,7 @@ class Failures(models.Model):
     status = models.BooleanField(default=True)
     defectSymptom = models.CharField(max_length=100)
     employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, blank=True, null=True,)
-    shiftFailure = models.CharField(max_length=13)
+    shiftFailure = models.CharField(max_length=13, choices=shifts)
     correctiveActions = models.CharField(max_length=100)
     comments = models.TextField()
     
