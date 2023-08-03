@@ -9,7 +9,7 @@
         
         <div class="row">
             {% for row in form %}
-                <div class="form-group col-4">
+                <div class="form-group col-md-6 col-sm-6">
                     <label for="">{{row.label}}</label>
                     {{row}}
                 </div>
@@ -17,7 +17,7 @@
             {% endfor %}
         </div>
 
-        <input type="submit" value="Submit">
+        <input type="submit" class="btn btn-primary mt-5" value="Submit">
     </form>
 </div>
 {% endblock %}

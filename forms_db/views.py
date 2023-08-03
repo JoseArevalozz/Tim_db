@@ -144,7 +144,6 @@ def failureForm(request):
                 shiftFailure=request.POST.get('shiftFailure'),
                 correctiveActions=request.POST.get('correctiveActions'),
                 comments=request.POST.get('comments'),
-                
             )
             return redirect('home')
     
