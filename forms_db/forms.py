@@ -120,14 +120,17 @@ class StationForm(ModelForm):
         labels = {
             'stationProject': 'Station Project',
             'stationName': 'Station Name',
-            'description': 'Descripción',
+            'description': 'Description',
         } 
         
 class MaintenanceForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control mb-2 col-md-6 col-sm-6 text-white bg-black'
+            if visible.name == 'status':
+                visible.field.widget.attrs['class'] = 'form-check-input'
+            else:
+                visible.field.widget.attrs['class'] = 'form-control mb-2 text-white bg-black'
             
     class Meta:
         model = Maintenance
