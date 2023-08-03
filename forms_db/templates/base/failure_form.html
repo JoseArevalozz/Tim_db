@@ -9,17 +9,30 @@
         
         <div class="row">
             {% for row in form %}
-                <div class="form-group col-4">
+                <div class=" form-group col-md-6 col-sm-6">
                     <label for="">{{row.label}}</label>
                     {{row}}
                 </div>
                 <br>
             {% endfor %}
+            <div class="form-group col-md-6 col-sm-6">
+                <input class="form-check-input" name="status" type="checkbox"  value="on" >
+                <label class="form-check-label" for="inlineCheckbox3">Status</label>
+              </div>
         </div>
-
+       
         
 
         <input class="btn btn-primary" type="submit" value="Submit">
     </form>
 </div> 
+
+<style>
+    .form{
+        display: flex;
+    }
+</style>
+
 {% endblock %}
+
+
