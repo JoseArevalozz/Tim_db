@@ -7,19 +7,19 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-def validateProject(request):
+
+
+@login_required(login_url='login')
+def home(request):
     employe = Employes.objects.get(employeeNumber=request.user)
+    context = {'employe': employe}
+    
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')
             employe.save()
             return redirect('home')
-    
-@login_required(login_url='login')
-def home(request):
-    employe = Employes.objects.get(employeeNumber=request.user)
-    context = {'employe': employe}
-    validateProject(request)
+
     return render(request=request, template_name='base/first.html', context=context)
 
 @login_required(login_url='login')
@@ -68,7 +68,14 @@ def logoutUser(request):
 def employeesForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     form = EmployeesForm()
-    validateProject(request)
+    if 'bt-project' in request.POST:
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('home')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
     
     if request.method == 'POST':
         form = EmployeesForm(request.POST)
@@ -83,7 +90,15 @@ def employeesForm(request):
 def uutForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     form = UutForm()
-    validateProject(request)
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('home')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
     
     if request.method == 'POST':
         form = UutForm(request.POST)
@@ -97,12 +112,21 @@ def uutForm(request):
 @login_required(login_url='login')
 def failureForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
-    
     form = FailureForm()
-    validateProject(request)
-    if request.method == 'POST':       
-        if 'bt-project' not in request.POST: 
-            print(request.POST)
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+        return redirect('home')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
+    
+    if request.method == 'POST':  
+        if 'bt-project' not in request.POST:
+            print('!!!!!!!!!!!!!!!!!!!!')     
+
             station = request.POST.get('id_s')
             uut = request.POST.get('sn_f')
             errorMessage = request.POST.get('id_er')
@@ -132,7 +156,15 @@ def boomForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
     form = BoomForm()
-    validateProject(request)
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('home')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
     
     if request.method == 'POST':
         form = BoomForm(request.POST)
@@ -148,7 +180,15 @@ def rejectedForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
     form = RejectedForm()
-    validateProject(request)
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('home')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
     
     if request.method == 'POST':
         form = RejectedForm(request.POST)
@@ -162,9 +202,16 @@ def rejectedForm(request):
 @login_required(login_url='login')
 def errorMessageForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
-    
     form = ErrorMessageForm()
-    validateProject(request)
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('home')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
     
     if request.method == 'POST':
         form = ErrorMessageForm(request.POST)
@@ -180,7 +227,14 @@ def stationForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
     form = StationForm()
-    validateProject(request)
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('home')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
     
     if request.method == 'POST':
         form = StationForm(request.POST)
@@ -196,7 +250,14 @@ def maintenanceForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
     form = MaintenanceForm()
-    validateProject(request)
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('home')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
     
     if request.method == 'POST':
         form = MaintenanceForm(request.POST)
@@ -210,9 +271,16 @@ def maintenanceForm(request):
 @login_required(login_url='login')
 def spareForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
-    
     form = SpareForm()
-    validateProject(request)
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('home')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
     
     if request.method == 'POST':
         form = SpareForm(request.POST)

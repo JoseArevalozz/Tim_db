@@ -30,7 +30,6 @@ class FailureForm(ModelForm):
             else:
                 visible.field.widget.attrs['class'] = 'form-control mb-2 col-md-6 col-sm-6'
         
-        print(dir(visible.label_tag))
     class Meta:
         model = Failures
         fields = ['id_s', 'sn_f', 'id_er', 'analysis', 'rootCause', 'status', 'defectSymptom', 'shiftFailure', 'correctiveActions', 'comments'] 
