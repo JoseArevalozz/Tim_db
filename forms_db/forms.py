@@ -3,21 +3,43 @@ from django.forms import ModelForm, PasswordInput, CharField
 from .models import Employes, Uut, Failures, Booms, Rejected, ErrorMessages, Station, Maintenance, SparePart
 
 class EmployeesForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            if visible.name == 'pmd':
+                visible.field.widget.attrs['class'] = 'form-check-input'
+            elif visible.name == 'dell':
+                visible.field.widget.attrs['class'] = 'form-check-input'
+            elif visible.name == 'switch':
+                visible.field.widget.attrs['class'] = 'form-check-input'
+            else:
+                visible.field.widget.attrs['class'] = 'form-control mb-2 col-md-6 col-sm-6 text-white bg-black'
+                
     password = CharField(widget=PasswordInput())
     class Meta:
         model = Employes
         fields = '__all__'
     
 class UutForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            if visible.name == 'status':
+                visible.field.widget.attrs['class'] = 'form-check-input'
+            else:
+                visible.field.widget.attrs['class'] = 'form-control mb-2 col-md-6 col-sm-6 text-white bg-black'
+            
     class Meta:
         model = Uut
         fields = [
                 "sn",
-                "pn_b"
+                "pn_b",
+                "status"
         ]
         labels = {
                 'sn':'Serial Number',
                 'pn_b':'Part Number (PN)',
+                'status':'Status'
         }
 
 class FailureForm(ModelForm):
@@ -28,7 +50,7 @@ class FailureForm(ModelForm):
             if visible.name == 'status':
                 visible.field.widget.attrs['class'] = 'form-check-input'
             else:
-                visible.field.widget.attrs['class'] = 'form-control mb-2 col-md-6 col-sm-6'
+                visible.field.widget.attrs['class'] = 'form-control mb-2 col-md-6 col-sm-6 text-white bg-black'
         
     class Meta:
         model = Failures
@@ -39,7 +61,7 @@ class BoomForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control mb-2 col-md-6 col-sm-6'
+            visible.field.widget.attrs['class'] = 'form-control mb-2 col-md-6 col-sm-6 text-white bg-black'
     class Meta:
         model = Booms
         fields = '__all__'
@@ -47,6 +69,10 @@ class BoomForm(ModelForm):
         'pn':'Part Number (PN)'}
 
 class RejectedForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control mb-2 col-md-6 col-sm-6 text-white bg-black'
     class Meta:
         model = Rejected
         fields = [
@@ -63,6 +89,11 @@ class RejectedForm(ModelForm):
         } 
         
 class ErrorMessageForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control mb-2 col-md-6 col-sm-6 text-white bg-black'
+            
     class Meta:
         model = ErrorMessages
         fields = [
@@ -75,6 +106,11 @@ class ErrorMessageForm(ModelForm):
         }
 
 class StationForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control mb-2 col-md-6 col-sm-6 text-white bg-black'
+            
     class Meta:
         model = Station
         fields = ['stationProject', 'stationName', 'description']
@@ -85,6 +121,11 @@ class StationForm(ModelForm):
         } 
         
 class MaintenanceForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control mb-2 col-md-6 col-sm-6 text-white bg-black'
+            
     class Meta:
         model = Maintenance
         fields = ['id_sp', 'maintenanceType', 'statition_s', 'employee_e', 'failureM', 'causeCategoryS', 'dateFinish', 'status']
@@ -100,6 +141,11 @@ class MaintenanceForm(ModelForm):
         } 
 
 class SpareForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control mb-2 col-md-6 col-sm-6 text-white bg-black'
+            
     class Meta:
         model = SparePart
         fields = ['quantity', 'description', 'pn']
