@@ -37,7 +37,7 @@ class UutForm(ModelForm):
                 "status"
         ]
         labels = {
-                'sn':'Serial Number',
+                'sn':'Serial Number (SN)',
                 'pn_b':'Part Number (PN)',
                 'status':'Status'
         }
@@ -55,7 +55,7 @@ class FailureForm(ModelForm):
     class Meta:
         model = Failures
         fields = ['id_s', 'sn_f', 'id_er', 'analysis', 'rootCause', 'defectSymptom', 'shiftFailure', 'correctiveActions', 'comments'] 
-        labels = {'id_s': 'Station', 'sn_f':'SN UUT', 'id_er': 'Error Message', 'analysis': 'Analysis', 'rootCause': 'Root Cause', 'defectSymptom': 'Defect Symptom', 'shiftFailure': 'Shift Failure', 'correctiveActions': 'Corrective Actions', 'comments': 'Comments'}
+        labels = {'id_s': 'Station', 'sn_f':'Serial Number (SN)', 'id_er': 'Error Message', 'analysis': 'Analysis', 'rootCause': 'Root Cause', 'defectSymptom': 'Defect Symptom', 'shiftFailure': 'Shift Failure', 'correctiveActions': 'Corrective Actions', 'comments': 'Comments'}
         widgets = {
           'comments': Textarea(attrs={'rows':1, }),
         }
@@ -86,8 +86,8 @@ class RejectedForm(ModelForm):
         ] 
         labels = {
             'pn_b':'Part Number (PN)',
-            'snDamaged':'Sn Damaged',
-            'snNew': 'Sn New',
+            'snDamaged':'Serial Number (SN) Damaged',
+            'snNew': 'Serial Number (SN) New',
             'folio':'Folio',
         } 
         
@@ -118,8 +118,8 @@ class StationForm(ModelForm):
         model = Station
         fields = ['stationProject', 'stationName', 'description']
         labels = {
-            'stationProject': 'Station Project',
-            'stationName': 'Station Name',
+            'stationProject': 'Project',
+            'stationName': 'Name',
             'description': 'Description',
         } 
         
@@ -134,12 +134,11 @@ class MaintenanceForm(ModelForm):
             
     class Meta:
         model = Maintenance
-        fields = ['id_sp', 'maintenanceType', 'statition_s', 'employee_e', 'failureM', 'causeCategoryS', 'dateFinish', 'status']
+        fields = ['id_sp', 'maintenanceType', 'statition_s', 'failureM', 'causeCategoryS', 'dateFinish', 'status']
         labels = {
-            'id_sp': 'ID Spare Part',
+            'id_sp': 'Spare Part',
             'maintenanceType': 'Maintenance Type',
             'statition_s': 'Station',
-            'employee_e': 'Number Employe',
             'failureM': 'Failure Message',
             'causeCategoryS': 'Cause Category',
             'dateFinish': 'Date Finish',
@@ -157,6 +156,6 @@ class SpareForm(ModelForm):
         fields = ['quantity', 'description', 'pn']
         labels = {
             'quantity': 'Quantity',
-            'description': 'Descripción',
+            'description': 'Description',
             'pn': 'Part Number (PN)',
         }  
