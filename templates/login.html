@@ -31,12 +31,13 @@
                     <label class="form-label" for="form2Example27">Password</label>
                   </div>
                   {% if messages %}
-                  <ul class="messages">
-                      {% for message in messages %}
-                          <li>{{message}}</li>
-                      {% endfor %}
+                    {% for message in messages %}
+                    <div class="alert alert-danger" role="alert">
+                      {{message}}
+                    </div>    
+                  {% endfor %}
               
-                  </ul>
+
                   {% endif %}
 
                   <div class="pt-1 mb-4">
