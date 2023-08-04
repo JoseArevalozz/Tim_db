@@ -111,7 +111,7 @@ class Rejected(models.Model):
     snDamaged = models.CharField(max_length=50)
     snNew = models.CharField(max_length=50)
     folio = models.CharField(max_length=15)
-    employee_e = models.ForeignKey(User, on_delete=models.SET_NULL, default='ex', blank=True, null=True,)
+    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, default='ex', blank=True, null=True,)
     
     def __str__(self):
         return ''

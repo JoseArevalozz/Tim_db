@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1>ShowRejecteds</h1>
+    {% for failure in failures %}
+    <a href="{% url 'rejected_form' failure.id %}">{{failure.sn_f.sn}}</a>
+    {% endfor %}
+</div>
+
+{% endblock %}

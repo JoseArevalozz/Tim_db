@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import EmployeesForm, UutForm, FailureForm, BoomForm, RejectedForm, ErrorMessageForm, StationForm, MaintenanceForm, SpareForm
-from .models import Uut, Employes, Failures, Station, ErrorMessages, Booms
+from .models import Uut, Employes, Failures, Station, ErrorMessages, Booms, Rejected
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -115,15 +115,16 @@ def uutForm(request):
     return render(request=request, template_name='base/uut_form.html', context=context)
 
 @login_required(login_url='login')
-def failureForm(request):
+def failureForm(request, pk):
     employe = Employes.objects.get(employeeNumber=request.user)
     form = FailureForm()
     
     form.fields['id_s'].queryset = Station.objects.filter(stationProject=employe.privileges)
-    form.fields['sn_f'].queryset = Uut.objects.filter(status=True ).filter(pn_b__project=employe.privileges)
+    # form.fields['sn_f'].queryset = Uut.objects.filter(status=True ).filter(pn_b__project=employe.privileges)
     form.fields['id_er'].queryset = ErrorMessages.objects.filter(pn_b__project=employe.privileges)
     
     # form.fields['sn_f'].queryset = Uut.objects.filter(status=True)
+    uut = Uut.objects.get(sn=pk)
     
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
@@ -137,12 +138,13 @@ def failureForm(request):
     if request.method == 'POST':  
         if 'bt-project' not in request.POST:
             station = request.POST.get('id_s')
-            uut = request.POST.get('sn_f')
+            # uut = request.POST.get('sn_f')
             errorMessage = request.POST.get('id_er')
             
             Failures.objects.create(
                 id_s=Station.objects.get(id=station),
-                sn_f=Uut.objects.get(sn=uut),
+                sn_f=uut,
+                # sn_f=Uut.objects.get(sn=uut),
                 id_er=ErrorMessages.objects.get(id=errorMessage),
                 analysis=request.POST.get('analysis'),
                 rootCause=request.POST.get('rootCause'),
@@ -157,6 +159,25 @@ def failureForm(request):
     
     context = {'form': form, 'employe': employe}
     return render(request=request, template_name='base/failure_form.html', context=context)
+
+@login_required(login_url='login')
+def showUuts(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
+    uuts = Uut.objects.filter(status=True).filter(pn_b__project=employe.privileges)
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('home')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
+    
+    context = {'uuts': uuts, 'employe': employe}
+    
+    return render(request=request, template_name='base/showUuts.html', context=context)
 
 @login_required(login_url='login')
 def boomForm(request):
@@ -189,7 +210,7 @@ def boomForm(request):
     return render(request=request, template_name='base/boom_form.html', context=context)
 
 @login_required(login_url='login')
-def rejectedForm(request):
+def rejectedForm(request, pk):
     employe = Employes.objects.get(employeeNumber=request.user)
     
     form = RejectedForm()
@@ -205,20 +226,52 @@ def rejectedForm(request):
     
     if employe.privileges == 'NA':
         return redirect('home')
-    
+       
     if request.method == 'POST':
-        form = RejectedForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
+        failure = Failures.objects.get(id=pk)
+        pn_booms = Booms.objects.get(pn=request.POST.get('pn_b'))
+        
+        Rejected.objects.create(
+            id_f=failure,
+            pn_b=pn_booms,
+            snDamaged=request.POST.get('snDamaged'),
+            snNew=request.POST.get('snNew'),
+            folio=request.POST.get('folio'),
+            employee_e=employe
+        )
+        
+        failure.status = False
+        failure.save()
+        return redirect('showRejecteds')
     
     context = {'form': form, 'employe': employe}
     return render(request=request, template_name='base/rejected_form.html', context=context)
 
 @login_required(login_url='login')
+def showRejecteds(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
+    failures = Failures.objects.filter(status=True).filter(sn_f__pn_b__project=employe.privileges)
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('home')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
+    
+    context = {'failures': failures, 'employe': employe}
+    
+    return render(request=request, template_name='base/showRejected.html', context=context)
+
+@login_required(login_url='login')
 def errorMessageForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     form = ErrorMessageForm()
+    
+    form.fields['pn_b'].queryset = Booms.objects.filter(project=employe.privileges)
     
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
@@ -230,10 +283,15 @@ def errorMessageForm(request):
         return redirect('home')
     
     if request.method == 'POST':
-        form = ErrorMessageForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
+        
+        pn_booms = Booms.objects.get(pn=request.POST.get('pn_b'))
+        
+        ErrorMessages.objects.create(
+            message=request.POST.get('message'),
+            employee_e=employe,
+            pn_b=pn_booms
+        )
+        return redirect('errorMessage_form')
     
     context = {'form': form, 'employe': employe}
     return render(request=request, template_name='base/errorMessage.html', context=context)

@@ -48,7 +48,7 @@ class FailureForm(ModelForm):
         super().__init__(*args, **kwargs)
         for visible in self.visible_fields():
             if visible.name == 'status':
-                visible.field.widget.attrs['class'] = 'form-check-input'
+                visible.field.widget.attrs['class'] = 'form-check-input activate'
             else:
                 visible.field.widget.attrs['class'] = 'form-control mb-2 text-white bg-black'
         
@@ -56,6 +56,7 @@ class FailureForm(ModelForm):
         model = Failures
         fields = ['id_s', 'sn_f', 'id_er', 'analysis', 'rootCause', 'defectSymptom', 'shiftFailure', 'correctiveActions', 'comments'] 
         labels = {'id_s': 'Station', 'sn_f':'Serial Number (SN)', 'id_er': 'Error Message', 'analysis': 'Analysis', 'rootCause': 'Root Cause', 'defectSymptom': 'Defect Symptom', 'shiftFailure': 'Shift Failure', 'correctiveActions': 'Corrective Actions', 'comments': 'Comments'}
+        exclude = ['sn_f']
         widgets = {
           'comments': Textarea(attrs={'rows':1, }),
         }
