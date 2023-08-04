@@ -6,8 +6,8 @@
         </button>
         <p style="color: white;">{{employe.privileges}}</p>
         <a class="text-white navbar-brand" href="#">TIM</a>
-        <form class="d-flex mt-3" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="d-flex mt-3" role="search" method="GET"  action="{% url 'showUuts' %}">
+            <input name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-success" type="submit">Search</button>
         </form>
         <div class=" offcanvas offcanvas-start " style="background-color: #0049BF;" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">

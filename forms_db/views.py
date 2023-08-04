@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from django.db.models import Q
 
 
 @login_required(login_url='login')
@@ -120,10 +120,9 @@ def failureForm(request, pk):
     form = FailureForm()
     
     form.fields['id_s'].queryset = Station.objects.filter(stationProject=employe.privileges)
-    # form.fields['sn_f'].queryset = Uut.objects.filter(status=True ).filter(pn_b__project=employe.privileges)
     form.fields['id_er'].queryset = ErrorMessages.objects.filter(pn_b__project=employe.privileges)
     
-    # form.fields['sn_f'].queryset = Uut.objects.filter(status=True)
+
     uut = Uut.objects.get(sn=pk)
     
     if 'bt-project' in request.POST: 
@@ -137,14 +136,13 @@ def failureForm(request, pk):
     
     if request.method == 'POST':  
         if 'bt-project' not in request.POST:
+            
             station = request.POST.get('id_s')
-            # uut = request.POST.get('sn_f')
             errorMessage = request.POST.get('id_er')
             
             Failures.objects.create(
                 id_s=Station.objects.get(id=station),
                 sn_f=uut,
-                # sn_f=Uut.objects.get(sn=uut),
                 id_er=ErrorMessages.objects.get(id=errorMessage),
                 analysis=request.POST.get('analysis'),
                 rootCause=request.POST.get('rootCause'),
@@ -162,9 +160,16 @@ def failureForm(request, pk):
 
 @login_required(login_url='login')
 def showUuts(request):
+    
     employe = Employes.objects.get(employeeNumber=request.user)
     
-    uuts = Uut.objects.filter(status=True).filter(pn_b__project=employe.privileges)
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    
+    uuts = Uut.objects.filter(status=True).filter(pn_b__project=employe.privileges).filter(
+        Q(sn__icontains=q) |
+        Q(pn_b__pn__icontains=q) |
+        Q(date__icontains=q)
+    )
     
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
