@@ -3,10 +3,24 @@
 {% block content %}
 
 <div class="container">
-    <h1>ShowRejecteds</h1>
+    <h1>Active Uuts</h1>
+    <div class="row">
     {% for uut in uuts %}
-    <a href="{% url 'failure_form' uut.sn %}">{{uut}}</a>
+        <div class="col-sm-12 col-md-4 mb-3">
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <h5 class="card-title">{{uut.sn}}</h5>
+                    <hr>
+                    <p>Model : {{uut.pn_b.product}}</p>
+                    <p>User : {{uut.employee_e.employeeName}}</p>
+                    <p>Date : {{uut.date}}</p>
+                    <a class="btn btn-primary" href="{% url 'failure_form' uut.sn %}">Register Fail</a>
+                </div>
+            </div>
+        </div>
+    
     {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

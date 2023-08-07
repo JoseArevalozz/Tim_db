@@ -3,10 +3,23 @@
 {% block content %}
 
 <div class="container">
-    <h1>ShowRejecteds</h1>
+    <h1>Active Fails</h1>
+    <div class="row">
     {% for failure in failures %}
-    <a href="{% url 'rejected_form' failure.id %}">{{failure.sn_f.sn}}</a>
+        <div class="col-sm-12 col-md-4 mb-3">
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <h5 class="card-title">{{failure.sn_f.sn}}</h5>
+                    <hr>
+                    <p>Error Message : {{failure.id_er.message}}</p>
+                    <p>User : {{failure.employee_e.employeeName}}</p>
+                    <p>Date : {{failure.failureDate}}</p>
+                    <a class="btn btn-primary" href="{% url 'rejected_form' failure.id %}">Debug</a>
+                </div>
+            </div>
+        </div>
     {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

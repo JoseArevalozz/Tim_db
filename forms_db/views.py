@@ -109,7 +109,7 @@ def uutForm(request):
             employee_e=employe,
             status = True if request.POST.get('status') == 'on' else False,
         )
-        return redirect('home')
+        return redirect('showUuts')
     
     context = {'form':form, 'employe': employe}
     return render(request=request, template_name='base/uut_form.html', context=context)
@@ -158,9 +158,9 @@ def failureForm(request, pk):
                 correctiveActions=request.POST.get('correctiveActions'),
                 comments=request.POST.get('comments'),
             )
-            return redirect('home')
+            return redirect('showRejecteds')
     
-    context = {'form': form, 'employe': employe}
+    context = {'form': form, 'employe': employe, 'uut': uut}
     return render(request=request, template_name='base/failure_form.html', context=context)
 
 @login_required(login_url='login')

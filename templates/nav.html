@@ -4,30 +4,32 @@
         <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <p style="color: white;">{{employe.privileges}}</p>
         <a class="text-white navbar-brand" href="#">TIM</a>
         <form class="d-flex mt-3" role="search" method="GET"  action="{% url 'showUuts' %}">
-            <input name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <input name="q" class="form-control me-2" type="search" placeholder="Sn, Model" aria-label="Search">
             <button class="btn btn-success" type="submit">Search</button>
         </form>
         <div class=" offcanvas offcanvas-start " style="background-color: #0049BF;" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
             <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">TIM</h5>
-            <span class="text-white offcanvas-title ">{{employe}}</span>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-header">
+                <span class="text-white offcanvas-title ">{{employe}}</span>
+                <span class="text-white offcanvas-title">{{employe.privileges}}</span>
             </div>
             <hr>
             <div class="offcanvas-body">
                 {% if employe.privileges != 'NA' %}
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-                    </li>
                     <li>
                         <a class="nav-link text-white" href="{% url 'uut_form' %}">Register UUT</a>
                     </li>
                     <li>
-                        <a class="nav-link text-white" href="{% url 'showUuts' %}">UUTS</a>
+                        <a class="nav-link text-white" href="{% url 'showUuts' %}">Fails</a>
+                    </li>
+                    <li>
+                        <a class="nav-link text-white" href="{% url 'showRejecteds'%}">Debug</a>
                     </li>
                     <li>
                         <a class="nav-link text-white" href="{% url 'boom_form' %}">Register BOOM</a>
@@ -45,16 +47,13 @@
                         <a class="nav-link text-white" href="{% url 'spare_form' %}">Register Spare</a>
                     </li>
                     <li>
-                        <a class="nav-link text-white" href="{% url 'user' 1 %}">User</a>
-                    </li>
-                    <li>
-                        <a class="nav-link text-white" href="{% url 'showRejecteds'%}">Rejectes</a>
+                        <a class="nav-link text-white" href="{% url 'user' 1 %}">Profile</a>
                     </li>
                     
                 </ul>
                 {% endif %}
                 <hr>
-                <li style="list-style: none;" class=" mb-4 nav-item dropdown">
+                <li style="list-style: none;" class=" mb-4 nav-item dropdown text-white">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
                     <ul class="dropdown-menu mb-5">
                         
