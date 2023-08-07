@@ -139,6 +139,9 @@ def failureForm(request, pk):
             
             station = request.POST.get('id_s')
             errorMessage = request.POST.get('id_er')
+            files = request.FILES  # multivalued dict
+            image = files.get("imgEvindence")
+            log = files.get('log')
             
             Failures.objects.create(
                 id_s=Station.objects.get(id=station),
@@ -149,6 +152,8 @@ def failureForm(request, pk):
                 status= True if request.POST.get('status') == 'on' else False,
                 defectSymptom=request.POST.get('defectSymptom'),
                 employee_e=employe,
+                imgEvindence=image,
+                log=log,
                 shiftFailure=request.POST.get('shiftFailure'),
                 correctiveActions=request.POST.get('correctiveActions'),
                 comments=request.POST.get('comments'),
