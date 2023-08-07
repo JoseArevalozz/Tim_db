@@ -4,7 +4,7 @@
         <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="text-white navbar-brand" href="#">TIM</a>
+        <a class="text-white navbar-brand" href="{% url 'home'%}">TIM</a>
         <form class="d-flex mt-3" role="search" method="GET"  action="{% url 'showUuts' %}">
             <input name="q" class="form-control me-2" type="search" placeholder="Sn, Model" aria-label="Search">
             <button class="btn btn-success" type="submit">Search</button>
@@ -21,36 +21,30 @@
             <hr>
             <div class="offcanvas-body">
                 {% if employe.privileges != 'NA' %}
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li>
-                        <a class="nav-link text-white" href="{% url 'uut_form' %}">Register UUT</a>
-                    </li>
-                    <li>
-                        <a class="nav-link text-white" href="{% url 'showUuts' %}">Fails</a>
-                    </li>
-                    <li>
-                        <a class="nav-link text-white" href="{% url 'showRejecteds'%}">Debug</a>
-                    </li>
-                    <li>
-                        <a class="nav-link text-white" href="{% url 'boom_form' %}">Register BOOM</a>
-                    </li>
-                    <li>
-                        <a class="nav-link text-white" href="{% url 'errorMessage_form' %}">Register ErrorMessage</a>
-                    </li>
-                    <li>
-                        <a class="nav-link text-white" href="{% url 'station_form' %}">Register Station</a>
-                    </li>
-                    <li>
-                        <a class="nav-link text-white" href="{% url 'maintenance_form' %}">Register Maintenance</a>
-                    </li>
-                    <li>
-                        <a class="nav-link text-white" href="{% url 'spare_form' %}">Register Spare</a>
-                    </li>
-                    <li>
-                        <a class="nav-link text-white" href="{% url 'user' 1 %}">Profile</a>
-                    </li>
-                    
-                </ul>
+                <li style="list-style: none;" class=" mb-4 nav-item dropdown text-white">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Rejects</a>
+                    <ul class="dropdown-menu mb-5">
+                        <li> <a class="dropdown-item" href="{% url 'uut_form' %}">Register UUT</a> </li>
+                        <li> <a class="dropdown-item" href="{% url 'showUuts' %}">Fails</a> </li>
+                        <li> <a class="dropdown-item" href="{% url 'showRejecteds'%}">Debug</a> </li>
+                        <li> <a class="dropdown-item" href="{% url 'boom_form' %}">Register BOOM</a> </li>
+                        <li> <a class="dropdown-item" href="{% url 'errorMessage_form' %}">Register ErrorMessage</a> </li>
+                        <li> <a class="dropdown-item" href="{% url 'station_form' %}">Register Station</a> </li>
+                    </ul>
+                </li>
+                <li style="list-style: none;" class=" mb-4 nav-item dropdown text-white">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Maintenance</a>
+                    <ul class="dropdown-menu mb-5">
+                        <li> <a class="dropdown-item" href="{% url 'maintenance_form' %}">Register Maintenance</a> </li>
+                        <li> <a class="dropdown-item" href="{% url 'spare_form' %}">Register Spare</a> </li>
+                    </ul>
+                </li>
+                <li style="list-style: none;" class=" mb-4 nav-item dropdown text-white">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+                    <ul class="dropdown-menu mb-5">
+                        <li> <a class="dropdown-item" href="{% url 'user' 1 %}">Profile</a> </li>
+                    </ul>
+                </li>
                 {% endif %}
                 <hr>
                 <li style="list-style: none;" class=" mb-4 nav-item dropdown text-white">
