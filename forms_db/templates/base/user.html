@@ -1,8 +1,20 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<div>
-    <h1>User</h1>
-    {{user.employeeNumber.password}}
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-10 col-md-10">
+            <div class="card bg-dark text-white text-center">
+                <div class="card-body">
+                    <h1>Profile</h1>
+                    <hr>
+                    <p>Name: {{employe.employeeName}}</p>
+                    <p>User: {{employe.employeeNumber}}</p>
+                    <p>Mail: {{employe.mail}}</p>
+                    <a class="btn btn-primary" href="">Change Password</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
