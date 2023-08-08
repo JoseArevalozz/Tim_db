@@ -159,6 +159,16 @@ def failureForm(request, pk):
     return render(request=request, template_name='base/failure_form.html', context=context)
 
 @login_required(login_url='login')
+def rejectsMenu(request):
+    context = {}
+    return render(request=request, template_name='base/menuRejects.html', context=context)
+
+@login_required(login_url='login')
+def maintenanceMenu(request):
+    context={}
+    return render(request=request, template_name='base/menuMaintenance.html', context=context)
+
+@login_required(login_url='login')
 def showUuts(request):
     
     employe = Employes.objects.get(employeeNumber=request.user)
@@ -170,13 +180,13 @@ def showUuts(request):
         Q(pn_b__pn__icontains=q) |
         Q(date__icontains=q)
     )
-    
+
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')
             employe.save()
             return redirect('home')
-    
+            
     if employe.privileges == 'NA':
         return redirect('home')
     

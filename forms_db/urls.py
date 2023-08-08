@@ -5,7 +5,8 @@ urlpatterns = [
     path('', views.home, name='home'),
     
     path('dell/', views.dellView, name='dell'),
-    
+    path('menuRejects/', views.rejectsMenu, name='menuRejects'),
+    path('menuMaintenance/', views.maintenanceMenu, name='menuMaintenance'),
     path('employees_form/', views.employeesForm, name='employees_form'),
     path('uut_form/', views.uutForm, name='uut_form'),
     path('failure_form/<str:pk>/', views.failureForm, name='failure_form'),
