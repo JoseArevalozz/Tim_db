@@ -1,27 +1,31 @@
 {% extends 'main.html' %}
+{% load static%}
 
 {% block content %}
 <div class="container mt-5">
     <h1>Test Integration Management</h1>
-    <div class="row">
+    <div class="row text-center">
         <div class="col-sm-6 col-md-4 mt-3">
-            <div class="card">
+            <div class="card card-rejects">
                 <div class="card-body">
-                    <a  href="{% url 'menuRejects'%}" class="card-title btn border-0" >Rejects</a>
+                    <a  href="{% url 'menuRejects'%}" class="card-title btn border-0" style="font-size: 25px;">Rejects</a>
+                    <img src="{% static 'images/rejectIcon.svg' %}"></img>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-md-4 mt-3">
-            <div class="card">
+            <div class="card card-maintenance">
                 <div class="card-body">
-                    <a href="{% url 'menuMaintenance' %}" class="card-title btn border-0">Maintenance</a>
+                    <a href="{% url 'menuMaintenance' %}" class="card-title btn border-0" style="font-size: 25px;">Maintenance</a>
+                    <img src="{% static 'images/maintenanceIcon.svg'%}">
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-md-4 mt-3">
-            <div class="card">
+            <div class="card card-metrics">
                 <div class="card-body">
-                    <a class="card-title btn border-0">Metrics</a>
+                    <a class="card-title btn border-0" style="font-size: 25px;">Metrics</a>
+                    <img src="{% static 'images/metricsIcon.svg' %}">
                 </div>
             </div>
         </div>
