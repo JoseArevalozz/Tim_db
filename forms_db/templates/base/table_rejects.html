@@ -1,0 +1,46 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Table rejects</h1>
+    <div class="table-responsive">
+        <form method="POST">
+        {% csrf_token %}
+            <table class="table table-hover table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"><></th>
+                        <th scope="col">SN</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Fail desc</th>
+                        <th scope="col">PN</th>
+                        <th scope="col">SN old</th>
+                        <th scope="col">SN New</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reject in rejects %}
+                    <tr>
+                        <th scope="col">
+                            <div class="form-check">
+                            <input class="form-check-input" type="checkbox" 
+                            value="{{reject.id}}" 
+                            name="check" />
+                            </div>
+                        </th>
+                        <td scope="row">{{reject.id_f.sn_f}}</td>
+                        <td>{{reject.id_f.sn_f.pn_b.product}}</td>
+                        <td>{{reject.id_f.id_er.message}}</td>
+                        <td>{{reject.pn_b.pn}}</td>
+                        <td>{{reject.snDamaged}}</td>
+                        <td>{{reject.snNew}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+{% endblock %}

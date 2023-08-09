@@ -63,7 +63,7 @@ class SparePart(models.Model):
         return self.description
     
 class Maintenance(models.Model):
-    id_sp = models.ForeignKey(SparePart, on_delete=models.SET_NULL, blank=True, null=True) 
+    id_sp = models.ForeignKey(SparePart, on_delete=models.SET_NULL, blank=True, null=True)
     maintenanceType = models.CharField(max_length=100)
     statition_s = models.ForeignKey(Station, on_delete=models.CASCADE)
     employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, default='ex', blank=True, null=True,)
@@ -87,7 +87,6 @@ class ErrorMessages(models.Model):
 
 class Failures(models.Model):
     shifts = (('1', '1'), ('2', '2'), ('3', '3') )
-    
     id_s = models.ForeignKey(Station, on_delete=models.SET_NULL, blank=True, null=True,)
     sn_f = models.ForeignKey(Uut, on_delete=models.CASCADE)
     failureDate = models.DateTimeField(auto_now=True)

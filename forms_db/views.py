@@ -1,3 +1,4 @@
+import csv
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import EmployeesForm, UutForm, FailureForm, BoomForm, RejectedForm, ErrorMessageForm, StationForm, MaintenanceForm, SpareForm
@@ -386,3 +387,43 @@ def userPage(request, pk):
     
     context = {'user': user, 'employe':employe}
     return render(request=request, template_name='base/user.html', context=context)
+
+@login_required(login_url='login')
+def tableRejects(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    
+    rejects = Rejected.objects.filter(id_f__sn_f__pn_b__project=employe.privileges).filter(
+        Q(folio__icontains=q)
+    )
+    # form = SpareForm()
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('tableRejects')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
+    
+    if request.method == 'POST':
+        check = request.POST.getlist('check')
+        response = HttpResponse(content_type="text/csv")
+
+        writer = csv.writer(response)
+        writer.writerow(["SN", "Model", "Fail", "PN", 'SN old', 'SN new'])
+        
+        for checked in check:
+            reject = Rejected.objects.get(id=checked)
+            
+            writer.writerow([reject.id_f.sn_f, reject.id_f.sn_f.pn_b.product, reject.id_f.id_er.message, reject.pn_b.pn, reject.snDamaged, reject.snNew])
+            
+        response['Content-Disposition'] = 'attachment; filename="expample.csv"'
+
+        return response
+        
+    
+    context = {'employe': employe, 'rejects': rejects}
+    return render(request=request, template_name='base/table_rejects.html', context=context)
