@@ -16,7 +16,7 @@ urlpatterns = [
     path('station_form', views.stationForm, name='station_form'),
     path('maintenance_form/', views.maintenanceForm, name='maintenance_form'),
     path('spare_form/', views.spareForm, name='spare_form'),
-    
+    path('change_password/', views.passwordForm, name='change_password'),
     path('showRejecteds/', views.showRejecteds, name='showRejecteds'),
     path('showUuts/', views.showUuts, name='showUuts'),
     

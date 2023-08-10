@@ -64,6 +64,19 @@ def logoutUser(request):
     logout(request=request)
     return redirect('home')
 
+def passwordForm(request):
+    u = User.objects.get(username__exact=request.user)
+
+    if request.method == 'POST':
+        if request.POST.get('new-password') == request.POST.get('val-password'):
+            u.set_password(request.POST.get('new-password'))
+            u.save()
+            return redirect('home')
+        else:
+            messages.error(request=request, message='The new password its not the same')
+    context = {}
+    return render(request=request, template_name='base/password_form.html', context=context)
+
 @login_required(login_url='login')
 def employeesForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
