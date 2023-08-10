@@ -1,4 +1,6 @@
 import csv
+import xlwt
+from datetime import date, datetime, timedelta
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import EmployeesForm, UutForm, FailureForm, BoomForm, RejectedForm, ErrorMessageForm, StationForm, MaintenanceForm, SpareForm
@@ -394,10 +396,26 @@ def tableRejects(request):
     
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     
-    rejects = Rejected.objects.filter(id_f__sn_f__pn_b__project=employe.privileges).filter(
-        Q(folio__icontains=q)
-    )
-    # form = SpareForm()
+    try:
+        if '/' in q:
+            dates = q.split('/')
+            
+            dateStart = list(map(int, dates[0].split('-')))
+            start = date(dateStart[0], dateStart[1], dateStart[2])
+            
+            dateEnd = list(map(int, dates[1].split('-'))  )     
+            end = date(dateEnd[0], dateEnd[1], dateEnd[2])
+            new_end = end + timedelta(days=1)
+            
+            rejects = Rejected.objects.filter(id_f__sn_f__pn_b__project=employe.privileges).filter(
+                dateRejected__range=[start, new_end],)
+        else:
+            rejects = Rejected.objects.filter(id_f__sn_f__pn_b__project=employe.privileges).filter(
+                Q(folio__icontains=q)
+            )
+    except:
+        return redirect('tableRejects')
+    
     
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
@@ -407,23 +425,82 @@ def tableRejects(request):
     
     if employe.privileges == 'NA':
         return redirect('home')
-    
+   
     if request.method == 'POST':
-        check = request.POST.getlist('check')
-        response = HttpResponse(content_type="text/csv")
-
-        writer = csv.writer(response)
-        writer.writerow(["SN", "Model", "Fail", "PN", 'SN old', 'SN new'])
         
+        check = request.POST.getlist('check')
+        
+        # content-type of response
+        response = HttpResponse(content_type='application/ms-excel')
+
+        #decide file name
+        response['Content-Disposition'] = 'attachment; filename="ThePythonDjango.xls"'
+
+        #creating workbook
+        wb = xlwt.Workbook(encoding='utf-8')
+
+        #adding sheet
+        ws = wb.add_sheet("sheet1")
+
+        # Sheet header, first row
+        row_num = 0
+
+        font_style = xlwt.XFStyle()
+        # headers are bold
+        font_style.font.bold = True
+
+        #column header names, you can use your own headers here
+        columns = ["SN", "Model", "Fail", "PN", 'SN old', 'SN new']
+
+        #write column headers in sheet
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        # Sheet body, remaining rows
+        font_style = xlwt.XFStyle()
+
+        #get your data, from database or from a text file...
+
         for checked in check:
             reject = Rejected.objects.get(id=checked)
             
-            writer.writerow([reject.id_f.sn_f, reject.id_f.sn_f.pn_b.product, reject.id_f.id_er.message, reject.pn_b.pn, reject.snDamaged, reject.snNew])
+            sn = str(reject.id_f.sn_f)
+            model = str(reject.id_f.sn_f.pn_b.product)
+            message = str(reject.id_f.id_er.message)
+            pn = str(reject.pn_b.pn)
+            snDamaged = str(reject.snDamaged)
+            snNew = str(reject.snNew)
             
-        response['Content-Disposition'] = 'attachment; filename="expample.csv"'
+            row_num = row_num + 1
+            ws.write(row_num, 0, sn, font_style)
+            ws.write(row_num, 1, model, font_style)
+            ws.write(row_num, 2, message, font_style)
+            ws.write(row_num, 3, pn, font_style)
+            ws.write(row_num, 4, snDamaged, font_style)
+            ws.write(row_num, 5, snNew, font_style)
 
+        wb.save(response)
         return response
-        
-    
+
     context = {'employe': employe, 'rejects': rejects}
     return render(request=request, template_name='base/table_rejects.html', context=context)
+
+
+
+
+# if request.method == 'POST':
+#         check = request.POST.getlist('check')
+#         response = HttpResponse(content_type="text/csv")
+
+#         writer = csv.writer(response)
+#         writer.writerow(["SN", "Model", "Fail", "PN", 'SN old', 'SN new'])
+        
+#         for checked in check:
+#             reject = Rejected.objects.get(id=checked)
+            
+#             writer.writerow([reject.id_f.sn_f, reject.id_f.sn_f.pn_b.product, reject.id_f.id_er.message, reject.pn_b.pn, reject.snDamaged, reject.snNew])
+        
+#         today = datetime.today().strftime("%Y-%m-%d_%H-%M")
+#         response['Content-Disposition'] = f'attachment; filename="db{today}.cvs"'
+
+#         return response
