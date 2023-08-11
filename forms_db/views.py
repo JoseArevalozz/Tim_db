@@ -494,7 +494,7 @@ def tableRejects(request):
         font_style.font.bold = True
 
         #column header names, you can use your own headers here
-        columns = ["SN", "Model", "Fail", "PN", 'SN old', 'SN new']
+        columns = ['Pn', 'Description', 'Commodity', 'Product', 'Fail Description', 'Sn', 'Sn System', 'Station', 'Folio', 'Qty', 'Ubicacion Logica']
 
         #write column headers in sheet
         for col_num in range(len(columns)):
@@ -513,15 +513,24 @@ def tableRejects(request):
             message = str(reject.id_f.id_er.message)
             pn = str(reject.pn_b.pn)
             snDamaged = str(reject.snDamaged)
-            snNew = str(reject.snNew)
+            description = str(reject.pn_b.description)
+            commodity = str(reject.pn_b.commodity)
+            station = str(reject.id_f.id_s.stationName)
+            folio = str(reject.folio)
+            ubi = str(reject.pn_b.ubiLogic)
             
             row_num = row_num + 1
-            ws.write(row_num, 0, sn, font_style)
-            ws.write(row_num, 1, model, font_style)
-            ws.write(row_num, 2, message, font_style)
-            ws.write(row_num, 3, pn, font_style)
-            ws.write(row_num, 4, snDamaged, font_style)
-            ws.write(row_num, 5, snNew, font_style)
+            ws.write(row_num, 0, pn, font_style)
+            ws.write(row_num, 1, description, font_style)
+            ws.write(row_num, 2, commodity, font_style)
+            ws.write(row_num, 3, model, font_style)
+            ws.write(row_num, 4, message, font_style)
+            ws.write(row_num, 5, snDamaged, font_style)
+            ws.write(row_num, 6, sn, font_style)
+            ws.write(row_num, 7, station, font_style)
+            ws.write(row_num, 8, folio, font_style)
+            ws.write(row_num, 9, str(1), font_style)
+            ws.write(row_num, 10, ubi, font_style)
 
         wb.save(response)
         return response
@@ -529,6 +538,111 @@ def tableRejects(request):
     context = {'employe': employe, 'rejects': rejects}
     return render(request=request, template_name='base/table_rejects.html', context=context)
 
+@login_required(login_url='login')
+def tableFailures(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    
+    try:
+        if '/' in q:
+            dates = q.split('/')
+            
+            dateStart = list(map(int, dates[0].split('-')))
+            start = date(dateStart[0], dateStart[1], dateStart[2])
+            
+            dateEnd = list(map(int, dates[1].split('-'))  )     
+            end = date(dateEnd[0], dateEnd[1], dateEnd[2])
+            new_end = end + timedelta(days=1)
+            
+            failures = Failures.objects.filter(sn_f__pn_b__project=employe.privileges).filter(
+                failureDate__range=[start, new_end],)
+        else:
+            failures = Failures.objects.filter(sn_f__pn_b__project=employe.privileges).filter(
+                Q(shiftFailure__icontains=q)
+            )
+    except:
+        return redirect('tableFailures')
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('tableFailures')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
+   
+    if request.method == 'POST':
+        
+        check = request.POST.getlist('check')
+        
+        # content-type of response
+        response = HttpResponse(content_type='application/ms-excel')
+
+        #decide file name
+        today = datetime.today().strftime("%Y-%m-%d_%H-%M")
+        response['Content-Disposition'] = f'attachment; filename="Failures{today}.xls"'
+
+        #creating workbook
+        wb = xlwt.Workbook(encoding='utf-8')
+
+        #adding sheet
+        ws = wb.add_sheet("sheet1")
+
+        # Sheet header, first row
+        row_num = 0
+
+        font_style = xlwt.XFStyle()
+        # headers are bold
+        font_style.font.bold = True
+
+        #column header names, you can use your own headers here
+        columns = ['Sn', 'Status', 'Failure Date', 'Station', 'Error Message', 'Analysis', 'Root Cause', 'Defect Symptom', 'Employee', 'Failure shift', 'Corrective Actions', 'Comments']
+
+        #write column headers in sheet
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        # Sheet body, remaining rows
+        font_style = xlwt.XFStyle()
+
+        #get your data, from database or from a text file...
+
+        for checked in check:
+            failure = Failures.objects.get(id=checked)
+            
+            sn = str(failure.sn_f.sn)
+            status = str(failure.status)
+            date = str(failure.failureDate)
+            station = str(failure.id_s.stationName)
+            message = str(failure.id_er.message)
+            analysis = str(failure.analysis)
+            rootCause = str(failure.rootCause)
+            defect = str(failure.defectSymptom)
+            employee = str(failure.employee_e.employeeName)
+            shift = str(failure.shiftFailure)
+            correctiveActions = str(failure.correctiveActions)
+            comments = str(failure.comments)
+            
+            row_num = row_num + 1
+            ws.write(row_num, 0, sn, font_style)
+            ws.write(row_num, 1, status, font_style)
+            ws.write(row_num, 2, date, font_style)
+            ws.write(row_num, 3, station, font_style)
+            ws.write(row_num, 4, message, font_style)
+            ws.write(row_num, 5, analysis, font_style)
+            ws.write(row_num, 6, rootCause, font_style)
+            ws.write(row_num, 7, defect, font_style)
+            ws.write(row_num, 8, employee, font_style)
+            ws.write(row_num, 9, shift, font_style)
+            ws.write(row_num, 10, correctiveActions, font_style)
+            ws.write(row_num, 11, comments, font_style)
+
+        wb.save(response)
+        return response
+    context = {'employe': employe, 'failures': failures}
+    return render(request=request, template_name='base/table_fails.html', context=context)
 
 
 
