@@ -164,7 +164,7 @@ def failureForm(request, pk):
                 comments=request.POST.get('comments'),
             )
             return redirect('showRejecteds')
-    
+
     context = {'form': form, 'employe': employe, 'uut': uut}
     return render(request=request, template_name='base/failure_form.html', context=context)
 
@@ -477,7 +477,8 @@ def tableRejects(request):
         response = HttpResponse(content_type='application/ms-excel')
 
         #decide file name
-        response['Content-Disposition'] = 'attachment; filename="ThePythonDjango.xls"'
+        today = datetime.today().strftime("%Y-%m-%d_%H-%M")
+        response['Content-Disposition'] = f'attachment; filename="db{today}.xls"'
 
         #creating workbook
         wb = xlwt.Workbook(encoding='utf-8')
