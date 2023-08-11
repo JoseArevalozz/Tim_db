@@ -4,11 +4,19 @@
         <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <a class="text-white navbar-brand" href="#">TIM</a>
+        {% if request.path == '/tableRejects/' %}
+        <form class="d-flex mt-3" role="search" method="GET"  action="{% url 'tableRejects' %}">
+            <input name="q" class="form-control me-2" type="search" placeholder="Sn, Model" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
+        </form>
+        {% else %}
         <form class="d-flex mt-3" role="search" method="GET"  action="{% url 'showUuts' %}">
             <input name="q" class="form-control me-2" type="search" placeholder="Sn, Model" aria-label="Search">
             <button class="btn btn-success" type="submit">Search</button>
         </form>
+        {% endif %}
         <div class=" offcanvas offcanvas-start " style="background-color: #0049BF;" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
             <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">TIM</h5>
@@ -48,6 +56,9 @@
                     </li>
                     <li>
                         <a class="nav-link text-white" href="{% url 'user' 1 %}">Profile</a>
+                    </li>
+                    <li>
+                        <a class="nav-link text-white" href="{% url 'tableRejects' %}">Table Rejects</a>
                     </li>
                     
                 </ul>
