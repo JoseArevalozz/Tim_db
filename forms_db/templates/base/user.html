@@ -10,8 +10,19 @@
                     <hr>
                     <p>Name: {{employe.employeeName}}</p>
                     <p>User: {{employe.employeeNumber}}</p>
+                    <p>Privileves: 
+                        {% if employe.pmd == True %}
+                        PMDU
+                        {% endif %}
+                        {% if employe.dell == True %}
+                        DELL
+                        {% endif %}
+                        {% if employe.switch == True %}
+                        SWITCH
+                        {% endif %}
+                    </p>
                     <p>Mail: {{employe.mail}}</p>
-                    <a class="btn btn-primary" href="">Change Password</a>
+                    <a class="btn btn-primary" href="{% url 'change_password' %}">Change Password</a>
                 </div>
             </div>
         </div>
