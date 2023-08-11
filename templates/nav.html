@@ -4,10 +4,8 @@
         <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <a class="text-white navbar-brand" href="#">{{employe.privileges}}</a>
         <a class="text-white navbar-brand" href="{% url 'home'%}">TIM</a>
-
-
-        <a class="text-white navbar-brand" href="#">TIM</a>
         {% if request.path == '/tableRejects/' %}
         <form class="d-flex mt-3" role="search" method="GET"  action="{% url 'tableRejects' %}">
             <input name="q" class="form-control me-2" type="search" placeholder="Sn, Model" aria-label="Search">
@@ -36,8 +34,8 @@
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Rejects</a>
                     <ul class="dropdown-menu mb-5">
                         <li> <a class="dropdown-item" href="{% url 'uut_form' %}">Register UUT</a> </li>
-                        <li> <a class="dropdown-item" href="{% url 'showUuts' %}">Fails</a> </li>
-                        <li> <a class="dropdown-item" href="{% url 'showRejecteds'%}">Debug</a> </li>
+                        <li> <a class="dropdown-item" href="{% url 'showUuts' %}">UUT</a> </li>
+                        <li> <a class="dropdown-item" href="{% url 'showRejecteds'%}">Debug UUT</a> </li>
                         <li> <a class="dropdown-item" href="{% url 'boom_form' %}">Register BOOM</a> </li>
                         <li> <a class="dropdown-item" href="{% url 'errorMessage_form' %}">Register ErrorMessage</a> </li>
                         <li> <a class="dropdown-item" href="{% url 'station_form' %}">Register Station</a> </li>
