@@ -54,8 +54,8 @@ class FailureForm(ModelForm):
         
     class Meta:
         model = Failures
-        fields = ['id_s', 'sn_f', 'id_er', 'analysis', 'rootCause', 'defectSymptom', 'shiftFailure', 'correctiveActions', 'comments'] 
-        labels = {'id_s': 'Station', 'sn_f':'Serial Number (SN)', 'id_er': 'Error Message', 'analysis': 'Analysis', 'rootCause': 'Root Cause', 'defectSymptom': 'Defect Symptom', 'shiftFailure': 'Shift Failure', 'correctiveActions': 'Corrective Actions', 'comments': 'Comments'}
+        fields = ['id_s', 'sn_f', 'id_er', 'analysis', 'rootCause', 'defectSymptom', 'shiftFailure', 'correctiveActions', 'imgEvindence', 'log' ,'comments', ] 
+        labels = {'id_s': 'Station', 'sn_f':'Serial Number (SN)', 'id_er': 'Error Message', 'analysis': 'Analysis', 'rootCause': 'Root Cause', 'defectSymptom': 'Defect Symptom', 'shiftFailure': 'Shift Failure', 'correctiveActions': 'Corrective Actions', 'comments': 'Comments', 'imgEvindence': 'Evidence IMG'}
         exclude = ['sn_f']
         widgets = {
           'comments': Textarea(attrs={'rows':1, }),
