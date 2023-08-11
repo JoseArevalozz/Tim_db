@@ -25,17 +25,6 @@ def home(request):
 
     return render(request=request, template_name='base/first.html', context=context)
 
-@login_required(login_url='login')
-def dellView(request):
-    employe = Employes.objects.get(employeeNumber=request.user)
-    
-    # if employe.privileges == 'NA':
-    #     employe.privileges = 'DELL'
-    #     employe.save()
-    context = {'employe': employe, 'project': 'dell'}
-    
-    return render(request=request, template_name='base/first.html', context=context)
-
 def loginUser(request):
     uuts = Uut.objects.all()
     
@@ -88,7 +77,7 @@ def employeesForm(request):
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')
             employe.save()
-            return redirect('home')
+            return redirect('employees_form')
     
     if employe.privileges == 'NA':
         return redirect('home')
@@ -111,7 +100,7 @@ def uutForm(request):
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')
             employe.save()
-            return redirect('home')
+            return redirect('uut_form')
     
     if employe.privileges == 'NA':
         return redirect('home')
@@ -145,7 +134,7 @@ def failureForm(request, pk):
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')
             employe.save()
-        return redirect('home')
+        return redirect('showUuts')
     
     if employe.privileges == 'NA':
         return redirect('home')
@@ -181,12 +170,34 @@ def failureForm(request, pk):
 
 @login_required(login_url='login')
 def rejectsMenu(request):
-    context = {}
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+        return redirect('menuRejects')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
+    
+    context = {'employe': employe}
     return render(request=request, template_name='base/menuRejects.html', context=context)
 
 @login_required(login_url='login')
 def maintenanceMenu(request):
-    context={}
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+        return redirect('menuMaintenance')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
+    
+    context={'employe': employe}
     return render(request=request, template_name='base/menuMaintenance.html', context=context)
 
 @login_required(login_url='login')
@@ -206,7 +217,7 @@ def showUuts(request):
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')
             employe.save()
-            return redirect('home')
+            return redirect('showUuts')
             
     if employe.privileges == 'NA':
         return redirect('home')
@@ -225,7 +236,7 @@ def boomForm(request):
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')
             employe.save()
-            return redirect('home')
+            return redirect('boom_form')
     
     if employe.privileges == 'NA':
         return redirect('home')
@@ -258,7 +269,7 @@ def rejectedForm(request, pk):
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')
             employe.save()
-            return redirect('home')
+            return redirect('showRejecteds')
     
     if employe.privileges == 'NA':
         return redirect('home')
@@ -293,7 +304,7 @@ def showRejecteds(request):
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')
             employe.save()
-            return redirect('home')
+            return redirect('showRejecteds')
     
     if employe.privileges == 'NA':
         return redirect('home')
@@ -313,7 +324,7 @@ def errorMessageForm(request):
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')
             employe.save()
-            return redirect('home')
+            return redirect('errorMessage_form')
     
     if employe.privileges == 'NA':
         return redirect('home')
@@ -341,7 +352,7 @@ def stationForm(request):
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')
             employe.save()
-            return redirect('home')
+            return redirect('station_form')
     
     if employe.privileges == 'NA':
         return redirect('home')
@@ -367,7 +378,7 @@ def maintenanceForm(request):
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')
             employe.save()
-            return redirect('home')
+            return redirect('maintenance_form')
     
     if employe.privileges == 'NA':
         return redirect('home')
@@ -390,7 +401,7 @@ def spareForm(request):
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')
             employe.save()
-            return redirect('home')
+            return redirect('spare_form')
     
     if employe.privileges == 'NA':
         return redirect('home')
@@ -409,6 +420,15 @@ def userPage(request, pk):
     employe = Employes.objects.get(employeeNumber=request.user)
     
     user = Employes.objects.get(employeeNumber=pk)
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+        return redirect('home')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
     
     context = {'user': user, 'employe':employe}
     return render(request=request, template_name='base/user.html', context=context)
