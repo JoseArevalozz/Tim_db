@@ -10,6 +10,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.shortcuts import get_object_or_404, redirect
 
 
 @login_required(login_url='login')
@@ -528,7 +529,11 @@ def tableRejects(request):
     context = {'employe': employe, 'rejects': rejects}
     return render(request=request, template_name='base/table_rejects.html', context=context)
 
-
+def finish_uut(request, sn):
+    uut = get_object_or_404(Uut, sn=sn)
+    uut.status = False
+    uut.save()
+    return redirect('showUuts')
 
 
 # if request.method == 'POST':

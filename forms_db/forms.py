@@ -144,7 +144,7 @@ class MaintenanceForm(ModelForm):
             'failureM': 'Failure Message',
             'causeCategoryS': 'Cause Category',
             'dateFinish': 'Date Finish',
-            'status': 'Status',
+            'status': 'Open',
         } 
 
 class SpareForm(ModelForm):
