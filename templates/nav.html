@@ -6,18 +6,33 @@
         </button>
         <a class="text-white navbar-brand" href="#">{{employe.privileges}}</a>
         <a class="text-white navbar-brand" href="{% url 'home'%}">TIM</a>
+        <!-- tableRejects search -->
         {% if request.path == '/tableRejects/' %}
         <form class="d-flex mt-3" role="search" method="GET"  action="{% url 'tableRejects' %}">
-            <input name="q" class="form-control me-2" type="search" placeholder="Sn, Model" aria-label="Search">
-            <button class="btn btn-success" type="submit">Search</button>
+            <input name="q" class="form-control me-2" type="search" placeholder="Sn, Model" aria-label="Search"
+            {% if search_bt != True %} disabled {% endif %}>
+            <button class="btn btn-success" type="submit" 
+            {% if search_bt != True %} disabled {% endif %}>Search</button>
+        </form>
+        {% elif request.path == '/showRejecteds/'%}
+        <!-- showRejecteds search -->
+        <form class="d-flex mt-3" role="search" method="GET"  action="{% url 'showRejecteds' %}">
+            <input name="q" class="form-control me-2" type="search" placeholder="Serial Number (SN)" aria-label="Search"
+            {% if search_bt != True %} disabled {% endif %}>
+            <button class="btn btn-success" type="submit" 
+            {% if search_bt != True %} disabled {% endif %}>Search</button>
         </form>
         {% else %}
-
+        <!-- showUuts search -->
         <form class="d-flex mt-3" role="search" method="GET"  action="{% url 'showUuts' %}">
-            <input name="q" class="form-control me-2" type="search" placeholder="Sn, Model" aria-label="Search">
-            <button class="btn btn-success" type="submit">Search</button>
+            <input name="q" class="form-control me-2" type="search" placeholder="Sn, Model" aria-label="Search"
+            {% if search_bt != True %} disabled {% endif %}>
+            <button class="btn btn-success" type="submit" 
+            {% if search_bt != True %} disabled {% endif %}>Search</button>
         </form>
         {% endif %}
+        <!-- end searchers -->
+
         <div class=" offcanvas offcanvas-start " style="background-color: #0049BF;" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
             <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">TIM</h5>
