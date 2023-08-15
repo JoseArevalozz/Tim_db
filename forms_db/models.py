@@ -98,7 +98,7 @@ class Failures(models.Model):
     employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, blank=True, null=True,)
     shiftFailure = models.CharField(max_length=13, choices=shifts)
     correctiveActions = models.CharField(max_length=100)
-    imgEvindence = models.ImageField(null=True, upload_to='evindences/')
+    imgEvindence = models.ImageField(null=True, upload_to='evidences/')
     log = models.FileField(null=True, upload_to='logs/')
     comments = models.TextField()
     
