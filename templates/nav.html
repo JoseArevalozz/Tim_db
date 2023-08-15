@@ -24,7 +24,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-header">
-                <span class="text-white offcanvas-title ">{{employe}}</span>
+                <a class="text-white offcanvas-title link-offset-2 link-underline link-underline-opacity-0" href="{% url 'user' 1 %}">{{employe}}</a>
                 <span class="text-white offcanvas-title">{{employe.privileges}}</span>
             </div>
             <hr>
@@ -39,7 +39,7 @@
                         <li> <a class="dropdown-item" href="{% url 'boom_form' %}">Register BOOM</a> </li>
                         <li> <a class="dropdown-item" href="{% url 'errorMessage_form' %}">Register ErrorMessage</a> </li>
                         <li> <a class="dropdown-item" href="{% url 'station_form' %}">Register Station</a> </li>
-                        <li>  <a class="dropdown-item" href="{% url 'tableRejects' %}">Table Rejects</a> </li>
+                        
                     </ul>
                 </li>
                 <li style="list-style: none;" class=" mb-4 nav-item dropdown text-white">
@@ -50,12 +50,13 @@
                     </ul>
                 </li>
                 <li style="list-style: none;" class=" mb-4 nav-item dropdown text-white">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Reports</a>
                     <ul class="dropdown-menu mb-5">
-                        <li> <a class="dropdown-item" href="{% url 'user' 1 %}">Profile</a> </li>
+                        <li>  <a class="dropdown-item" href="{% url 'tableRejects' %}">Table Rejects</a> </li>
+                        <li>  <a class="dropdown-item" href="{% url 'tableFailures' %}">Table Failures</a> </li>
+                        <li>  <a class="dropdown-item" href="{% url 'tableUuts' %}">Table Uuts</a> </li>
                     </ul>
                 </li>
-
                 {% endif %}
                 <hr>
                 <li style="list-style: none;" class=" mb-4 nav-item dropdown text-white">

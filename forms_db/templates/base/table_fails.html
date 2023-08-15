@@ -1,0 +1,73 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Table Fails</h1>
+        <div class="table-responsive">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <table class="table table-hover table-dark table-striped mt-2">
+                    <thead>
+                        <tr>
+                            <th scope="col" title="Select all " id="bt-all" onclick="selectAll()"><></th>
+                            <th scope="col">Sn</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Failure Date</th>
+                            <th scope="col">Station</th>
+                            <th scope="col">Error Message</th>
+                            <th scope="col">Analysis</th>
+                            <th scope="col">Root Cause</th>
+                            <th scope="col">Defect Symptom</th>
+                            <th scope="col">Employee</th>
+                            <th scope="col">Failure Shift</th>
+                            <th scope="col">Corrective Actions</th>
+                            <th scope="col">Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for failure in failures %}
+                        <tr>
+                            <th scope="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" 
+                                    value="{{failure.id}}"
+                                    name="check" />
+                                </div>
+                            </th>
+                            <td scope="row">{{failure.sn_f.sn}}</td>
+                            <td>{{failure.status}}</td>
+                            <td>{{failure.failureDate}}</td>
+                            <td>{{failure.id_s.stationName}}</td>
+                            <td>{{failure.id_er.message}}</td>
+                            <td>{{failure.analysis}}</td>
+                            <td>{{failure.rootCause}}</td>
+                            <td>{{failure.defectSymptom}}</td>
+                            <td>{{failure.employee_e.employeeName}}</td>
+                            <td>{{failure.shiftFailure}}</td>
+                            <td>{{failure.correctiveActions}}</td>
+                            <td>{{failure.comments}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <input class="btn btn-primary" type="submit" value="Download">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function selectAll() {
+            checkboxes = document.getElementsByName('check');
+            for(var i=0, n=checkboxes.length;i<n;i++) {
+                
+                if(checkboxes[i].checked == true){
+                    checkboxes[i].checked = false;
+                }
+                else{
+                    checkboxes[i].checked = true;
+                }
+                console.log()
+            }
+        }
+    </script>
+{% endblock content %}
