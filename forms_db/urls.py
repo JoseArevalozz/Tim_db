@@ -19,6 +19,7 @@ urlpatterns = [
     path('showUuts/', views.showUuts, name='showUuts'),
     path('tableRejects/', views.tableRejects, name='tableRejects'),
     path('tableFailures/', views.tableFailures, name='tableFailures'),
+    path('tableUuts/', views.tableUuts, name='tableUuts'),
     path('user/<str:pk>/', views.userPage, name='user'),
     path('login', views.loginUser, name='login'),
     path('logout', views.logoutUser, name='logout'),

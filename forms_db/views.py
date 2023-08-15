@@ -644,21 +644,97 @@ def tableFailures(request):
     context = {'employe': employe, 'failures': failures}
     return render(request=request, template_name='base/table_fails.html', context=context)
 
-
-
-# if request.method == 'POST':
-#         check = request.POST.getlist('check')
-#         response = HttpResponse(content_type="text/csv")
-
-#         writer = csv.writer(response)
-#         writer.writerow(["SN", "Model", "Fail", "PN", 'SN old', 'SN new'])
-        
-#         for checked in check:
-#             reject = Rejected.objects.get(id=checked)
+@login_required(login_url='login')
+def tableUuts(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    
+    try:
+        if '/' in q:
+            dates = q.split('/')
             
-#             writer.writerow([reject.id_f.sn_f, reject.id_f.sn_f.pn_b.product, reject.id_f.id_er.message, reject.pn_b.pn, reject.snDamaged, reject.snNew])
+            dateStart = list(map(int, dates[0].split('-')))
+            start = date(dateStart[0], dateStart[1], dateStart[2])
+            
+            dateEnd = list(map(int, dates[1].split('-'))  )     
+            end = date(dateEnd[0], dateEnd[1], dateEnd[2])
+            new_end = end + timedelta(days=1)
+            
+            uuts = Uut.objects.filter(pn_b__project=employe.privileges).filter(
+                failureDate__range=[start, new_end],)
+        else:
+            uuts = Uut.objects.filter(pn_b__project=employe.privileges).filter(
+                Q(date__icontains=q)
+            )
+    except:
+        return redirect('tableFailures')
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('tableFailures')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
+   
+    if request.method == 'POST':
         
-#         today = datetime.today().strftime("%Y-%m-%d_%H-%M")
-#         response['Content-Disposition'] = f'attachment; filename="db{today}.cvs"'
+        check = request.POST.getlist('check')
+        
+        # content-type of response
+        response = HttpResponse(content_type='application/ms-excel')
 
-#         return response
+        #decide file name
+        today = datetime.today().strftime("%Y-%m-%d_%H-%M")
+        response['Content-Disposition'] = f'attachment; filename="Uuts{today}.xls"'
+
+        #creating workbook
+        wb = xlwt.Workbook(encoding='utf-8')
+
+        #adding sheet
+        ws = wb.add_sheet("sheet1")
+
+        # Sheet header, first row
+        row_num = 0
+
+        font_style = xlwt.XFStyle()
+        # headers are bold
+        font_style.font.bold = True
+
+        #column header names, you can use your own headers here
+        columns = ['Sn', 'Pn', 'Model', 'Employee', 'Status']
+
+        #write column headers in sheet
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        # Sheet body, remaining rows
+        font_style = xlwt.XFStyle()
+
+        #get your data, from database or from a text file...
+
+        for checked in check:
+            uut = Uut.objects.get(sn=checked)
+            
+            sn = str(uut.sn)
+            pn = str(uut.pn_b.pn)
+            model = str(uut.pn_b.product)
+            employee = str(uut.employee_e.employeeName)
+            status = str(uut.status)
+            
+            row_num = row_num + 1
+            ws.write(row_num, 0, sn, font_style)
+            ws.write(row_num, 1, pn, font_style)
+            ws.write(row_num, 2, model, font_style)
+            ws.write(row_num, 3, employee, font_style)
+            ws.write(row_num, 4, status, font_style)
+
+        wb.save(response)
+        return response
+    context = {'employe': employe, 'uuts': uuts}
+    return render(request=request, template_name='base/table_uuts.html', context=context)
+
+
+
