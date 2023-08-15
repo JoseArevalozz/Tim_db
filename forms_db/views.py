@@ -127,44 +127,46 @@ def failureForm(request, pk):
     form.fields['id_s'].queryset = Station.objects.filter(stationProject=employe.privileges)
     form.fields['id_er'].queryset = ErrorMessages.objects.filter(pn_b__project=employe.privileges)
     
-
-    uut = Uut.objects.get(sn=pk)
-    
-    if 'bt-project' in request.POST: 
-        if request.method == 'POST':
-            employe.privileges = request.POST.get('bt-project')
-            employe.save()
+    if Uut.objects.filter(sn=pk).exists():
+        uut = Uut.objects.get(sn=pk)
+        
+        if 'bt-project' in request.POST: 
+            if request.method == 'POST':
+                employe.privileges = request.POST.get('bt-project')
+                employe.save()
+            return redirect('showUuts')
+        
+        if employe.privileges == 'NA':
+            return redirect('home')
+        
+        if request.method == 'POST':  
+            if 'bt-project' not in request.POST:
+                
+                station = request.POST.get('id_s')
+                errorMessage = request.POST.get('id_er')
+                files = request.FILES  # multivalued dict
+                image = files.get("imgEvindence")
+                log = files.get('log')
+                
+                Failures.objects.create(
+                    id_s=Station.objects.get(id=station),
+                    sn_f=uut,
+                    id_er=ErrorMessages.objects.get(id=errorMessage),
+                    analysis=request.POST.get('analysis'),
+                    rootCause=request.POST.get('rootCause'),
+                    status= True if request.POST.get('status') == 'on' else False,
+                    defectSymptom=request.POST.get('defectSymptom'),
+                    employee_e=employe,
+                    imgEvindence=image,
+                    log=log,
+                    shiftFailure=request.POST.get('shiftFailure'),
+                    correctiveActions=request.POST.get('correctiveActions'),
+                    comments=request.POST.get('comments'),
+                )
+                return redirect('showRejecteds')
+    else:
         return redirect('showUuts')
     
-    if employe.privileges == 'NA':
-        return redirect('home')
-    
-    if request.method == 'POST':  
-        if 'bt-project' not in request.POST:
-            
-            station = request.POST.get('id_s')
-            errorMessage = request.POST.get('id_er')
-            files = request.FILES  # multivalued dict
-            image = files.get("imgEvindence")
-            log = files.get('log')
-            
-            Failures.objects.create(
-                id_s=Station.objects.get(id=station),
-                sn_f=uut,
-                id_er=ErrorMessages.objects.get(id=errorMessage),
-                analysis=request.POST.get('analysis'),
-                rootCause=request.POST.get('rootCause'),
-                status= True if request.POST.get('status') == 'on' else False,
-                defectSymptom=request.POST.get('defectSymptom'),
-                employee_e=employe,
-                imgEvindence=image,
-                log=log,
-                shiftFailure=request.POST.get('shiftFailure'),
-                correctiveActions=request.POST.get('correctiveActions'),
-                comments=request.POST.get('comments'),
-            )
-            return redirect('showRejecteds')
-
     context = {'form': form, 'employe': employe, 'uut': uut}
     return render(request=request, template_name='base/failure_form.html', context=context)
 
@@ -222,7 +224,7 @@ def showUuts(request):
     if employe.privileges == 'NA':
         return redirect('home')
     
-    context = {'uuts': uuts, 'employe': employe}
+    context = {'uuts': uuts, 'employe': employe, 'search_bt': True}
     
     return render(request=request, template_name='base/showUuts.html', context=context)
 
@@ -298,7 +300,11 @@ def rejectedForm(request, pk):
 def showRejecteds(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
-    failures = Failures.objects.filter(status=True).filter(sn_f__pn_b__project=employe.privileges)
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    
+    failures = Failures.objects.filter(status=True).filter(sn_f__pn_b__project=employe.privileges).filter(
+        Q(sn_f__sn__icontains=q)
+    )
     
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
@@ -309,7 +315,7 @@ def showRejecteds(request):
     if employe.privileges == 'NA':
         return redirect('home')
     
-    context = {'failures': failures, 'employe': employe}
+    context = {'failures': failures, 'employe': employe, 'search_bt': True}
     
     return render(request=request, template_name='base/showRejected.html', context=context)
 
@@ -535,7 +541,7 @@ def tableRejects(request):
         wb.save(response)
         return response
 
-    context = {'employe': employe, 'rejects': rejects}
+    context = {'employe': employe, 'rejects': rejects, 'search_bt': True}
     return render(request=request, template_name='base/table_rejects.html', context=context)
 
 @login_required(login_url='login')
