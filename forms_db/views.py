@@ -128,43 +128,45 @@ def failureForm(request, pk):
     form.fields['id_s'].queryset = Station.objects.filter(stationProject=employe.privileges)
     form.fields['id_er'].queryset = ErrorMessages.objects.filter(pn_b__project=employe.privileges)
     
-
-    uut = Uut.objects.get(sn=pk)
-    
-    if 'bt-project' in request.POST: 
-        if request.method == 'POST':
-            employe.privileges = request.POST.get('bt-project')
-            employe.save()
+    if Uut.objects.filter(sn=pk).exists():
+        uut = Uut.objects.get(sn=pk)
+        
+        if 'bt-project' in request.POST: 
+            if request.method == 'POST':
+                employe.privileges = request.POST.get('bt-project')
+                employe.save()
+            return redirect('showUuts')
+        
+        if employe.privileges == 'NA':
+            return redirect('home')
+        
+        if request.method == 'POST':  
+            if 'bt-project' not in request.POST:
+                
+                station = request.POST.get('id_s')
+                errorMessage = request.POST.get('id_er')
+                files = request.FILES  # multivalued dict
+                image = files.get("imgEvindence")
+                log = files.get('log')
+                
+                Failures.objects.create(
+                    id_s=Station.objects.get(id=station),
+                    sn_f=uut,
+                    id_er=ErrorMessages.objects.get(id=errorMessage),
+                    analysis=request.POST.get('analysis'),
+                    rootCause=request.POST.get('rootCause'),
+                    status= True if request.POST.get('status') == 'on' else False,
+                    defectSymptom=request.POST.get('defectSymptom'),
+                    employee_e=employe,
+                    imgEvindence=image,
+                    log=log,
+                    shiftFailure=request.POST.get('shiftFailure'),
+                    correctiveActions=request.POST.get('correctiveActions'),
+                    comments=request.POST.get('comments'),
+                )
+                return redirect('showRejecteds')
+    else:
         return redirect('showUuts')
-    
-    if employe.privileges == 'NA':
-        return redirect('home')
-    
-    if request.method == 'POST':  
-        if 'bt-project' not in request.POST:
-            
-            station = request.POST.get('id_s')
-            errorMessage = request.POST.get('id_er')
-            files = request.FILES  # multivalued dict
-            image = files.get("imgEvindence")
-            log = files.get('log')
-            
-            Failures.objects.create(
-                id_s=Station.objects.get(id=station),
-                sn_f=uut,
-                id_er=ErrorMessages.objects.get(id=errorMessage),
-                analysis=request.POST.get('analysis'),
-                rootCause=request.POST.get('rootCause'),
-                status= True if request.POST.get('status') == 'on' else False,
-                defectSymptom=request.POST.get('defectSymptom'),
-                employee_e=employe,
-                imgEvindence=image,
-                log=log,
-                shiftFailure=request.POST.get('shiftFailure'),
-                correctiveActions=request.POST.get('correctiveActions'),
-                comments=request.POST.get('comments'),
-            )
-            return redirect('showRejecteds')
     
     context = {'form': form, 'employe': employe, 'uut': uut}
     return render(request=request, template_name='base/failure_form.html', context=context)
@@ -223,7 +225,7 @@ def showUuts(request):
     if employe.privileges == 'NA':
         return redirect('home')
     
-    context = {'uuts': uuts, 'employe': employe}
+    context = {'uuts': uuts, 'employe': employe, 'search_bt': True}
     
     return render(request=request, template_name='base/showUuts.html', context=context)
 
@@ -299,7 +301,11 @@ def rejectedForm(request, pk):
 def showRejecteds(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
-    failures = Failures.objects.filter(status=True).filter(sn_f__pn_b__project=employe.privileges)
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    
+    failures = Failures.objects.filter(status=True).filter(sn_f__pn_b__project=employe.privileges).filter(
+        Q(sn_f__sn__icontains=q)
+    )
     
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
@@ -310,7 +316,7 @@ def showRejecteds(request):
     if employe.privileges == 'NA':
         return redirect('home')
     
-    context = {'failures': failures, 'employe': employe}
+    context = {'failures': failures, 'employe': employe, 'search_bt': True}
     
     return render(request=request, template_name='base/showRejected.html', context=context)
 
@@ -478,7 +484,8 @@ def tableRejects(request):
         response = HttpResponse(content_type='application/ms-excel')
 
         #decide file name
-        response['Content-Disposition'] = 'attachment; filename="ThePythonDjango.xls"'
+        today = datetime.today().strftime("%Y-%m-%d_%H-%M")
+        response['Content-Disposition'] = f'attachment; filename="db{today}.xls"'
 
         #creating workbook
         wb = xlwt.Workbook(encoding='utf-8')
@@ -494,7 +501,7 @@ def tableRejects(request):
         font_style.font.bold = True
 
         #column header names, you can use your own headers here
-        columns = ["SN", "Model", "Fail", "PN", 'SN old', 'SN new']
+        columns = ['Pn', 'Description', 'Commodity', 'Product', 'Fail Description', 'Sn', 'Sn System', 'Station', 'Folio', 'Qty', 'Ubicacion Logica']
 
         #write column headers in sheet
         for col_num in range(len(columns)):
@@ -513,21 +520,31 @@ def tableRejects(request):
             message = str(reject.id_f.id_er.message)
             pn = str(reject.pn_b.pn)
             snDamaged = str(reject.snDamaged)
-            snNew = str(reject.snNew)
+            description = str(reject.pn_b.description)
+            commodity = str(reject.pn_b.commodity)
+            station = str(reject.id_f.id_s.stationName)
+            folio = str(reject.folio)
+            ubi = str(reject.pn_b.ubiLogic)
             
             row_num = row_num + 1
-            ws.write(row_num, 0, sn, font_style)
-            ws.write(row_num, 1, model, font_style)
-            ws.write(row_num, 2, message, font_style)
-            ws.write(row_num, 3, pn, font_style)
-            ws.write(row_num, 4, snDamaged, font_style)
-            ws.write(row_num, 5, snNew, font_style)
+            ws.write(row_num, 0, pn, font_style)
+            ws.write(row_num, 1, description, font_style)
+            ws.write(row_num, 2, commodity, font_style)
+            ws.write(row_num, 3, model, font_style)
+            ws.write(row_num, 4, message, font_style)
+            ws.write(row_num, 5, snDamaged, font_style)
+            ws.write(row_num, 6, sn, font_style)
+            ws.write(row_num, 7, station, font_style)
+            ws.write(row_num, 8, folio, font_style)
+            ws.write(row_num, 9, str(1), font_style)
+            ws.write(row_num, 10, ubi, font_style)
 
         wb.save(response)
         return response
 
-    context = {'employe': employe, 'rejects': rejects}
+    context = {'employe': employe, 'rejects': rejects, 'search_bt': True}
     return render(request=request, template_name='base/table_rejects.html', context=context)
+
 
 def finish_uut(request, sn):
     uut = get_object_or_404(Uut, sn=sn)
@@ -535,20 +552,204 @@ def finish_uut(request, sn):
     uut.save()
     return redirect('showUuts')
 
-
-# if request.method == 'POST':
-#         check = request.POST.getlist('check')
-#         response = HttpResponse(content_type="text/csv")
-
-#         writer = csv.writer(response)
-#         writer.writerow(["SN", "Model", "Fail", "PN", 'SN old', 'SN new'])
-        
-#         for checked in check:
-#             reject = Rejected.objects.get(id=checked)
+@login_required(login_url='login')
+def tableFailures(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    
+    try:
+        if '/' in q:
+            dates = q.split('/')
             
-#             writer.writerow([reject.id_f.sn_f, reject.id_f.sn_f.pn_b.product, reject.id_f.id_er.message, reject.pn_b.pn, reject.snDamaged, reject.snNew])
+            dateStart = list(map(int, dates[0].split('-')))
+            start = date(dateStart[0], dateStart[1], dateStart[2])
+            
+            dateEnd = list(map(int, dates[1].split('-'))  )     
+            end = date(dateEnd[0], dateEnd[1], dateEnd[2])
+            new_end = end + timedelta(days=1)
+            
+            failures = Failures.objects.filter(sn_f__pn_b__project=employe.privileges).filter(
+                failureDate__range=[start, new_end],)
+        else:
+            failures = Failures.objects.filter(sn_f__pn_b__project=employe.privileges).filter(
+                Q(shiftFailure__icontains=q)
+            )
+    except:
+        return redirect('tableFailures')
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('tableFailures')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
+   
+    if request.method == 'POST':
         
-#         today = datetime.today().strftime("%Y-%m-%d_%H-%M")
-#         response['Content-Disposition'] = f'attachment; filename="db{today}.cvs"'
+        check = request.POST.getlist('check')
+        
+        # content-type of response
+        response = HttpResponse(content_type='application/ms-excel')
 
-#         return response
+        #decide file name
+        today = datetime.today().strftime("%Y-%m-%d_%H-%M")
+        response['Content-Disposition'] = f'attachment; filename="Failures{today}.xls"'
+
+        #creating workbook
+        wb = xlwt.Workbook(encoding='utf-8')
+
+        #adding sheet
+        ws = wb.add_sheet("sheet1")
+        main
+
+        # Sheet header, first row
+        row_num = 0
+
+        font_style = xlwt.XFStyle()
+        # headers are bold
+        font_style.font.bold = True
+
+        #column header names, you can use your own headers here
+        columns = ['Sn', 'Status', 'Failure Date', 'Station', 'Error Message', 'Analysis', 'Root Cause', 'Defect Symptom', 'Employee', 'Failure shift', 'Corrective Actions', 'Comments']
+
+        #write column headers in sheet
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        # Sheet body, remaining rows
+        font_style = xlwt.XFStyle()
+
+        #get your data, from database or from a text file...
+
+        for checked in check:
+            failure = Failures.objects.get(id=checked)
+            
+            sn = str(failure.sn_f.sn)
+            status = str(failure.status)
+            date = str(failure.failureDate)
+            station = str(failure.id_s.stationName)
+            message = str(failure.id_er.message)
+            analysis = str(failure.analysis)
+            rootCause = str(failure.rootCause)
+            defect = str(failure.defectSymptom)
+            employee = str(failure.employee_e.employeeName)
+            shift = str(failure.shiftFailure)
+            correctiveActions = str(failure.correctiveActions)
+            comments = str(failure.comments)
+            
+            row_num = row_num + 1
+            ws.write(row_num, 0, sn, font_style)
+            ws.write(row_num, 1, status, font_style)
+            ws.write(row_num, 2, date, font_style)
+            ws.write(row_num, 3, station, font_style)
+            ws.write(row_num, 4, message, font_style)
+            ws.write(row_num, 5, analysis, font_style)
+            ws.write(row_num, 6, rootCause, font_style)
+            ws.write(row_num, 7, defect, font_style)
+            ws.write(row_num, 8, employee, font_style)
+            ws.write(row_num, 9, shift, font_style)
+            ws.write(row_num, 10, correctiveActions, font_style)
+            ws.write(row_num, 11, comments, font_style)
+
+        wb.save(response)
+        return response
+    context = {'employe': employe, 'failures': failures}
+    return render(request=request, template_name='base/table_fails.html', context=context)
+
+@login_required(login_url='login')
+def tableUuts(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    
+    try:
+        if '/' in q:
+            dates = q.split('/')
+            
+            dateStart = list(map(int, dates[0].split('-')))
+            start = date(dateStart[0], dateStart[1], dateStart[2])
+            
+            dateEnd = list(map(int, dates[1].split('-'))  )     
+            end = date(dateEnd[0], dateEnd[1], dateEnd[2])
+            new_end = end + timedelta(days=1)
+            
+            uuts = Uut.objects.filter(pn_b__project=employe.privileges).filter(
+                failureDate__range=[start, new_end],)
+        else:
+            uuts = Uut.objects.filter(pn_b__project=employe.privileges).filter(
+                Q(date__icontains=q)
+            )
+    except:
+        return redirect('tableFailures')
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('tableFailures')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
+   
+    if request.method == 'POST':
+        
+        check = request.POST.getlist('check')
+        
+        # content-type of response
+        response = HttpResponse(content_type='application/ms-excel')
+
+        #decide file name
+        today = datetime.today().strftime("%Y-%m-%d_%H-%M")
+        response['Content-Disposition'] = f'attachment; filename="Uuts{today}.xls"'
+
+        #creating workbook
+        wb = xlwt.Workbook(encoding='utf-8')
+
+        #adding sheet
+        ws = wb.add_sheet("sheet1")
+
+        # Sheet header, first row
+        row_num = 0
+
+        font_style = xlwt.XFStyle()
+        # headers are bold
+        font_style.font.bold = True
+
+        #column header names, you can use your own headers here
+        columns = ['Sn', 'Pn', 'Model', 'Employee', 'Status']
+
+        #write column headers in sheet
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        # Sheet body, remaining rows
+        font_style = xlwt.XFStyle()
+
+        #get your data, from database or from a text file...
+
+        for checked in check:
+            uut = Uut.objects.get(sn=checked)
+            
+            sn = str(uut.sn)
+            pn = str(uut.pn_b.pn)
+            model = str(uut.pn_b.product)
+            employee = str(uut.employee_e.employeeName)
+            status = str(uut.status)
+            
+            row_num = row_num + 1
+            ws.write(row_num, 0, sn, font_style)
+            ws.write(row_num, 1, pn, font_style)
+            ws.write(row_num, 2, model, font_style)
+            ws.write(row_num, 3, employee, font_style)
+            ws.write(row_num, 4, status, font_style)
+
+        wb.save(response)
+        return response
+    context = {'employe': employe, 'uuts': uuts}
+    return render(request=request, template_name='base/table_uuts.html', context=context)
+
+
+

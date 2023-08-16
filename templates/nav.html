@@ -5,29 +5,42 @@
         <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <a class="text-white navbar-brand" href="#">{{employe.privileges}}</a>
         <a class="text-white navbar-brand" href="{% url 'home'%}">TIM</a>
-
-
-        <a class="text-white navbar-brand" href="#">TIM</a>
+        <!-- tableRejects search -->
         {% if request.path == '/tableRejects/' %}
         <form class="d-flex mt-3" role="search" method="GET"  action="{% url 'tableRejects' %}">
-            <input name="q" class="form-control me-2" type="search" placeholder="Sn, Model" aria-label="Search">
-            <button class="btn btn-success" type="submit">Search</button>
+            <input name="q" class="form-control me-2" type="search" placeholder="Sn, Model" aria-label="Search"
+            {% if search_bt != True %} disabled {% endif %}>
+            <button class="btn btn-success" type="submit" 
+            {% if search_bt != True %} disabled {% endif %}>Search</button>
+        </form>
+        {% elif request.path == '/showRejecteds/'%}
+        <!-- showRejecteds search -->
+        <form class="d-flex mt-3" role="search" method="GET"  action="{% url 'showRejecteds' %}">
+            <input name="q" class="form-control me-2" type="search" placeholder="Serial Number (SN)" aria-label="Search"
+            {% if search_bt != True %} disabled {% endif %}>
+            <button class="btn btn-success" type="submit" 
+            {% if search_bt != True %} disabled {% endif %}>Search</button>
         </form>
         {% else %}
-
+        <!-- showUuts search -->
         <form class="d-flex mt-3" role="search" method="GET"  action="{% url 'showUuts' %}">
-            <input name="q" class="form-control me-2" type="search" placeholder="Sn, Model" aria-label="Search">
-            <button class="btn btn-success" type="submit">Search</button>
+            <input name="q" class="form-control me-2" type="search" placeholder="Sn, Model" aria-label="Search"
+            {% if search_bt != True %} disabled {% endif %}>
+            <button class="btn btn-success" type="submit" 
+            {% if search_bt != True %} disabled {% endif %}>Search</button>
         </form>
         {% endif %}
+        <!-- end searchers -->
+
         <div class=" offcanvas offcanvas-start " style="background-color: #0049BF;" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
             <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">TIM</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-header">
-                <span class="text-white offcanvas-title ">{{employe}}</span>
+                <a class="text-white offcanvas-title link-offset-2 link-underline link-underline-opacity-0" href="{% url 'user' 1 %}">{{employe}}</a>
                 <span class="text-white offcanvas-title">{{employe.privileges}}</span>
             </div>
             <hr>
@@ -37,12 +50,12 @@
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Rejects</a>
                     <ul class="dropdown-menu mb-5">
                         <li> <a class="dropdown-item" href="{% url 'uut_form' %}">Register UUT</a> </li>
-                        <li> <a class="dropdown-item" href="{% url 'showUuts' %}">Fails</a> </li>
-                        <li> <a class="dropdown-item" href="{% url 'showRejecteds'%}">Debug</a> </li>
+                        <li> <a class="dropdown-item" href="{% url 'showUuts' %}">UUT</a> </li>
+                        <li> <a class="dropdown-item" href="{% url 'showRejecteds'%}">Debug UUT</a> </li>
                         <li> <a class="dropdown-item" href="{% url 'boom_form' %}">Register BOOM</a> </li>
                         <li> <a class="dropdown-item" href="{% url 'errorMessage_form' %}">Register ErrorMessage</a> </li>
                         <li> <a class="dropdown-item" href="{% url 'station_form' %}">Register Station</a> </li>
-                        <li>  <a class="dropdown-item" href="{% url 'tableRejects' %}">Table Rejects</a> </li>
+                        
                     </ul>
                 </li>
                 <li style="list-style: none;" class=" mb-4 nav-item dropdown text-white">
@@ -53,12 +66,13 @@
                     </ul>
                 </li>
                 <li style="list-style: none;" class=" mb-4 nav-item dropdown text-white">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Reports</a>
                     <ul class="dropdown-menu mb-5">
-                        <li> <a class="dropdown-item" href="{% url 'user' 1 %}">Profile</a> </li>
+                        <li>  <a class="dropdown-item" href="{% url 'tableRejects' %}">Table Rejects</a> </li>
+                        <li>  <a class="dropdown-item" href="{% url 'tableFailures' %}">Table Failures</a> </li>
+                        <li>  <a class="dropdown-item" href="{% url 'tableUuts' %}">Table Uuts</a> </li>
                     </ul>
                 </li>
-
                 {% endif %}
                 <hr>
                 <li style="list-style: none;" class=" mb-4 nav-item dropdown text-white">

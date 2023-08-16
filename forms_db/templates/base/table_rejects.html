@@ -1,21 +1,27 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<div class="container">
+<div class="container mt-5">
     <h1>Table rejects</h1>
     <div class="table-responsive">
         <form method="POST">
         {% csrf_token %}
-            <table class="table table-hover table-dark table-striped">
+            <table style="width: 2000px;" class="table table-hover table-dark table-striped mt-2">
                 <thead>
                     <tr>
                         <th scope="col" title="Select all " id="bt-all" onclick="selectAll()" ><></th>
-                        <th scope="col">SN</th>
-                        <th scope="col">Model</th>
-                        <th scope="col">Fail desc</th>
-                        <th scope="col">PN</th>
-                        <th scope="col">SN old</th>
-                        <th scope="col">SN New</th>
+                        <th scope="col">Pn</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Commodity</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Fail Description</th>
+                        <th scope="col">Sn</th>
+                        <th scope="col">Sn System</th>
+                        <th scope="col">Station</th>
+                        <th scope="col">Folio</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">Ubicacion Logica</th>
+                        <th scope="col">IMG Evidence</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,18 +34,29 @@
                                 name="check" />
                             </div>
                         </th>
-                        <td scope="row">{{reject.id_f.sn_f}}</td>
-                        <td>{{reject.id_f.sn_f.pn_b.product}}</td>
-                        <td>{{reject.id_f.id_er.message}}</td>
-                        <td>{{reject.pn_b.pn}}</td>
+                        <td scope="row">{{reject.pn_b.pn}}</td>
+                        <td>{{reject.pn_b.description}}</td>
+                        <td>{{reject.pn_b.commodity}}</td>
+                        <td>{{reject.pn_b.product}}</td>
+                        <td>{{reject.id_f.id_er}}</td>
                         <td>{{reject.snDamaged}}</td>
-                        <td>{{reject.dateRejected}}</td>
+                        <td>{{reject.id_f.sn_f}}</td>
+                        <td>{{reject.id_f.id_s}}</td>
+                        <td>{{reject.folio}}</td>
+                        <td>1</td>
+                        <td>{{reject.pn_b.ubiLogic}}</td>
+                        <td>
+                            <a href="../static{{reject.id_f.imgEvindence.url}}" download>
+                                <img src="../static{{reject.id_f.imgEvindence.url}}" alt="" width="80" 
+                                height="80">
+                            </a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
 
-            <input class="btn btn-primary" type="submit" value="Submit">
+            <input class="btn btn-primary" type="submit" value="Download">
         </form>
     </div>
 </div>
