@@ -603,7 +603,6 @@ def tableFailures(request):
 
         #adding sheet
         ws = wb.add_sheet("sheet1")
-        main
 
         # Sheet header, first row
         row_num = 0
