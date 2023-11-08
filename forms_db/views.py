@@ -109,13 +109,17 @@ def uutForm(request):
     if request.method == 'POST':
         
         pn_booms = Booms.objects.get(pn=request.POST.get('pn_b'))
-        Uut.objects.create(
-            sn=request.POST.get('sn'),
-            pn_b=pn_booms,
-            employee_e=employe,
-            status = True if request.POST.get('status') == 'on' else False,
-        )
-        return redirect('showUuts')
+        try:
+            Uut.objects.create(
+                sn=request.POST.get('sn'),
+                pn_b=pn_booms,
+                employee_e=employe,
+                status = True if request.POST.get('status') == 'on' else False,
+            )
+            return redirect('showUuts')
+    
+        except:
+            messages.error(request=request, message='PN already registered!')
     
     context = {'form':form, 'employe': employe}
     return render(request=request, template_name='base/uut_form.html', context=context)
@@ -165,6 +169,7 @@ def failureForm(request, pk):
                     comments=request.POST.get('comments'),
                 )
                 return redirect('showRejecteds')
+                
     else:
         return redirect('showUuts')
     
@@ -231,10 +236,25 @@ def showUuts(request):
 
 @login_required(login_url='login')
 def boomForm(request):
+    
+    
     employe = Employes.objects.get(employeeNumber=request.user)
-    
+    project = employe.privileges
     form = BoomForm()
-    
+    # print(form.fields['product'].widget.choices = [(1,1)])
+    if project == 'DELL':
+        list_products = [('Senna','Senna'), ('Pathfinder','Hook'), ('Sojouner','Sojouner'), ('Hook','Hook'), ('Outlander','Outlander'), ('Minerrall Well','Minerrall Well'), ('MMCs','MCCs'), ('Fornax SAM','Fornax SAM'), ('Fornax DIB','Fornax DIB'), ('Fornax CIT','Fornax CIT'), ('Indus DIB','Indus DIB'), ('Indus BOP','Indus BOP'), ('Indus SAM','Indus SAM'), ('Indus CIT','Indus CIT')]
+        
+        form.fields['product'].widget.choices = list_products
+    if project == 'PMDU':
+        list_products = [('PMDU','PMDU')]
+        
+        form.fields['product'].widget.choices = list_products
+    if project == '1G-SW':
+        list_products = [('Switch','Switch')]
+        
+        form.fields['product'].widget.choices = list_products
+        
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')
@@ -245,16 +265,24 @@ def boomForm(request):
         return redirect('home')
     
     if request.method == 'POST':
-        Booms.objects.create(
-            pn=request.POST.get('pn'),
-            description=request.POST.get('description'),
-            commodity=request.POST.get('commodity'),
-            product=request.POST.get('product'),
-            ubiLogic=request.POST.get('ubiLogic'),
-            employee_e=employe,
-            project=request.POST.get('project'),
-        )
-        return redirect('home')
+        # pn_key = Booms.objects.get(pn=request.POST.get('pn'))
+        try: 
+            Booms.objects.create(
+                pn=request.POST.get('pn'),
+                description=request.POST.get('description'),
+                commodity=request.POST.get('commodity'),
+                product=request.POST.get('product'),
+                ubiLogic=request.POST.get('ubiLogic'),
+                employee_e=employe,
+                # project=request.POST.get('project'),
+                project=employe.privileges
+            )
+            
+            return redirect('home')
+        except:
+            messages.error(request=request, message='PN already registered!')
+            
+        
     
     context = {'form': form, 'employe': employe}
     return render(request=request, template_name='base/boom_form.html', context=context)
