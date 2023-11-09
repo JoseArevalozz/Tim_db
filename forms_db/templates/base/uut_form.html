@@ -5,6 +5,15 @@
     <h1>Form UUT</h1>
     <form method="POST">
         {% csrf_token %}
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger" role="alert">
+                    {{message}}
+                </div>    
+            {% endfor %}
+        {% endif %}
+
         <div class="row">
             {% for row in form %}
             <div class="form-group col-md-6 col-sm-6">

@@ -6,7 +6,13 @@
     <form method="POST" action="">
         {% csrf_token %}
         <!-- {{form.as_p}} -->
-        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger" role="alert">
+                    {{message}}
+                </div>    
+            {% endfor %}
+        {% endif %}
         <div class="row">
             {% for row in form %}
                 <div class="form-group col-md-6 col-sm-6">

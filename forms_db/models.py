@@ -25,12 +25,14 @@ class Booms(models.Model):
     employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, blank=True, null=True,)
     description = models.CharField(max_length=125)
     commodity = models.CharField(max_length=50)
-    product = models.CharField(max_length=30,)
+    product = models.CharField(max_length=30, choices=projects)
     ubiLogic = models.CharField(max_length=15,)
     project = models.CharField(max_length=20, choices=projects)
             
     def __str__(self):
         return self.pn
+    
+        
 
 class Uut(models.Model):
     sn = models.CharField(max_length=50, primary_key=True)
@@ -87,6 +89,7 @@ class ErrorMessages(models.Model):
 
 class Failures(models.Model):
     shifts = (('1', '1'), ('2', '2'), ('3', '3') )
+    
     id_s = models.ForeignKey(Station, on_delete=models.SET_NULL, blank=True, null=True,)
     sn_f = models.ForeignKey(Uut, on_delete=models.CASCADE)
     failureDate = models.DateTimeField(auto_now=True)
@@ -98,8 +101,8 @@ class Failures(models.Model):
     employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, blank=True, null=True,)
     shiftFailure = models.CharField(max_length=13, choices=shifts)
     correctiveActions = models.CharField(max_length=100)
-    imgEvindence = models.ImageField(null=True, upload_to='evidences/')
-    log = models.FileField(null=True, upload_to='logs/')
+    imgEvindence = models.ImageField(null=True, upload_to='evidences/', blank=True)
+    log = models.FileField(null=True, upload_to='logs/',  blank=True)
     comments = models.TextField()
     
     def __str__(self):
