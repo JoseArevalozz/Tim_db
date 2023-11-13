@@ -89,6 +89,7 @@ class ErrorMessages(models.Model):
 
 class Failures(models.Model):
     shifts = (('1', '1'), ('2', '2'), ('3', '3') )
+    ca_options = (('Resettled subassy and slaves parts', 'Resettled subassy and slaves parts'), ('Retest in another tester', 'Retest in another tester'), ('Retest no touch', 'Retest no touch'), ('Change component', 'Change component'), ('Clean component', 'Clean component'))
     
     id_s = models.ForeignKey(Station, on_delete=models.SET_NULL, blank=True, null=True,)
     sn_f = models.ForeignKey(Uut, on_delete=models.CASCADE)
@@ -100,7 +101,7 @@ class Failures(models.Model):
     defectSymptom = models.CharField(max_length=100)
     employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, blank=True, null=True,)
     shiftFailure = models.CharField(max_length=13, choices=shifts)
-    correctiveActions = models.CharField(max_length=100)
+    correctiveActions = models.CharField(max_length=100, choices=ca_options)
     imgEvindence = models.ImageField(null=True, upload_to='evidences/', blank=True)
     log = models.FileField(null=True, upload_to='logs/',  blank=True)
     comments = models.TextField()
