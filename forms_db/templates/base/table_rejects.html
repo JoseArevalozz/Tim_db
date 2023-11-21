@@ -46,10 +46,12 @@
                         <td>1</td>
                         <td>{{reject.pn_b.ubiLogic}}</td>
                         <td>
+                            {% if reject.id_f.imgEvindence %}
                             <a href="../static{{reject.id_f.imgEvindence.url}}" download>
                                 <img src="../static{{reject.id_f.imgEvindence.url}}" alt="" width="80" 
                                 height="80">
                             </a>
+                            {% endif %}
                         </td>
                     </tr>
                     {% endfor %}
