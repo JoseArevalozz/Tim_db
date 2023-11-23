@@ -481,7 +481,7 @@ def tableRejects(request):
             dateStart = list(map(int, dates[0].split('-')))
             start = date(dateStart[0], dateStart[1], dateStart[2])
             
-            dateEnd = list(map(int, dates[1].split('-'))  )     
+            dateEnd = list(map(int, dates[1].split('-')))     
             end = date(dateEnd[0], dateEnd[1], dateEnd[2])
             new_end = end + timedelta(days=1)
             
@@ -489,8 +489,8 @@ def tableRejects(request):
                 dateRejected__range=[start, new_end],)
         else:
             rejects = Rejected.objects.filter(id_f__sn_f__pn_b__project=employe.privileges).filter(
-                Q(folio__icontains=q)
-            )
+                Q(folio__icontains=q) |
+                Q(id_f__sn_f__sn__icontains=q) ) 
     except:
         return redirect('tableRejects')
     
