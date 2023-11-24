@@ -10,7 +10,7 @@
         <!-- tableRejects search -->
         {% if request.path == '/tableRejects/' %}
         <form class="d-flex mt-3" role="search" method="GET"  action="{% url 'tableRejects' %}">
-            <input name="q" class="form-control me-2" type="search" placeholder="Sn, Model" aria-label="Search"
+            <input name="q" class="form-control me-2" type="search" placeholder="Serial Number, Folio" aria-label="Search"
             {% if search_bt != True %} disabled {% endif %}>
             <button class="btn btn-success" type="submit" 
             {% if search_bt != True %} disabled {% endif %}>Search</button>
