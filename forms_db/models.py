@@ -20,12 +20,13 @@ class Employes(models.Model):
       
 class Booms(models.Model):
     projects = (('DELL', 'DELL'), ('PMDU', 'PMDU'), ('1G-SW', '1G-SW'))
+    list_products = (('Senna','Senna'), ('Pathfinder','Pathfinder'), ('Sojouner','Sojouner'), ('Hook','Hook'), ('Outlander','Outlander'), ('Minerrall Well','Minerrall Well'), ('MMCs','MCCs'), ('Fornax SAM','Fornax SAM'), ('Fornax DIB','Fornax DIB'), ('Fornax CIT','Fornax CIT'), ('Indus DIB','Indus DIB'), ('Indus BOP','Indus BOP'), ('Indus SAM','Indus SAM'), ('Indus CIT','Indus CIT'), ('PMDU','PMDU'), ('Switch','Switch'))
     
     pn = models.CharField(max_length=50, primary_key=True,)
     employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, blank=True, null=True,)
     description = models.CharField(max_length=125)
     commodity = models.CharField(max_length=50)
-    product = models.CharField(max_length=30, choices=projects)
+    product = models.CharField(max_length=30, choices=list_products)
     ubiLogic = models.CharField(max_length=15,)
     project = models.CharField(max_length=20, choices=projects)
             

@@ -129,11 +129,21 @@ def failureForm(request, pk):
     employe = Employes.objects.get(employeeNumber=request.user)
     form = FailureForm()
     
-    form.fields['id_s'].queryset = Station.objects.filter(stationProject=employe.privileges)
-    form.fields['id_er'].queryset = ErrorMessages.objects.filter(pn_b__project=employe.privileges)
-    
     if Uut.objects.filter(sn=pk).exists():
+        
+        
         uut = Uut.objects.get(sn=pk)
+        
+        # if uut.pn_b.product is not 'Fornax' or uut.pn_b.product is not 'Inuds' :
+        #     pn = str(uut.pn_b)[:5]
+        #     print(pn)
+        # else:
+        #     pn = str(uut.pn_b)
+
+        form.fields['id_s'].queryset = Station.objects.filter(stationProject=employe.privileges)
+        form.fields['id_er'].queryset = ErrorMessages.objects.filter(pn_b__project=employe.privileges)
+        
+       
         
         if 'bt-project' in request.POST: 
             if request.method == 'POST':
@@ -243,7 +253,7 @@ def boomForm(request):
     form = BoomForm()
     # print(form.fields['product'].widget.choices = [(1,1)])
     if project == 'DELL':
-        list_products = [('Senna','Senna'), ('Pathfinder','Hook'), ('Sojouner','Sojouner'), ('Hook','Hook'), ('Outlander','Outlander'), ('Minerrall Well','Minerrall Well'), ('MMCs','MCCs'), ('Fornax SAM','Fornax SAM'), ('Fornax DIB','Fornax DIB'), ('Fornax CIT','Fornax CIT'), ('Indus DIB','Indus DIB'), ('Indus BOP','Indus BOP'), ('Indus SAM','Indus SAM'), ('Indus CIT','Indus CIT')]
+        list_products = [('Senna','Senna'), ('Pathfinder','Pathfinder'), ('Sojouner','Sojouner'), ('Hook','Hook'), ('Outlander','Outlander'), ('Minerrall Well','Minerrall Well'), ('MMCs','MCCs'), ('Fornax SAM','Fornax SAM'), ('Fornax DIB','Fornax DIB'), ('Fornax CIT','Fornax CIT'), ('Indus DIB','Indus DIB'), ('Indus BOP','Indus BOP'), ('Indus SAM','Indus SAM'), ('Indus CIT','Indus CIT')]
         
         form.fields['product'].widget.choices = list_products
     if project == 'PMDU':
