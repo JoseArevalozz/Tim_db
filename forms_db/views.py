@@ -134,14 +134,17 @@ def failureForm(request, pk):
         
         uut = Uut.objects.get(sn=pk)
         
-        # if uut.pn_b.product is not 'Fornax' or uut.pn_b.product is not 'Inuds' :
-        #     pn = str(uut.pn_b)[:5]
-        #     print(pn)
-        # else:
-        #     pn = str(uut.pn_b)
+        if 'Fornax' not in uut.pn_b.product or 'Inuds' not in uut.pn_b.product:
+            # pn = str(uut.pn_b)[:5]
+            model = uut.pn_b.product
+            form.fields['id_er'].queryset = ErrorMessages.objects.filter(pn_b__project=employe.privileges).filter(pn_b__product=model)
+            # print(pn)
+        else:
+            #form.fields['id_er'].queryset = ErrorMessages.objects.filter(pn_b__project=employe.privileges).filter(id_er__pb_b__pn=pn)
+            pn = str(uut.pn_b)
 
         form.fields['id_s'].queryset = Station.objects.filter(stationProject=employe.privileges)
-        form.fields['id_er'].queryset = ErrorMessages.objects.filter(pn_b__project=employe.privileges)
+        
         
        
         
