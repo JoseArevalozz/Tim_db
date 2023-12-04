@@ -86,7 +86,7 @@ class ErrorMessages(models.Model):
     pn_b = models.ForeignKey(Booms, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.message    
+        return self.message[:73] + '...' 
 
 class Failures(models.Model):
     shifts = (('1', '1'), ('2', '2'), ('3', '3') )
