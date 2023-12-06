@@ -12,6 +12,8 @@ class EmployeesForm(ModelForm):
                 visible.field.widget.attrs['class'] = 'form-check-input'
             elif visible.name == 'switch':
                 visible.field.widget.attrs['class'] = 'form-check-input'
+            elif visible.name == 'sony':
+                visible.field.widget.attrs['class'] = 'form-check-input'
             else:
                 visible.field.widget.attrs['class'] = 'form-control mb-2 col-md-6 col-sm-6 text-white bg-black'
                 

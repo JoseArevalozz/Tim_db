@@ -106,6 +106,9 @@ def uutForm(request):
     if employe.privileges == 'NA':
         return redirect('home')
     
+    if employe.privileges == 'SONY':
+        form.fields['pn_b'].queryset = Booms.objects.filter(Q(commodity='RACK') | Q(commodity='SLED') | Q(commodity='KURA'))
+        
     if request.method == 'POST':
         
         pn_booms = Booms.objects.get(pn=request.POST.get('pn_b'))
@@ -232,7 +235,7 @@ def showUuts(request):
         Q(sn__icontains=q) |
         Q(pn_b__pn__icontains=q) |
         Q(date__icontains=q)
-    )
+    ).order_by('-date')
 
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
@@ -265,6 +268,8 @@ def boomForm(request):
         form.fields['product'].widget.choices = list_products
     if project == '1G-SW':
         list_products = [('Switch','Switch')]
+    if project == 'SONY':
+        list_products = [('CRONOS', 'CRONOS')]
         
         form.fields['product'].widget.choices = list_products
         
@@ -346,7 +351,7 @@ def showRejecteds(request):
     
     failures = Failures.objects.filter(status=True).filter(sn_f__pn_b__project=employe.privileges).filter(
         Q(sn_f__sn__icontains=q)
-    )
+    ).order_by('-failureDate')
     
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
@@ -376,6 +381,9 @@ def errorMessageForm(request):
     
     if employe.privileges == 'NA':
         return redirect('home')
+    
+    if employe.privileges == 'SONY':
+        form.fields['pn_b'].queryset = Booms.objects.filter(Q(commodity='RACK') | Q(commodity='SLED') | Q(commodity='KURA'))
     
     if request.method == 'POST':
         
