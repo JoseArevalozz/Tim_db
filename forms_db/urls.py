@@ -24,4 +24,5 @@ urlpatterns = [
     path('user/<str:pk>/', views.userPage, name='user'),
     path('login', views.loginUser, name='login'),
     path('logout', views.logoutUser, name='logout'),
+    path('releaseForm', views.releaseForm, name='releaseForm')
 ]

@@ -3,8 +3,8 @@ import xlwt
 from datetime import date, datetime, timedelta
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .forms import EmployeesForm, UutForm, FailureForm, BoomForm, RejectedForm, ErrorMessageForm, StationForm, MaintenanceForm, SpareForm
-from .models import Uut, Employes, Failures, Station, ErrorMessages, Booms, Rejected
+from .forms import EmployeesForm, UutForm, FailureForm, BoomForm, RejectedForm, ErrorMessageForm, StationForm, MaintenanceForm, SpareForm, ReleaseForm
+from .models import Uut, Employes, Failures, Station, ErrorMessages, Booms, Rejected, Release
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -507,11 +507,11 @@ def tableRejects(request):
             new_end = end + timedelta(days=1)
             
             rejects = Rejected.objects.filter(id_f__sn_f__pn_b__project=employe.privileges).filter(
-                dateRejected__range=[start, new_end],)
+                dateRejected__range=[start, new_end],).order_by('-dateRejected')
         else:
             rejects = Rejected.objects.filter(id_f__sn_f__pn_b__project=employe.privileges).filter(
                 Q(folio__icontains=q) |
-                Q(id_f__sn_f__sn__icontains=q) ) 
+                Q(id_f__sn_f__sn__icontains=q) ).order_by('-dateRejected') 
     except:
         return redirect('tableRejects')
     
@@ -798,6 +798,40 @@ def tableUuts(request):
         return response
     context = {'employe': employe, 'uuts': uuts}
     return render(request=request, template_name='base/table_uuts.html', context=context)
+
+@login_required(login_url='login')
+def releaseForm(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    form = ReleaseForm()
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('uut_form')
+    
+    if employe.privileges != 'SONY':
+        return redirect('home')
+    
+    if request.method =='POST':
+        files = request.FILES
+        cimsI = files.get('cims')
+        crabberI = files.get('crabber')
+        try:
+            Release.objects.create(
+                serial = request.POST.get('serial'),
+                shift = request.POST.get('shift'),
+                nicho = request.POST.get('nicho'),
+                cims = cimsI,
+                crabber = crabberI,
+                employee_e = employe
+            )
+            return redirect('home')
+        except:
+            messages.error(request=request, message='SN already registered!')
+
+    context = {'form':form, 'employe':employe}
+    return render(request=request, template_name='base/release_form.html', context=context)
 
 
 

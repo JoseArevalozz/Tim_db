@@ -1,6 +1,6 @@
 from django.forms import ModelForm, PasswordInput, CharField, Textarea
 # from django import forms
-from .models import Employes, Uut, Failures, Booms, Rejected, ErrorMessages, Station, Maintenance, SparePart
+from .models import Employes, Uut, Failures, Booms, Rejected, ErrorMessages, Station, Maintenance, SparePart, Release
 
 class EmployeesForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -162,4 +162,19 @@ class SpareForm(ModelForm):
             'quantity': 'Quantity',
             'description': 'Description',
             'pn': 'Part Number (PN)',
-        }  
+        }
+        
+class ReleaseForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control mb-2 col-md-6 col-sm-6 text-white bg-black'
+            
+    class Meta:
+        model = Release
+        fields = [
+           "serial", "shift", "nicho", "cims", "crabber" 
+        ]  
+        labels = {
+            "serial":'Numero de serie (Sn):', "shift":'Turno:', "cims":'Imagen del Cims:', "crabber":'Imagen de Crabber:', "nicho":'Posicion y Nicho: '
+        }
