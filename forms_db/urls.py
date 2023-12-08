@@ -6,6 +6,7 @@ urlpatterns = [
     path('finish-uut/<str:sn>/', views.finish_uut, name='finish_uut'),
     path('menuRejects/', views.rejectsMenu, name='menuRejects'),
     path('menuMaintenance/', views.maintenanceMenu, name='menuMaintenance'),
+    path('menuMetrics/', views.metricMenu, name='menuMetrics'),
     path('employees_form/', views.employeesForm, name='employees_form'),
     path('uut_form/', views.uutForm, name='uut_form'),
     path('failure_form/<str:pk>/', views.failureForm, name='failure_form'),
@@ -24,5 +25,6 @@ urlpatterns = [
     path('user/<str:pk>/', views.userPage, name='user'),
     path('login', views.loginUser, name='login'),
     path('logout', views.logoutUser, name='logout'),
-    path('releaseForm', views.releaseForm, name='releaseForm')
+    path('releaseForm/', views.releaseForm, name='releaseForm'),
+    path('table_release/', views.tableRelease, name='table_release')
 ]
