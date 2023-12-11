@@ -1,0 +1,252 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <form class="d-flex mt-3" role="search" method="GET"  action="">
+        <div class="col-sm-5 mx-5">
+            <label for="fechaI">Start</label>
+            <input name="fechaI" class="form-control me-2" type="date" placeholder="Fecha de inicio" aria-label="Search ">
+        </div>
+        <div class="col-sm-5 mx-5">
+            <label for="fechaF">End</label>
+            <input name="fechaF" class="form-control me-2" type="date" placeholder="Fecha de fin" aria-label="Search ">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 mt-3 text-center">
+            <button class="btn btn-success" type="submit">Search</button>
+        </div>
+        </form>
+    </div>
+    <div class="row bg-dark text-white text-center rounded mt-5">
+        <h2>Releases</h2>
+        <hr>
+        <div class="col-sm-4">
+            <h5>Shift 1</h5>
+            <p>{{turnos.0}}</p>
+            {% for serial in seriales.0 %}
+            <h5>{{serial.serial}}...{{serial.employee_e}}</h5>
+            {% endfor %}
+        </div>
+        <div class="col-sm-4">
+            <h5>Shift 2</h5>
+            <p>{{turnos.1}}</p>
+            {% for serial in seriales.1 %}
+            <h5>{{serial.serial}}...{{serial.employee_e}}</h5>
+            {% endfor %}
+        </div>
+        <div class="col-sm-4">
+            <h5>Shift 3</h5>
+            <p>{{turnos.2}}</p>
+            {% for serial in seriales.2 %}
+            <h5>{{serial.serial}}...{{serial.employee_e}}</h5>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-sm-4 text-center">
+            <h1>Rack</h1>
+            <canvas id="Racks" width="20" height="20"></canvas>
+        </div>
+        <div class="col-sm-4 text-center">
+            <h1>Sled</h1>
+            <canvas id="Sleds" width="20" height="20"></canvas>
+        </div>
+        <div class="col-sm-4 text-center">
+            <h1>Kura</h1>
+            <canvas id="Kuras" width="20" height="20"></canvas>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-sm-6 text-center">
+            <h1>Root Cause</h1>
+            <canvas id="Roots" width="20" height="20"></canvas>
+        </div>
+        <div class="col-sm-6 text-center">
+            <h1>Tests</h1>
+            <canvas id="Tests" width="20" height="20"></canvas>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var rackg = document.getElementById('Racks').getContext('2d');
+    var sledg = document.getElementById('Sleds').getContext('2d');
+    var kurag = document.getElementById('Kuras').getContext('2d');
+    var causeg = document.getElementById('Roots').getContext('2d');
+    var testg = document.getElementById('Tests').getContext('2d');
+    var Racks = new Chart(rackg, {
+        type: 'pie',
+        data:{
+            labels: [{% for label in labels_rack %} '{{label}}', {% endfor %}],
+            datasets:[{
+                label:'Label',
+                data:[{% for value in value_rack %} '{{value}}', {% endfor %}],
+                backgroundColor:[
+                'rgba(55, 146, 55, 1)',
+                'rgba(216, 63, 49,1)',
+                'rgba(29, 91, 121,1)',
+                ],
+                borderColor:[
+                'rgba(55, 146, 55, 1)',
+                'rgba(216, 63, 49,1)',
+                'rgba(29, 91, 121,1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options:{
+            scales:{
+                yAxes: [{
+                    ticks:{
+                        beginAtzero: true
+                    }
+                }]
+            }
+        }
+
+    })
+    var Sleds = new Chart(sledg, {
+        type: 'pie',
+        data:{
+            labels: [{% for label in labels_sled %} '{{label}}', {% endfor %}],
+            datasets:[{
+                label:'Label',
+                data:[{% for value in value_sled %} '{{value}}', {% endfor %}],
+                backgroundColor:[
+                'rgba(55, 146, 55, 1)',
+                'rgba(216, 63, 49,1)',
+                'rgba(29, 91, 121,1)',
+                ],
+                borderColor:[
+                'rgba(55, 146, 55, 1)',
+                'rgba(216, 63, 49,1)',
+                'rgba(29, 91, 121,1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options:{
+            scales:{
+                yAxes: [{
+                    ticks:{
+                        beginAtzero: true
+                    }
+                }]
+            }
+        }
+    })
+    var Kuras = new Chart(kurag, {
+        type: 'pie',
+        data:{
+            labels: [{% for label in labels_kura %} '{{label}}', {% endfor %}],
+            datasets:[{
+                label:'Label',
+                data:[{% for value in value_kura %} '{{value}}', {% endfor %}],
+                backgroundColor:[
+                'rgba(55, 146, 55, 1)',
+                'rgba(216, 63, 49,1)',
+                'rgba(29, 91, 121,1)',
+                ],
+                borderColor:[
+                'rgba(55, 146, 55, 1)',
+                'rgba(216, 63, 49,1)',
+                'rgba(29, 91, 121,1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options:{
+            scales:{
+                yAxes: [{
+                    ticks:{
+                        beginAtzero: true
+                    }
+                }]
+            }
+        }
+    })
+    var Roots = new Chart(causeg, {
+        type: 'pie',
+        data:{
+            labels: [{% for label in labels_cause %} '{{label}}', {% endfor %}],
+            datasets:[{
+                label:'Label',
+                data:[{% for value in value_cause %} '{{value}}', {% endfor %}],
+                backgroundColor:[
+                'rgba(41, 128, 185, 1)',
+                'rgba(175, 122, 197,1)',
+                'rgba(247, 220, 111,1)',
+                'rgba(17, 122, 101, 1)',
+                'rgba(144, 148, 151,1)',
+                'rgba(39, 55, 70 ,1)',
+                ],
+                borderColor:[
+                'rgba(41, 128, 185, 1)',
+                'rgba(175, 122, 197,1)',
+                'rgba(247, 220, 111,1)',
+                'rgba(17, 122, 101, 1)',
+                'rgba(144, 148, 151,1)',
+                'rgba(39, 55, 70 ,1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options:{
+            scales:{
+                yAxes: [{
+                    ticks:{
+                        beginAtzero: true
+                    }
+                }]
+            }
+        }
+    })
+    var Tests = new Chart(testg, {
+        type: 'pie',
+        data:{
+            labels: [{% for label in labels_test %} '{{label}}', {% endfor %}],
+            datasets:[{
+                label:'Label',
+                data:[{% for value in value_test %} '{{value}}', {% endfor %}],
+                backgroundColor:[
+                'rgba(41, 128, 185, 1)',
+                'rgba(175, 122, 197,1)',
+                'rgba(247, 220, 111,1)',
+                'rgba(17, 122, 101, 1)',
+                'rgba(144, 148, 151,1)',
+                'rgba(39, 55, 70 ,1)',
+                'rgba(250, 219, 216, 1)',
+                'rgba(211, 84, 0,1)',
+                'rgba(171, 235, 198,1)',
+                ],
+                borderColor:[
+                'rgba(41, 128, 185, 1)',
+                'rgba(175, 122, 197,1)',
+                'rgba(247, 220, 111,1)',
+                'rgba(17, 122, 101, 1)',
+                'rgba(144, 148, 151,1)',
+                'rgba(39, 55, 70 ,1)',
+                'rgba(250, 219, 216, 1)',
+                'rgba(211, 84, 0,1)',
+                'rgba(171, 235, 198,1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options:{
+            scales:{
+                yAxes: [{
+                    ticks:{
+                        beginAtzero: true
+                    }
+                }]
+            }
+        }
+    })
+</script>
+
+{% endblock content %}
+

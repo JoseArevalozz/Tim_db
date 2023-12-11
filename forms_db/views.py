@@ -3,8 +3,8 @@ import xlwt
 from datetime import date, datetime, timedelta
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .forms import EmployeesForm, UutForm, FailureForm, BoomForm, RejectedForm, ErrorMessageForm, StationForm, MaintenanceForm, SpareForm
-from .models import Uut, Employes, Failures, Station, ErrorMessages, Booms, Rejected
+from .forms import EmployeesForm, UutForm, FailureForm, BoomForm, RejectedForm, ErrorMessageForm, StationForm, MaintenanceForm, SpareForm, ReleaseForm
+from .models import Uut, Employes, Failures, Station, ErrorMessages, Booms, Rejected, Release
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -106,6 +106,9 @@ def uutForm(request):
     if employe.privileges == 'NA':
         return redirect('home')
     
+    if employe.privileges == 'SONY':
+        form.fields['pn_b'].queryset = Booms.objects.filter(Q(commodity='RACK') | Q(commodity='SLED') | Q(commodity='KURA'))
+        
     if request.method == 'POST':
         
         pn_booms = Booms.objects.get(pn=request.POST.get('pn_b'))
@@ -222,6 +225,22 @@ def maintenanceMenu(request):
     return render(request=request, template_name='base/menuMaintenance.html', context=context)
 
 @login_required(login_url='login')
+def metricMenu(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+        return redirect('menuMaintenance')
+    
+    if employe.privileges == 'NA':
+        return redirect('home')
+    
+    context = {'employe':employe}
+    return render(request=request, template_name='base/menuMetric.html', context = context)
+
+@login_required(login_url='login')
 def showUuts(request):
     
     employe = Employes.objects.get(employeeNumber=request.user)
@@ -232,7 +251,7 @@ def showUuts(request):
         Q(sn__icontains=q) |
         Q(pn_b__pn__icontains=q) |
         Q(date__icontains=q)
-    )
+    ).order_by('-date')
 
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
@@ -265,6 +284,8 @@ def boomForm(request):
         form.fields['product'].widget.choices = list_products
     if project == '1G-SW':
         list_products = [('Switch','Switch')]
+    if project == 'SONY':
+        list_products = [('CRONOS', 'CRONOS')]
         
         form.fields['product'].widget.choices = list_products
         
@@ -346,7 +367,7 @@ def showRejecteds(request):
     
     failures = Failures.objects.filter(status=True).filter(sn_f__pn_b__project=employe.privileges).filter(
         Q(sn_f__sn__icontains=q)
-    )
+    ).order_by('-failureDate')
     
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
@@ -376,6 +397,9 @@ def errorMessageForm(request):
     
     if employe.privileges == 'NA':
         return redirect('home')
+    
+    if employe.privileges == 'SONY':
+        form.fields['pn_b'].queryset = Booms.objects.filter(Q(commodity='RACK') | Q(commodity='SLED') | Q(commodity='KURA'))
     
     if request.method == 'POST':
         
@@ -499,11 +523,11 @@ def tableRejects(request):
             new_end = end + timedelta(days=1)
             
             rejects = Rejected.objects.filter(id_f__sn_f__pn_b__project=employe.privileges).filter(
-                dateRejected__range=[start, new_end],)
+                dateRejected__range=[start, new_end],).order_by('-dateRejected')
         else:
             rejects = Rejected.objects.filter(id_f__sn_f__pn_b__project=employe.privileges).filter(
                 Q(folio__icontains=q) |
-                Q(id_f__sn_f__sn__icontains=q) ) 
+                Q(id_f__sn_f__sn__icontains=q) ).order_by('-dateRejected') 
     except:
         return redirect('tableRejects')
     
@@ -791,5 +815,134 @@ def tableUuts(request):
     context = {'employe': employe, 'uuts': uuts}
     return render(request=request, template_name='base/table_uuts.html', context=context)
 
+@login_required(login_url='login')
+def releaseForm(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    form = ReleaseForm()
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('uut_form')
+    
+    if employe.privileges != 'SONY':
+        return redirect('home')
+    
+    if request.method =='POST':
+        files = request.FILES
+        cimsI = files.get('cims')
+        crabberI = files.get('crabber')
+        try:
+            Release.objects.create(
+                serial = request.POST.get('serial'),
+                shift = request.POST.get('shift'),
+                nicho = request.POST.get('nicho'),
+                cims = cimsI,
+                crabber = crabberI,
+                employee_e = employe
+            )
+            return redirect('home')
+        except:
+            messages.error(request=request, message='SN already registered!')
 
+    context = {'form':form, 'employe':employe}
+    return render(request=request, template_name='base/release_form.html', context=context)
+
+@login_required(login_url='login')
+def tableRelease(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+    start = request.GET.get('fechaI')
+    end = request.GET.get('fechaF')
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
+            return redirect('uut_form')
+    
+    if employe.privileges != 'SONY':
+        return redirect('home')
+    
+    if start == None or end == None or start == '' or end == '':
+        l1 = Release.objects.filter(shift='1')
+        l2 = Release.objects.filter(shift='2')
+        l3 = Release.objects.filter(shift='3')
+        releases = Release.objects.all().count()
+        
+        fallasr = Failures.objects.filter(sn_f__pn_b__commodity='RACK').count()
+        fallass = Failures.objects.filter(sn_f__pn_b__commodity='SLED').count()
+        fallask = Failures.objects.filter(sn_f__pn_b__commodity='KURA').count()
+        turno1 = Release.objects.filter(shift='1').count()
+        turno2 = Release.objects.filter(shift='2').count()
+        turno3 = Release.objects.filter(shift='3').count()
+        
+        causeD = int(Failures.objects.filter(rootCause='DEBUG').count())
+        causeR = int(Failures.objects.filter(rootCause='RUTEO').count())
+        causeP = int(Failures.objects.filter(rootCause='PRUEBAS').count())
+        causeE = int(Failures.objects.filter(rootCause='ENSAMBLE').count())
+        causeC = int(Failures.objects.filter(rootCause='CODIGO').count())
+        causeF = int(Failures.objects.filter(rootCause='FUNCIONAL').count())
+        
+        t1 = int(Failures.objects.filter(id_s__stationName='INIT').count())
+        t2 = int(Failures.objects.filter(id_s__stationName='FVT_POWERSHELF').count())
+        t3 = int(Failures.objects.filter(id_s__stationName='PRE_FVT_COMPUTE_SLED').count())
+        t4 = int(Failures.objects.filter(id_s__stationName='FVT_COMPUTE_SLED').count())
+        t5 = int(Failures.objects.filter(id_s__stationName='STRESS (SLED)').count())
+        t6 = int(Failures.objects.filter(id_s__stationName='STRESS (KURA)').count())
+        t7 = int(Failures.objects.filter(id_s__stationName='FVT_RACK').count())
+        t8 = int(Failures.objects.filter(id_s__stationName='FVT_STORAGE').count())
+        t9 = int(Failures.objects.filter(id_s__stationName='FVT_COMPUTE_MODULE').count())
+    else:
+        datetime.strptime(start, '%Y-%m-%d').date()
+        datetime.strptime(end, '%Y-%m-%d').date()
+        l1 = Release.objects.filter(shift='1').filter(date__gte=start, date__lt=end)
+        l2 = Release.objects.filter(shift='2').filter(date__gte=start, date__lt=end)
+        l3 = Release.objects.filter(shift='3').filter(date__gte=start, date__lt=end)
+        releases = Release.objects.filter(date__gte=start, date__lt=end).count()
+        
+        turno1 = Release.objects.filter(shift='1').filter(date__gte=start, date__lt=end).count()
+        turno2 = Release.objects.filter(shift='2').filter(date__gte=start, date__lt=end).count()
+        turno3 = Release.objects.filter(shift='3').filter(date__gte=start, date__lt=end).count()
+        
+        fallasr = Failures.objects.filter(sn_f__pn_b__commodity='Rack').filter(failureDate__gte=start, failureDate__lt=end).count()
+        fallass = Failures.objects.filter(sn_f__pn_b__commodity='Sled').filter(failureDate__gte=start, failureDate__lt=end).count()
+        fallask = Failures.objects.filter(sn_f__pn_b__commodity='Kura').filter(failureDate__gte=start, failureDate__lt=end).count()
+
+        causeD = int(Failures.objects.filter(rootCause='DEBUG').filter(failureDate__gte=start, failureDate__lt=end).count())
+        causeR = int(Failures.objects.filter(rootCause='RUTEO').filter(failureDate__gte=start, failureDate__lt=end).count())
+        causeP = int(Failures.objects.filter(rootCause='PRUEBAS').filter(failureDate__gte=start, failureDate__lt=end).count())
+        causeE = int(Failures.objects.filter(rootCause='ENSAMBLE').filter(failureDate__gte=start, failureDate__lt=end).count())
+        causeC = int(Failures.objects.filter(rootCause='CODIGO').filter(failureDate__gte=start, failureDate__lt=end).count())
+        causeF = int(Failures.objects.filter(rootCause='FUNCIONAL').filter(failureDate__gte=start, failureDate__lt=end).count())
+        
+        t1 = int(Failures.objects.filter(id_s__stationName='INIT').filter(failureDate__gte=start, failureDate__lt=end).count())
+        t2 = int(Failures.objects.filter(id_s__stationName='FVT_POWERSHELF').filter(failureDate__gte=start, failureDate__lt=end).count())
+        t3 = int(Failures.objects.filter(id_s__stationName='PRE_FVT_COMPUTE_SLED').filter(failureDate__gte=start, failureDate__lt=end).count())
+        t4 = int(Failures.objects.filter(id_s__stationName='FVT_COMPUTE_SLED').filter(failureDate__gte=start, failureDate__lt=end).count())
+        t5 = int(Failures.objects.filter(id_s__stationName='STRESS (SLED)').filter(failureDate__gte=start, failureDate__lt=end).count())
+        t6 = int(Failures.objects.filter(id_s__stationName='STRESS (KURA)').filter(failureDate__gte=start, failureDate__lt=end).count())
+        t7 = int(Failures.objects.filter(id_s__stationName='FVT_RACK').filter(failureDate__gte=start, failureDate__lt=end).count())
+        t8 = int(Failures.objects.filter(id_s__stationName='FVT_STORAGE').filter(failureDate__gte=start, failureDate__lt=end).count())
+        t9 = int(Failures.objects.filter(id_s__stationName='FVT_COMPUTE_MODULE').filter(failureDate__gte=start, failureDate__lt=end).count())
+    
+    labels_test = ['INIT', 'FVT_POWERSHELF', 'PRE_FVT_COMPUTE_SLED', 'FVT_COMPUTE_SLED', 'STRESS (SLED)', 'STRESS (KURA)', 'FVT_RACK', 'FVT_STORAGE', 'FVT_COMPUTE_MODULE']
+    value_test = [t1,t2,t3,t4,t5,t6,t7,t8,t9]
+    
+    labels_cause = ['Debug', 'Ruteo', 'Pruebas', 'Ensamble', 'Codigo', 'Funcional']
+    value_cause = [causeD, causeR, causeP, causeE, causeC, causeF]
+    
+    labels_rack = ['Rack liberados','Rack fallados']
+    value_rack = [int(releases),int(fallasr)]  
+    
+    labels_sled = ['Sled liberados','Sled fallados']
+    value_sled = [(int(releases)*12),int(fallass)]
+    
+    labels_kura = ['Kura liberados','Kura fallados']
+    value_kura = [int(releases),int(fallask)]
+    
+    turnos = [int(turno1), int(turno2), int(turno3)]
+    seriales = [l1, l2, l3]
+    context = {'turnos':turnos,'employe':employe, 'labels_rack':labels_rack, 'value_rack':value_rack, 'labels_sled':labels_sled, 'value_sled':value_sled, 'labels_kura':labels_kura, 'value_kura':value_kura, 'labels_cause':labels_cause, 'value_cause':value_cause, 'labels_test':labels_test, 'value_test':value_test, 'seriales':seriales}
+    return render(request=request, template_name='base/table_release.html', context=context)
 

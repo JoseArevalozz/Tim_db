@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Release</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger" role="alert">
+                    {{message}}
+                </div>    
+            {% endfor %}
+        {% endif %}
+        <div class="row">
+            {% for row in form %}
+            <div class="form-group col-md-6 col-sm-6">
+                <label for="">{{row.label}}</label>
+                {{row}}
+            </div>
+            <br>
+            {% endfor %}
+        </div>
+        <input class ="mt-5 btn btn-primary" type="submit" value="Save">
+    </form>
+</div>
+{% endblock content %}

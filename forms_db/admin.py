@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Employes, Uut, Failures, Booms, Rejected, ErrorMessages, Station, Maintenance, SparePart
+from .models import Employes, Uut, Failures, Booms, Rejected, ErrorMessages, Station, Maintenance, SparePart, Release
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
@@ -72,6 +72,12 @@ class FormSpares(admin.ModelAdmin):
     list_filter = ("pn", "description", "quantity")
     ordering = ("pn",)
     
+class FormRelease(admin.ModelAdmin):
+    list_display = ("serial", "employee_e", "nicho")
+    search_fields = ("serial", "employee_e", "nicho")
+    list_filter = ("serial", "employee_e", "nicho")
+    ordering = ("serial",)
+    
 admin.site.register(Employes, FormEmployees)
 admin.site.register(Uut, FormUuts)
 admin.site.register(Failures, FormFailures)
@@ -81,3 +87,4 @@ admin.site.register(ErrorMessages, FormErrors)
 admin.site.register(Station, FormStations)
 admin.site.register(Maintenance, FormMaintenances)
 admin.site.register(SparePart, FormSpares)
+admin.site.register(Release, FormRelease)

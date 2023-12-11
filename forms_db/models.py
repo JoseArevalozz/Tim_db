@@ -11,6 +11,7 @@ class Employes(models.Model):
     pmd = models.BooleanField(default=False)
     dell = models.BooleanField(default=False)
     switch = models.BooleanField(default=False)
+    sony = models.BooleanField(default=False)
     mail = models.CharField(max_length=100, null=True)
     privileges = models.CharField(max_length=10)
     created = models.DateTimeField(auto_now=True)
@@ -19,8 +20,8 @@ class Employes(models.Model):
          return self.employeeName
       
 class Booms(models.Model):
-    projects = (('DELL', 'DELL'), ('PMDU', 'PMDU'), ('1G-SW', '1G-SW'))
-    list_products = (('Senna','Senna'), ('Pathfinder','Pathfinder'), ('Sojouner','Sojouner'), ('Hook','Hook'), ('Outlander','Outlander'), ('Minerrall Well','Minerrall Well'), ('MMCs','MCCs'), ('Fornax SAM','Fornax SAM'), ('Fornax DIB','Fornax DIB'), ('Fornax CIT','Fornax CIT'), ('Indus DIB','Indus DIB'), ('Indus BOP','Indus BOP'), ('Indus SAM','Indus SAM'), ('Indus CIT','Indus CIT'), ('PMDU','PMDU'), ('Switch','Switch'))
+    projects = (('DELL', 'DELL'), ('PMDU', 'PMDU'), ('1G-SW', '1G-SW'), ('SONY', 'SONY'))
+    list_products = (('Senna','Senna'), ('Pathfinder','Pathfinder'), ('Sojouner','Sojouner'), ('Hook','Hook'), ('Outlander','Outlander'), ('Minerrall Well','Minerrall Well'), ('MMCs','MCCs'), ('Fornax SAM','Fornax SAM'), ('Fornax DIB','Fornax DIB'), ('Fornax CIT','Fornax CIT'), ('Indus DIB','Indus DIB'), ('Indus BOP','Indus BOP'), ('Indus SAM','Indus SAM'), ('Indus CIT','Indus CIT'), ('PMDU','PMDU'), ('Switch','Switch'), ('Kura', 'Kura'), ('Sled', 'Sled'), ('Rack', 'Rack'))
     
     pn = models.CharField(max_length=50, primary_key=True,)
     employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, blank=True, null=True,)
@@ -46,7 +47,7 @@ class Uut(models.Model):
          return self.sn
 
 class Station(models.Model):
-    projects = (('DELL', 'DELL'), ('PMDU', 'PMDU'), ('1G-SW', '1G-SW'))
+    projects = (('DELL', 'DELL'), ('PMDU', 'PMDU'), ('1G-SW', '1G-SW'), ('SONY', 'SONY'))
     
     stationProject = models.CharField(max_length=50, choices=projects )
     stationName = models.CharField(max_length=50)
@@ -122,6 +123,20 @@ class Rejected(models.Model):
     
     def __str__(self):
         return ''
+    
+class Release(models.Model):
+    nichos = (('AB19_P01','AB19_P01'),('AB19_P02','AB19_P02'),('AB19_P03','AB19_P03'),('AB19_P04','AB19_P04'),('AB19_P06','AB19_P06'),('AB19_P08','AB19_P08'),('AB19_P09','AB19_P09'),('AB19_P10','AB19_P10'),('AB19_P11','AB19_P11'),('AB19_P12','AB19_P12'),('AB20_P01','AB20_P01'),('AB20_P02','AB20_P02'),('AB20_P03','AB20_P03'),('AB20_P04','AB20_P04'),('AB20_P06','AB20_P06'),('AB20_P08','AB20_P08'),('AB20_P09','AB20_P09'),('AB20_P10','AB20_P10'),('AB20_P11','AB20_P11'),('AB20_P12','AB20_P12'),)
+    shifts = (('1','1'),('2','2'), ('3','3'))
+    serial = models.CharField(max_length=30, primary_key=True)
+    date = models.DateTimeField(auto_now_add=True)
+    nicho = models.CharField(max_length=10, choices=nichos)
+    shift = models.CharField(max_length=1, choices=shifts)
+    cims = models.ImageField(null=True, upload_to='media/')
+    crabber = models.ImageField(null=True, upload_to='media/')
+    employee_e = models.ForeignKey(Employes, on_delete = models.SET_NULL, null=True)
+    
+    def __str__(self):
+        return self.serial
 
 
 
