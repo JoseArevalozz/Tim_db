@@ -26,5 +26,8 @@ urlpatterns = [
     path('login', views.loginUser, name='login'),
     path('logout', views.logoutUser, name='logout'),
     path('releaseForm/', views.releaseForm, name='releaseForm'),
-    path('table_release/', views.tableRelease, name='table_release')
+    path('table_release/', views.tableRelease, name='table_release'),
+    path('show_maintenance/', views.showMaintenanceForm, name='show_Maintenance'),
+    path('corrective-maintenance/<str:pn_sp>/<int:maintenance_id>/', views.correctiveMaintenanceForm, name='corrective_maintenance_form'),
+
 ]

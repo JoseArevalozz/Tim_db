@@ -3,14 +3,15 @@ import xlwt
 from datetime import date, datetime, timedelta
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .forms import EmployeesForm, UutForm, FailureForm, BoomForm, RejectedForm, ErrorMessageForm, StationForm, MaintenanceForm, SpareForm, ReleaseForm
-from .models import Uut, Employes, Failures, Station, ErrorMessages, Booms, Rejected, Release
+from .forms import EmployeesForm, UutForm, FailureForm, BoomForm, RejectedForm, ErrorMessageForm, StationForm, MaintenanceForm, SpareForm, ReleaseForm, CorrectiveMaintenanceForm
+from .models import Uut, Employes, Failures, Station, ErrorMessages, Booms, Rejected, Release, Maintenance, SparePart
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
+from django.utils import timezone
 
 
 @login_required(login_url='login')
@@ -261,7 +262,7 @@ def showUuts(request):
             
     if employe.privileges == 'NA':
         return redirect('home')
-    
+    print(uuts)
     context = {'uuts': uuts, 'employe': employe, 'search_bt': True}
     
     return render(request=request, template_name='base/showUuts.html', context=context)
@@ -438,31 +439,97 @@ def stationForm(request):
     context = {'form': form, 'employe': employe}
     return render(request=request, template_name='base/station_form.html', context=context)
 
+from django.shortcuts import get_object_or_404
+
+@login_required(login_url='login')
+def correctiveMaintenanceForm(request, pn_sp, maintenance_id):
+    employe = Employes.objects.get(employeeNumber=request.user)
+
+    if employe.privileges == 'NA':
+        return redirect('home')
+
+    spare_part = get_object_or_404(SparePart, pn=pn_sp)
+
+    if request.method == 'POST':
+        form = CorrectiveMaintenanceForm(request.POST)
+        if form.is_valid():
+            maintenance = Maintenance.objects.get(id=maintenance_id)
+
+            # Llenar automáticamente employye_e y dateStart
+            maintenance.dateFinish = timezone.now()
+
+            # Asignar el SparePart correcto a maintenance.id_sp
+            maintenance.id_sp = spare_part
+
+            # Realizar la lógica de reducir la cantidad de SparePart
+            if spare_part.quantity > 0:
+                spare_part.quantity -= 1 
+                spare_part.save()
+            else:
+                # Si la cantidad es 0, mostrar un mensaje de error o manejar de acuerdo a tus necesidades
+                pass
+
+            maintenance.save()
+            return redirect('home')
+    else:
+        form = CorrectiveMaintenanceForm()
+
+    context = {'form': form, 'pn_sp': pn_sp}
+    return render(request, 'base/corrective_maintenance_form.html', context)
+
+
 @login_required(login_url='login')
 def maintenanceForm(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
-    form = MaintenanceForm()
-    
-    form.fields['statition_s'].queryset = Station.objects.filter(stationProject=employe.privileges)
-    
-    if 'bt-project' in request.POST: 
-        if request.method == 'POST':
-            employe.privileges = request.POST.get('bt-project')
-            employe.save()
-            return redirect('maintenance_form')
-    
     if employe.privileges == 'NA':
         return redirect('home')
-    
+
     if request.method == 'POST':
         form = MaintenanceForm(request.POST)
         if form.is_valid():
-            form.save()
+            maintenance = form.save(commit=False)
+            
+            # Llenar automáticamente employye_e y dateStart
+            maintenance.employee_e = employe
+            maintenance.dateStart = timezone.now()
+
+            # Si el mantenimiento es Corrective, mostrar una nueva vista
+            if maintenance.maintenanceType == 'Corrective':
+
+                maintenance.dateFinish = maintenance.dateStart
+                maintenance.save()
+                
+                return redirect('show_Maintenance')
+
+
+            # Si el mantenimiento es Preventive, establecer dateFinish y salvar
+            maintenance.dateFinish = maintenance.dateStart
+            maintenance.status = False
+            maintenance.save()
+
             return redirect('home')
-    
+    else:
+        form = MaintenanceForm()
+
+    form.fields['station_s'].queryset = Station.objects.filter(stationProject=employe.privileges)
     context = {'form': form, 'employe': employe}
-    return render(request=request, template_name='base/maintenance_form.html', context=context)
+    return render(request, 'base/maintenance_form.html', context)
+
+def showMaintenanceForm(request):
+    employe = Employes.objects.get(employeeNumber=request.user)
+
+    if employe.privileges == 'NA':
+        return redirect('home')
+
+    corrective_instances = Maintenance.objects.filter(
+        maintenanceType='Corrective',
+        status=True,
+        station_s__stationProject=employe.privileges
+    ).select_related('station_s', 'id_sp', 'employee_e').order_by('-dateStart')
+
+    context = {'corrective_instances': corrective_instances}
+    return render(request, 'base/corrective_stations.html', context)
 
 @login_required(login_url='login')
 def spareForm(request):

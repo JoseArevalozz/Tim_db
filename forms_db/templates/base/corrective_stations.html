@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Stations in Corrective Maintenance</h1>
+    <div class="row">
+        {% for station in corrective_instances %}
+            <div class="col-sm-12 col-md-4 mb-3">
+                <div class="card bg-dark text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">Maintenance ID: {{ station.id }}</h5>
+                        <hr>
+                        <p>Station: {{ station.station_s }}</p>
+                        <p>Spare part damaged: {{station.id_sp}}</p>
+                        <p>User: {{ station.employee_e}}</p>
+                        <p>Date: {{ station.dateStart}}</p>
+                        <a class="btn btn-primary mx-4" href="{% url 'corrective_maintenance_form' station.id_sp.pn station.id %}">Register Corrective Actions</a>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
