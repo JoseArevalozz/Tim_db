@@ -65,20 +65,25 @@ class SparePart(models.Model):
     
     def __str__(self):
         return self.description
-    
+
 class Maintenance(models.Model):
     id_sp = models.ForeignKey(SparePart, on_delete=models.SET_NULL, blank=True, null=True)
-    maintenanceType = models.CharField(max_length=100)
-    statition_s = models.ForeignKey(Station, on_delete=models.CASCADE)
-    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, default='ex', blank=True, null=True,)
-    failureM = models.CharField(max_length=100)
-    causeCategoryS = models.CharField(max_length=100)
-    dateStart = models.DateTimeField(auto_now=True)
+    maintenance_type_choices = [
+        ('Preventive', 'Preventive'),
+        ('Corrective', 'Corrective'),
+    ]
+    maintenanceType = models.CharField(max_length=100, choices=maintenance_type_choices)
+    station_s = models.ForeignKey(Station, on_delete=models.CASCADE)
+    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, default='ex', blank=True, null=True)
+    dateStart = models.DateTimeField(auto_now_add=True)
     dateFinish = models.DateTimeField()
     status = models.BooleanField(default=True)
-    
+    comments = models.CharField(max_length=300, blank=True, null=True)
+    failureM = models.CharField(max_length=100, default='N/A')
+    causeCategoryS = models.CharField(max_length=100, default='N/A')
     def __str__(self):
         return self.maintenanceType
+
 
 class ErrorMessages(models.Model):
     message = models.CharField(max_length=150)

@@ -1,6 +1,8 @@
 from django.forms import ModelForm, PasswordInput, CharField, Textarea
-# from django import forms
+from django import forms
 from .models import Employes, Uut, Failures, Booms, Rejected, ErrorMessages, Station, Maintenance, SparePart, Release
+
+
 
 class EmployeesForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -127,27 +129,58 @@ class StationForm(ModelForm):
             'description': 'Description',
         } 
         
+
 class MaintenanceForm(ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for visible in self.visible_fields():
-            if visible.name == 'status':
-                visible.field.widget.attrs['class'] = 'form-check-input'
-            else:
-                visible.field.widget.attrs['class'] = 'form-control mb-2 text-white bg-black'
-            
     class Meta:
         model = Maintenance
-        fields = ['id_sp', 'maintenanceType', 'statition_s', 'failureM', 'causeCategoryS', 'dateFinish', 'status']
+        fields = ['id_sp', 'maintenanceType', 'station_s', 'comments']
         labels = {
             'id_sp': 'Spare Part',
             'maintenanceType': 'Maintenance Type',
             'statition_s': 'Station',
+            'comments': 'comments',
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name in ['id_sp', 'maintenanceType', 'station_s', 'comments']:
+            self.fields[field_name].widget.attrs['class'] = 'form-control mb-2 text-white bg-black'
+        
+        # Utilizar un widget de Select con búsqueda
+        self.fields['maintenanceType'].widget = forms.Select(
+            choices=Maintenance.maintenance_type_choices,
+            attrs={'class': 'form-control mb-2 text-white bg-black'}
+        )
+
+
+    def clean(self):
+        cleaned_data = super().clean()
+        maintenance_type = cleaned_data.get('maintenanceType')
+        date_start = cleaned_data.get('dateStart')
+        print(date_start)
+
+        if maintenance_type == 'Preventive':
+            cleaned_data['failureM'] = 'N/A'
+            cleaned_data['causeCategoryS'] = 'N/A'
+        
+
+        return cleaned_data
+
+class CorrectiveMaintenanceForm(ModelForm):
+    class Meta:
+        model = Maintenance
+        fields = ['failureM', 'causeCategoryS','comments']
+        labels = {
             'failureM': 'Failure Message',
             'causeCategoryS': 'Cause Category',
-            'dateFinish': 'Date Finish',
-            'status': 'Open',
-        } 
+            'comments': 'Comments',
+        }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name in ['comments', 'failureM', 'causeCategoryS']:
+            self.fields[field_name].widget.attrs['class'] = 'form-control mb-2 text-white bg-black'
+        
+
 
 class SpareForm(ModelForm):
     def __init__(self, *args, **kwargs):
