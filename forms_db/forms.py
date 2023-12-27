@@ -169,15 +169,16 @@ class MaintenanceForm(ModelForm):
 class CorrectiveMaintenanceForm(ModelForm):
     class Meta:
         model = Maintenance
-        fields = ['failureM', 'causeCategoryS','comments']
+        fields = ['id_sp','failureM','causeCategoryS','comments']
         labels = {
+            'id_sp': 'Spare Part',
             'failureM': 'Failure Message',
             'causeCategoryS': 'Cause Category',
             'comments': 'Comments',
         }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        for field_name in ['comments', 'failureM', 'causeCategoryS']:
+        for field_name in ['id_sp','comments','failureM','causeCategoryS']:
             self.fields[field_name].widget.attrs['class'] = 'form-control mb-2 text-white bg-black'
         
 

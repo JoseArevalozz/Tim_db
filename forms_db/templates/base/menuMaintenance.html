@@ -18,14 +18,20 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-md-6 text-center mt-3">
+        <div id="showMaintenanceButton" class="btn border-0 col-sm-12 col-md-6 text-center mt-3">
             <div class="card card-menu">
                 <div class="card-body">
-                    <a href="{% url 'show_Maintenance' %}" class="btn border-0">Active Maintenace</a>
+                    <p>Active Maintenance</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-{% endblock content %}
 
+<script>
+    document.getElementById("showMaintenanceButton").addEventListener("click", function() {
+        window.location.href = "{% url 'show_Maintenance' %}";
+    });
+</script>
+
+{% endblock content %}
