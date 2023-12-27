@@ -468,9 +468,9 @@ def correctiveMaintenanceForm(request, pn_sp, maintenance_id):
             else:
                 # Si la cantidad es 0, mostrar un mensaje de error o manejar de acuerdo a tus necesidades
                 pass
-
+            maintenance.status = False
             maintenance.save()
-            return redirect('home')
+            return redirect('show_Maintenance')
     else:
         form = CorrectiveMaintenanceForm()
 
