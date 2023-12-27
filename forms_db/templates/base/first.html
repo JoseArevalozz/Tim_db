@@ -5,7 +5,7 @@
 <div class="container mt-5">
     <h1>Test Integration Management</h1>
     <div class="row text-center">
-        <div class="col-sm-6 col-md-4 mt-3">
+        <div id='rejectButton' class="btn border-0 col-sm-6 col-md-4 mt-3">
             <div class="card card-rejects">
                 <div class="card-body">
                     <a  href="{% url 'menuRejects'%}" class="card-title btn border-0" style="font-size: 25px;">Rejects</a>
@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-4 mt-3">
+        <div id='maintenanceButton' class="btn border-0 col-sm-6 col-md-4 mt-3">
             <div class="card card-maintenance">
                 <div class="card-body">
                     <a href="{% url 'menuMaintenance' %}" class="card-title btn border-0" style="font-size: 25px;">Maintenance</a>
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-4 mt-3">
+        <div id='metricButton' class="btn border-0 col-sm-6 col-md-4 mt-3">
             <div class="card card-metrics">
                 <div class="card-body">
                     <a href="{% url 'menuMetrics' %}" class="card-title btn border-0" style="font-size: 25px;">Metrics</a>
@@ -31,4 +31,21 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Script para el enlace 'Register Maintenance'
+    document.getElementById("rejectButton").addEventListener("click", function() {
+        window.location.href = "{% url 'menuRejects'%}";
+    });
+
+    // Script para el enlace 'Register Spare'
+    document.getElementById("maintenanceButton").addEventListener("click", function() {
+        window.location.href = "{% url 'menuMaintenance' %}";
+    });
+
+    // Script para el enlace 'Active Maintenance'
+    document.getElementById("showMaintenanceButton").addEventListener("click", function() {
+        window.location.href = "{% url 'menuMetrics' %}";
+    });
+</script>
 {% endblock %}
