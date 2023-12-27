@@ -96,7 +96,7 @@ class ErrorMessages(models.Model):
 
 class Failures(models.Model):
     shifts = (('1', '1'), ('2', '2'), ('3', '3') )
-    ca_options = (('Resettled subassy and slaves parts', 'Resettled subassy and slaves parts'), ('Retest in another tester', 'Retest in another tester'), ('Retest no touch', 'Retest no touch'), ('Change component', 'Change component'), ('Clean component', 'Clean component'))
+    ca_options = (('Resettled subassy and slaves parts', 'Resettled subassy and slaves parts'), ('Retest in another tester', 'Retest in another tester'), ('Retest no touch', 'Retest no touch'), ('Change component', 'Change component'), ('Clean component', 'Clean component'),('reset equipment and retest','reset equipment and retest'))
     
     id_s = models.ForeignKey(Station, on_delete=models.SET_NULL, blank=True, null=True,)
     sn_f = models.ForeignKey(Uut, on_delete=models.CASCADE)

@@ -4,24 +4,24 @@
 <div class="container mt-5">
     <h1>Maintenance</h1>
     <div class="row d-flex justify-content-center">
-        <div class="col-sm-12 col-md-6 text-center mt-3">
+        <div id='registerMaintenanceButton' class="btn border-0 col-sm-12 col-md-6 text-center mt-3">
             <div class="card card-menu">
                 <div class="card-body">
-                    <a href="{% url 'maintenance_form' %}" class="btn border-0">Register Maintenance</a>
+                    <a>Register Maintenance</a>
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-md-6 text-center mt-3">
+        <div id='registerSpareButton' class="btn border-0 col-sm-12 col-md-6 text-center mt-3">
             <div class="card card-menu">
                 <div class="card-body">
-                    <a href="{% url 'spare_form' %}" class="btn border-0">Register Spare</a>
+                    <a>Register Spare</a>
                 </div>
             </div>
         </div>
-        <div id="showMaintenanceButton" class="btn border-0 col-sm-12 col-md-6 text-center mt-3">
+        <div id='showMaintenanceButton' class="btn border-0 col-sm-12 col-md-6 text-center mt-3">
             <div class="card card-menu">
                 <div class="card-body">
-                    <p>Active Maintenance</p>
+                    <a>Active Maintenance</a>
                 </div>
             </div>
         </div>
@@ -29,6 +29,17 @@
 </div>
 
 <script>
+    // Script para el enlace 'Register Maintenance'
+    document.getElementById("registerMaintenanceButton").addEventListener("click", function() {
+        window.location.href = "{% url 'maintenance_form' %}";
+    });
+
+    // Script para el enlace 'Register Spare'
+    document.getElementById("registerSpareButton").addEventListener("click", function() {
+        window.location.href = "{% url 'spare_form' %}";
+    });
+
+    // Script para el enlace 'Active Maintenance'
     document.getElementById("showMaintenanceButton").addEventListener("click", function() {
         window.location.href = "{% url 'show_Maintenance' %}";
     });
