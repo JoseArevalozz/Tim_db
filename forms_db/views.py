@@ -617,7 +617,7 @@ def tableRejects(request):
 
         #decide file name
         today = datetime.today().strftime("%Y-%m-%d_%H-%M")
-        response['Content-Disposition'] = f'attachment; filename="db{today}.xls"'
+        response['Content-Disposition'] = f'attachment; filename="db{today}.xlsx"'
 
         #creating workbook
         wb = xlwt.Workbook(encoding='utf-8')
