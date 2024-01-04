@@ -654,7 +654,8 @@ def tableRejects(request):
             snDamaged = str(reject.snDamaged)
             description = str(reject.pn_b.description)
             commodity = str(reject.pn_b.commodity)
-            station = '' if str(reject.id_f.id_s.stationName) == None else str(reject.id_f.id_s.stationName)
+            # station = '' if str(reject.id_f.id_s.stationName) == None else str(reject.id_f.id_s.stationName)
+            station = str(reject.id_f.id_s.stationName)
             folio = str(reject.folio)
             ubi = str(reject.pn_b.ubiLogic)
             
