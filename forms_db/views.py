@@ -1,4 +1,7 @@
 import csv
+from io import StringIO
+import xlsxwriter
+from forms_db.module import WriteToExcel
 import xlwt
 from datetime import date, datetime, timedelta
 from django.http import HttpResponse
@@ -613,6 +616,7 @@ def tableRejects(request):
         check = request.POST.getlist('check')
         
         # content-type of response
+        '''
         response = HttpResponse(content_type='application/ms-excel')
 
         #decide file name
@@ -674,10 +678,17 @@ def tableRejects(request):
 
         wb.save(response)
         return response
-
+    '''
+        today = datetime.today().strftime("%Y-%m-%d_%H-%M")
+        response = HttpResponse(content_type='application/vnd.ms-excel')
+        file_name= f'DashB_{today}'
+        response['Content-Disposition'] = f'attachment; filename={file_name}.xlsx'
+        xlsx_data = WriteToExcel(check=check)
+        response.write(xlsx_data)
+        return response
+    
     context = {'employe': employe, 'rejects': rejects, 'search_bt': True}
     return render(request=request, template_name='base/table_rejects.html', context=context)
-
 
 def finish_uut(request, sn):
     uut = get_object_or_404(Uut, sn=sn)
