@@ -144,6 +144,14 @@ class Release(models.Model):
         return self.serial
 
 
+class TestHistory(models.Model):
+    uut = models.ForeignKey(Uut, on_delete=models.CASCADE)
+    station = models.ForeignKey(Station, on_delete=models.CASCADE)
+    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, blank=True, null=True)
+    status = models.BooleanField(default=True)  # True for PASS, False for FAIL
+    test_date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"{self.uut.sn} - {self.station.stationName} - {'PASS' if self.status else 'FAIL'} - {self.test_date}"
     
     
