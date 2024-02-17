@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Employes, Uut, Failures, Booms, Rejected, ErrorMessages, Station, Maintenance, SparePart, Release
+from .models import Employes, Uut, Failures, Booms, Rejected, ErrorMessages, Station, Maintenance, SparePart, Release, TestHistory
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
@@ -77,7 +77,14 @@ class FormRelease(admin.ModelAdmin):
     search_fields = ("serial", "employee_e", "nicho")
     list_filter = ("serial", "employee_e", "nicho")
     ordering = ("serial",)
-    
+
+class FormTestHistory(admin.ModelAdmin):
+    list_display = ("uut", "station", "employee_e", "status", "test_date")
+    search_fields = ("uut__sn", "station__stationName", "employee_e__employeeName", "status", "test_date")
+    list_filter = ("status", "test_date")
+    ordering = ("-test_date",)
+
+admin.site.register(TestHistory, FormTestHistory)
 admin.site.register(Employes, FormEmployees)
 admin.site.register(Uut, FormUuts)
 admin.site.register(Failures, FormFailures)
