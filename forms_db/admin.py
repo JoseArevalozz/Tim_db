@@ -61,11 +61,13 @@ class FormStations(admin.ModelAdmin):
     ordering = ("stationName",)
     
 class FormMaintenances(admin.ModelAdmin):
-    list_display = ("id_sp", "maintenanceType", "employee_e")
-    search_fields = ("id_sp", "maintenanceType", "employee_e")
+    list_display = ("id_sp", "maintenanceType", "employee_e", "dateStart", "dateFinish", "status")
+    search_fields = ("id_sp__name", "maintenanceType", "employee_e__name")
     list_filter = ("id_sp", "maintenanceType", "employee_e")
     ordering = ("id_sp",)
-       
+    fields = ("id_sp", "maintenanceType", "station_s", "employee_e", "dateStart", "dateFinish", "status", "comments", "failureM", "causeCategoryS")
+    readonly_fields = ("dateStart",)  # Asegúrate de que dateStart no sea editable desde el admin
+
 class FormSpares(admin.ModelAdmin):
     list_display = ("pn", "description", "quantity")
     search_fields = ("pn", "description", "quantity")
