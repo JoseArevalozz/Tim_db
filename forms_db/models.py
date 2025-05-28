@@ -88,11 +88,11 @@ class Maintenance(models.Model):
 class ErrorMessages(models.Model):
     message = models.CharField(max_length=150)
     date = models.DateTimeField(auto_now=True)
-    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, blank=True, null=True,)
-    pn_b = models.ForeignKey(Booms, on_delete=models.CASCADE)
+    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, blank=True, null=True)
+    pn_b = models.ForeignKey(Booms, on_delete=models.SET_NULL, blank=True, null=True)  # Cambiado a opcional
     
     def __str__(self):
-        return self.message if len(self.message) < 74 else self.message[:73] + '...'
+        return self.message[:75] + '...' if len(self.message) > 75 else self.message
 
 class Failures(models.Model):
     shifts = (('1', '1'), ('2', '2'), ('3', '3') )
