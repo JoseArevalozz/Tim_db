@@ -164,7 +164,10 @@ class Command(BaseCommand):
                 elif not info['error_message'] and "_FAIL" in filename and "Failed tests:" in linea:
                     # Leer la siguiente línea para el mensaje de error
                     next_line = next(remote_file, '').strip()
-                    info['error_message'] = next_line
+                    if ']' in next_line:
+                        info['error_message'] = next_line.split(']', 1)[1].strip()
+                    else:
+                        info['error_message'] = next_line
                 elif "Factory:" in linea:
                     info['factory'] = linea.split("Factory:")[1].strip()
         
@@ -316,7 +319,8 @@ class Command(BaseCommand):
                         message=log_info['error_message'],
                         defaults={
                             'employee_e': employee,
-                            'pn_b': pn_b
+                            'pn_b': pn_b,
+                            'date' : timezone.now()
                         }
                     )
                     if created:

@@ -134,67 +134,62 @@ def uutForm(request):
 @login_required(login_url='login')
 def failureForm(request, pk):
     employe = Employes.objects.get(employeeNumber=request.user)
-    form = FailureForm()
     
-    if Uut.objects.filter(sn=pk).exists():
-        
-        
-        uut = Uut.objects.get(sn=pk)
-        
-        if 'Fornax' not in uut.pn_b.product or 'Inuds' not in uut.pn_b.product:
-            # pn = str(uut.pn_b)[:5]
-            model = uut.pn_b.product
-            form.fields['id_er'].queryset = ErrorMessages.objects.filter(pn_b__project=employe.privileges).filter(pn_b__product=model)
-            # print(pn)
-        else:
-            #form.fields['id_er'].queryset = ErrorMessages.objects.filter(pn_b__project=employe.privileges).filter(id_er__pb_b__pn=pn)
-            pn = str(uut.pn_b)
+    if not Uut.objects.filter(sn=pk).exists():
+        return redirect('showUuts')
+    
+    uut = Uut.objects.get(sn=pk)
+    last_failure = Failures.objects.filter(sn_f=uut).order_by('-failureDate').first()
+    
+    if not last_failure:
+        return redirect('showUuts')
 
-        form.fields['id_s'].queryset = Station.objects.filter(stationProject=employe.privileges)
-        
-        
-       
-        
-        if 'bt-project' in request.POST: 
-            if request.method == 'POST':
-                employe.privileges = request.POST.get('bt-project')
-                employe.save()
+    if request.method == 'POST':
+        if 'bt-project' in request.POST:
+            employe.privileges = request.POST.get('bt-project')
+            employe.save()
             return redirect('showUuts')
         
         if employe.privileges == 'NA':
             return redirect('home')
         
-        if request.method == 'POST':  
-            if 'bt-project' not in request.POST:
-                
-                station = request.POST.get('id_s')
-                errorMessage = request.POST.get('id_er')
-                files = request.FILES  # multivalued dict
-                image = files.get("imgEvindence")
-                log = files.get('log')
-                
-                Failures.objects.create(
-                    id_s=Station.objects.get(id=station),
-                    sn_f=uut,
-                    id_er=ErrorMessages.objects.get(id=errorMessage),
-                    analysis=request.POST.get('analysis'),
-                    rootCause=request.POST.get('rootCause'),
-                    status= True if request.POST.get('status') == 'on' else False,
-                    defectSymptom=request.POST.get('defectSymptom'),
-                    employee_e=employe,
-                    imgEvindence=image,
-                    log=log,
-                    shiftFailure=request.POST.get('shiftFailure'),
-                    correctiveActions=request.POST.get('correctiveActions'),
-                    comments=request.POST.get('comments'),
-                )
-                return redirect('showRejecteds')
-                
+        form = FailureForm(request.POST, request.FILES)
+        
+        if form.is_valid():
+            # Actualizar solo los campos editables
+            failure = last_failure
+            failure.analysis = form.cleaned_data['analysis']
+            failure.rootCauseCategory = form.cleaned_data['rootCauseCategory']
+            failure.defectSymptom = form.cleaned_data['defectSymptom']
+            failure.correctiveActions = form.cleaned_data['correctiveActions']
+            failure.comments = form.cleaned_data['comments']
+            failure.status = True
+            failure.employee_e = employe
+            
+            # Manejo de imagen
+            if 'imgEvindence' in request.FILES:
+                failure.imgEvindence = form.cleaned_data['imgEvindence']
+            
+            failure.save()
+            return redirect('showRejecteds')
     else:
-        return redirect('showUuts')
+        # Inicializar formulario con valores actuales
+        initial_data = {
+            'analysis': last_failure.analysis,
+            'rootCauseCategory': last_failure.rootCauseCategory,
+            'defectSymptom': last_failure.defectSymptom,
+            'correctiveActions': last_failure.correctiveActions,
+            'comments': last_failure.comments,
+            'error_message': str(last_failure.id_er) if last_failure.id_er else ''
+        }
+        form = FailureForm(initial=initial_data, instance=last_failure)
     
-    context = {'form': form, 'employe': employe, 'uut': uut}
-    return render(request=request, template_name='base/failure_form.html', context=context)
+    context = {
+        'form': form,
+        'employe': employe,
+        'uut': uut
+    }
+    return render(request, 'base/failure_form.html', context)
 
 @login_required(login_url='login')
 def rejectsMenu(request):

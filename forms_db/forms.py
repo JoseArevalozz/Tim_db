@@ -1,4 +1,4 @@
-from django.forms import ModelForm, PasswordInput, CharField, Textarea
+from django.forms import ModelForm, PasswordInput, CharField, Textarea, HiddenInput, CharField
 from django import forms
 from .models import Employes, Uut, Failures, Booms, Rejected, ErrorMessages, Station, Maintenance, SparePart, Release
 
@@ -46,23 +46,60 @@ class UutForm(ModelForm):
                 'status':'Status'
         }
 
+from django.forms import ModelForm, Textarea, CharField
+from .models import Failures
+
 class FailureForm(ModelForm):
-    
+    error_message = CharField(
+        label="Error Message",
+        required=False,
+        widget=Textarea(attrs={
+            'class': 'form-control mb-2 bg-secondary text-white',
+            'readonly': True,
+            'disabled': True,
+            'rows': 2
+        })
+    )
+
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for visible in self.visible_fields():
-            if visible.name == 'status':
-                visible.field.widget.attrs['class'] = 'form-check-input activate'
-            else:
-                visible.field.widget.attrs['class'] = 'form-control mb-2 text-white bg-black'
+        instance = kwargs.get('instance', None)
+        if instance and instance.id_er:
+            initial = kwargs.get('initial', {})
+            initial['error_message'] = str(instance.id_er)
+            kwargs['initial'] = initial
         
+        super().__init__(*args, **kwargs)
+        
+        # Eliminar campos no editables
+        non_editable_fields = ['id_s', 'sn_f', 'shiftFailure', 'log', 'rootCause', 'id_er']
+        for field in non_editable_fields:
+            self.fields.pop(field, None)
+        
+        # Configurar campos visibles
+        for field_name, field in self.fields.items():
+            if field_name == 'status':
+                field.widget.attrs['class'] = 'form-check-input activate'
+            elif field_name == 'imgEvindence':
+                field.widget.attrs['class'] = 'form-control mb-2 text-white bg-black file-input'
+            elif field_name != 'error_message':  # Excluir el campo de mensaje de error
+                field.widget.attrs['class'] = 'form-control mb-2 text-white bg-black'
     class Meta:
         model = Failures
-        fields = ['id_s', 'sn_f', 'id_er', 'analysis', 'rootCause', 'defectSymptom', 'shiftFailure', 'correctiveActions', 'imgEvindence', 'log' ,'comments', ] 
-        labels = {'id_s': 'Station', 'sn_f':'Serial Number (SN)', 'id_er': 'Error Message', 'analysis': 'Analysis', 'rootCause': 'Root Cause', 'defectSymptom': 'Defect Symptom', 'shiftFailure': 'Shift Failure', 'correctiveActions': 'Corrective Actions', 'comments': 'Comments', 'imgEvindence': 'Evidence IMG'}
-        exclude = ['sn_f']
+        fields = ['analysis', 'rootCauseCategory', 'defectSymptom', 
+                 'correctiveActions', 'imgEvindence', 'comments']
+        labels = {
+            'id_er': 'Error Message',
+            'analysis': 'Analysis',
+            'rootCauseCategory': 'Root Cause Category',
+            'defectSymptom': 'Defect Location',
+            'correctiveActions': 'Corrective Actions',
+            'imgEvindence': 'Image Evidence',
+            'comments': 'Comments'
+        }
+
         widgets = {
-          'comments': Textarea(attrs={'rows':1, }),
+            'comments': Textarea(attrs={'rows': 3}),
+            'correctiveActions': Textarea(attrs={'rows': 2}),
         }
         
 class BoomForm(ModelForm):
