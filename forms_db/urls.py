@@ -4,9 +4,9 @@ from . import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('finish-uut/<str:sn>/', views.finish_uut, name='finish_uut'),
-    path('menuRejects/', views.rejectsMenu, name='menuRejects'),
-    path('menuMaintenance/', views.maintenanceMenu, name='menuMaintenance'),
-    path('menuMetrics/', views.metricMenu, name='menuMetrics'),
+    #path('menuRejects/', views.rejectsMenu, name='menuRejects'),
+    #path('menuMaintenance/', views.maintenanceMenu, name='menuMaintenance'),
+    #path('menuMetrics/', views.metricMenu, name='menuMetrics'),
     path('employees_form/', views.employeesForm, name='employees_form'),
     path('uut_form/', views.uutForm, name='uut_form'),
     path('failure_form/<str:pk>/', views.failureForm, name='failure_form'),
@@ -28,6 +28,9 @@ urlpatterns = [
     path('releaseForm/', views.releaseForm, name='releaseForm'),
     path('table_release/', views.tableRelease, name='table_release'),
     path('show_maintenance/', views.showMaintenanceForm, name='show_Maintenance'),
+    path('menu-pruebas/', views.menu_pruebas, name='menuPruebas'),
+    path('menu-registros/', views.menu_registros, name='menuRegistros'),
+    path('menu-metricas/', views.menu_metricas, name='menuMetricas'),
     path('corrective-maintenance/<str:pn_sp>/<int:maintenance_id>/', views.correctiveMaintenanceForm, name='corrective_maintenance_form'),
 
 ]

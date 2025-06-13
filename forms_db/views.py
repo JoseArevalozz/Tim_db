@@ -20,7 +20,20 @@ from django.utils import timezone
 @login_required(login_url='login')
 def home(request):
     employe = Employes.objects.get(employeeNumber=request.user)
-    context = {'employe': employe}
+
+    active_failures_count = Uut.objects.filter(status=True, pn_b__project=employe.privileges).count()
+    pending_rejects_count = Failures.objects.filter(status=True, sn_f__pn_b__project=employe.privileges).count()
+    
+    # Calcular yield (ajusta esta lógica según tus necesidades)
+    today_yield = 95  # Esto es un ejemplo - reemplaza con tu cálculo real
+    
+    context = {
+        'employe': employe,
+        'active_failures_count': active_failures_count,
+        'pending_rejects_count': pending_rejects_count,
+        'today_yield': today_yield
+    }
+    
     
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
@@ -192,46 +205,46 @@ def failureForm(request, pk):
     return render(request, 'base/failure_form.html', context)
 
 @login_required(login_url='login')
-def rejectsMenu(request):
+def menu_pruebas(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')
             employe.save()
-        return redirect('menuRejects')
+        return redirect('menu_pruebas')
     
     if employe.privileges == 'NA':
         return redirect('home')
     
     context = {'employe': employe}
-    return render(request=request, template_name='base/menuRejects.html', context=context)
+    return render(request=request, template_name='base/menuPruebas.html', context=context)
 
 @login_required(login_url='login')
-def maintenanceMenu(request):
+def menu_registros(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')
             employe.save()
-        return redirect('menuMaintenance')
+        return redirect('menu_registros')
     
     if employe.privileges == 'NA':
         return redirect('home')
     
     context={'employe': employe}
-    return render(request=request, template_name='base/menuMaintenance.html', context=context)
+    return render(request=request, template_name='base/menuRegistros.html', context=context)
 
 @login_required(login_url='login')
-def metricMenu(request):
+def menu_metricas(request):
     employe = Employes.objects.get(employeeNumber=request.user)
     
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
             employe.privileges = request.POST.get('bt-project')
             employe.save()
-        return redirect('menuMaintenance')
+        return redirect('menu_metricas')
     
     if employe.privileges == 'NA':
         return redirect('home')

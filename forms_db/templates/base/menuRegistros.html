@@ -1,0 +1,67 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active">Register & Settings</li>
+        </ol>
+    </nav>
+    
+    <h1>Register & Settings</h1>
+    <div class="row d-flex justify-content-center">
+        <!-- Registros -->
+        <div class="col-sm-12 col-md-6 text-center mt-3">
+            <div class="card card-menu">
+                <div class="card-body">
+                    <a href="{% url 'boom_form' %}" class="btn border-0">Register BOOM</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 text-center mt-3">
+            <div class="card card-menu">
+                <div class="card-body">
+                    <a href="{% url 'station_form' %}" class="btn border-0">Register Station</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 text-center mt-3">
+            <div class="card card-menu">
+                <div class="card-body">
+                    <a href="{% url 'maintenance_form' %}" class="btn border-0">Register Mantenimiento</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 text-center mt-3">
+            <div class="card card-menu">
+                <div class="card-body">
+                    <a href="{% url 'spare_form' %}" class="btn border-0">Register spare</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 text-center mt-3">
+            <div class="card card-menu">
+                <div class="card-body">
+                    <a href="{% url 'errorMessage_form' %}" class="btn border-0">Register Error Message</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 text-center mt-3">
+            <div class="card card-menu">
+                <div class="card-body">
+                    <a href="{% url 'uut_form' %}" class="btn border-0">Register UUT</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 text-center mt-3">
+            <div class="card card-menu">
+                <div class="card-body">
+                    <a href="{% url 'uut_form' %}" class="btn border-0">Register Fail</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

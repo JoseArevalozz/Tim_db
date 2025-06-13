@@ -1,9 +1,17 @@
 {% extends 'main.html' %}
 
 {% block content %}
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'menuPruebas' %}">Tests & Activities</a></li>
+        <li class="breadcrumb-item active">Active Faults</li>
+    </ol>
+</nav>
 
 <div class="container">
-    <h1>Active Uuts</h1>
+    <h1>Active Faults</h1>
     <div class="row">
     {% for uut in uuts %}
         <div class="col-sm-12 col-md-4 mb-3">

@@ -1,4 +1,5 @@
 {% extends 'main.html' %}
+{% load static %}
 
 {% block content %}
 <div class="container mt-5">
@@ -6,40 +7,41 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-            <li class="breadcrumb-item active">Metrics & Reports</li>
+            <li class="breadcrumb-item active">Tests & Activities</li>
         </ol>
     </nav>
     
-    <h1>Metrics & Reports</h1>
+    <h1>Pruebas & Actividades</h1>
     <div class="row d-flex justify-content-center">
-        <!-- Métricas -->
+        <!-- Active Failures -->
         <div class="col-sm-12 col-md-6 text-center mt-3">
             <div class="card card-menu">
                 <div class="card-body">
-                    <a href="{% url 'menuMetricas' %}" class="btn border-0">Yields</a>
+                    <a href="{% url 'showUuts' %}" class="btn border-0">Active Failures</a>
                 </div>
             </div>
         </div>
+        <!-- Pending Debug -->
         <div class="col-sm-12 col-md-6 text-center mt-3">
             <div class="card card-menu">
                 <div class="card-body">
-                    <a href="{% url 'menuMetricas' %}" class="btn border-0">Failure analytics
-</a>
+                    <a href="{% url 'showRejecteds' %}" class="btn border-0">Pending Debug</a>
                 </div>
             </div>
         </div>
-        <!-- Reportes -->
+        <!-- maintenance_form -->
         <div class="col-sm-12 col-md-6 text-center mt-3">
             <div class="card card-menu">
                 <div class="card-body">
-                    <a href="{% url 'tableRejects' %}" class="btn border-0">Rejections table</a>
+                    <a href="{% url 'show_Maintenance' %}" class="btn border-0">Active Maintenance</a>
                 </div>
             </div>
         </div>
+        <!-- Maintenance Form -->
         <div class="col-sm-12 col-md-6 text-center mt-3">
             <div class="card card-menu">
                 <div class="card-body">
-                    <a href="{% url 'tableFailures' %}" class="btn border-0">Failure table</a>
+                    <a href="{% url 'maintenance_form' %}" class="btn border-0">Register Maintenance</a>
                 </div>
             </div>
         </div>

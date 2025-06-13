@@ -1,113 +1,112 @@
-<nav  class="navbar fixed-top " style="background-color: #0049BF;">
-                
-    <div class="container-fluid" >
-        
-        <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+<nav class="navbar fixed-top" style="background-color: #0049BF;">                
+    <div class="container-fluid">
+        <!-- Botón para abrir menú lateral -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
+        
+        <!-- Logo y privilegios -->
         <a class="text-white navbar-brand" href="#">{{employe.privileges}}</a>
         <a class="text-white navbar-brand" href="{% url 'home'%}">TIM</a>
-        <!-- tableRejects search -->
+        
+        <!-- Barra de búsqueda (dinámica según página) -->
         {% if request.path == '/tableRejects/' %}
-        <form class="d-flex mt-3" role="search" method="GET"  action="{% url 'tableRejects' %}">
-            <input name="q" class="form-control me-2" type="search" placeholder="Serial Number, Folio" aria-label="Search"
-            {% if search_bt != True %} disabled {% endif %}>
-            <button class="btn btn-success" type="submit" 
-            {% if search_bt != True %} disabled {% endif %}>Search</button>
+        <form class="d-flex mt-3" method="GET" action="{% url 'tableRejects' %}">
+            <input name="q" class="form-control me-2" type="search" placeholder="Serial Number, Folio" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
         </form>
         {% elif request.path == '/showRejecteds/'%}
-        <!-- showRejecteds search -->
-        <form class="d-flex mt-3" role="search" method="GET"  action="{% url 'showRejecteds' %}">
-            <input name="q" class="form-control me-2" type="search" placeholder="Serial Number (SN)" aria-label="Search"
-            {% if search_bt != True %} disabled {% endif %}>
-            <button class="btn btn-success" type="submit" 
-            {% if search_bt != True %} disabled {% endif %}>Search</button>
+        <form class="d-flex mt-3" method="GET" action="{% url 'showRejecteds' %}">
+            <input name="q" class="form-control me-2" type="search" placeholder="Serial Number (SN)" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
         </form>
         {% else %}
-        <!-- showUuts search -->
-        <form class="d-flex mt-3" role="search" method="GET"  action="{% url 'showUuts' %}">
-            <input name="q" class="form-control me-2" type="search" placeholder="Sn, Model" aria-label="Search"
-            {% if search_bt != True %} disabled {% endif %}>
-            <button class="btn btn-success" type="submit" 
-            {% if search_bt != True %} disabled {% endif %}>Search</button>
+        <form class="d-flex mt-3" method="GET" action="{% url 'showUuts' %}">
+            <input name="q" class="form-control me-2" type="search" placeholder="Sn, Model" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
         </form>
         {% endif %}
-        <!-- end searchers -->
 
-        <div class=" offcanvas offcanvas-start " style="background-color: #0049BF;" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <!-- Menú lateral (Offcanvas) -->
+        <div class="offcanvas offcanvas-start" style="background-color: #0049BF;" tabindex="-1" id="offcanvasNavbar">
             <div class="offcanvas-header">
-            <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">TIM</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">TIM</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
+            
+            <!-- Información del usuario -->
             <div class="offcanvas-header">
-                <a class="text-white offcanvas-title link-offset-2 link-underline link-underline-opacity-0" href="{% url 'user' 1 %}">{{employe}}</a>
+                <a class="text-white offcanvas-title" href="{% url 'user' 1 %}">{{employe}}</a>
                 <span class="text-white offcanvas-title">{{employe.privileges}}</span>
             </div>
             <hr>
+            
+            <!-- Menú de opciones -->
             <div class="offcanvas-body">
                 {% if employe.privileges != 'NA' %}
-                <li style="list-style: none;" class=" mb-4 nav-item dropdown text-white">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Rejects</a>
+                <!-- Menú Rejects -->
+                <li style="list-style: none;" class="mb-4 nav-item dropdown text-white">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Tests & Activities</a>
                     <ul class="dropdown-menu mb-5">
-                        <li> <a class="dropdown-item" href="{% url 'uut_form' %}">Register UUT</a> </li>
-                        <li> <a class="dropdown-item" href="{% url 'showUuts' %}">UUT</a> </li>
-                        <li> <a class="dropdown-item" href="{% url 'showRejecteds'%}">Debug UUT</a> </li>
-                        <li> <a class="dropdown-item" href="{% url 'boom_form' %}">Register BOOM</a> </li>
-                        <li> <a class="dropdown-item" href="{% url 'errorMessage_form' %}">Register ErrorMessage</a> </li>
-                        <li> <a class="dropdown-item" href="{% url 'station_form' %}">Register Station</a> </li>
-                        
+                        <li><a href="{% url 'showUuts' %}" class="btn border-0">Active Failures</a></li>
+                        <li><a href="{% url 'showRejecteds' %}" class="btn border-0">Pending Debug</a></li>
+                        <li><a href="{% url 'show_Maintenance' %}" class="btn border-0">Active Maintenance</a></li>
+                        <li><a href="{% url 'maintenance_form' %}" class="btn border-0">Register Maintenance</a></li>
                     </ul>
                 </li>
-                <li style="list-style: none;" class=" mb-4 nav-item dropdown text-white">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Maintenance</a>
+                
+                <!-- Menú Maintenance -->
+                <li style="list-style: none;" class="mb-4 nav-item dropdown text-white">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Register & Settings</a>
                     <ul class="dropdown-menu mb-5">
-                        <li> <a class="dropdown-item" href="{% url 'maintenance_form' %}">Register Maintenance</a> </li>
-                        <li> <a class="dropdown-item" href="{% url 'spare_form' %}">Register Spare</a> </li>
-                        <li> <a class="dropdown-item" href="{% url 'show_Maintenance' %}">Active Maintenance</a> </li>
+                        <li><a href="{% url 'boom_form' %}" class="btn border-0">Register BOOM</a></li>
+                        <li><a href="{% url 'station_form' %}" class="btn border-0">Register Station</a></li>
+                        <li><a href="{% url 'maintenance_form' %}" class="btn border-0">Register Maintenance</a></li>
+                        <li><a href="{% url 'spare_form' %}" class="btn border-0">Register spare</a></li>
+                        <li><a href="{% url 'errorMessage_form' %}" class="btn border-0">Register Error Message</a></li>
+                        <li><a href="{% url 'uut_form' %}" class="btn border-0">Register UUT</a></li>
+                        <li><a href="{% url 'uut_form' %}" class="btn border-0">Register Fail</a></li>
                     </ul>
                 </li>
-                <li style="list-style: none;" class=" mb-4 nav-item dropdown text-white">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Reports</a>
+                
+                <!-- Menú Reports -->
+                <li style="list-style: none;" class="mb-4 nav-item dropdown text-white">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Metrics & Reports</a>
                     <ul class="dropdown-menu mb-5">
-                        <li>  <a class="dropdown-item" href="{% url 'tableRejects' %}">Table Rejects</a> </li>
-                        <li>  <a class="dropdown-item" href="{% url 'tableFailures' %}">Table Failures</a> </li>
-                        <li>  <a class="dropdown-item" href="{% url 'tableUuts' %}">Table Uuts</a> </li>
+                        <li><a href="{% url 'menuMetricas' %}" class="btn border-0">Yields</a></li>
+                        <li><a href="{% url 'menuMetricas' %}" class="btn border-0">Failure analytics</a></li>
+                        <li><a href="{% url 'tableRejects' %}" class="btn border-0">Rejections table</a></li>
+                        <li><a href="{% url 'tableFailures' %}" class="btn border-0">Failure table</a></li>
                     </ul>
                 </li>
                 {% endif %}
+                
                 <hr>
-                <li style="list-style: none;" class=" mb-4 nav-item dropdown text-white">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
+                
+                <!-- Menú Projects -->
+                <li style="list-style: none;" class="mb-4 nav-item dropdown text-white">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Projects</a>
                     <ul class="dropdown-menu mb-5">
-                        
-                        <form action="" method="POST">
+                        <form method="POST">
                             {% csrf_token %}
                             {% if employe.pmd == True%}
-                            <li>
-                                <button class="dropdown-item" value="PMDU" name="bt-project" type="submit">PMDU</button>
-                            </li>
+                            <li><button class="dropdown-item" value="PMDU" name="bt-project" type="submit">PMDU</button></li>
                             {% endif %}
-                            
                             {% if employe.dell == True%}
-                            <li>
-                                <button class="dropdown-item" value="DELL" name="bt-project" type="submit">DELL</button>
-                            </li>
+                            <li><button class="dropdown-item" value="DELL" name="bt-project" type="submit">DELL</button></li>
                             {% endif %}
-                            
                             {% if employe.switch == True%}
-                            <li>
-                                <button class="dropdown-item" value="1G-SW" name="bt-project" type="submit">1G-SW</button>
-                            </li>
+                            <li><button class="dropdown-item" value="1G-SW" name="bt-project" type="submit">1G-SW</button></li>
                             {% endif %}
                             {% if employe.sony == True%}
-                            <li>
-                                <button class="dropdown-item" value="SONY" name="bt-project" type="submit">SONY</button>
-                            </li>
+                            <li><button class="dropdown-item" value="SONY" name="bt-project" type="submit">SONY</button></li>
                             {% endif %}
                         </form>
                     </ul>
                 </li>
             </div>
+            
+            <!-- Botón de logout -->
             <a class="" id="link-logout" href="{% url 'logout' %}">Logout</a>
         </div>
     </div>
