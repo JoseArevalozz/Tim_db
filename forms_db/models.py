@@ -120,7 +120,7 @@ class Failures(models.Model):
     comments = models.TextField()
     
     def __str__(self):
-        return self.analysis
+        return self.rootCauseCategory
     
     
 class Rejected(models.Model):

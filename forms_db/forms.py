@@ -249,3 +249,51 @@ class ReleaseForm(ModelForm):
         labels = {
             "serial":'Numero de serie (Sn):', "shift":'Turno:', "cims":'Imagen del Cims:', "crabber":'Imagen de Crabber:', "nicho":'Posicion y Nicho: '
         }
+
+
+class ManualFailureRegistrationForm(forms.Form):
+    # UUT Fields
+    sn = forms.CharField(max_length=50, label="Serial Number (SN)")
+    pn_b = forms.ModelChoiceField(queryset=Booms.objects.none(), label="Part Number (PN)")
+    
+    # Failure Fields
+    id_s = forms.ModelChoiceField(queryset=Station.objects.none(), label="Station")
+    id_er = forms.ModelChoiceField(queryset=ErrorMessages.objects.none(), label="Error Message")
+    defectSymptom = forms.CharField(max_length=100, label="Defect Location")
+    analysis = forms.CharField(widget=forms.Textarea(attrs={'rows': 3}), label="Analysis")
+    rootCauseCategory = forms.ChoiceField(
+        choices=Failures.ROOT_CAUSE_CATEGORIES, 
+        label="Root Cause Category",
+        initial='NDF'
+    )
+    correctiveActions = forms.CharField(
+        widget=forms.Textarea(attrs={'rows': 3}), 
+        label="Corrective Actions",
+        required=False
+    )
+    comments = forms.CharField(widget=forms.Textarea(attrs={'rows': 3}), label="Comments")
+    imgEvindence = forms.ImageField(label="Image Evidence", required=False)
+    log = forms.FileField(label="Log File", required=False)
+    
+    def __init__(self, *args, **kwargs):
+        project = kwargs.pop('project', None)
+        super().__init__(*args, **kwargs)
+        
+        if project:
+            self.fields['pn_b'].queryset = Booms.objects.filter(project=project)
+            self.fields['id_s'].queryset = Station.objects.filter(stationProject=project)
+            self.fields['id_er'].queryset = ErrorMessages.objects.filter(pn_b__project=project)
+        
+        for visible in self.visible_fields():
+            if isinstance(visible.field.widget, forms.CheckboxInput):
+                visible.field.widget.attrs['class'] = 'form-check-input'
+            elif isinstance(visible.field.widget, forms.FileInput):
+                visible.field.widget.attrs['class'] = 'form-control mb-2 text-white bg-black file-input'
+            else:
+                visible.field.widget.attrs['class'] = 'form-control mb-2 text-white bg-black'
+    open_to_debug = forms.BooleanField(
+        required=False,
+        initial=True,
+        label="Open to Debug",
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
+    )

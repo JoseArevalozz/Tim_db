@@ -32,5 +32,6 @@ urlpatterns = [
     path('menu-registros/', views.menu_registros, name='menuRegistros'),
     path('menu-metricas/', views.menu_metricas, name='menuMetricas'),
     path('corrective-maintenance/<str:pn_sp>/<int:maintenance_id>/', views.correctiveMaintenanceForm, name='corrective_maintenance_form'),
+    path('manual-failure-registration/', views.manual_failure_registration, name='manual_failure_registration'),
 
 ]

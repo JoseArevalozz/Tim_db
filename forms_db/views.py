@@ -1,13 +1,15 @@
 import csv
+from django.db import transaction
 from io import StringIO
+from io import BytesIO
 import xlsxwriter
 from forms_db.module import WriteToExcel
 import xlwt
 from datetime import date, datetime, timedelta
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .forms import EmployeesForm, UutForm, FailureForm, BoomForm, RejectedForm, ErrorMessageForm, StationForm, MaintenanceForm, SpareForm, ReleaseForm, CorrectiveMaintenanceForm
-from .models import Uut, Employes, Failures, Station, ErrorMessages, Booms, Rejected, Release, Maintenance, SparePart
+from .forms import EmployeesForm, UutForm, FailureForm, BoomForm, RejectedForm, ErrorMessageForm, StationForm, MaintenanceForm, SpareForm, ReleaseForm, CorrectiveMaintenanceForm, ManualFailureRegistrationForm
+from .models import Uut, Employes, Failures, Station, ErrorMessages, Booms, Rejected, Release, Maintenance, SparePart, TestHistory  
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -15,6 +17,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.utils import timezone
+from django.core.paginator import Paginator
+
 
 
 @login_required(login_url='login')
@@ -707,108 +711,90 @@ def finish_uut(request, sn):
 @login_required(login_url='login')
 def tableFailures(request):
     employe = Employes.objects.get(employeeNumber=request.user)
+    search_term = request.GET.get('q', '').strip()
     
-    q = request.GET.get('q') if request.GET.get('q') != None else ''
-    
-    try:
-        if '/' in q:
-            dates = q.split('/')
-            
-            dateStart = list(map(int, dates[0].split('-')))
-            start = date(dateStart[0], dateStart[1], dateStart[2])
-            
-            dateEnd = list(map(int, dates[1].split('-'))  )     
-            end = date(dateEnd[0], dateEnd[1], dateEnd[2])
-            new_end = end + timedelta(days=1)
-            
-            failures = Failures.objects.filter(sn_f__pn_b__project=employe.privileges).filter(
-                failureDate__range=[start, new_end],)
-        else:
-            failures = Failures.objects.filter(sn_f__pn_b__project=employe.privileges).filter(
-                Q(shiftFailure__icontains=q)
-            )
-    except:
-        return redirect('tableFailures')
-    
-    if 'bt-project' in request.POST: 
-        if request.method == 'POST':
-            employe.privileges = request.POST.get('bt-project')
-            employe.save()
-            return redirect('tableFailures')
-    
-    if employe.privileges == 'NA':
-        return redirect('home')
-   
+    # Base query
+    failures = Failures.objects.filter(
+        sn_f__pn_b__project=employe.privileges
+    ).select_related(
+        'sn_f', 'id_er', 'employee_e', 'id_s'
+    ).order_by('-failureDate')
+
+    # Apply filters
+    if search_term:
+        failures = failures.filter(
+            Q(sn_f__sn__icontains=search_term) |
+            Q(id_er__message__icontains=search_term) |
+            Q(shiftFailure__icontains=search_term)
+        )
+
+    # Handle Excel export
     if request.method == 'POST':
-        
-        check = request.POST.getlist('check')
-        
-        # content-type of response
         response = HttpResponse(content_type='application/ms-excel')
+        today = datetime.now().strftime("%Y-%m-%d_%H-%M")
+        response['Content-Disposition'] = f'attachment; filename="Failures_{today}.xls"'
 
-        #decide file name
-        today = datetime.today().strftime("%Y-%m-%d_%H-%M")
-        response['Content-Disposition'] = f'attachment; filename="Failures{today}.xls"'
-
-        #creating workbook
         wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet("Failures")
 
-        #adding sheet
-        ws = wb.add_sheet("sheet1")
+        # Header style
+        header_style = xlwt.XFStyle()
+        header_style.font.bold = True
 
-        # Sheet header, first row
-        row_num = 0
+        # Column headers
+        columns = [
+            'SN', 'Status', 'Failure Date', 'Station', 
+            'Error Message', 'Analysis', 'Root Cause Category',
+            'Defect Symptom', 'Employee', 'Shift',
+            'Corrective Actions', 'Comments'
+        ]
+        
+        for col_num, column in enumerate(columns):
+            ws.write(0, col_num, column, header_style)
 
-        font_style = xlwt.XFStyle()
-        # headers are bold
-        font_style.font.bold = True
+        # Data style
+        row_style = xlwt.XFStyle()
+        date_style = xlwt.XFStyle()
+        date_style.num_format_str = 'YYYY-MM-DD HH:MM'
 
-        #column header names, you can use your own headers here
-        columns = ['Sn', 'Status', 'Failure Date', 'Station', 'Error Message', 'Analysis', 'Root Cause', 'Defect Symptom', 'Employee', 'Failure shift', 'Corrective Actions', 'Comments']
+        # Get selected records
+        if 'download' in request.POST:
+            selected_ids = request.POST.getlist('check')
+            failures_to_export = failures.filter(id__in=selected_ids)
+        else:  # Export all
+            failures_to_export = failures
 
-        #write column headers in sheet
-        for col_num in range(len(columns)):
-            ws.write(row_num, col_num, columns[col_num], font_style)
-
-        # Sheet body, remaining rows
-        font_style = xlwt.XFStyle()
-
-        #get your data, from database or from a text file...
-
-        for checked in check:
-            failure = Failures.objects.get(id=checked)
-            
-            sn = str(failure.sn_f.sn)
-            status = str(failure.status)
-            date = str(failure.failureDate)
-            station = str(failure.id_s.stationName)
-            message = str(failure.id_er.message)
-            analysis = str(failure.analysis)
-            rootCause = str(failure.rootCause)
-            defect = str(failure.defectSymptom)
-            employee = str(failure.employee_e.employeeName)
-            shift = str(failure.shiftFailure)
-            correctiveActions = str(failure.correctiveActions)
-            comments = str(failure.comments)
-            
-            row_num = row_num + 1
-            ws.write(row_num, 0, sn, font_style)
-            ws.write(row_num, 1, status, font_style)
-            ws.write(row_num, 2, date, font_style)
-            ws.write(row_num, 3, station, font_style)
-            ws.write(row_num, 4, message, font_style)
-            ws.write(row_num, 5, analysis, font_style)
-            ws.write(row_num, 6, rootCause, font_style)
-            ws.write(row_num, 7, defect, font_style)
-            ws.write(row_num, 8, employee, font_style)
-            ws.write(row_num, 9, shift, font_style)
-            ws.write(row_num, 10, correctiveActions, font_style)
-            ws.write(row_num, 11, comments, font_style)
+        # Write data
+        for row_num, failure in enumerate(failures_to_export, start=1):
+            ws.write(row_num, 0, failure.sn_f.sn if failure.sn_f else '', row_style)
+            ws.write(row_num, 1, 'Active' if failure.status else 'Closed', row_style)
+            ws.write(row_num, 2, failure.failureDate, date_style)
+            ws.write(row_num, 3, failure.id_s.stationName if failure.id_s else '', row_style)
+            ws.write(row_num, 4, failure.id_er.message if failure.id_er else '', row_style)
+            ws.write(row_num, 5, failure.analysis or '', row_style)
+            ws.write(row_num, 6, failure.rootCauseCategory or '', row_style)
+            ws.write(row_num, 7, failure.defectSymptom or '', row_style)
+            ws.write(row_num, 8, failure.employee_e.employeeName if failure.employee_e else '', row_style)
+            ws.write(row_num, 9, failure.shiftFailure, row_style)
+            ws.write(row_num, 10, failure.correctiveActions or '', row_style)
+            ws.write(row_num, 11, failure.comments or '', row_style)
 
         wb.save(response)
         return response
-    context = {'employe': employe, 'failures': failures}
-    return render(request=request, template_name='base/table_fails.html', context=context)
+
+    # Pagination
+    paginator = Paginator(failures, 25)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'employe': employe,
+        'failures': page_obj,
+        'search_query': search_term,
+        'search_bt': True
+    }
+    return render(request, 'base/table_fails.html', context)
+
 
 @login_required(login_url='login')
 def tableUuts(request):
@@ -1033,3 +1019,88 @@ def tableRelease(request):
     context = {'turnos':turnos,'employe':employe, 'labels_rack':labels_rack, 'value_rack':value_rack, 'labels_sled':labels_sled, 'value_sled':value_sled, 'labels_kura':labels_kura, 'value_kura':value_kura, 'labels_cause':labels_cause, 'value_cause':value_cause, 'labels_test':labels_test, 'value_test':value_test, 'seriales':seriales}
     return render(request=request, template_name='base/table_release.html', context=context)
 
+@login_required(login_url='login')
+def manual_failure_registration(request):
+    employee = Employes.objects.get(employeeNumber=request.user)
+    
+    if 'bt-project' in request.POST: 
+        if request.method == 'POST':
+            employee.privileges = request.POST.get('bt-project')
+            employee.save()
+            return redirect('manual_failure_registration')
+    
+    if employee.privileges == 'NA':
+        return redirect('home')
+    
+    if request.method == 'POST':
+        form = ManualFailureRegistrationForm(request.POST, request.FILES, project=employee.privileges)
+        if form.is_valid():
+            try:
+                # Determinar turno automáticamente
+                current_hour = datetime.now().hour
+                if 7 <= current_hour < 15:  # Turno 1: 7am - 3pm
+                    shift = '1'
+                elif 15 <= current_hour < 22.5:  # Turno 2: 3pm - 10:30pm
+                    shift = '2'
+                else:  # Turno 3: 10:30pm - 7am
+                    shift = '3'
+                
+                with transaction.atomic():
+                    # Verificar si el UUT ya existe
+                    sn = form.cleaned_data['sn']
+                    try:
+                        uut = Uut.objects.get(sn=sn)
+                        messages.info(request, f"UUT {sn} exists. Registering new failure.")
+                    except Uut.DoesNotExist:
+                        # Crear nuevo UUT solo si no existe
+                        uut = Uut.objects.create(
+                            sn=sn,
+                            pn_b=form.cleaned_data['pn_b'],
+                            employee_e=employee,
+                            status=False
+                        )
+                        messages.success(request, f"New UUT {sn} created with failure record.")
+                    
+                    # Obtener el estado para el Failure basado en el checkbox
+                    failure_status = form.cleaned_data['open_to_debug']
+                    
+                    # Siempre crear registro de Failure (nuevo o existente)
+                    failure = Failures.objects.create(
+                        id_s=form.cleaned_data['id_s'],
+                        sn_f=uut,
+                        id_er=form.cleaned_data['id_er'],
+                        shiftFailure=shift,
+                        defectSymptom=form.cleaned_data['defectSymptom'],
+                        analysis=form.cleaned_data['analysis'],
+                        rootCauseCategory=form.cleaned_data['rootCauseCategory'],
+                        correctiveActions=form.cleaned_data['correctiveActions'],
+                        comments=form.cleaned_data['comments'],
+                        employee_e=employee,
+                        status=failure_status,
+                        imgEvindence=form.cleaned_data['imgEvindence'],
+                        log=form.cleaned_data['log']
+                    )
+                    
+                    # Siempre crear registro en TestHistory
+                    TestHistory.objects.create(
+                        uut=uut,
+                        station=failure.id_s,
+                        employee_e=employee,
+                        status=False,  # Siempre FAIL
+                        test_date=timezone.now()
+                    )
+                
+                messages.success(request, "Failure record created successfully!")
+                return redirect('menuPruebas')
+                
+            except Exception as e:
+                messages.error(request, f'Error registering failure: {str(e)}')
+    else:
+        form = ManualFailureRegistrationForm(project=employee.privileges)
+    
+    context = {
+        'form': form,
+        'employee': employee,
+        'title': 'Manual Failure Registration'
+    }
+    return render(request, 'base/manual_failure_registration.html', context)
