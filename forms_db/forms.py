@@ -98,6 +98,7 @@ class FailureForm(ModelForm):
         }
 
         widgets = {
+            'analysis': Textarea(attrs={'rows': 2}),
             'comments': Textarea(attrs={'rows': 3}),
             'correctiveActions': Textarea(attrs={'rows': 2}),
         }
@@ -210,14 +211,14 @@ class CorrectiveMaintenanceForm(ModelForm):
         labels = {
             'id_sp': 'Spare Part',
             'failureM': 'Failure Message',
-            'causeCategoryS': 'Cause Category',
+            'causeCategoryS': 'Root Cause',
             'comments': 'Comments',
         }
+    comments = forms.CharField(widget=forms.Textarea(attrs={'rows': 2}), label="Comments")
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name in ['id_sp','comments','failureM','causeCategoryS']:
             self.fields[field_name].widget.attrs['class'] = 'form-control mb-2 text-white bg-black'
-        
 
 
 class SpareForm(ModelForm):

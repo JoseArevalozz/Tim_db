@@ -107,7 +107,7 @@ class Failures(models.Model):
     sn_f = models.ForeignKey(Uut, on_delete=models.CASCADE)
     failureDate = models.DateTimeField(auto_now=True)
     id_er = models.ForeignKey(ErrorMessages, on_delete=models.SET_NULL, blank=True, null=True)
-    analysis = models.CharField(max_length=100)
+    analysis = models.CharField(max_length=1000)
     rootCause = models.CharField(max_length=100, blank=True, null=True)
     rootCauseCategory = models.CharField(max_length=20, choices=ROOT_CAUSE_CATEGORIES, blank=False, null=False, default='NDF', verbose_name="Categoría de causa raíz")
     status = models.BooleanField(default=True)
