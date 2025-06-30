@@ -25,9 +25,9 @@ class FormEmployees(admin.ModelAdmin):
     ordering = ("employeeNumber",)
 
 class FormUuts(admin.ModelAdmin):
-    list_display = ("sn", "pn_b", "employee_e")
-    search_fields = ("sn", "pn_b", "employee_e")
-    list_filter = ("sn", "pn_b", "employee_e")
+    list_display = ("sn", "pn_b", "employee_e","date","status")
+    search_fields = ("sn", "pn_b", "employee_e","date","status")
+    list_filter = ("sn", "pn_b", "employee_e","date","status")
     ordering = ("sn",)
     
 class FormFailures(admin.ModelAdmin):

@@ -6,40 +6,38 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-            <li class="breadcrumb-item active">Metrics & Reports</li>
+            <li class="breadcrumb-item active">Register & Settings</li>
         </ol>
     </nav>
     
-    <h1>Metrics & Reports</h1>
+    <h1>Register & Settings</h1>
     <div class="row d-flex justify-content-center">
-        <!-- Métricas -->
+        <!-- Registros -->
         <div class="col-sm-12 col-md-6 text-center mt-3">
             <div class="card card-menu">
                 <div class="card-body">
-                    <a href="{% url 'menuMetricas' %}" class="btn border-0">Yields</a>
+                    <a href="{% url 'boom_form' %}" class="btn border-0">Register BOOM</a>
                 </div>
             </div>
         </div>
         <div class="col-sm-12 col-md-6 text-center mt-3">
             <div class="card card-menu">
                 <div class="card-body">
-                    <a href="{% url 'menuMetricas' %}" class="btn border-0">Failure analytics
-</a>
-                </div>
-            </div>
-        </div>
-        <!-- Reportes -->
-        <div class="col-sm-12 col-md-6 text-center mt-3">
-            <div class="card card-menu">
-                <div class="card-body">
-                    <a href="{% url 'tableRejects' %}" class="btn border-0">Rejections table</a>
+                    <a href="{% url 'station_form' %}" class="btn border-0">Register Station</a>
                 </div>
             </div>
         </div>
         <div class="col-sm-12 col-md-6 text-center mt-3">
             <div class="card card-menu">
                 <div class="card-body">
-                    <a href="{% url 'tableFailures' %}" class="btn border-0">Failure table</a>
+                    <a href="{% url 'spare_form' %}" class="btn border-0">Register spare</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 text-center mt-3">
+            <div class="card card-menu">
+                <div class="card-body">
+                    <a href="{% url 'errorMessage_form' %}" class="btn border-0">Register Error Message</a>
                 </div>
             </div>
         </div>

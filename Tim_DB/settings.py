@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-91tmz0v3x7cl*7*@%an000nuf1beej)54j8@%$*p)w*-$10^uv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'forms_db'
+    'forms_db',
+    'django_celery_results',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -129,9 +131,36 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = BASE_DIR / 'static/'
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = BASE_DIR / "staticfiles/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ======== CELERY CONFIGURATION ========
+# Configuración Celery para desarrollo (DEBUG=True)
+if DEBUG:
+    CELERY_BROKER_URL = 'filesystem://'
+    CELERY_BROKER_TRANSPORT_OPTIONS = {
+        'data_folder_in': 'celery_data\\out',
+        'data_folder_out': 'celery_data\\out',
+        'data_folder_processed': 'celery_data\\processed'
+    }
+    CELERY_RESULT_BACKEND = 'django-db'  # Usamos la base de datos Django para resultados
+else:
+    # Configuración para producción
+    CELERY_BROKER_URL = 'redis://:Switch123@localhost:6379/0'
+    CELERY_RESULT_BACKEND = 'redis://:Switch123@localhost:6379/0'
+
+# Configuración común
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'America/Mexico_City'
+CELERY_BEAT_SCHEDULE = {
+    'update-test-logs': {
+        'task': 'forms_db.tasks.update_test_logs_task',
+        'schedule': 300.0,
+    }
+}

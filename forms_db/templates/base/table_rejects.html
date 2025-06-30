@@ -3,13 +3,17 @@
 {% block content %}
 <div class="container mt-5">
     <h1>Table rejects</h1>
+
+    <!-- Tabla de resultados -->
     <div class="table-responsive">
-        <form method="POST">
-        {% csrf_token %}
-            <table style="width: 2400px;" class="table table-hover table-dark table-striped mt-2">
+        <form method="POST" id="export-form">
+            {% csrf_token %}
+            <table style="width: 3300px" id="table-fails" class="table table-hover table-dark table-striped mt-2">
                 <thead>
                     <tr>
-                        <th scope="col" title="Select all " id="bt-all" onclick="selectAll()" ><></th>
+                        <th scope="col" width="50">
+                            <input type="checkbox" id="select-all" onclick="toggleSelectAll()">
+                        </th>
                         <th scope="col">Pn</th>
                         <th scope="col">Description</th>
                         <th scope="col">Commodity</th>
@@ -27,11 +31,11 @@
                 <tbody>
                     {% for reject in rejects %}
                     <tr>
-                        <th  scope="col">
+                        <th scope="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" 
-                                value="{{reject.id}}" 
-                                name="check" />
+                                <input type="checkbox" class="form-check-input failure-checkbox" 
+                                   name="check" 
+                                   value="{{reject.id}}">
                             </div>
                         </th>
                         <td scope="row">{{reject.pn_b.pn}}</td>
@@ -54,29 +58,89 @@
                             {% endif %}
                         </td>
                     </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="13" class="text-center">No failures found</td>
+                    </tr>
                     {% endfor %}
                 </tbody>
             </table>
 
-            <input class="btn btn-primary" type="submit" value="Download">
+            <!-- Controles -->
+            <div class="d-flex justify-content-between mt-3">
+                <div>
+                    <button type="submit" name="download" class="btn btn-outline-success">
+                        <i class="bi bi-file-excel"></i> Export Selected
+                    </button>
+                    <button type="submit" name="download_all" class="btn btn-outline-primary ms-2">
+                        <i class="bi bi-file-earmark-excel"></i> Export All
+                    </button>
+                </div>
+                
+                <!-- Paginación -->
+                {% if failures.paginator.num_pages > 1 %}
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        {% if failures.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1{% if search_query %}&q={{ search_query }}{% endif %}">
+                                <i class="bi bi-chevron-double-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ failures.previous_page_number }}{% if search_query %}&q={{ search_query }}{% endif %}">
+                                <i class="bi bi-chevron-left"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                        
+                        <li class="page-item disabled">
+                            <span class="page-link">
+                                Page {{ failures.number }} of {{ failures.paginator.num_pages }}
+                            </span>
+                        </li>
+                        
+                        {% if failures.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ failures.next_page_number }}{% if search_query %}&q={{ search_query }}{% endif %}">
+                                <i class="bi bi-chevron-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ failures.paginator.num_pages }}{% if search_query %}&q={{ search_query }}{% endif %}">
+                                <i class="bi bi-chevron-double-right"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                {% endif %}
+            </div>
         </form>
     </div>
 </div>
 
 <script>
-    function selectAll() {
-        checkboxes = document.getElementsByName('check');
-        for(var i=0, n=checkboxes.length;i<n;i++) {
-            
-            if(checkboxes[i].checked == true){
-                checkboxes[i].checked = false;
-            }
-            else{
-                checkboxes[i].checked = true;
-            }
-            console.log()
+// Seleccionar/deseleccionar todos los checkboxes
+function toggleSelectAll() {
+    const checkboxes = document.querySelectorAll('.failure-checkbox');
+    const selectAll = document.getElementById('select-all');
+    
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = selectAll.checked;
+    });
+}
+
+// Validación básica antes de exportar
+document.getElementById('export-form').addEventListener('submit', function(e) {
+    if (e.submitter.name === 'download') {
+        const selected = document.querySelectorAll('.failure-checkbox:checked').length;
+        if (selected === 0) {
+            e.preventDefault();
+            alert('Please select at least one item to export.');
         }
     }
+});
 </script>
-{% endblock %}
 
+{% endblock %}

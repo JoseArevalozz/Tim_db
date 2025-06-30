@@ -1,0 +1,99 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'menuPruebas' %}">Tests & Activities</a></li>
+            <li class="breadcrumb-item active">Manual Failure Registration</li>
+        </ol>
+    </nav>
+    <h1>Manual Failure Registration</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <!-- UUT Section -->
+            <div class="col-md-12">
+                <h3 class="mb-3">UUT Information</h3>
+            </div>
+            
+            <div class="form-group col-md-6 col-sm-6">
+                <label for="{{ form.sn.id_for_label }}">{{ form.sn.label }}</label>
+                {{ form.sn }}
+            </div>
+            
+            <div class="form-group col-md-6 col-sm-6">
+                <label for="{{ form.pn_b.id_for_label }}">{{ form.pn_b.label }}</label>
+                {{ form.pn_b }}
+            </div>
+            
+            <!-- Failure Section -->
+            <div class="col-md-12 mt-4">
+                <h3 class="mb-3">Failure Information</h3>
+            </div>
+            
+            <div class="form-group col-md-6 col-sm-6">
+                <label for="{{ form.id_s.id_for_label }}">{{ form.id_s.label }}</label>
+                {{ form.id_s }}
+            </div>
+            
+            <div class="form-group col-md-6 col-sm-6">
+                <label for="{{ form.id_er.id_for_label }}">{{ form.id_er.label }}</label>
+                {{ form.id_er }}
+            </div>
+            
+            <div class="form-group col-md-6 col-sm-6">
+                <label for="{{ form.defectSymptom.id_for_label }}">{{ form.defectSymptom.label }}</label>
+                {{ form.defectSymptom }}
+            </div>
+            
+            <div class="form-group col-md-6 col-sm-6">
+                <label for="{{ form.rootCauseCategory.id_for_label }}">{{ form.rootCauseCategory.label }}</label>
+                {{ form.rootCauseCategory }}
+            </div>
+            
+            <div class="form-group col-md-12">
+                <label for="{{ form.analysis.id_for_label }}">{{ form.analysis.label }}</label>
+                {{ form.analysis }}
+            </div>
+            
+            <div class="form-group col-md-12">
+                <label for="{{ form.correctiveActions.id_for_label }}">{{ form.correctiveActions.label }}</label>
+                {{ form.correctiveActions }}
+            </div>
+            
+            <div class="form-group col-md-12">
+                <label for="{{ form.comments.id_for_label }}">{{ form.comments.label }}</label>
+                {{ form.comments }}
+            </div>
+            
+            <!-- File uploads at the end -->
+            <div class="form-group col-md-6 col-sm-6">
+                <label for="{{ form.imgEvindence.id_for_label }}">{{ form.imgEvindence.label }}</label>
+                {{ form.imgEvindence }}
+            </div>
+            
+            <div class="form-group col-md-6 col-sm-6">
+                <label for="{{ form.log.id_for_label }}">{{ form.log.label }}</label>
+                {{ form.log }}
+            </div>
+
+            <div class="form-group col-md-12 mt-3">
+                <div class="form-check">
+                    {{ form.open_to_debug }}
+                    <label class="form-check-label" for="{{ form.open_to_debug.id_for_label }}">
+                        {{ form.open_to_debug.label }}
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group mt-3">
+            <input class="btn btn-primary" type="submit" value="Register Failure">
+        </div>
+    </form>
+</div>
+{% endblock %}

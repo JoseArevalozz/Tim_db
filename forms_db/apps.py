@@ -1,6 +1,10 @@
+# forms_db/apps.py
+import os
 from django.apps import AppConfig
 
 
 class FormsDbConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
     name = 'forms_db'
+    
+    def ready(self):
+        pass

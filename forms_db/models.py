@@ -86,35 +86,41 @@ class Maintenance(models.Model):
 
 
 class ErrorMessages(models.Model):
-    message = models.CharField(max_length=150)
+    message = models.CharField(max_length=200)
     date = models.DateTimeField(auto_now=True)
-    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, blank=True, null=True,)
-    pn_b = models.ForeignKey(Booms, on_delete=models.CASCADE)
+    employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, blank=True, null=True)
+    pn_b = models.ForeignKey(Booms, on_delete=models.SET_NULL, blank=True, null=True)  # Cambiado a opcional
     
     def __str__(self):
-        return self.message if len(self.message) < 74 else self.message[:73] + '...'
+        return self.message[:75] + '...' if len(self.message) > 75 else self.message
 
 class Failures(models.Model):
     shifts = (('1', '1'), ('2', '2'), ('3', '3') )
-    ca_options = (('Resettled subassy and slaves parts', 'Resettled subassy and slaves parts'), ('Retest in another tester', 'Retest in another tester'), ('Retest no touch', 'Retest no touch'), ('Change component', 'Change component'), ('Clean component', 'Clean component'),('reset equipment and retest','reset equipment and retest'))
+    ROOT_CAUSE_CATEGORIES = [
+        ('Material', 'Material'),
+        ('Workmanship', 'Workmanship'),
+        ('NDF', 'NDF'),
+        ('Operador', 'Operador'),
+    ]
     
     id_s = models.ForeignKey(Station, on_delete=models.SET_NULL, blank=True, null=True,)
     sn_f = models.ForeignKey(Uut, on_delete=models.CASCADE)
     failureDate = models.DateTimeField(auto_now=True)
     id_er = models.ForeignKey(ErrorMessages, on_delete=models.SET_NULL, blank=True, null=True)
-    analysis = models.CharField(max_length=100)
-    rootCause = models.CharField(max_length=100)
+    analysis = models.CharField(max_length=1000)
+    rootCause = models.CharField(max_length=100, blank=True, null=True)
+    rootCauseCategory = models.CharField(max_length=20, choices=ROOT_CAUSE_CATEGORIES, blank=False, null=False, default='NDF', verbose_name="Categoría de causa raíz")
     status = models.BooleanField(default=True)
     defectSymptom = models.CharField(max_length=100)
     employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, blank=True, null=True,)
     shiftFailure = models.CharField(max_length=13, choices=shifts)
-    correctiveActions = models.CharField(max_length=100, choices=ca_options)
+    correctiveActions = models.CharField(max_length=500,  blank=True, null=True)
     imgEvindence = models.ImageField(null=True, upload_to='evidences/', blank=True)
     log = models.FileField(null=True, upload_to='logs/',  blank=True)
     comments = models.TextField()
     
     def __str__(self):
-        return self.analysis
+        return self.rootCauseCategory
     
     
 class Rejected(models.Model):
