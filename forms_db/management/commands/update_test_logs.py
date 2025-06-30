@@ -13,7 +13,16 @@ class Command(BaseCommand):
     
     def handle(self, *args, **options):
         estaciones_dict = {
+            "10.12.199.23": "FFT-01",
+            "10.12.199.24": "FFT-02",
+            "10.12.199.28": "FFT-03",
+            "10.12.199.46": "FFT-04",
             "10.12.199.26": "FFT-05",
+            "10.12.199.35": "FFT-06",
+            "10.12.199.27": "FFT-07",
+            "10.12.199.32": "FFT-08",
+            "10.12.199.29": "FFT-09",
+            "10.12.199.34": "FFT-12"
             # Agrega aquí otras estaciones
         }
         
@@ -54,8 +63,8 @@ class Command(BaseCommand):
             client.close()
 
     def process_single_file(self, sftp, filename, ip, estacion_nombre):
-        remote_path = f"C:/Logs Pruebas/{filename}"
-        remote_backup_path = f"C:/Logs Procesados/{filename}"
+        remote_path = f"D:/LOG/TIM{filename}"
+        remote_backup_path = f"D:/LOG/FFT log{filename}"
         is_pass = "_PASS" in filename
         
         try:

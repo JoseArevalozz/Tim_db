@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-91tmz0v3x7cl*7*@%an000nuf1beej)54j8@%$*p)w*-$10^uv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -150,8 +150,8 @@ if DEBUG:
     CELERY_RESULT_BACKEND = 'django-db'  # Usamos la base de datos Django para resultados
 else:
     # Configuración para producción
-    CELERY_BROKER_URL = 'redis://localhost:6379/0'
-    CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+    CELERY_BROKER_URL = 'redis://:Switch123@localhost:6379/0'
+    CELERY_RESULT_BACKEND = 'redis://:Switch123@localhost:6379/0'
 
 # Configuración común
 CELERY_ACCEPT_CONTENT = ['json']
