@@ -158,6 +158,11 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'America/Mexico_City'
+CELERY_TASK_DEFAULT_QUEUE = 'celery'
+CELERY_TASK_CREATE_MISSING_QUEUES = True
+CELERY_TASK_ROUTES = {
+    'forms_db.tasks.update_test_logs_task': {'queue': 'celery'},
+}
 CELERY_BEAT_SCHEDULE = {
     'update-test-logs': {
         'task': 'forms_db.tasks.update_test_logs_task',
