@@ -63,8 +63,8 @@ class Command(BaseCommand):
             client.close()
 
     def process_single_file(self, sftp, filename, ip, estacion_nombre):
-        remote_path = f"C:/LOG/TIM{filename}"
-        remote_backup_path = f"C:/LOG/FFT log{filename}"
+        remote_path = f"C:/LOG/TIM/{filename}"
+        remote_backup_path = f"C:/LOG/FFT log/{filename}"
         is_pass = "_PASS" in filename
         
         try:
