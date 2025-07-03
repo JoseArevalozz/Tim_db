@@ -43,11 +43,11 @@ class Command(BaseCommand):
             try:
                 # Verificar/Crear directorio FFT2 log remoto
                 try:
-                    sftp.stat('C:/Logs Pruebas')
+                    sftp.stat('C:/LOG/TIM')
                 except FileNotFoundError:
-                    sftp.mkdir('C:/Logs Procesados')
+                    sftp.mkdir('C:/LOG/FFT log')
                 
-                archivos_remotos = sftp.listdir('C:/Logs Pruebas')
+                archivos_remotos = sftp.listdir('C:/LOG/TIM')
                 
                 for archivo in archivos_remotos:
                     if archivo.endswith(("_PASS.txt", "_FAIL.txt")):
@@ -63,8 +63,8 @@ class Command(BaseCommand):
             client.close()
 
     def process_single_file(self, sftp, filename, ip, estacion_nombre):
-        remote_path = f"D:/LOG/TIM{filename}"
-        remote_backup_path = f"D:/LOG/FFT log{filename}"
+        remote_path = f"C:/LOG/TIM{filename}"
+        remote_backup_path = f"C:/LOG/FFT log{filename}"
         is_pass = "_PASS" in filename
         
         try:
