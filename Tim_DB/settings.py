@@ -163,6 +163,8 @@ CELERY_TASK_CREATE_MISSING_QUEUES = True
 CELERY_TASK_ROUTES = {
     'forms_db.tasks.update_test_logs_task': {'queue': 'celery'},
 }
+CELERY_BEAT_SCHEDULER = 'celery.beat.PersistentScheduler'
+CELERY_BEAT_SCHEDULE_FILENAME = '/var/run/celery/celerybeat-schedule'
 CELERY_BEAT_SCHEDULE = {
     'update-test-logs': {
         'task': 'forms_db.tasks.update_test_logs_task',
