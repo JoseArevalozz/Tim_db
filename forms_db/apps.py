@@ -7,4 +7,5 @@ class FormsDbConfig(AppConfig):
     name = 'forms_db'
     
     def ready(self):
-        pass
+        # Importa las tareas para que Celery las descubra
+        from . import tasks
