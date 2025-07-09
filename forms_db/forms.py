@@ -75,6 +75,12 @@ class FailureForm(ModelForm):
         for field in non_editable_fields:
             self.fields.pop(field, None)
         
+        # Si el campo status existe, configurarlo
+        if 'status' in self.fields:
+            self.fields['status'].initial = False  # Valor por defecto
+            self.fields['status'].label = "Marcar como abierta para debug"
+            self.fields['status'].help_text = "Seleccione si la falla requiere investigación adicional"
+        
         # Configurar campos visibles
         for field_name, field in self.fields.items():
             if field_name == 'status':
@@ -83,10 +89,11 @@ class FailureForm(ModelForm):
                 field.widget.attrs['class'] = 'form-control mb-2 text-white bg-black file-input'
             elif field_name != 'error_message':  # Excluir el campo de mensaje de error
                 field.widget.attrs['class'] = 'form-control mb-2 text-white bg-black'
+
     class Meta:
         model = Failures
-        fields = ['analysis', 'rootCauseCategory', 'defectSymptom', 
-                 'correctiveActions', 'imgEvindence', 'comments']
+        fields = ['status', 'analysis', 'rootCauseCategory', 'defectSymptom', 
+                 'correctiveActions', 'imgEvindence', 'comments']  # Añadido 'status'
         labels = {
             'id_er': 'Error Message',
             'analysis': 'Analysis',
@@ -94,7 +101,8 @@ class FailureForm(ModelForm):
             'defectSymptom': 'Defect Location',
             'correctiveActions': 'Corrective Actions',
             'imgEvindence': 'Image Evidence',
-            'comments': 'Comments'
+            'comments': 'Comments',
+            'status': 'Estado de la falla'  # Nueva etiqueta
         }
 
         widgets = {

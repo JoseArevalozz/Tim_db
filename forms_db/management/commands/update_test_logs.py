@@ -241,7 +241,7 @@ class Command(BaseCommand):
             employee = None
             if log_info['operator_id']:
                 try:
-                    employee = Employes.objects.get(employeeNumber=log_info['operator_id'])
+                    employee = Employes.objects.get(employeeName=log_info['operator_id'])
                 except Employes.DoesNotExist:
                     employee = None
                     self.stdout.write(self.style.WARNING(
@@ -283,7 +283,7 @@ class Command(BaseCommand):
             employee = None
             if log_info['operator_id']:
                 try:
-                    employee = Employes.objects.get(employeeNumber=log_info['operator_id'])
+                    employee = Employes.objects.get(employeeName=log_info['operator_id'])
                 except Employes.DoesNotExist:
                     employee = None
                     self.stdout.write(self.style.WARNING(
@@ -310,7 +310,7 @@ class Command(BaseCommand):
             employee = None
             if log_info['operator_id']:
                 try:
-                    employee = Employes.objects.get(employeeNumber=log_info['operator_id'])
+                    employee = Employes.objects.get(employeeName=log_info['operator_id'])
                 except Employes.DoesNotExist:
                     employee = None
                     self.stdout.write(self.style.WARNING(
@@ -348,12 +348,12 @@ class Command(BaseCommand):
                 id_er=error_message_obj,
                 employee_e=employee,
                 shiftFailure=shift,
-                analysis='Registro automático - pendiente de análisis',
-                rootCause='Por determinar',
+                analysis='',
+                rootCause='',
                 status="False",
-                defectSymptom=log_info['error_message'] or 'No especificado',
-                correctiveActions='Retest no touch',
-                comments=f'Registro automático generado el {timezone.now().strftime("%Y-%m-%d %H:%M")}'
+                defectSymptom='No especificado',
+                correctiveActions='',
+                comments=f''
             )
             
             self.stdout.write(self.style.SUCCESS(

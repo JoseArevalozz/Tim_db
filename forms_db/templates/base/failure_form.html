@@ -1,31 +1,40 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<div class="container mt-5" >
-
-    <form method="POST" enctype="multipart/form-data" >
+<div class="container mt-5">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <!-- {{form.as_p}} -->
-
         
-
         <div class="row">
             <h1>{{uut.sn}}</h1>
-            {% for row in form %}
-                <div class=" form-group col-md-6 col-sm-6">
-                    <label for="">{{row.label}}</label>
-                    {{row}}
+            
+            <!-- Campos del formulario automáticos -->
+            {% for field in form.visible_fields %}
+                {% if field.name != 'status' %}  {# Excluimos el campo status del loop #}
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
                 </div>
                 <br>
+                {% endif %}
             {% endfor %}
+            
+            <!-- Campo status personalizado -->
             <div class="form-group col-md-6 col-sm-6">
-                <input class="form-check-input" name="status" type="checkbox"  value="on" checked>
-                <label class="form-check-label" for="inlineCheckbox3">Open</label>
-              </div>
+                <div class="form-check">
+                    <input class="form-check-input" 
+                           id="id_status" 
+                           name="status" 
+                           type="checkbox" 
+                           {% if form.status.value %}checked{% endif %}>
+                    <label class="form-check-label" for="id_status">
+                        Open for Debug
+                    </label>
+                    <small class="form-text text-muted">Marque si la falla requiere investigación adicional</small>
+                </div>
+            </div>
         </div>
        
-        
-
         <input class="btn btn-primary" type="submit" value="Submit">
     </form>
 </div> 
@@ -34,8 +43,11 @@
     .form{
         display: flex;
     }
+    /* Estilo adicional para mantener consistencia con tus otros campos */
+    .form-check-input {
+        margin-top: 0.3rem;
+        margin-left: 0;
+    }
 </style>
 
 {% endblock %}
-
-

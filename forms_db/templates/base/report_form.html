@@ -1,0 +1,213 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5>Reporte de Fallas</h5>
+            <div>
+                <!-- Botón de descarga Excel -->
+                <a href="?download_excel=1&project={{ selected_project }}&report_type={{ report_type }}&start_date={{ start_date }}&end_date={{ end_date }}" 
+                   class="btn btn-success me-2">
+                    <i class="bi bi-file-excel"></i> Exportar Excel
+                </a>
+                
+                <!-- Selector de proyecto -->
+                <div class="btn-group">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Proyecto: {{ selected_project }}
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% for project in available_projects %}
+                        <li>
+                            <a class="dropdown-item" href="?project={{ project }}&report_type={{ report_type }}">
+                                {{ project }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <!-- Selector de período -->
+                <div class="btn-group ms-2">
+                    <a href="?project={{ selected_project }}&report_type=day" 
+                       class="btn {% if report_type == 'day' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                        Día
+                    </a>
+                    <a href="?project={{ selected_project }}&report_type=week" 
+                       class="btn {% if report_type == 'week' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                        Semana
+                    </a>
+                    <a href="?project={{ selected_project }}&report_type=month" 
+                       class="btn {% if report_type == 'month' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                        Mes
+                    </a>
+                    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#dateRangeModal">
+                        Personalizado
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <!-- Resumen Rápido -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-body text-center">
+                            <h6>Yield</h6>
+                            <h2>{{ report_data.yield_pct }}%</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-success mb-3">
+                        <div class="card-body text-center">
+                            <h6>PASS</h6>
+                            <h2>{{ report_data.passed }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-danger mb-3">
+                        <div class="card-body text-center">
+                            <h6>FAIL</h6>
+                            <h2>{{ report_data.failed }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-info mb-3">
+                        <div class="card-body text-center">
+                            <h6>Total Pruebas</h6>
+                            <h2>{{ report_data.total_tests }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gráficas -->
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    {{ charts.summary|safe }}
+                </div>
+                <div class="col-md-6 mb-4">
+                    {{ charts.test_distribution|safe }}
+                </div>
+                <div class="col-md-6 mb-4">
+                    {{ charts.failure_categories|safe }}
+                </div>
+                <div class="col-md-6 mb-4">
+                    {{ charts.station_tests|safe }}
+                </div>
+            </div>
+            
+            <!-- Tabla Detallada -->
+            <div class="table-responsive mt-4">
+                <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th colspan="7" class="text-center">Detalle del Reporte</th>
+                        </tr>
+                        <tr>
+                            <th>Período</th>
+                            <th>Pruebas</th>
+                            <th>Pasadas</th>
+                            <th>Falladas</th>
+                            <th>Yield</th>
+                            <th>Fallas Reales</th>
+                            <th>NDF</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ report_data.start_date|date:"Y-m-d" }} al {{ report_data.end_date|date:"Y-m-d" }}</td>
+                            <td>{{ report_data.total_tests }}</td>
+                            <td>{{ report_data.passed }}</td>
+                            <td>{{ report_data.failed }}</td>
+                            <td>{{ report_data.yield_pct }}%</td>
+                            <td>{{ report_data.real_failures }} ({{ report_data.real_failure_pct }}%)</td>
+                            <td>{{ report_data.ndf_count }} ({{ report_data.ndf_pct }}%)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Desglose por estación -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h6>Pruebas por Estación</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Estación</th>
+                                    <th>Pruebas Realizadas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for station, count in report_data.station_data.items %}
+                                <tr>
+                                    <td>{{ station }}</td>
+                                    <td>{{ count }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para rango de fechas personalizado -->
+<div class="modal fade" id="dateRangeModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Seleccionar Rango Personalizado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="get" action="">
+                <input type="hidden" name="project" value="{{ selected_project }}">
+                <input type="hidden" name="report_type" value="custom">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="start_date" class="form-label">Fecha Inicio</label>
+                        <input type="date" class="form-control" id="start_date" name="start_date" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="end_date" class="form-label">Fecha Fin</label>
+                        <input type="date" class="form-control" id="end_date" name="end_date" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Generar Reporte</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+// Configurar fechas en el modal
+document.addEventListener('DOMContentLoaded', function() {
+    const startDateInput = document.getElementById('start_date');
+    const endDateInput = document.getElementById('end_date');
+    
+    if (startDateInput && endDateInput) {
+        // Establecer valores por defecto (últimos 7 días)
+        const today = new Date();
+        const lastWeek = new Date();
+        lastWeek.setDate(today.getDate() - 7);
+        
+        startDateInput.valueAsDate = lastWeek;
+        endDateInput.valueAsDate = today;
+    }
+});
+</script>
+{% endblock %}
