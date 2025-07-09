@@ -208,14 +208,14 @@ def failureForm(request, pk):
             failure.defectSymptom = form.cleaned_data['defectSymptom']
             failure.correctiveActions = form.cleaned_data['correctiveActions']
             failure.comments = form.cleaned_data['comments']
-            failure.status = True
+            failure.status = form.cleaned_data['status']
             failure.employee_e = employe
             
             if 'imgEvindence' in request.FILES:
                 failure.imgEvindence = form.cleaned_data['imgEvindence']
             
             failure.save()
-            return redirect('showRejecteds')
+            return redirect('showUuts')
     else:
         initial_data = {
             'analysis': last_failure.analysis,
