@@ -6,6 +6,7 @@ from django.core.management.base import BaseCommand
 from django.utils import timezone
 from datetime import datetime
 from django.conf import settings
+from django.contrib.auth.models import User
 from forms_db.models import Uut, TestHistory, Station, Employes, Booms, Failures, ErrorMessages
 
 class Command(BaseCommand):
