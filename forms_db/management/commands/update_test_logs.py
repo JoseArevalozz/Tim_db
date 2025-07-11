@@ -241,11 +241,12 @@ class Command(BaseCommand):
             employee = None
             if log_info['operator_id']:
                 try:
-                    employee = Employes.objects.get(employeeName=log_info['operator_id'])
-                except Employes.DoesNotExist:
+                    user = User.objects.get(username=log_info['operator_id'].strip())
+                    employee = Employes.objects.get(employeeNumber=user)
+                except (User.DoesNotExist, Employes.DoesNotExist):
                     employee = None
                     self.stdout.write(self.style.WARNING(
-                        f'Empleado {log_info["operator_id"]} no encontrado'
+                    f'Empleado {log_info["operator_id"]} no encontrado'
                     ))
             
             pn_b = None
@@ -283,11 +284,12 @@ class Command(BaseCommand):
             employee = None
             if log_info['operator_id']:
                 try:
-                    employee = Employes.objects.get(employeeName=log_info['operator_id'])
-                except Employes.DoesNotExist:
+                    user = User.objects.get(username=log_info['operator_id'].strip())
+                    employee = Employes.objects.get(employeeNumber=user)
+                except (User.DoesNotExist, Employes.DoesNotExist):
                     employee = None
                     self.stdout.write(self.style.WARNING(
-                        f'Empleado {log_info["operator_id"]} no encontrado'
+                    f'Empleado {log_info["operator_id"]} no encontrado'
                     ))
             
             return TestHistory.objects.create(
@@ -310,11 +312,12 @@ class Command(BaseCommand):
             employee = None
             if log_info['operator_id']:
                 try:
-                    employee = Employes.objects.get(employeeName=log_info['operator_id'])
-                except Employes.DoesNotExist:
+                    user = User.objects.get(username=log_info['operator_id'].strip())
+                    employee = Employes.objects.get(employeeNumber=user)
+                except (User.DoesNotExist, Employes.DoesNotExist):
                     employee = None
                     self.stdout.write(self.style.WARNING(
-                        f'Empleado {log_info["operator_id"]} no encontrado'
+                    f'Empleado {log_info["operator_id"]} no encontrado'
                     ))
             
             hour = log_info['log_datetime'].hour if log_info['log_datetime'] else timezone.now().hour
