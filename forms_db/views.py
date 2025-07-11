@@ -1078,11 +1078,12 @@ def tableRelease(request):
 
 @login_required(login_url='login')
 def manual_failure_registration(request):
-    
+
+    employee = Employes.objects.get(employeeNumber=request.user)
 
     is_supervisor = employee.privileges.endswith('S')
     base_project = employee.privileges[:-1] if is_supervisor else employee.privileges
-    
+
     if 'bt-project' in request.POST: 
         if request.method == 'POST':
             employee.privileges = request.POST.get('bt-project')
