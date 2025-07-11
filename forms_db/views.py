@@ -732,9 +732,22 @@ def tableRejects(request):
     return render(request=request, template_name='base/table_rejects.html', context=context)
 
 def finish_uut(request, sn):
+    # Obtener el UUT, el empleado y la última falla asociada
     uut = get_object_or_404(Uut, sn=sn)
+    employee = get_object_or_404(Employes, employeeNumber=request.user)
+    
+    # Cambiar el estado del UUT
     uut.status = False
     uut.save()
+    
+    # Obtener la última falla asociada al UUT
+    last_failure = Failures.objects.filter(sn_f=uut).order_by('-failureDate').first()
+    
+    if last_failure:
+        # Actualizar SOLO el empleado que cerró el UUT
+        last_failure.employee_e = employee
+        last_failure.save()
+    
     return redirect('showUuts')
 
 @login_required(login_url='login')
@@ -1065,7 +1078,8 @@ def tableRelease(request):
 
 @login_required(login_url='login')
 def manual_failure_registration(request):
-    employee = Employes.objects.get(employeeNumber=request.user)
+    
+
     is_supervisor = employee.privileges.endswith('S')
     base_project = employee.privileges[:-1] if is_supervisor else employee.privileges
     
