@@ -8,7 +8,7 @@ from plotly.offline import plot
 from io import StringIO
 from io import BytesIO
 from forms_db.module import WriteToExcel
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, time
 from django.db import transaction
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
