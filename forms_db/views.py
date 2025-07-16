@@ -1303,7 +1303,18 @@ def get_date_range(report_type, request):
     today = timezone.now().date()
     
     if report_type == 'day':
-        start_date = end_date = today
+        # Si la hora actual es antes de las 5am, consideramos el "día" anterior
+        if now.time() < time(5, 0):
+            start_date = today - timedelta(days=1)
+            end_date = today
+        # Si es entre 5am y 7am, el día actual comienza a las 7am
+        elif now.time() < time(7, 0):
+            start_date = today
+            end_date = today + timedelta(days=1)
+        # Si es después de las 7am, día normal
+        else:
+            start_date = today
+            end_date = today + timedelta(days=1)
     elif report_type == 'week':
         start_date = today - timedelta(days=today.weekday())
         end_date = start_date + timedelta(days=6)
