@@ -1300,7 +1300,9 @@ def get_available_projects(employe):
     return projects
 
 def get_date_range(report_type, request):
-    today = timezone.now().date()
+    today2 = timezone.now().date()
+    now = timezone.now()
+    today = now.date()
     
     if report_type == 'day':
         # Si la hora actual es antes de las 5am, consideramos el "día" anterior
@@ -1316,17 +1318,17 @@ def get_date_range(report_type, request):
             start_date = today
             end_date = today + timedelta(days=1)
     elif report_type == 'week':
-        start_date = today - timedelta(days=today.weekday())
+        start_date = today2 - timedelta(days=today2.weekday())
         end_date = start_date + timedelta(days=6)
     elif report_type == 'month':
-        start_date = today.replace(day=1)
+        start_date = today2.replace(day=1)
         end_date = (start_date + timedelta(days=32)).replace(day=1) - timedelta(days=1)
     elif report_type == 'year':
-        start_date = today.replace(month=1, day=1)
-        end_date = today.replace(month=12, day=31)
+        start_date = today2.replace(month=1, day=1)
+        end_date = today2.replace(month=12, day=31)
     else:  # custom
-        start_date = request.GET.get('start_date', today)
-        end_date = request.GET.get('end_date', today)
+        start_date = request.GET.get('start_date', today2)
+        end_date = request.GET.get('end_date', today2)
         if isinstance(start_date, str):
             start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
         if isinstance(end_date, str):
