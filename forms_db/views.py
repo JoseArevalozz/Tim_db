@@ -1343,15 +1343,15 @@ def generate_report_data(project, start_date, end_date, report_type):
     # Obtener datos de pruebas
     test_history = TestHistory.objects.filter(
         uut__pn_b__project=project,
-        test_date__date__gte=start_date,
-        test_date__date__lte=end_date
+        test_date__gte=start_date,
+        test_date__lt=end_date
     )
     
     # Obtener datos de fallas
     failures = Failures.objects.filter(
         sn_f__pn_b__project=project,
-        failureDate__date__gte=start_date,
-        failureDate__date__lte=end_date
+        failureDate__gte=start_date,
+        failureDate__lt=end_date
     )
     
     # Cálculos básicos
