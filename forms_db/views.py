@@ -1300,39 +1300,42 @@ def get_available_projects(employe):
     return projects
 
 def get_date_range(report_type, request):
-    today2 = timezone.now().date()
     now = timezone.now()
     today = now.date()
     
     if report_type == 'day':
-        # Si la hora actual es antes de las 5am, consideramos el "día" anterior
+        # Definimos el rango de 7am a 5am del día siguiente
         if now.time() < time(5, 0):
-            start_date = today - timedelta(days=1)
-            end_date = today
-        # Si es entre 5am y 7am, el día actual comienza a las 7am
+            # Estamos en la ventana de 00:00-05:00, pertenece al día anterior (7am-5am)
+            start_date = datetime.combine(today - timedelta(days=1), time(7, 0))
+            end_date = datetime.combine(today, time(5, 0))
         elif now.time() < time(7, 0):
-            start_date = today
-            end_date = today + timedelta(days=1)
-        # Si es después de las 7am, día normal
+            # Estamos en la ventana de 05:00-07:00, día actual no ha comenzado
+            start_date = datetime.combine(today, time(7, 0))
+            end_date = datetime.combine(today + timedelta(days=1), time(5, 0))
         else:
-            start_date = today
-            end_date = today + timedelta(days=1)
+            # Después de las 7am, día normal
+            start_date = datetime.combine(today, time(7, 0))
+            end_date = datetime.combine(today + timedelta(days=1), time(5, 0))
     elif report_type == 'week':
-        start_date = today2 - timedelta(days=today2.weekday())
-        end_date = start_date + timedelta(days=6)
+        start_date = datetime.combine(today - timedelta(days=today.weekday()), time(0, 0))
+        end_date = datetime.combine(start_date.date() + timedelta(days=6), time(23, 59, 59))
     elif report_type == 'month':
-        start_date = today2.replace(day=1)
-        end_date = (start_date + timedelta(days=32)).replace(day=1) - timedelta(days=1)
+        start_date = datetime.combine(today.replace(day=1), time(0, 0))
+        end_date = datetime.combine((start_date.date() + timedelta(days=32)).replace(day=1) - timedelta(days=1), time(23, 59, 59))
     elif report_type == 'year':
-        start_date = today2.replace(month=1, day=1)
-        end_date = today2.replace(month=12, day=31)
+        start_date = datetime.combine(today.replace(month=1, day=1), time(0, 0))
+        end_date = datetime.combine(today.replace(month=12, day=31), time(23, 59, 59))
     else:  # custom
-        start_date = request.GET.get('start_date', today2)
-        end_date = request.GET.get('end_date', today2)
+        start_date = request.GET.get('start_date', today)
+        end_date = request.GET.get('end_date', today)
         if isinstance(start_date, str):
-            start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
+            start_date = datetime.strptime(start_date, '%Y-%m-%d')
         if isinstance(end_date, str):
-            end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
+            end_date = datetime.strptime(end_date, '%Y-%m-%d')
+        # Para rangos personalizados, asumimos todo el día
+        start_date = datetime.combine(start_date.date(), time(0, 0))
+        end_date = datetime.combine(end_date.date(), time(23, 59, 59))
     
     return {'start': start_date, 'end': end_date}
 
