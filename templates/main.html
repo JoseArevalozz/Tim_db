@@ -15,6 +15,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
     <!-- En el head -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <a href="?{% for key, value in request.GET.items %}{% if key != 'project' and key != 'station' %}{{ key }}={{ value }}&{% endif %}{% endfor %}" class="btn...">
+
+    {% comment %} Macro para construir URLs sin parámetros específicos {% endcomment %}
+    {% with exclude_params="project,station" %}
+        {% with excluded_list=exclude_params.split %}
+            <a href="?{% for key, value in request.GET.items %}{% if key not in excluded_list %}{{ key }}={{ value }}&{% endif %}{% endfor %}" 
+            class="btn btn-secondary">
+                Volver
+            </a>
+        {% endwith %}
+    {% endwith %}
 </head>
 <body>
     <!-- Barra de navegación y menú lateral -->

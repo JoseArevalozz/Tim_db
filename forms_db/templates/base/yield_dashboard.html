@@ -1,0 +1,358 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <h2 class="mt-4">Dashboard de Yields por Proyecto</h2>
+    
+    <!-- Filtros Superior -->
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div>
+                <i class="fas fa-filter me-1"></i>
+                Filtros
+            </div>
+            <div>
+                <a href="?{% for key, value in request.GET.items %}{% if key != 'download_excel' %}{{ key }}={{ value }}&{% endif %}{% endfor %}download_excel=true" 
+                   class="btn btn-success btn-sm">
+                    <i class="fas fa-file-excel"></i> Exportar Excel
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!-- Selector de Periodo -->
+                <div class="col-md-6">
+                    <div class="btn-group w-100 mb-3">
+                        <a href="?{% if selected_project %}project={{ selected_project }}&{% endif %}report_type=day" 
+                           class="btn {% if report_type == 'day' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                            Día
+                        </a>
+                        <a href="?{% if selected_project %}project={{ selected_project }}&{% endif %}report_type=week" 
+                           class="btn {% if report_type == 'week' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                            Semana
+                        </a>
+                        <a href="?{% if selected_project %}project={{ selected_project }}&{% endif %}report_type=month" 
+                           class="btn {% if report_type == 'month' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                            Mes
+                        </a>
+                        <a href="?{% if selected_project %}project={{ selected_project }}&{% endif %}report_type=year" 
+                           class="btn {% if report_type == 'year' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                            Año
+                        </a>
+                        <button class="btn {% if report_type == 'custom' %}btn-primary{% else %}btn-outline-primary{% endif %}" 
+                                data-bs-toggle="modal" data-bs-target="#dateRangeModal">
+                            Personalizado
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Filtros adicionales -->
+                <div class="col-md-6">
+                    <form method="get" class="form-inline">
+                        <input type="hidden" name="report_type" value="{{ report_type }}">
+                        <input type="hidden" name="start_date" value="{{ start_date }}">
+                        <input type="hidden" name="end_date" value="{{ end_date }}">
+                        {% if selected_station %}
+                        <input type="hidden" name="station" value="{{ selected_station }}">
+                        {% endif %}
+                        
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="projectSelect">Proyecto</label>
+                            <select class="form-select" id="projectSelect" name="project" onchange="this.form.submit()">
+                                <option value="">Todos los proyectos</option>
+                                {% for project in available_projects %}
+                                <option value="{{ project }}" {% if selected_project == project %}selected{% endif %}>{{ project }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        {% if selected_project %}
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" id="ndf_only" name="ndf_only" 
+                                   value="true" {% if show_ndf_only %}checked{% endif %}
+                                   onchange="this.form.submit()">
+                            <label class="form-check-label" for="ndf_only">
+                                Mostrar solo NDF
+                            </label>
+                        </div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+            
+            <div class="alert alert-info mt-2 mb-0">
+                <i class="fas fa-calendar-alt me-1"></i>
+                Mostrando datos del <strong>{{ start_date }}</strong> al <strong>{{ end_date }}</strong>
+                {% if selected_project %}
+                <span class="badge bg-primary ms-2">Proyecto: {{ selected_project }}</span>
+                {% endif %}
+                {% if selected_station %}
+                <span class="badge bg-secondary ms-2">Estación: {{ selected_station }}</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    {% if has_data %}
+        <!-- Resumen Rápido -->
+        {% if first_project %}
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card text-white bg-primary h-100">
+                    <div class="card-body text-center">
+                        <h6>Yield Global</h6>
+                        <h2>{{ first_project.yield_pct }}%</h2>            
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-success h-100">
+                    <div class="card-body text-center">
+                        <h6>Pruebas Pasadas</h6>
+                        <h2>{{ first_project.passed }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-danger h-100">
+                    <div class="card-body text-center">
+                        <h6>Pruebas Fallidas</h6>
+                        <h2>{{ first_project.failed }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-info h-100">
+                    <div class="card-body text-center">
+                        <h6>Total Pruebas</h6>
+                        <h2>{{ first_project.total_tests }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Gráfica principal de yield por proyecto -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-bar me-1"></i>
+                Yield por Proyecto
+            </div>
+            <div class="card-body">
+                {% if charts.projects_yield %}
+                    {{ charts.projects_yield|safe }}
+                {% elif chart_error %}
+                    <div class="alert alert-danger">Error al generar gráfica: {{ chart_error }}</div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Detalles del proyecto seleccionado -->
+        {% if selected_project and project_data %}
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fas fa-project-diagram me-1"></i>
+                    Detalles del Proyecto: <strong>{{ selected_project }}</strong>
+                </div>
+                <div>
+                    <a href="?{% for key, value in request.GET.items %}{% if key != 'project' and key != 'station' %}{{ key }}={{ value }}&{% endif %}{% endfor %}" 
+                       class="btn btn-sm btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Volver a todos los proyectos
+                    </a>
+                </div>
+            </div>
+            
+            <div class="card-body">
+                <!-- Selector de Estaciones -->
+                {% if project_data.station_data %}
+                <div class="mb-4">
+                    <h5>Filtrar por Estación</h5>
+                    <form method="get" class="form-inline">
+                        <input type="hidden" name="project" value="{{ selected_project }}">
+                        <input type="hidden" name="report_type" value="{{ report_type }}">
+                        <input type="hidden" name="start_date" value="{{ start_date }}">
+                        <input type="hidden" name="end_date" value="{{ end_date }}">
+                        {% if show_ndf_only %}
+                        <input type="hidden" name="ndf_only" value="true">
+                        {% endif %}
+                        
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="stationSelect">Estación</label>
+                            <select class="form-select" id="stationSelect" name="station" onchange="this.form.submit()">
+                                <option value="">Todas las estaciones</option>
+                                {% for station, data in project_data.station_data.items %}
+                                <option value="{{ station }}" {% if selected_station == station %}selected{% endif %}>
+                                    {{ station }} ({{ data.yield }}%)
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                {% endif %}
+                
+                <!-- Resumen del proyecto -->
+                <div class="row mb-4">
+                    <div class="col-md-2">
+                        <div class="card bg-light h-100">
+                            <div class="card-body text-center">
+                                <h6>Yield</h6>
+                                <h4>{{ project_data.yield_pct }}%</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card bg-light h-100">
+                            <div class="card-body text-center">
+                                <h6>Pasadas</h6>
+                                <h4>{{ project_data.passed }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card bg-light h-100">
+                            <div class="card-body text-center">
+                                <h6>Fallidas</h6>
+                                <h4>{{ project_data.failed }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card bg-light h-100">
+                            <div class="card-body text-center">
+                                <h6>NDF</h6>
+                                <h4>{{ project_data.ndf_count }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card bg-light h-100">
+                            <div class="card-body text-center">
+                                <h6>Material</h6>
+                                <h4>{{ project_data.material_count }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card bg-light h-100">
+                            <div class="card-body text-center">
+                                <h6>Trabajo</h6>
+                                <h4>{{ project_data.workmanship_count }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gráfica de yield por estación -->
+                {% if charts.project_stations %}
+                <div class="mb-4">
+                    <h5>Yield por Estación</h5>
+                    {{ charts.project_stations|safe }}
+                </div>
+                {% endif %}
+                
+                <!-- Mensajes de error -->
+                <div class="mb-4">
+                    <h5>
+                        Mensajes de Error más Comunes
+                        {% if selected_station %}
+                            <span class="badge bg-secondary ms-2">Filtrado por estación: {{ selected_station }}</span>
+                            <a href="?{% for key, value in request.GET.items %}{% if key != 'station' %}{{ key }}={{ value }}&{% endif %}{% endfor %}" 
+                               class="btn btn-sm btn-outline-secondary ms-2">
+                                <i class="fas fa-times"></i> Quitar filtro
+                            </a>
+                        {% endif %}
+                    </h5>
+                    
+                    {% if project_data.error_messages %}
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Mensaje de Error</th>
+                                        <th>Cantidad</th>
+                                        <th>Categoría</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for error in project_data.error_messages %}
+                                    <tr>
+                                        <td>{{ error.id_er__message|default:"Sin mensaje" }}</td>
+                                        <td>{{ error.count }}</td>
+                                        <td>
+                                            <span class="badge 
+                                                {% if error.category == 'NDF' %}bg-info
+                                                {% elif error.category == 'Material' %}bg-danger
+                                                {% elif error.category == 'Workmanship' %}bg-warning
+                                                {% else %}bg-secondary{% endif %}">
+                                                {{ error.category|default:"Desconocida" }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-warning">
+                            No se encontraron mensajes de error
+                            {% if selected_station %}para la estación {{ selected_station }}{% endif %}
+                            en el período seleccionado.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% else %}
+        <div class="alert alert-warning">
+            No se encontraron datos para el período seleccionado.
+            <a href="?report_type={{ report_type }}" class="btn btn-sm btn-primary ms-2">
+                Recargar
+            </a>
+        </div>
+    {% endif %}
+</div>
+
+<!-- Modal para rango de fechas personalizado -->
+<div class="modal fade" id="dateRangeModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Seleccionar Rango Personalizado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="get">
+                <input type="hidden" name="report_type" value="custom">
+                {% if selected_project %}
+                <input type="hidden" name="project" value="{{ selected_project }}">
+                {% endif %}
+                {% if selected_station %}
+                <input type="hidden" name="station" value="{{ selected_station }}">
+                {% endif %}
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="custom_start_date" class="form-label">Fecha Inicio</label>
+                        <input type="date" class="form-control" id="custom_start_date" 
+                               name="start_date" value="{{ start_date }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="custom_end_date" class="form-label">Fecha Fin</label>
+                        <input type="date" class="form-control" id="custom_end_date" 
+                               name="end_date" value="{{ end_date }}" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Aplicar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Script básico para Plotly -->
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+{% endblock %}

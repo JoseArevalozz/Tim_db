@@ -34,5 +34,6 @@ urlpatterns = [
     path('corrective-maintenance/<str:pn_sp>/<int:maintenance_id>/', views.correctiveMaintenanceForm, name='corrective_maintenance_form'),
     path('manual-failure-registration/', views.manual_failure_registration, name='manual_failure_registration'),
     path('weekly-failure-report/', views.weekly_failure_report, name='weekly_failure_report'),
+    path('yield-dashboard/', views.project_yield_dashboard, name='yield_dashboard'),
 
 ]

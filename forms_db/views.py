@@ -4,24 +4,29 @@ import xlwt
 import xlsxwriter
 import plotly.express as px
 import plotly.graph_objects as go
+from openpyxl import Workbook
+from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
+from openpyxl.utils import get_column_letter
 from plotly.offline import plot
 from io import StringIO
 from io import BytesIO
 from forms_db.module import WriteToExcel
 from datetime import date, datetime, timedelta, time
-from django.db import transaction
+from django.views.decorators.http import require_GET
+from django.db import transaction, models
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count, Q
+from django.db.models import Count, Q, F
 from django.shortcuts import get_object_or_404, redirect
 from django.utils import timezone
 from django.core.paginator import Paginator
 from .forms import EmployeesForm, UutForm, FailureForm, BoomForm, RejectedForm, ErrorMessageForm, StationForm, MaintenanceForm, SpareForm, ReleaseForm, CorrectiveMaintenanceForm, ManualFailureRegistrationForm
 from .models import Uut, Employes, Failures, Station, ErrorMessages, Booms, Rejected, Release, Maintenance, SparePart, TestHistory  
+from django.views.decorators.csrf import csrf_exempt
 
 @login_required(login_url='login')
 def home(request):
@@ -1464,3 +1469,519 @@ def create_charts(report_data, report_type):
     charts['station_tests'] = plot(fig4, output_type='div')
     
     return charts
+
+def get_query_string_excluding(request, params_to_exclude):
+    """
+    Construye un query string excluyendo parámetros específicos
+    """
+    params = []
+    exclude_list = params_to_exclude.split(',') if params_to_exclude else []
+    
+    for key, value in request.GET.items():
+        if key not in exclude_list and value:
+            params.append(f"{key}={value}")
+    
+    return '&'.join(params)
+
+@login_required(login_url='login')
+def project_yield_dashboard(request):
+    try:
+        # Autenticación y permisos
+        try:
+            employe = Employes.objects.get(employeeNumber=request.user)
+        except Employes.DoesNotExist:
+            return HttpResponse("Usuario no tiene perfil de empleado", status=403)
+        
+        # Manejar descarga Excel
+        if 'download_excel' in request.GET:
+            return generate_yield_excel_report(request, employe)
+        
+        # Configuración básica
+        is_supervisor = employe.privileges.endswith('S')
+        available_projects = get_available_projects(employe)
+        report_type = request.GET.get('report_type', 'week')
+        date_range = get_date_range(report_type, request)
+        
+        # Parámetros GET
+        selected_project = request.GET.get('project')
+        selected_station = request.GET.get('station')
+        show_ndf_only = request.GET.get('ndf_only', 'false') == 'true'
+        
+        # Generar datos
+        dashboard_data = generate_dashboard_data(
+            available_projects,
+            date_range['start'],
+            date_range['end'],
+            selected_project,
+            selected_station,
+            show_ndf_only
+        )
+        
+        # Verificar si hay datos
+        has_data = any(data['total_tests'] > 0 for data in dashboard_data['all_projects'].values())
+        
+        # Construir contexto
+        context = {
+            'employe': employe,
+            'is_supervisor': is_supervisor,
+            'available_projects': available_projects,
+            'selected_project': selected_project,
+            'selected_station': selected_station,
+            'show_ndf_only': show_ndf_only,
+            'report_type': report_type,
+            'start_date': date_range['start'].strftime('%Y-%m-%d'),
+            'end_date': date_range['end'].strftime('%Y-%m-%d'),
+            'has_data': has_data,
+            'request': request
+        }
+        
+        if has_data:
+            context['dashboard_data'] = dashboard_data
+            
+            # Obtener el primer proyecto para el resumen
+            if dashboard_data['all_projects']:
+                first_project_key = next(iter(dashboard_data['all_projects']))
+                context['first_project'] = dashboard_data['all_projects'][first_project_key]
+            
+            # Obtener datos del proyecto seleccionado
+            if selected_project and selected_project in dashboard_data['all_projects']:
+                context['project_data'] = dashboard_data['all_projects'][selected_project]
+            
+            # Generar gráficas
+            try:
+                context['charts'] = create_interactive_charts(
+                    dashboard_data, 
+                    report_type, 
+                    selected_project, 
+                    selected_station
+                )
+            except Exception as e:
+                print(f"Error creating charts: {str(e)}")
+                context['chart_error'] = str(e)
+        
+        return render(request, 'base/yield_dashboard.html', context)
+
+    except Exception as e:
+        print(f"Error in view: {str(e)}")
+        return HttpResponse(f"Error interno del servidor: {str(e)}", status=500)
+
+
+def generate_dashboard_data(projects, start_date, end_date, selected_project=None, selected_station=None, show_ndf_only=False):
+    all_projects_data = {}
+    
+    for project in projects:
+        try:
+            # Obtener datos de pruebas
+            test_history = TestHistory.objects.filter(
+                uut__pn_b__project=project,
+                test_date__gte=start_date,
+                test_date__lt=end_date
+            )
+            
+            # Obtener datos de fallas
+            failures = Failures.objects.filter(
+                sn_f__pn_b__project=project,
+                failureDate__gte=start_date,
+                failureDate__lt=end_date
+            )
+            
+            # Aplicar filtros adicionales
+            if selected_project == project:
+                if selected_station:
+                    test_history = test_history.filter(station__stationName=selected_station)
+                    failures = failures.filter(id_s__stationName=selected_station)
+                
+                if show_ndf_only:
+                    failures = failures.filter(rootCauseCategory='NDF')
+            
+            # Cálculos básicos
+            total_tests = test_history.count()
+            passed = test_history.filter(status=True).count()
+            failed = test_history.filter(status=False).count()
+            
+            # Categorías de falla
+            ndf_count = failures.filter(rootCauseCategory='NDF').count()
+            material_count = failures.filter(rootCauseCategory='Material').count()
+            workmanship_count = failures.filter(rootCauseCategory='Workmanship').count()
+            operator_count = failures.filter(rootCauseCategory='Operador').count()
+            real_failures = material_count + workmanship_count + operator_count
+            
+            # Porcentajes
+            yield_pct = round((passed / total_tests * 100), 2) if total_tests > 0 else 0
+            failure_pct = round((failed / total_tests * 100), 2) if total_tests > 0 else 0
+            ndf_pct = round((ndf_count / total_tests * 100), 2) if total_tests > 0 else 0
+            real_failure_pct = round((real_failures / total_tests * 100), 2) if total_tests > 0 else 0
+
+            # Pruebas por estación
+            station_data = {}
+            stations = Station.objects.filter(stationProject=project)
+            
+            for station in stations:
+                try:
+                    station_tests = test_history.filter(station=station)
+                    station_total = station_tests.count()
+                    station_passed = station_tests.filter(status=True).count()
+                    station_yield = round((station_passed / station_total * 100), 2) if station_total > 0 else 0
+                    
+                    station_data[station.stationName] = {
+                        'total': station_total,
+                        'yield': station_yield
+                    }
+                except Exception as e:
+                    continue
+
+            # Mensajes de error (con filtro de estación si aplica)
+            error_messages = []
+            try:
+                filtered_failures = failures
+                if selected_project == project:
+                    if selected_station:
+                        filtered_failures = filtered_failures.filter(id_s__stationName=selected_station)
+                    if show_ndf_only:
+                        filtered_failures = filtered_failures.filter(rootCauseCategory='NDF')
+            
+                error_messages = list(filtered_failures.values(
+                    'id_er__message',
+                    'rootCauseCategory'
+                ).annotate(
+                    count=models.Count('id'),
+                    category=models.F('rootCauseCategory')
+                ).order_by('-count')[:10])
+            except Exception as e:
+                print(f"Error obteniendo mensajes de error: {str(e)}")
+                error_messages = []
+
+            # Construir datos del proyecto
+            project_data = {
+                'total_tests': total_tests,
+                'passed': passed,
+                'failed': failed,
+                'yield_pct': yield_pct,
+                'failure_pct': failure_pct,
+                'ndf_count': ndf_count,
+                'ndf_pct': ndf_pct,
+                'real_failures': real_failures,
+                'real_failure_pct': real_failure_pct,
+                'material_count': material_count,
+                'workmanship_count': workmanship_count,
+                'operator_count': operator_count,
+                'station_data': station_data,
+                'error_messages': error_messages,
+                'start_date': start_date,
+                'end_date': end_date,
+            }
+            
+            all_projects_data[project] = project_data
+
+        except Exception as e:
+            all_projects_data[project] = {
+                'error': str(e),
+                'total_tests': 0,
+                'passed': 0,
+                'failed': 0,
+                'yield_pct': 0,
+                'failure_pct': 0,
+                'ndf_count': 0,
+                'ndf_pct': 0,
+                'real_failures': 0,
+                'real_failure_pct': 0,
+                'material_count': 0,
+                'workmanship_count': 0,
+                'operator_count': 0,
+                'station_data': {},
+                'error_messages': [],
+                'start_date': start_date,
+                'end_date': end_date,
+            }
+    
+    return {
+        'all_projects': all_projects_data,
+        'selected_project': selected_project,
+        'selected_station': selected_station,
+        'show_ndf_only': show_ndf_only,
+        'start_date': start_date,
+        'end_date': end_date,
+    }
+
+
+def create_interactive_charts(dashboard_data, report_type, selected_project=None, selected_station=None):
+    charts = {}
+    
+    # 1. Gráfica de yield por proyecto
+    fig1 = go.Figure()
+    projects_data = dashboard_data['all_projects']
+    
+    if any(data['total_tests'] > 0 for data in projects_data.values()):
+        for project, data in projects_data.items():
+            fig1.add_trace(go.Bar(
+                x=[project],
+                y=[data['yield_pct']],
+                name=project,
+                customdata=[project],
+                hovertemplate="<b>%{customdata}</b><br>Yield: %{y:.2f}%<extra></extra>"
+            ))
+    else:
+        fig1.add_annotation(text="No hay datos disponibles",
+                          xref="paper", yref="paper",
+                          x=0.5, y=0.5, showarrow=False)
+    
+    fig1.update_layout(
+        title="Yield por Proyecto",
+        xaxis_title="Proyecto",
+        yaxis_title="Yield (%)",
+        hovermode="closest",
+        clickmode='event+select'
+    )
+    charts['projects_yield'] = plot(fig1, output_type='div', include_plotlyjs=False)
+    
+    # 2. Gráfica de yield por estación (solo si hay proyecto seleccionado)
+    if selected_project and selected_project in projects_data:
+        project_data = projects_data[selected_project]
+        fig2 = go.Figure()
+        
+        if project_data['station_data']:
+            for station, data in project_data['station_data'].items():
+                # Obtener datos reales para el tooltip
+                tests = TestHistory.objects.filter(
+                    uut__pn_b__project=selected_project,
+                    station__stationName=station,
+                    test_date__gte=dashboard_data['start_date'],
+                    test_date__lt=dashboard_data['end_date']
+                )
+                total = tests.count()
+                passed = tests.filter(status=True).count()
+                failed = total - passed
+                
+                fig2.add_trace(go.Bar(
+                    x=[station],
+                    y=[data['yield']],
+                    name=station,
+                    customdata=[station],
+                    hovertemplate=(
+                        "<b>%{customdata}</b><br>" +
+                        "Yield: %{y:.2f}%<br>" +
+                        f"Total: {total}<br>" +
+                        f"Pasadas: {passed}<br>" +
+                        f"Fallidas: {failed}" +
+                        "<extra></extra>"
+                    )
+                ))
+            
+            fig2.update_layout(
+                title=f"Yield por Estación - {selected_project}",
+                xaxis_title="Estación",
+                yaxis_title="Yield (%)",
+                hovermode="closest",
+                clickmode='event+select'
+            )
+            charts['project_stations'] = plot(fig2, output_type='div', include_plotlyjs=False)
+    
+    return charts
+
+
+def generate_yield_excel_report(request, employe):
+    # Obtener parámetros igual que en la vista principal
+    available_projects = get_available_projects(employe)
+    report_type = request.GET.get('report_type', 'week')
+    date_range = get_date_range(report_type, request)
+    selected_project = request.GET.get('project')
+    selected_station = request.GET.get('station')
+    show_ndf_only = request.GET.get('ndf_only', 'false') == 'true'
+    
+    # Generar los datos
+    dashboard_data = generate_dashboard_data(
+        available_projects,
+        date_range['start'],
+        date_range['end'],
+        selected_project,
+        selected_station,
+        show_ndf_only
+    )
+    
+    # Crear el libro de Excel
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    filename = f"yield_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx"
+    response['Content-Disposition'] = f'attachment; filename={filename}'
+    
+    wb = Workbook()
+    
+    # Estilos
+    header_font = Font(bold=True, color="FFFFFF")
+    header_fill = PatternFill(start_color="4F81BD", end_color="4F81BD", fill_type="solid")
+    header_alignment = Alignment(horizontal="center", vertical="center")
+    thin_border = Border(left=Side(style='thin'), 
+                        right=Side(style='thin'), 
+                        top=Side(style='thin'), 
+                        bottom=Side(style='thin'))
+    
+    # Hoja 1: Resumen General
+    ws_summary = wb.active
+    ws_summary.title = "Resumen General"
+    
+    # Encabezados
+    headers = ["Proyecto", "Total Pruebas", "Pass", "Fail", "Yield (%)"]
+    
+    for col_num, header in enumerate(headers, 1):
+        col_letter = get_column_letter(col_num)
+        ws_summary[f"{col_letter}1"] = header
+        ws_summary[f"{col_letter}1"].font = header_font
+        ws_summary[f"{col_letter}1"].fill = header_fill
+        ws_summary[f"{col_letter}1"].alignment = header_alignment
+        ws_summary[f"{col_letter}1"].border = thin_border
+    
+    # Datos
+    for row_num, (project, data) in enumerate(dashboard_data['all_projects'].items(), 2):
+        ws_summary[f"A{row_num}"] = project
+        ws_summary[f"B{row_num}"] = data['total_tests']
+        ws_summary[f"C{row_num}"] = data['passed']
+        ws_summary[f"D{row_num}"] = data['failed']
+        ws_summary[f"E{row_num}"] = data['yield_pct'] / 100  # Formato porcentaje
+        
+        # Formato de porcentaje para yield
+        ws_summary[f"E{row_num}"].number_format = '0.00%'
+    
+    # Ajustar anchos de columna
+    for col in ws_summary.columns:
+        max_length = 0
+        column = col[0].column_letter
+        for cell in col:
+            try:
+                if len(str(cell.value)) > max_length:
+                    max_length = len(str(cell.value))
+            except:
+                pass
+        adjusted_width = (max_length + 2) * 1.2
+        ws_summary.column_dimensions[column].width = adjusted_width
+    
+    # Estilos mejorados
+    header_fill = PatternFill(start_color="4F81BD", end_color="4F81BD", fill_type="solid")
+    error_fill = PatternFill(start_color="C00000", end_color="C00000", fill_type="solid")
+    even_row_fill = PatternFill(start_color="F2F2F2", end_color="F2F2F2", fill_type="solid")
+    
+    for project, data in dashboard_data['all_projects'].items():
+        ws_project = wb.create_sheet(title=project[:31])
+        
+        # Encabezado principal
+        ws_project.merge_cells('A1:E1')
+        ws_project['A1'] = f"Reporte de Yield - {project}"
+        ws_project['A1'].font = Font(bold=True, size=14)
+        ws_project['A1'].alignment = Alignment(horizontal='center')
+        
+        # Yield por Estación
+        ws_project.append(['Yield por Estación'])
+        ws_project.merge_cells(f'A{ws_project.max_row}:E{ws_project.max_row}')
+        
+        headers = ["Estación", "Total Pruebas", "Pasadas", "Fallidas", "Yield (%)"]
+        ws_project.append(headers)
+        
+        # Aplicar estilo a encabezados
+        for col in range(1, 6):
+            cell = ws_project.cell(row=3, column=col)
+            cell.fill = header_fill
+            cell.font = Font(color="FFFFFF", bold=True)
+            cell.alignment = Alignment(horizontal='center')
+        
+        # Datos de estaciones
+        row_num = 4
+        for station, station_data in data['station_data'].items():
+            # Obtener datos reales
+            tests = TestHistory.objects.filter(
+                uut__pn_b__project=project,
+                station__stationName=station,
+                test_date__gte=date_range['start'],
+                test_date__lt=date_range['end']
+            )
+            total = tests.count()
+            passed = tests.filter(status=True).count()
+            failed = total - passed
+            yield_pct = (passed / total) if total > 0 else 0
+            
+            ws_project.append([
+                station,
+                total,
+                passed,
+                failed,
+                yield_pct
+            ])
+            
+            # Formato de porcentaje
+            ws_project[f'E{row_num}'].number_format = '0.00%'
+            
+            # Autoajustar ancho basado en contenido
+            for col in range(1, 6):
+                cell = ws_project.cell(row=row_num, column=col)
+                max_length = len(str(cell.value)) + 2
+                col_letter = get_column_letter(col)
+                if ws_project.column_dimensions[col_letter].width < max_length:
+                    ws_project.column_dimensions[col_letter].width = max_length * 1.2
+            
+            row_num += 1
+        
+        # Mensajes de Error Globales
+        ws_project.append([])
+        ws_project.append(['Mensajes de Error Globales'])
+        ws_project.merge_cells(f'A{ws_project.max_row}:C{ws_project.max_row}')
+        
+        error_headers = ["Mensaje", "Cantidad", "Categoría"]
+        ws_project.append(error_headers)
+        
+        # Estilo encabezados de error
+        for col in range(1, 4):
+            cell = ws_project.cell(row=ws_project.max_row, column=col)
+            cell.fill = error_fill
+            cell.font = Font(color="FFFFFF", bold=True)
+        
+        # Datos de errores
+        for error in data['error_messages']:
+            ws_project.append([
+                error.get('id_er__message', 'Sin mensaje'),
+                error.get('count', 0),
+                error.get('category', 'Desconocida')
+            ])
+        
+        # Mensajes de Error por Estación
+        for station in data['station_data']:
+            errors = Failures.objects.filter(
+                sn_f__pn_b__project=project,
+                id_s__stationName=station,
+                failureDate__gte=date_range['start'],
+                failureDate__lt=date_range['end']
+            )
+            
+            if dashboard_data['show_ndf_only']:
+                errors = errors.filter(rootCauseCategory='NDF')
+            
+            station_errors = list(errors.values(
+                'id_er__message',
+                'rootCauseCategory'
+            ).annotate(
+                count=models.Count('id'),
+                category=models.F('rootCauseCategory')
+            ).order_by('-count')[:10])
+            
+            if station_errors:
+                ws_project.append([])
+                ws_project.append([f'Mensajes de Error - Estación: {station}'])
+                ws_project.merge_cells(f'A{ws_project.max_row}:C{ws_project.max_row}')
+                
+                ws_project.append(error_headers)
+                
+                # Estilo encabezados
+                for col in range(1, 4):
+                    cell = ws_project.cell(row=ws_project.max_row, column=col)
+                    cell.fill = error_fill
+                    cell.font = Font(color="FFFFFF", bold=True)
+                
+                for error in station_errors:
+                    ws_project.append([
+                        error.get('id_er__message', 'Sin mensaje'),
+                        error.get('count', 0),
+                        error.get('category', 'Desconocida')
+                    ])
+    
+    # Eliminar hoja vacía inicial
+    if 'Sheet' in wb.sheetnames:
+        wb.remove(wb['Sheet'])
+    
+    wb.save(response)
+    return response
