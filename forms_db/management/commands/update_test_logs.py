@@ -23,6 +23,7 @@ class Command(BaseCommand):
             "10.12.199.27": "FFT-07",
             "10.12.199.32": "FFT-08",
             "10.12.199.29": "FFT-09",
+            "10.12.199.37": "FFT-11",
             "10.12.199.34": "FFT-12"
             # Agrega aquí otras estaciones
         }
@@ -239,6 +240,16 @@ class Command(BaseCommand):
     def register_uut(self, log_info, is_pass):
         """Registra o actualiza una UUT en la base de datos"""
         try:
+            # Primero verificar si la UUT ya existe
+            existing_uut = Uut.objects.filter(sn=log_info['sn']).first()
+        
+            if existing_uut:
+                # Si ya existe, no modificamos su estado, solo devolvemos el objeto
+                self.stdout.write(self.style.WARNING(
+                    f'UUT existente encontrada: {log_info["sn"]}. No se modificará el estado.'
+                ))
+                return existing_uut
+
             employee = None
             if log_info['operator_id']:
                 try:
