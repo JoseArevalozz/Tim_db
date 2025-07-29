@@ -415,8 +415,7 @@ def rejectedForm(request, pk):
             employee_e=employe
         )
         
-        failure.status = False
-        failure.save()
+        Failures.objects.filter(id=pk).update(status=False)
         return redirect('showRejecteds')
     
     context = {
