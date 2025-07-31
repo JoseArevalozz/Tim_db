@@ -1344,69 +1344,102 @@ def get_date_range(report_type, request):
     return {'start': start_date, 'end': end_date}
 
 def generate_report_data(project, start_date, end_date, report_type):
-    # Obtener datos de pruebas
+    # Obtener todas las pruebas dentro del período de reporte
     test_history = TestHistory.objects.filter(
         uut__pn_b__project=project,
         test_date__gte=start_date,
         test_date__lt=end_date
-    ).select_related('uut')
+    ).select_related('uut').order_by('uut__sn', 'test_date')
     
-    # Obtener datos de fallas
-    failures = Failures.objects.filter(
-        sn_f__pn_b__project=project,
-        failureDate__gte=start_date,
-        failureDate__lt=end_date
-    )
+    # Obtener todos los SNs únicos que fueron probados en el período
+    tested_sns = test_history.values_list('uut__sn', flat=True).distinct()
     
-    # Cálculos básicos
+    # Variables para métricas (manteniendo nombres originales)
     total_tests = test_history.count()
     passed = test_history.filter(status=True).count()
     failed = test_history.filter(status=False).count()
     
-    # Categorías de falla (Operador se cuenta como NDF)
-    ndf_count = failures.filter(rootCauseCategory='NDF').count()
-    material_count = failures.filter(rootCauseCategory='Material').count()
-    workmanship_count = failures.filter(rootCauseCategory='Workmanship').count()
-    operator_count = failures.filter(rootCauseCategory='Operador').count()
+    # Diccionario para categorías de falla (manteniendo estructura original)
+    failure_counts = {
+        'Material': 0,
+        'Workmanship': 0,
+        'Operador': 0,
+        'NDF': 0
+    }
     
-    # Combinar Operador con NDF
-    ndf_count += operator_count
+    # Analizar cada SN para determinar recuperaciones
+    recovered_count = 0
+    total_failed_in_period = 0
+    
+    for sn in tested_sns:
+        # Obtener todas las pruebas del SN ordenadas por fecha
+        sn_tests = TestHistory.objects.filter(
+            uut__sn=sn
+        ).order_by('test_date')
+        
+        # Variables para seguimiento del SN
+        failed_in_period = False
+        first_fail_date = None
+        
+        for test in sn_tests:
+            if not test.status and (test.test_date >= start_date and test.test_date < end_date):
+                if not failed_in_period:  # Primera falla en el período
+                    failed_in_period = True
+                    first_fail_date = test.test_date
+                    total_failed_in_period += 1
+        
+        # Verificar si hay PASS después de la primera falla
+        if failed_in_period:
+            has_pass_after_fail = sn_tests.filter(
+                test_date__gt=first_fail_date,
+                status=True
+            ).exists()
+            if has_pass_after_fail:
+                recovered_count += 1
+    
+    # Obtener fallas para categorías (usando SNs que fallaron en el período)
+    failed_sns_in_period = test_history.filter(
+        status=False
+    ).values_list('uut__sn', flat=True).distinct()
+    
+    failures = Failures.objects.filter(
+        sn_f__sn__in=failed_sns_in_period
+    )
+    
+    # Contar categorías de falla (Operador se suma a NDF)
+    operator_count = 0
+    for failure in failures:
+        if failure.rootCauseCategory in failure_counts:
+            if failure.rootCauseCategory == 'Operador':
+                operator_count += 1
+                failure_counts['NDF'] += 1
+            else:
+                failure_counts[failure.rootCauseCategory] += 1
+    
+    # Calcular valores requeridos por el template
+    ndf_count = failure_counts['NDF']
+    material_count = failure_counts['Material']
+    workmanship_count = failure_counts['Workmanship']
+    operator_count = operator_count  # Mantener variable por si se necesita
     real_failures = material_count + workmanship_count
     
-    # Porcentajes
+    # Porcentajes (nombres originales)
     yield_pct = round((passed / total_tests * 100), 2) if total_tests > 0 else 0
     failure_pct = round((failed / total_tests * 100), 2) if total_tests > 0 else 0
     ndf_pct = round((ndf_count / total_tests * 100), 2) if total_tests > 0 else 0
     real_failure_pct = round((real_failures / total_tests * 100), 2) if total_tests > 0 else 0
+    recovery_rate = round((recovered_count / total_failed_in_period * 100), 2) if total_failed_in_period > 0 else 0
     
-    # Pruebas por estación (solo las que tienen datos)
+    # Pruebas por estación (manteniendo estructura original)
     stations = Station.objects.filter(stationProject=project)
-    station_data = {}
-    for station in stations:
-        count = test_history.filter(station=station).count()
-        if count > 0:  # Solo agregar estaciones con datos
-            station_data[station.stationName] = count
-    
-    # Calcular unidades que fallaron y luego pasaron
-    failed_sns = test_history.filter(status=False).values_list('uut__sn', flat=True).distinct()
-    recovered_count = 0
-    
-    if failed_sns:
-        # Verificar si estos SNs tienen pruebas PASS posteriores a su falla
-        for sn in failed_sns:
-            # Obtener la fecha de la primera falla para este SN
-            first_failure = test_history.filter(uut__sn=sn, status=False).order_by('test_date').first()
-            if first_failure:
-                # Verificar si hay pruebas PASS después de esta falla
-                has_pass = test_history.filter(
-                    uut__sn=sn,
-                    status=True,
-                    test_date__gt=first_failure.test_date
-                ).exists()
-                if has_pass:
-                    recovered_count += 1
+    station_data = {
+        station.stationName: test_history.filter(station=station).count()
+        for station in stations
+        if test_history.filter(station=station).exists()  # Solo estaciones con datos
+    }
     
     return {
+        # Métricas principales (nombres originales)
         'total_tests': total_tests,
         'passed': passed,
         'failed': failed,
@@ -1419,13 +1452,16 @@ def generate_report_data(project, start_date, end_date, report_type):
         'material_count': material_count,
         'workmanship_count': workmanship_count,
         'operator_count': operator_count,
+        
+        # Datos adicionales
         'station_data': station_data,
         'start_date': start_date,
         'end_date': end_date,
+        
+        # Nuevos campos para recuperación
         'recovered_count': recovered_count,
-        'recovery_rate': round((recovered_count / failed * 100), 2) if failed > 0 else 0,
+        'recovery_rate': recovery_rate,
     }
-
 def create_charts(report_data, report_type):
     charts = {}
     
@@ -1454,7 +1490,7 @@ def create_charts(report_data, report_type):
         mode="number",
         value=report_data['recovered_count'],
         number={'suffix': f" ({report_data['recovery_rate']}%)"},
-        title={'text': "Recuperados"},
+        title={'text': "Rapair Fail"},
         domain={'row': 1, 'column': 1}
     ))
     fig1.update_layout(
