@@ -1349,7 +1349,7 @@ def generate_report_data(project, start_date, end_date, report_type):
         uut__pn_b__project=project,
         test_date__gte=start_date,
         test_date__lt=end_date
-    )
+    ).select_related('uut')
     
     # Obtener datos de fallas
     failures = Failures.objects.filter(
@@ -1363,12 +1363,15 @@ def generate_report_data(project, start_date, end_date, report_type):
     passed = test_history.filter(status=True).count()
     failed = test_history.filter(status=False).count()
     
-    # Categorías de falla
+    # Categorías de falla (Operador se cuenta como NDF)
     ndf_count = failures.filter(rootCauseCategory='NDF').count()
     material_count = failures.filter(rootCauseCategory='Material').count()
     workmanship_count = failures.filter(rootCauseCategory='Workmanship').count()
     operator_count = failures.filter(rootCauseCategory='Operador').count()
-    real_failures = material_count + workmanship_count + operator_count
+    
+    # Combinar Operador con NDF
+    ndf_count += operator_count
+    real_failures = material_count + workmanship_count
     
     # Porcentajes
     yield_pct = round((passed / total_tests * 100), 2) if total_tests > 0 else 0
@@ -1376,12 +1379,32 @@ def generate_report_data(project, start_date, end_date, report_type):
     ndf_pct = round((ndf_count / total_tests * 100), 2) if total_tests > 0 else 0
     real_failure_pct = round((real_failures / total_tests * 100), 2) if total_tests > 0 else 0
     
-    # Pruebas por estación
+    # Pruebas por estación (solo las que tienen datos)
     stations = Station.objects.filter(stationProject=project)
-    station_data = {
-        station.stationName: test_history.filter(station=station).count()
-        for station in stations
-    }
+    station_data = {}
+    for station in stations:
+        count = test_history.filter(station=station).count()
+        if count > 0:  # Solo agregar estaciones con datos
+            station_data[station.stationName] = count
+    
+    # Calcular unidades que fallaron y luego pasaron
+    failed_sns = test_history.filter(status=False).values_list('uut__sn', flat=True).distinct()
+    recovered_count = 0
+    
+    if failed_sns:
+        # Verificar si estos SNs tienen pruebas PASS posteriores a su falla
+        for sn in failed_sns:
+            # Obtener la fecha de la primera falla para este SN
+            first_failure = test_history.filter(uut__sn=sn, status=False).order_by('test_date').first()
+            if first_failure:
+                # Verificar si hay pruebas PASS después de esta falla
+                has_pass = test_history.filter(
+                    uut__sn=sn,
+                    status=True,
+                    test_date__gt=first_failure.test_date
+                ).exists()
+                if has_pass:
+                    recovered_count += 1
     
     return {
         'total_tests': total_tests,
@@ -1399,12 +1422,14 @@ def generate_report_data(project, start_date, end_date, report_type):
         'station_data': station_data,
         'start_date': start_date,
         'end_date': end_date,
+        'recovered_count': recovered_count,
+        'recovery_rate': round((recovered_count / failed * 100), 2) if failed > 0 else 0,
     }
 
 def create_charts(report_data, report_type):
     charts = {}
     
-    # Gráfica 1: Resumen de pruebas
+    # Gráfica 1: Resumen de pruebas (ahora con recuperados)
     fig1 = go.Figure()
     fig1.add_trace(go.Indicator(
         mode="number",
@@ -1425,8 +1450,15 @@ def create_charts(report_data, report_type):
         title={'text': "FAIL"},
         domain={'row': 0, 'column': 2}
     ))
+    fig1.add_trace(go.Indicator(
+        mode="number",
+        value=report_data['recovered_count'],
+        number={'suffix': f" ({report_data['recovery_rate']}%)"},
+        title={'text': "Recuperados"},
+        domain={'row': 1, 'column': 1}
+    ))
     fig1.update_layout(
-        grid={'rows': 1, 'columns': 3, 'pattern': "independent"},
+        grid={'rows': 2, 'columns': 3, 'pattern': "independent"},
         title="Resumen General"
     )
     charts['summary'] = plot(fig1, output_type='div')
@@ -1441,21 +1473,20 @@ def create_charts(report_data, report_type):
     fig2.update_layout(title="Distribución de Pruebas")
     charts['test_distribution'] = plot(fig2, output_type='div')
     
-    # Gráfica 3: Categorías de falla
+    # Gráfica 3: Categorías de falla (Operador como NDF)
     fig3 = go.Figure()
     fig3.add_trace(go.Bar(
-        x=['Material', 'Workmanship', 'Operador', 'NDF'],
+        x=['Material', 'Workmanship', 'NDF'],  # Eliminado Operador
         y=[
             report_data['material_count'],
             report_data['workmanship_count'],
-            report_data['operator_count'],
-            report_data['ndf_count']
+            report_data['ndf_count']  # Incluye los operadores
         ]
     ))
     fig3.update_layout(title="Categorías de Falla")
     charts['failure_categories'] = plot(fig3, output_type='div')
     
-    # Gráfica 4: Pruebas por estación
+    # Gráfica 4: Pruebas por estación (ya filtradas en generate_report_data)
     station_names = list(report_data['station_data'].keys())
     station_counts = list(report_data['station_data'].values())
     
@@ -1468,6 +1499,7 @@ def create_charts(report_data, report_type):
     charts['station_tests'] = plot(fig4, output_type='div')
     
     return charts
+
 
 def get_query_string_excluding(request, params_to_exclude):
     """
