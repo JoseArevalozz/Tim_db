@@ -1674,7 +1674,7 @@ def generate_dashboard_data(projects, start_date, end_date, selected_project=Non
                     ).order_by('failureDate').first()
                 
                 if failure:
-                    error_msg = failure.id_er if failure.id_er else "Error no especificado"
+                    error_msg = failure.id_er.message if failure.id_er else "Error no especificado"
                     category = failure.rootCauseCategory
                     
                     # Actualizar contadores
