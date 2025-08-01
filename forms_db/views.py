@@ -1634,17 +1634,17 @@ def project_yield_dashboard(request):
 
 def generate_dashboard_data(projects, start_date, end_date, selected_project=None, selected_station=None, show_ndf_only=False):
     all_projects_data = {}
-    
+    current_time = timezone.now()
     for project in projects:
         try:
-            # Obtener todas las pruebas en el período (para cálculos generales)
+            # Obtener todas las pruebas en el período
             test_history = TestHistory.objects.filter(
                 uut__pn_b__project=project,
                 test_date__gte=start_date,
                 test_date__lt=end_date
             ).select_related('uut', 'station')
             
-            # Obtener solo las pruebas fallidas (para análisis de errores)
+            # Obtener solo las pruebas fallidas
             failed_tests = test_history.filter(status=False)
             
             # Inicializar estructuras para conteo
@@ -1656,58 +1656,71 @@ def generate_dashboard_data(projects, start_date, end_date, selected_project=Non
                 'Operador': 0
             }
             
-            # Procesar cada prueba fallida para encontrar su análisis correspondiente
+            # Procesar cada prueba fallida
             for test in failed_tests:
-                # Buscar el análisis de falla más cercano para este SN
+                # Buscar análisis de falla con margen de 1 minuto antes
                 failure = Failures.objects.filter(
                     sn_f__sn=test.uut.sn,
-                    failureDate__gte=test.test_date  # Análisis posterior a la falla
-                ).order_by('failureDate').first()  # Tomar el más cercano
+                    failureDate__range=(
+                        test.test_date - timedelta(minutes=1),  # 1 minuto antes
+                        current_time  # Hasta el momento actual
+                    )
+                ).order_by('-failureDate').first()  # Tomar el MÁS RECIENTE
+                
+                if not failure:
+                    # Si no encontramos en el rango cercano, buscar cualquier análisis para este SN
+                    failure = Failures.objects.filter(
+                        sn_f__sn=test.uut.sn
+                    ).order_by('failureDate').first()
                 
                 if failure:
-                    # Construir el mensaje de error
-                    error_msg = failure.id_er.message if failure.id_er else "Sin mensaje específico"
+                    error_msg = failure.id_er.message if failure.id_er else "Error no especificado"
                     category = failure.rootCauseCategory
                     
-                    # Actualizar contadores de categoría
+                    # Actualizar contadores
                     if category == 'Operador':
                         category_counts['NDF'] += 1
                         category_counts['Operador'] += 1
                     else:
                         category_counts[category] += 1
                     
-                    # Agregar a mensajes de error (agruparemos después)
                     error_messages.append({
-                        'message': error_msg,
+                        'id_er__message': error_msg,
+                        'count': 1,  # Cada falla cuenta como 1
                         'category': category,
                         'station': test.station.stationName if test.station else None
                     })
+                else:
+                    # Si no hay falla registrada, contar como NDF
+                    category_counts['NDF'] += 1
+                    error_messages.append({
+                        'id_er__message': "Falla no analizada",
+                        'count': 1,
+                        'category': 'NDF',
+                        'station': test.station.stationName if test.station else None
+                    })
             
-            # Agrupar mensajes de error idénticos
+            # Agrupar mensajes idénticos
             grouped_errors = {}
             for error in error_messages:
-                key = (error['message'], error['category'])
+                key = (error['id_er__message'], error['category'])
                 if key not in grouped_errors:
-                    grouped_errors[key] = {
-                        'id_er__message': error['message'],
-                        'count': 0,
-                        'category': error['category'],
-                        'stations': set()
-                    }
-                grouped_errors[key]['count'] += 1
+                    grouped_errors[key] = error.copy()
+                    grouped_errors[key]['stations'] = set()
+                else:
+                    grouped_errors[key]['count'] += 1
+                
                 if error['station']:
                     grouped_errors[key]['stations'].add(error['station'])
             
-            # Preparar datos finales de errores (ordenados por frecuencia)
-            sorted_errors = sorted(
-                grouped_errors.values(),
-                key=lambda x: x['count'],
-                reverse=True
-            )[:10]  # Limitar a los 10 más frecuentes
-            
             # Formatear estaciones para visualización
-            for error in sorted_errors:
+            sorted_errors = []
+            for error in grouped_errors.values():
                 error['stations'] = ', '.join(error['stations']) if error['stations'] else 'Varias'
+                sorted_errors.append(error)
+            
+            # Ordenar por frecuencia
+            sorted_errors.sort(key=lambda x: x['count'], reverse=True)
             
             # Cálculos básicos
             total_tests = test_history.count()
@@ -1751,7 +1764,7 @@ def generate_dashboard_data(projects, start_date, end_date, selected_project=Non
                 'workmanship_count': category_counts['Workmanship'],
                 'operator_count': category_counts['Operador'],
                 'station_data': station_data,
-                'error_messages': sorted_errors,
+                'error_messages': sorted_errors[:10],  # Top 10 mensajes
                 'start_date': start_date,
                 'end_date': end_date,
             }
