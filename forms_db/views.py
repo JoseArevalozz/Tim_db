@@ -1637,85 +1637,104 @@ def generate_dashboard_data(projects, start_date, end_date, selected_project=Non
     
     for project in projects:
         try:
-            # Obtener datos de pruebas
+            # Obtener todas las pruebas en el período (para cálculos generales)
             test_history = TestHistory.objects.filter(
                 uut__pn_b__project=project,
                 test_date__gte=start_date,
                 test_date__lt=end_date
-            )
+            ).select_related('uut', 'station')
             
-            # Obtener datos de fallas
-            failures = Failures.objects.filter(
-                sn_f__pn_b__project=project,
-                failureDate__gte=start_date,
-                failureDate__lt=end_date
-            )
+            # Obtener solo las pruebas fallidas (para análisis de errores)
+            failed_tests = test_history.filter(status=False)
             
-            # Aplicar filtros adicionales
-            if selected_project == project:
-                if selected_station:
-                    test_history = test_history.filter(station__stationName=selected_station)
-                    failures = failures.filter(id_s__stationName=selected_station)
+            # Inicializar estructuras para conteo
+            error_messages = []
+            category_counts = {
+                'Material': 0,
+                'Workmanship': 0,
+                'NDF': 0,
+                'Operador': 0
+            }
+            
+            # Procesar cada prueba fallida para encontrar su análisis correspondiente
+            for test in failed_tests:
+                # Buscar el análisis de falla más cercano para este SN
+                failure = Failures.objects.filter(
+                    sn_f__sn=test.uut.sn,
+                    failureDate__gte=test.test_date  # Análisis posterior a la falla
+                ).order_by('failureDate').first()  # Tomar el más cercano
                 
-                if show_ndf_only:
-                    failures = failures.filter(rootCauseCategory='NDF')
+                if failure:
+                    # Construir el mensaje de error
+                    error_msg = failure.id_er.message if failure.id_er else "Sin mensaje específico"
+                    category = failure.rootCauseCategory
+                    
+                    # Actualizar contadores de categoría
+                    if category == 'Operador':
+                        category_counts['NDF'] += 1
+                        category_counts['Operador'] += 1
+                    else:
+                        category_counts[category] += 1
+                    
+                    # Agregar a mensajes de error (agruparemos después)
+                    error_messages.append({
+                        'message': error_msg,
+                        'category': category,
+                        'station': test.station.stationName if test.station else None
+                    })
+            
+            # Agrupar mensajes de error idénticos
+            grouped_errors = {}
+            for error in error_messages:
+                key = (error['message'], error['category'])
+                if key not in grouped_errors:
+                    grouped_errors[key] = {
+                        'id_er__message': error['message'],
+                        'count': 0,
+                        'category': error['category'],
+                        'stations': set()
+                    }
+                grouped_errors[key]['count'] += 1
+                if error['station']:
+                    grouped_errors[key]['stations'].add(error['station'])
+            
+            # Preparar datos finales de errores (ordenados por frecuencia)
+            sorted_errors = sorted(
+                grouped_errors.values(),
+                key=lambda x: x['count'],
+                reverse=True
+            )[:10]  # Limitar a los 10 más frecuentes
+            
+            # Formatear estaciones para visualización
+            for error in sorted_errors:
+                error['stations'] = ', '.join(error['stations']) if error['stations'] else 'Varias'
             
             # Cálculos básicos
             total_tests = test_history.count()
             passed = test_history.filter(status=True).count()
-            failed = test_history.filter(status=False).count()
-            
-            # Categorías de falla
-            ndf_count = failures.filter(rootCauseCategory='NDF').count()
-            material_count = failures.filter(rootCauseCategory='Material').count()
-            workmanship_count = failures.filter(rootCauseCategory='Workmanship').count()
-            operator_count = failures.filter(rootCauseCategory='Operador').count()
-            real_failures = material_count + workmanship_count + operator_count
+            failed = failed_tests.count()
             
             # Porcentajes
             yield_pct = round((passed / total_tests * 100), 2) if total_tests > 0 else 0
             failure_pct = round((failed / total_tests * 100), 2) if total_tests > 0 else 0
-            ndf_pct = round((ndf_count / total_tests * 100), 2) if total_tests > 0 else 0
-            real_failure_pct = round((real_failures / total_tests * 100), 2) if total_tests > 0 else 0
+            ndf_pct = round((category_counts['NDF'] / total_tests * 100), 2) if total_tests > 0 else 0
+            real_failure_pct = round(
+                (category_counts['Material'] + category_counts['Workmanship']) / total_tests * 100, 2
+            ) if total_tests > 0 else 0
 
             # Pruebas por estación
             station_data = {}
             stations = Station.objects.filter(stationProject=project)
             
             for station in stations:
-                try:
-                    station_tests = test_history.filter(station=station)
-                    station_total = station_tests.count()
-                    station_passed = station_tests.filter(status=True).count()
-                    station_yield = round((station_passed / station_total * 100), 2) if station_total > 0 else 0
-                    
+                station_tests = test_history.filter(station=station)
+                station_total = station_tests.count()
+                
+                if station_total > 0:
                     station_data[station.stationName] = {
                         'total': station_total,
-                        'yield': station_yield
+                        'yield': round((station_tests.filter(status=True).count() / station_total * 100), 2)
                     }
-                except Exception as e:
-                    continue
-
-            # Mensajes de error (con filtro de estación si aplica)
-            error_messages = []
-            try:
-                filtered_failures = failures
-                if selected_project == project:
-                    if selected_station:
-                        filtered_failures = filtered_failures.filter(id_s__stationName=selected_station)
-                    if show_ndf_only:
-                        filtered_failures = filtered_failures.filter(rootCauseCategory='NDF')
-            
-                error_messages = list(filtered_failures.values(
-                    'id_er__message',
-                    'rootCauseCategory'
-                ).annotate(
-                    count=models.Count('id'),
-                    category=models.F('rootCauseCategory')
-                ).order_by('-count')[:10])
-            except Exception as e:
-                print(f"Error obteniendo mensajes de error: {str(e)}")
-                error_messages = []
 
             # Construir datos del proyecto
             project_data = {
@@ -1724,15 +1743,15 @@ def generate_dashboard_data(projects, start_date, end_date, selected_project=Non
                 'failed': failed,
                 'yield_pct': yield_pct,
                 'failure_pct': failure_pct,
-                'ndf_count': ndf_count,
+                'ndf_count': category_counts['NDF'],
                 'ndf_pct': ndf_pct,
-                'real_failures': real_failures,
+                'real_failures': category_counts['Material'] + category_counts['Workmanship'],
                 'real_failure_pct': real_failure_pct,
-                'material_count': material_count,
-                'workmanship_count': workmanship_count,
-                'operator_count': operator_count,
+                'material_count': category_counts['Material'],
+                'workmanship_count': category_counts['Workmanship'],
+                'operator_count': category_counts['Operador'],
                 'station_data': station_data,
-                'error_messages': error_messages,
+                'error_messages': sorted_errors,
                 'start_date': start_date,
                 'end_date': end_date,
             }
@@ -1740,6 +1759,7 @@ def generate_dashboard_data(projects, start_date, end_date, selected_project=Non
             all_projects_data[project] = project_data
 
         except Exception as e:
+            print(f"Error procesando proyecto {project}: {str(e)}")
             all_projects_data[project] = {
                 'error': str(e),
                 'total_tests': 0,
@@ -1768,7 +1788,6 @@ def generate_dashboard_data(projects, start_date, end_date, selected_project=Non
         'start_date': start_date,
         'end_date': end_date,
     }
-
 
 def create_interactive_charts(dashboard_data, report_type, selected_project=None, selected_station=None):
     charts = {}
