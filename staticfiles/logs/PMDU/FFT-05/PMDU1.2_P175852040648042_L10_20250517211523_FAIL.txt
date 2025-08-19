@@ -1,0 +1,570 @@
+[2025/05/17 21:17:04] ===========================================================
+[2025/05/17 21:17:04] Foxconn Diag Program Rev: PROD054
+[2025/05/17 21:17:04] Description: PMDU1.2 PMDU L10 Test
+[2025/05/17 21:17:04] Support Package Version: 1.1.8.16 & 1.1.29.27
+[2025/05/17 21:17:04] Factory: GDL
+[2025/05/17 21:17:04] ===========================================================
+[2025/05/17 21:17:04] PPID: P175852040648042
+[2025/05/17 21:17:04] Part Number: M1131758-002
+[2025/05/17 21:17:04] Asset Tag: 24143689
+[2025/05/17 21:17:04] Station ID: PMDU-FFT002
+[2025/05/17 21:17:04] Operator ID: 134309
+[2025/05/17 21:17:04] ===========================================================
+[2025/05/17 21:17:04] [START] 2025-05-17 21:17:04
+[2025/05/17 21:17:04] ===========================================================
+[2025/05/17 21:17:04] Get SSN current stage Pass
+[2025/05/17 21:17:04] Current Stage: FFT
+[2025/05/17 21:17:04] Check SSN current stage Pass
+[2025/05/17 21:17:04] Get SSN data Pass
+[2025/05/17 21:17:04] Station ID: FFT
+[2025/05/17 21:17:04] Product Version: M1131758-002
+[2025/05/17 21:17:04] Product AssetTag: 24143689
+[2025/05/17 21:17:04] Product Build: K
+[2025/05/17 21:17:04] Board Serial: B579444960552042
+[2025/05/17 21:17:04] Check SSN data Pass
+[2025/05/17 21:17:04] ===========================================================
+[2025/05/17 21:17:06] 48U/42U connector has been checked: y
+[2025/05/17 21:17:06] ======================================
+[2025/05/17 21:17:06] [M2010 L10 48U Test]
+[2025/05/17 21:17:06] ======================================
+[2025/05/17 21:17:06] Set 48U configuration Pass
+[2025/05/17 21:17:09] ======================================
+[2025/05/17 21:17:09] [AC Source 61830 Initialization]
+[2025/05/17 21:17:09] ======================================
+[2025/05/17 21:17:09] AC Source Write >>> '*IDN?'
+[2025/05/17 21:17:09] AC Source Return >>> 'Chroma ATE,61512,000948,01.50 Nov  6 2014'
+[2025/05/17 21:17:09] AC Source Write >>> 'INST:PHASe?'
+[2025/05/17 21:17:09] AC Source Return >>> 'THREE'
+[2025/05/17 21:17:09] Check three phase mode Pass
+[2025/05/17 21:17:09] AC Source Write >>> 'INST:EDIT ALL'
+[2025/05/17 21:17:09] AC Source Write >>> 'VOLTage:RANGe HIGH'
+[2025/05/17 21:17:09] AC Source Write >>> 'SYSTem:ERRor?'
+[2025/05/17 21:17:09] AC Source Return >>> '0,"No error"'
+[2025/05/17 21:17:09] AC Source Write >>> 'VOLTage:RANGe?'
+[2025/05/17 21:17:09] AC Source Return >>> 'HIGH'
+[2025/05/17 21:17:09] Set 'VOLTage:RANGe HIGH' Pass
+[2025/05/17 21:17:09] AC Source Write >>> 'VOLTage:LIMit:AC 300'
+[2025/05/17 21:17:09] AC Source Write >>> 'SYSTem:ERRor?'
+[2025/05/17 21:17:09] AC Source Return >>> '0,"No error"'
+[2025/05/17 21:17:09] AC Source Write >>> 'VOLTage:LIMit:AC?'
+[2025/05/17 21:17:09] AC Source Return >>> '300.0'
+[2025/05/17 21:17:09] Set 'VOLTage:LIMit:AC 300' Pass
+[2025/05/17 21:17:09] AC Source Write >>> 'CURRent:RANGe HIGH'
+[2025/05/17 21:17:09] AC Source Write >>> 'VOLTage:RANGe?'
+[2025/05/17 21:17:09] AC Source Return >>> 'HIGH'
+[2025/05/17 21:17:09] Set 'VOLTage:RANGe HIGH' Pass
+[2025/05/17 21:17:09] AC Source Write >>> 'FREQuency 60'
+[2025/05/17 21:17:09] AC Source Write >>> 'FREQuency?'
+[2025/05/17 21:17:09] AC Source Return >>> '60.00'
+[2025/05/17 21:17:09] Set 'Frequency 60' Pass
+[2025/05/17 21:17:09] AC Source Write >>> 'FUNCtion:SHAPe A'
+[2025/05/17 21:17:09] AC Source Write >>> 'FUNCtion:SHAPe:A SINE'
+[2025/05/17 21:17:09] ======================================
+[2025/05/17 21:17:09] AC Source 61830 Initialization Pass
+[2025/05/17 21:17:09] ======================================
+
+[2025/05/17 21:17:09] ======================================
+[2025/05/17 21:17:09] [AC Load 63800 Initialization]
+[2025/05/17 21:17:09] ======================================
+[2025/05/17 21:17:09] ===AC Load 1: GPIB Address 0x8 (GPIB0::1::INSTR)===
+[2025/05/17 21:17:09] AC Load 1 Write >>> '*IDN?'
+[2025/05/17 21:17:09] AC Load 1 Return >>> 'Chroma,63804,1972,1.70'
+[2025/05/17 21:17:09] AC Load 1 Write >>> 'LOAD:MODE?'
+[2025/05/17 21:17:09] AC Load 1 Return >>> 'CURR'
+[2025/05/17 21:17:09] Check constant current mode Pass
+[2025/05/17 21:17:09] AC Load 1 Write >>> 'CURR:PEAK:MAX 50'
+[2025/05/17 21:17:09] AC Load 1 Write >>> 'SYSTem:ERRor?'
+[2025/05/17 21:17:09] AC Load 1 Return >>> '0,"No error"'
+[2025/05/17 21:17:09] AC Load 1 Write >>> 'CURR:PEAK:MAX?'
+[2025/05/17 21:17:09] AC Load 1 Return >>> '50.0'
+[2025/05/17 21:17:09] Set 'CURR:PEAK:MAX 50' Pass
+[2025/05/17 21:17:09] ===AC Load 2: GPIB Address 0x28 (GPIB0::2::INSTR)===
+[2025/05/17 21:17:09] AC Load 2 Write >>> '*IDN?'
+[2025/05/17 21:17:09] AC Load 2 Return >>> 'Chroma,63804,1381,1.60'
+[2025/05/17 21:17:09] AC Load 2 Write >>> 'LOAD:MODE?'
+[2025/05/17 21:17:09] AC Load 2 Return >>> 'CURR'
+[2025/05/17 21:17:09] Check constant current mode Pass
+[2025/05/17 21:17:09] AC Load 2 Write >>> 'CURR:PEAK:MAX 50'
+[2025/05/17 21:17:09] AC Load 2 Write >>> 'SYSTem:ERRor?'
+[2025/05/17 21:17:09] AC Load 2 Return >>> '0,"No error"'
+[2025/05/17 21:17:09] AC Load 2 Write >>> 'CURR:PEAK:MAX?'
+[2025/05/17 21:17:09] AC Load 2 Return >>> '50.0'
+[2025/05/17 21:17:09] Set 'CURR:PEAK:MAX 50' Pass
+[2025/05/17 21:17:09] ===AC Load 3: GPIB Address 0x22 (GPIB0::3::INSTR)===
+[2025/05/17 21:17:09] AC Load 3 Write >>> '*IDN?'
+[2025/05/17 21:17:09] AC Load 3 Return >>> 'Chroma,63804,1974,1.70'
+[2025/05/17 21:17:09] AC Load 3 Write >>> 'LOAD:MODE?'
+[2025/05/17 21:17:09] AC Load 3 Return >>> 'CURR'
+[2025/05/17 21:17:09] Check constant current mode Pass
+[2025/05/17 21:17:09] AC Load 3 Write >>> 'CURR:PEAK:MAX 50'
+[2025/05/17 21:17:09] AC Load 3 Write >>> 'SYSTem:ERRor?'
+[2025/05/17 21:17:09] AC Load 3 Return >>> '0,"No error"'
+[2025/05/17 21:17:09] AC Load 3 Write >>> 'CURR:PEAK:MAX?'
+[2025/05/17 21:17:09] AC Load 3 Return >>> '50.0'
+[2025/05/17 21:17:09] Set 'CURR:PEAK:MAX 50' Pass
+[2025/05/17 21:17:09] ======================================
+[2025/05/17 21:17:09] AC Load 63800 Initialization Pass
+[2025/05/17 21:17:09] ======================================
+
+[2025/05/17 21:17:09] ======================================
+[2025/05/17 21:17:09] [Meter WT500 Initialization]
+[2025/05/17 21:17:09] ======================================
+[2025/05/17 21:17:09] Meter Write >>> '*IDN?'
+[2025/05/17 21:17:09] Meter Return >>> 'YOKOGAWA,760203,C3TG05062E,F1.21'
+[2025/05/17 21:17:09] Meter Write >>> 'DISPLAY:NUMERIC:NORMAL:FORMAT MATRix'
+[2025/05/17 21:17:09] Meter Write >>> 'NUMERIC:NORMAL:NUMBER 9'
+[2025/05/17 21:17:09] Meter Write >>> 'NUMERIC:NORMAL:ITEM1 U,1'
+[2025/05/17 21:17:09] Meter Write >>> 'NUMERIC:NORMAL:ITEM2 I,1'
+[2025/05/17 21:17:09] Meter Write >>> 'NUMERIC:NORMAL:ITEM3 P,1'
+[2025/05/17 21:17:09] Meter Write >>> 'NUMERIC:NORMAL:ITEM4 U,2'
+[2025/05/17 21:17:09] Meter Write >>> 'NUMERIC:NORMAL:ITEM5 I,2'
+[2025/05/17 21:17:09] Meter Write >>> 'NUMERIC:NORMAL:ITEM6 P,2'
+[2025/05/17 21:17:09] Meter Write >>> 'NUMERIC:NORMAL:ITEM7 U,3'
+[2025/05/17 21:17:09] Meter Write >>> 'NUMERIC:NORMAL:ITEM8 I,3'
+[2025/05/17 21:17:09] Meter Write >>> 'NUMERIC:NORMAL:ITEM9 P,3'
+[2025/05/17 21:17:09] Meter Write >>> 'MEASure:AVERaging:COUNt 16'
+[2025/05/17 21:17:09] Meter Write >>> 'MEASure:AVERaging:STATE ON'
+[2025/05/17 21:17:09] Meter Write >>> 'RATE 200MS'
+[2025/05/17 21:17:09] Meter Write >>> 'INPUT:VOLTAGE:RANGE 300V'
+[2025/05/17 21:17:09] Meter Write >>> 'INPUT:CURRENT:AUTO:ALL ON'
+[2025/05/17 21:17:09] ======================================
+[2025/05/17 21:17:09] Meter WT500 Initialization Pass
+[2025/05/17 21:17:09] ======================================
+
+[2025/05/17 21:17:09] FFT Start
+[2025/05/17 21:17:09] ######################################################################
+[2025/05/17 21:17:09] Test1: 5V Relay Test via C13
+[2025/05/17 21:17:09] Timestamp: [2025-05-17 21:17:09]
+[2025/05/17 21:17:09] ######################################################################
+[2025/05/17 21:17:09] ======================================
+[2025/05/17 21:17:09] [Check 5-wire Connection]
+[2025/05/17 21:17:09] ======================================
+[2025/05/17 21:17:09] Turn AC source output off
+[2025/05/17 21:17:09] AC Source Write >>> 'OUTPut?'
+[2025/05/17 21:17:09] AC Source Return >>> 'OFF'
+[2025/05/17 21:17:09] Switch the 4-wire configuration to off
+[2025/05/17 21:17:10] b'Off_4'
+[2025/05/17 21:17:13] Switch the 5-wire configuration to off
+[2025/05/17 21:17:14] b'Off_5'
+[2025/05/17 21:17:17] Switch the 5-wire configuration to on
+[2025/05/17 21:17:19] b'On_5'
+[2025/05/17 21:17:21] COM11
+[2025/05/17 21:17:21] S1/S2 relays are off
+[2025/05/17 21:17:23] COM4
+[2025/05/17 21:17:23] S1/S2 relays are off
+[2025/05/17 21:17:25] COM5
+[2025/05/17 21:17:25] S1/S2 relays are off
+[2025/05/17 21:17:27] COM8
+[2025/05/17 21:17:27] S1/S2 relays are off
+[2025/05/17 21:17:29] COM9
+[2025/05/17 21:17:29] S1/S2 relays are off
+[2025/05/17 21:17:31] COM10
+[2025/05/17 21:17:31] S1/S2 relays are off
+[2025/05/17 21:17:33] COM7
+[2025/05/17 21:17:33] S1/S2 relays are off
+[2025/05/17 21:17:35] COM6
+[2025/05/17 21:17:35] S1/S2 relays are off
+[2025/05/17 21:17:38] Set AC source output to 120 volt
+[2025/05/17 21:17:38] AC Source Write >>> '*CLS'
+[2025/05/17 21:17:38] AC Source Write >>> 'INST:EDIT ALL'
+[2025/05/17 21:17:38] AC Source Write >>> 'VOLTage:AC 120'
+[2025/05/17 21:17:39] Turn AC source output on
+[2025/05/17 21:17:39] AC Source Write >>> 'OUTPut?'
+[2025/05/17 21:17:39] AC Source Return >>> 'OFF'
+[2025/05/17 21:17:39] Output is 'OFF' then turn 'ON'
+[2025/05/17 21:17:39] AC Source Write >>> 'OUTPut ON'
+[2025/05/17 21:17:49] Read power meter value from WT500
+[2025/05/17 21:17:49] Meter Write >>> '*CLS'
+[2025/05/17 21:17:49] Meter Write >>> 'NUMeric:NORMAL:VALue?'
+[2025/05/17 21:17:49] Meter Return >>> '120.21E+00,25.71E-03,1.07E+00,119.98E+00,26.04E-03,0.85E+00,120.26E+00,25.20E-03,0.85E+00'
+[2025/05/17 21:17:49] Phase R Voltage: 120.21 volt
+[2025/05/17 21:17:49] Phase S Voltage: 119.98 volt
+[2025/05/17 21:17:49] Phase T Voltage: 120.26 volt
+[2025/05/17 21:17:49] Set AC source all phases output 0 volt
+[2025/05/17 21:17:49] AC Source Write >>> '*CLS'
+[2025/05/17 21:17:49] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/17 21:17:49] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/17 21:17:50] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/17 21:17:51] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/17 21:17:55] Check 5-wire connection Pass
+[2025/05/17 21:17:55] ======================================
+[2025/05/17 21:17:55] [C13 Outlet Voltage Detection Test]
+[2025/05/17 21:17:55] ======================================
+[2025/05/17 21:17:55] ===Check C13 Outlet Voltage Source 1 Phase 1===
+[2025/05/17 21:17:55] Set AC source phase 1 output to 220 volt
+[2025/05/17 21:17:55] AC Source Write >>> '*CLS'
+[2025/05/17 21:17:55] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/17 21:17:55] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 220'
+[2025/05/17 21:17:56] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/17 21:17:57] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/17 21:18:01] Start C13 voltage calculation
+[2025/05/17 21:18:03] Check CS1P11
+[2025/05/17 21:18:03] C13 AC Voltage: 0 volt
+[2025/05/17 21:18:03] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/17 21:18:03] Retry 1
+[2025/05/17 21:18:03] Start C13 voltage calculation
+[2025/05/17 21:18:06] C13 AC Voltage: 222 volt
+[2025/05/17 21:18:06] Check CS1P12
+[2025/05/17 21:18:06] C13 AC Voltage: 222 volt
+[2025/05/17 21:18:06] ===Check C13 Outlet Voltage Source 1 Phase 2===
+[2025/05/17 21:18:06] Set AC source phase 2 output to 220 volt
+[2025/05/17 21:18:06] AC Source Write >>> '*CLS'
+[2025/05/17 21:18:06] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/17 21:18:06] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/17 21:18:07] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 220'
+[2025/05/17 21:18:08] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/17 21:18:12] Start C13 voltage calculation
+[2025/05/17 21:18:14] Check CS1P2
+[2025/05/17 21:18:14] C13 AC Voltage: 222 volt
+[2025/05/17 21:18:14] ===Check C13 Outlet Voltage Source 1 Phase 3===
+[2025/05/17 21:18:14] Set AC source phase 3 output to 220 volt
+[2025/05/17 21:18:14] AC Source Write >>> '*CLS'
+[2025/05/17 21:18:14] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/17 21:18:14] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/17 21:18:15] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/17 21:18:16] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 220'
+[2025/05/17 21:18:20] Start C13 voltage calculation
+[2025/05/17 21:18:22] Check CS1P3
+[2025/05/17 21:18:22] C13 AC Voltage: 222 volt
+[2025/05/17 21:18:22] ===Check C13 Outlet Voltage Source 2 Phase 1===
+[2025/05/17 21:18:22] Set AC source phase 1 output to 220 volt
+[2025/05/17 21:18:22] AC Source Write >>> '*CLS'
+[2025/05/17 21:18:22] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/17 21:18:22] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 220'
+[2025/05/17 21:18:23] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/17 21:18:24] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/17 21:18:28] Start C13 voltage calculation
+[2025/05/17 21:18:30] Check CS2P11
+[2025/05/17 21:18:30] C13 AC Voltage: 0 volt
+[2025/05/17 21:18:30] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/17 21:18:30] Retry 1
+[2025/05/17 21:18:30] Start C13 voltage calculation
+[2025/05/17 21:18:32] C13 AC Voltage: 222 volt
+[2025/05/17 21:18:32] Check CS2P12
+[2025/05/17 21:18:32] C13 AC Voltage: 222 volt
+[2025/05/17 21:18:32] ===Check C13 Outlet Voltage Source 2 Phase 2===
+[2025/05/17 21:18:32] Set AC source phase 2 output to 220 volt
+[2025/05/17 21:18:32] AC Source Write >>> '*CLS'
+[2025/05/17 21:18:32] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/17 21:18:32] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/17 21:18:33] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 220'
+[2025/05/17 21:18:34] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/17 21:18:38] Start C13 voltage calculation
+[2025/05/17 21:18:40] Check CS2P2
+[2025/05/17 21:18:40] C13 AC Voltage: 222 volt
+[2025/05/17 21:18:40] ===Check C13 Outlet Voltage Source 2 Phase 3===
+[2025/05/17 21:18:40] Set AC source phase 3 output to 220 volt
+[2025/05/17 21:18:40] AC Source Write >>> '*CLS'
+[2025/05/17 21:18:40] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/17 21:18:40] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/17 21:18:41] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/17 21:18:42] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 220'
+[2025/05/17 21:18:46] Start C13 voltage calculation
+[2025/05/17 21:18:48] Check CS2P3
+[2025/05/17 21:18:48] C13 AC Voltage: 222 volt
+[2025/05/17 21:18:48] Set AC source all phases output 0 volt
+[2025/05/17 21:18:48] AC Source Write >>> '*CLS'
+[2025/05/17 21:18:48] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/17 21:18:48] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/17 21:18:49] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/17 21:18:50] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/17 21:18:52] C13 outlet voltage detection test Pass
+[2025/05/17 21:18:52] ======================================
+[2025/05/17 21:18:52] [Relay Control Signals Detection Test w/ Y Cable Connection to C13]
+[2025/05/17 21:18:52] ======================================
+[2025/05/17 21:18:52] Set AC source output to 220 volt
+[2025/05/17 21:18:52] AC Source Write >>> '*CLS'
+[2025/05/17 21:18:52] AC Source Write >>> 'INST:EDIT ALL'
+[2025/05/17 21:18:52] AC Source Write >>> 'VOLTage:AC 220'
+[2025/05/17 21:18:52] Turn AC source output on
+[2025/05/17 21:18:52] AC Source Write >>> 'OUTPut?'
+[2025/05/17 21:18:52] AC Source Return >>> 'ON'
+[2025/05/17 21:18:52] Turn on the Rack Manager
+[2025/05/17 21:18:52] M700 command: [0x53, 0x48, 0x02, 0x06, 0x00, 0x50]
+[2025/05/17 21:18:53] M700 command: [0x53, 0x48, 0x02, 0x07, 0x00, 0x50]
+[2025/05/17 21:18:53] M700 command: [0x53, 0x48, 0x02, 0x03, 0x05, 0x50]
+[2025/05/17 21:19:19] Init to filesystem
+[2025/05/17 21:19:19] Try 1:
+[2025/05/17 21:19:21] b'\r\r\n'
+[2025/05/17 21:19:21] b'login: '
+[2025/05/17 21:19:21] Login phase
+[2025/05/17 21:19:22] b'root\r\n'
+[2025/05/17 21:19:22] b'Password: '
+[2025/05/17 21:19:22] Login phase Pass
+[2025/05/17 21:19:22] Password phase
+[2025/05/17 21:19:23] b'\r\n'
+[2025/05/17 21:19:30] b'WcsCli# '
+[2025/05/17 21:19:30] Password phase Pass
+[2025/05/17 21:19:33] b'set manager relay off -p 4\r\n'
+[2025/05/17 21:19:33] b'    Completion Code: Success\r\n'
+[2025/05/17 21:19:33] b'WcsCli# '
+[2025/05/17 21:19:33] Start C13 voltage calculation
+[2025/05/17 21:19:35] Check RC4 CS2P11
+[2025/05/17 21:19:35] C13 AC Voltage: 0 volt
+[2025/05/17 21:19:35] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/17 21:19:37] b'set manager relay off -p 4\r\n'
+[2025/05/17 21:19:37] b'    Completion Code: Success\r\n'
+[2025/05/17 21:19:37] b'WcsCli# '
+[2025/05/17 21:19:37] Start C13 voltage calculation
+[2025/05/17 21:19:39] Check RC4 CS2P11
+[2025/05/17 21:19:39] C13 AC Voltage: 0 volt
+[2025/05/17 21:19:39] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/17 21:19:40] b'set manager relay off -p 3\r\n'
+[2025/05/17 21:19:40] b'    Completion Code: Success\r\n'
+[2025/05/17 21:19:40] b'WcsCli# '
+[2025/05/17 21:19:40] Start C13 voltage calculation
+[2025/05/17 21:19:42] Check RC3 CS2P12
+[2025/05/17 21:19:42] C13 AC Voltage: 0 volt
+[2025/05/17 21:19:42] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/17 21:19:44] b'set manager relay off -p 3\r\n'
+[2025/05/17 21:19:44] b'    Completion Code: Success\r\n'
+[2025/05/17 21:19:44] b'WcsCli# '
+[2025/05/17 21:19:44] Start C13 voltage calculation
+[2025/05/17 21:19:46] Check RC3 CS2P12
+[2025/05/17 21:19:46] C13 AC Voltage: 0 volt
+[2025/05/17 21:19:46] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/17 21:19:48] b'set manager relay off -p 2\r\n'
+[2025/05/17 21:19:48] b'    Completion Code: Success\r\n'
+[2025/05/17 21:19:48] b'WcsCli# '
+[2025/05/17 21:19:48] Start C13 voltage calculation
+[2025/05/17 21:19:50] Check RC2 CS2P2
+[2025/05/17 21:19:50] C13 AC Voltage: 0 volt
+[2025/05/17 21:19:50] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/17 21:19:52] b'set manager relay off -p 2\r\n'
+[2025/05/17 21:19:52] b'    Completion Code: Success\r\n'
+[2025/05/17 21:19:52] b'WcsCli# '
+[2025/05/17 21:19:52] Start C13 voltage calculation
+[2025/05/17 21:19:54] Check RC2 CS2P2
+[2025/05/17 21:19:54] C13 AC Voltage: 0 volt
+[2025/05/17 21:19:54] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/17 21:19:55] b'set manager relay off -p 1\r\n'
+[2025/05/17 21:19:55] b'    Completion Code: Success\r\n'
+[2025/05/17 21:19:55] b'WcsCli# '
+[2025/05/17 21:19:55] Start C13 voltage calculation
+[2025/05/17 21:19:57] Check RC1 CS2P3
+[2025/05/17 21:19:57] C13 AC Voltage: 0 volt
+[2025/05/17 21:19:57] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/17 21:19:59] b'set manager relay off -p 1\r\n'
+[2025/05/17 21:19:59] b'    Completion Code: Success\r\n'
+[2025/05/17 21:19:59] b'WcsCli# '
+[2025/05/17 21:19:59] Start C13 voltage calculation
+[2025/05/17 21:20:01] Check RC1 CS2P3
+[2025/05/17 21:20:01] C13 AC Voltage: 0 volt
+[2025/05/17 21:20:01] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/17 21:21:02] b'set manager relay on -p 4\r\n'
+[2025/05/17 21:21:02] b'    Completion Code: Success\r\n'
+[2025/05/17 21:21:02] b'WcsCli# '
+[2025/05/17 21:21:02] Start C13 voltage calculation
+[2025/05/17 21:21:04] Check RC4 CS1P11
+[2025/05/17 21:21:04] C13 AC Voltage: 222 volt
+[2025/05/17 21:21:04] Start C13 voltage calculation
+[2025/05/17 21:21:06] Check RC4 CS2P11
+[2025/05/17 21:21:06] C13 AC Voltage: 222 volt
+[2025/05/17 21:21:08] b'set manager relay on -p 3\r\n'
+[2025/05/17 21:21:08] b'    Completion Code: Success\r\n'
+[2025/05/17 21:21:08] b'WcsCli# '
+[2025/05/17 21:21:08] Start C13 voltage calculation
+[2025/05/17 21:21:10] Check RC3 CS1P12
+[2025/05/17 21:21:10] C13 AC Voltage: 222 volt
+[2025/05/17 21:21:10] Start C13 voltage calculation
+[2025/05/17 21:21:12] Check RC3 CS2P12
+[2025/05/17 21:21:12] C13 AC Voltage: 222 volt
+[2025/05/17 21:21:14] b'set manager relay on -p 2\r\n'
+[2025/05/17 21:21:14] b'    Completion Code: Success\r\n'
+[2025/05/17 21:21:14] b'WcsCli# '
+[2025/05/17 21:21:14] Start C13 voltage calculation
+[2025/05/17 21:21:16] Check RC2 CS1P2
+[2025/05/17 21:21:16] C13 AC Voltage: 222 volt
+[2025/05/17 21:21:16] Start C13 voltage calculation
+[2025/05/17 21:21:18] Check RC2 CS2P2
+[2025/05/17 21:21:18] C13 AC Voltage: 222 volt
+[2025/05/17 21:21:19] b'set manager relay on -p 1\r\n'
+[2025/05/17 21:21:19] b'    Completion Code: Success\r\n'
+[2025/05/17 21:21:19] b'WcsCli# '
+[2025/05/17 21:21:19] Start C13 voltage calculation
+[2025/05/17 21:21:21] Check RC1 CS1P3
+[2025/05/17 21:21:21] C13 AC Voltage: 222 volt
+[2025/05/17 21:21:21] Start C13 voltage calculation
+[2025/05/17 21:21:23] Check RC1 CS2P3
+[2025/05/17 21:21:23] C13 AC Voltage: 222 volt
+[2025/05/17 21:21:28] Relay control signals detection test Pass
+[2025/05/17 21:21:29] Test elapsed time: 0:04:19.599999
+[2025/05/17 21:21:30] b'show manager fru -b mb\r\n'
+[2025/05/17 21:21:30] b'    Board Address1: E8F673EF0F36\r\n'
+[2025/05/17 21:21:30] b'    Board Address2: E8F673EF0F37\r\n'
+[2025/05/17 21:21:30] b'    Board Build: Prod\r\n'
+[2025/05/17 21:21:30] b'    Board Fru Id: v1.0\r\n'
+[2025/05/17 21:21:30] b'    Board Manufacturer: Ingrasys\r\n'
+[2025/05/17 21:21:30] b'    Board Manufacturer Date: Sun Dec  8 05:58:00 2024\r\n'
+[2025/05/17 21:21:30] b'    Board Name: M2010 - MB\r\n'
+[2025/05/17 21:21:30] b'    Board Part Number: M1039935-001\r\n'
+[2025/05/17 21:21:30] b'    Board Serial: B99354491156600C\r\n'
+[2025/05/17 21:21:30] b'    Board Version: F\r\n'
+[2025/05/17 21:21:30] b'    Product Assettag: N/A\r\n'
+[2025/05/17 21:21:30] b'    Product Build: K\r\n'
+[2025/05/17 21:21:30] b'    Product Fru Id: v1.0\r\n'
+[2025/05/17 21:21:30] b'    Product Manufacturer: Ingrasys\r\n'
+[2025/05/17 21:21:30] b'    Product Name: M2010 - Mainboard\r\n'
+[2025/05/17 21:21:30] b'    Product Serial: P13194491156600C\r\n'
+[2025/05/17 21:21:30] b'    Product Subproduct: N/A\r\n'
+[2025/05/17 21:21:30] b'    Product Version: M1041319-001\r\n'
+[2025/05/17 21:21:30] b'    Completion Code: Success\r\n'
+[2025/05/17 21:21:30] b'WcsCli# '
+[2025/05/17 21:21:30] ######################################################################
+[2025/05/17 21:21:30] Test2: NIC LED Test
+[2025/05/17 21:21:30] Timestamp: [2025-05-17 21:21:30]
+[2025/05/17 21:21:30] ######################################################################
+[2025/05/17 21:21:30] Check NIC1 and NIC2 LED visually
+[2025/05/17 21:22:17] Check if both NIC1 and NIC2 are lighted: y
+[2025/05/17 21:22:17] NIC LED test Pass
+[2025/05/17 21:22:17] Turn AC source output off
+[2025/05/17 21:22:17] AC Source Write >>> 'OUTPut?'
+[2025/05/17 21:22:17] AC Source Return >>> 'ON'
+[2025/05/17 21:22:17] AC Source Write >>> 'OUTPut OFF'
+[2025/05/17 21:22:19] Output is 'ON' then turn 'OFF'
+[2025/05/17 21:22:19] Test elapsed time: 0:00:48.290000
+[2025/05/17 21:22:19] ######################################################################
+[2025/05/17 21:22:19] Test3: RM1 Bootstrap, DC Throttle, and Present Test
+[2025/05/17 21:22:19] Timestamp: [2025-05-17 21:22:19]
+[2025/05/17 21:22:19] ######################################################################
+[2025/05/17 21:22:19] Set AC source phase 1 output to 220 volt
+[2025/05/17 21:22:19] AC Source Write >>> '*CLS'
+[2025/05/17 21:22:19] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/17 21:22:19] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 220'
+[2025/05/17 21:22:20] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/17 21:22:21] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/17 21:22:23] Turn AC source output on
+[2025/05/17 21:22:23] AC Source Write >>> 'OUTPut?'
+[2025/05/17 21:22:23] AC Source Return >>> 'OFF'
+[2025/05/17 21:22:23] Output is 'OFF' then turn 'ON'
+[2025/05/17 21:22:23] AC Source Write >>> 'OUTPut ON'
+[2025/05/17 21:22:23] Turn on the Rack Manager
+[2025/05/17 21:22:23] M700 command: [0x53, 0x48, 0x02, 0x06, 0x00, 0x50]
+[2025/05/17 21:22:23] M700 command: [0x53, 0x48, 0x02, 0x07, 0x00, 0x50]
+[2025/05/17 21:22:24] M700 command: [0x53, 0x48, 0x02, 0x03, 0x05, 0x50]
+[2025/05/17 21:22:50] Init to filesystem
+[2025/05/17 21:22:50] Try 1:
+[2025/05/17 21:22:51] b'\r\r\n'
+[2025/05/17 21:22:51] b'login: '
+[2025/05/17 21:22:51] Login phase
+[2025/05/17 21:22:52] b'root\r\n'
+[2025/05/17 21:22:52] b'Password: '
+[2025/05/17 21:22:52] Login phase Pass
+[2025/05/17 21:22:52] Password phase
+[2025/05/17 21:22:53] b'\r\n'
+[2025/05/17 21:23:01] b'WcsCli# '
+[2025/05/17 21:23:01] Password phase Pass
+[2025/05/17 21:23:01] ======================================
+[2025/05/17 21:23:01] [Bootstrap Test]
+[2025/05/17 21:23:01] ======================================
+[2025/05/17 21:23:01] Set network interface eth0 to DHCP
+[2025/05/17 21:23:02] b'set network dhcp -i eth0\r\n'
+[2025/05/17 21:23:02] b'    Completion Code: Success\r\n'
+[2025/05/17 21:23:02] b'WcsCli# '
+[2025/05/17 21:23:04] b'sh network interface -i eth0\r\n'
+[2025/05/17 21:23:04] b'    Health: Ok\r\n'
+[2025/05/17 21:23:04] b'    IPv4Addresses: \r\n'
+[2025/05/17 21:23:04] b'        Address: 192.168.0.133\r\n'
+[2025/05/17 21:23:04] b'        AddressOrigin: DHCP\r\n'
+[2025/05/17 21:23:04] b'        Gateway: 192.168.0.254\r\n'
+[2025/05/17 21:23:04] b'        SubnetMask: 255.255.255.0\r\n'
+[2025/05/17 21:23:04] b'    IPv6Addresses: \r\n'
+[2025/05/17 21:23:04] b'        Address: \r\n'
+[2025/05/17 21:23:04] b'        AddressOrigin: \r\n'
+[2025/05/17 21:23:04] b'        PrefixLength: \r\n'
+[2025/05/17 21:23:04] b'    Id: eth0\r\n'
+[2025/05/17 21:23:04] b'    LinkStatus: LinkUp\r\n'
+[2025/05/17 21:23:04] b'    MACAddress: E8:F6:73:EF:0F:36\r\n'
+[2025/05/17 21:23:04] b'    State: Up\r\n'
+[2025/05/17 21:23:04] b'    Completion Code: Success\r\n'
+[2025/05/17 21:23:04] b'WcsCli# '
+[2025/05/17 21:23:04] Turn off the Rack Manager
+[2025/05/17 21:23:04] M700 command: [0x53, 0x48, 0x02, 0x03, 0x03, 0x50]
+[2025/05/17 21:23:09] Change the boot sequence to U-Boot
+[2025/05/17 21:23:09] M700 command: [0x53, 0x48, 0x02, 0x03, 0x01, 0x50]
+[2025/05/17 21:23:30] b'\x00\x00'
+[2025/05/17 21:23:32] Turn off the Rack Manager
+[2025/05/17 21:23:32] M700 command: [0x53, 0x48, 0x02, 0x03, 0x03, 0x50]
+[2025/05/17 21:23:32] Turn on the Rack Manager
+[2025/05/17 21:23:32] M700 command: [0x53, 0x48, 0x02, 0x06, 0x00, 0x50]
+[2025/05/17 21:23:33] M700 command: [0x53, 0x48, 0x02, 0x07, 0x00, 0x50]
+[2025/05/17 21:23:33] M700 command: [0x53, 0x48, 0x02, 0x03, 0x05, 0x50]
+[2025/05/17 21:24:00] Init to filesystem
+[2025/05/17 21:24:00] Try 1:
+[2025/05/17 21:24:01] b'\r\r\n'
+[2025/05/17 21:24:01] b'login: '
+[2025/05/17 21:24:01] Login phase
+[2025/05/17 21:24:03] b'root\r\n'
+[2025/05/17 21:24:03] b'Password: '
+[2025/05/17 21:24:03] Login phase Pass
+[2025/05/17 21:24:03] Password phase
+[2025/05/17 21:24:03] b'\r\n'
+[2025/05/17 21:24:11] b'WcsCli# '
+[2025/05/17 21:24:11] Password phase Pass
+[2025/05/17 21:24:11] Bootstrap test Pass
+[2025/05/17 21:24:11] ======================================
+[2025/05/17 21:24:11] [RM1 DC_THROTTLE and RM_PRESENT Test]
+[2025/05/17 21:24:11] ======================================
+[2025/05/17 21:24:11] === DC_THROTTLE Enable Test ===
+[2025/05/17 21:24:11] Set DC_THROTTLE enable
+[2025/05/17 21:24:13] b'set manager powermeter alert -e 0 -d 1\r\n'
+[2025/05/17 21:24:13] b'    Completion Code: Success\r\n'
+[2025/05/17 21:24:13] b'WcsCli# '
+[2025/05/17 21:24:13] Check DC_THROTTLE status
+[2025/05/17 21:24:14] b'sh manager powermeter alert\r\n'
+[2025/05/17 21:24:14] b'    AlertLimitInWatts: 19970.0\r\n'
+[2025/05/17 21:24:14] b'    IsAlertActive: False\r\n'
+[2025/05/17 21:24:14] b'    IsAlertEnabled: False\r\n'
+[2025/05/17 21:24:14] b'    IsDcThrottleActive: False\r\n'
+[2025/05/17 21:24:14] b'    IsDcThrottleEnabled: True\r\n'
+[2025/05/17 21:24:14] b'    PowerDrawnInWatts: 0.0\r\n'
+[2025/05/17 21:24:14] b'    Completion Code: Success\r\n'
+[2025/05/17 21:24:14] b'WcsCli# '
+[2025/05/17 21:24:14] DC_THROTTLE enable test Pass
+[2025/05/17 21:24:14] === DC_THROTTLE Activate Test ===
+[2025/05/17 21:24:14] Set DC_THROTTLE activate
+[2025/05/17 21:24:14] M700 command: [0x53, 0x48, 0x02, 0x06, 0x00, 0x50]
+[2025/05/17 21:24:15] M700 command: [0x53, 0x48, 0x02, 0x07, 0x00, 0x50]
+[2025/05/17 21:24:16] M700 command: [0x53, 0x48, 0x02, 0x03, 0x00, 0x50]
+[2025/05/17 21:24:21] Check DC_THROTTLE status
+[2025/05/17 21:24:23] b'sh manager powermeter alert\r\n'
+[2025/05/17 21:24:23] b'    AlertLimitInWatts: 19970.0\r\n'
+[2025/05/17 21:24:23] b'    IsAlertActive: False\r\n'
+[2025/05/17 21:24:23] b'    IsAlertEnabled: False\r\n'
+[2025/05/17 21:24:23] b'    IsDcThrottleActive: False\r\n'
+[2025/05/17 21:24:23] b'    IsDcThrottleEnabled: True\r\n'
+[2025/05/17 21:24:23] b'    PowerDrawnInWatts: 0.0\r\n'
+[2025/05/17 21:24:23] b'    Completion Code: Success\r\n'
+[2025/05/17 21:24:23] b'WcsCli# '
+[2025/05/17 21:24:23] DC_THROTTLE active test Fail: failed to activate DC_THROTTLE
+[2025/05/17 21:24:23] RM1 DC_THROTTLE and RM_PRESENT test Fail
+[2025/05/17 21:24:23] Test elapsed time: 0:02:04.470000
+[2025/05/17 21:24:23] Turn AC source output off
+[2025/05/17 21:24:23] AC Source Write >>> 'OUTPut?'
+[2025/05/17 21:24:23] AC Source Return >>> 'ON'
+[2025/05/17 21:24:23] AC Source Write >>> 'OUTPut OFF'
+[2025/05/17 21:24:25] Output is 'ON' then turn 'OFF'
+[2025/05/17 21:24:25] Switch the 4/5-wire configuration to off
+[2025/05/17 21:24:26] b'Reset'
+[2025/05/17 21:24:28] Switch the 4/5-wire configuration to off Pass
+[2025/05/17 21:24:29] COM11
+[2025/05/17 21:24:29] S1/S2 relays are off
+[2025/05/17 21:24:31] COM4
+[2025/05/17 21:24:31] S1/S2 relays are off
+[2025/05/17 21:24:33] COM5
+[2025/05/17 21:24:33] S1/S2 relays are off
+[2025/05/17 21:24:35] COM8
+[2025/05/17 21:24:35] S1/S2 relays are off
+[2025/05/17 21:24:37] COM9
+[2025/05/17 21:24:37] S1/S2 relays are off
+[2025/05/17 21:24:39] COM10
+[2025/05/17 21:24:39] S1/S2 relays are off
+[2025/05/17 21:24:41] COM7
+[2025/05/17 21:24:41] S1/S2 relays are off
+[2025/05/17 21:24:43] COM6
+[2025/05/17 21:24:43] S1/S2 relays are off
+[2025/05/17 21:24:46] Failed tests:
+[2025/05/17 21:24:46]     Test3: RM1 Bootstrap, DC Throttle, and Present Test | DC_THROTTLE enable test Pass / DC_THROTTLE active test Fail: failed to activate DC_THROTTLE / RM1 DC_THROTTLE and RM_PRESENT test Fail
+[2025/05/17 21:24:46] ===========================================================
+[2025/05/17 21:24:46] [END] 2025-05-17 21:24:46
+[2025/05/17 21:24:46] Total elapsed time: 0:07:41.549999

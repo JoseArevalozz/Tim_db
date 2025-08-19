@@ -1,0 +1,1251 @@
+[2023/08/03 19:24:16] Foxconn Test Program Rev: PROD051 (non-SFC)
+[2023/08/03 19:24:16] Description: PMDU1.2 PMDU L10 Test
+[2023/08/03 19:24:16] Support package version: 1.1.8.16
+[2023/08/03 19:24:16] Factory: RMA
+[2023/08/03 19:24:16] Station ID: PMDU-FFT003
+[2023/08/03 19:24:18] ======================================
+[2023/08/03 19:24:18] [M2010 L10 48U Test]
+[2023/08/03 19:24:18] ======================================
+[2023/08/03 19:24:18]  48U configuration set pass
+[2023/08/03 19:24:21] Start Timestamp: [2023-08-03 19:24:21]
+[2023/08/03 19:24:21] ======================================
+[2023/08/03 19:24:21] [AC Source 61830 Initialization]
+[2023/08/03 19:24:21] ======================================
+[2023/08/03 19:24:22] Chroma ATE,61512,001984,2.10 Feb 21 2022
+
+[2023/08/03 19:24:22] Three Phase Mode - [Checked]
+[2023/08/03 19:24:22] VOLTage:RANGe HIGH - [Checked]
+[2023/08/03 19:24:22] VOLTage:LIMit:AC 300 - [Checked]
+[2023/08/03 19:24:22] Set VOLTage:RANGe HIGH - [Checked]
+[2023/08/03 19:24:22] Set Frequency 60 Hz - [Checked]
+[2023/08/03 19:24:22] ======================================
+[2023/08/03 19:24:22] AC Source 61830 Initialization - [Complete]
+[2023/08/03 19:24:22] ======================================
+
+[2023/08/03 19:24:22] ======================================
+[2023/08/03 19:24:22] [AC Load 63800 Initialization]
+[2023/08/03 19:24:22] ======================================
+[2023/08/03 19:24:22] ===Load 1 : GPIB ADDRESS 0x8 (GPIB0::1::INSTR)===
+[2023/08/03 19:24:22] Chroma,63804,3338,1.70
+
+[2023/08/03 19:24:23] Constant Current Mode - [Checked]
+[2023/08/03 19:24:23] CURR:PEAK:MAX 50 Amp - [Checked]
+[2023/08/03 19:24:23] ===Load 2 : GPIB ADDRESS 0x28 (GPIB0::2::INSTR)===
+[2023/08/03 19:24:23] Chroma,63804,3312,1.70
+
+[2023/08/03 19:24:24] Constant Current Mode - [Checked]
+[2023/08/03 19:24:24] CURR:PEAK:MAX 50 Amp - [Checked]
+[2023/08/03 19:24:24] ===Load 3 : GPIB ADDRESS 0x22 (GPIB0::3::INSTR)===
+[2023/08/03 19:24:24] Chroma,63804,3318,1.70
+
+[2023/08/03 19:24:24] Constant Current Mode - [Checked]
+[2023/08/03 19:24:25] CURR:PEAK:MAX 50 Amp - [Checked]
+[2023/08/03 19:24:25] ======================================
+[2023/08/03 19:24:25] AC Load 63800 Initialization - [Complete]
+[2023/08/03 19:24:25] ======================================
+
+[2023/08/03 19:24:25] ======================================
+[2023/08/03 19:24:25] [Meter WT500 Initialization]
+[2023/08/03 19:24:25] ======================================
+[2023/08/03 19:24:25] YOKOGAWA,760203,C2YH30003V,F1.31
+
+[2023/08/03 19:24:26] ======================================
+[2023/08/03 19:24:26] Meter WT500 Initialization - [Complete]
+[2023/08/03 19:24:26] ======================================
+
+[2023/08/03 19:24:26] ######################################################################
+[2023/08/03 19:24:26] Test1: 5V Relay Test via C13
+[2023/08/03 19:24:26] Timestamp: [2023-08-03 19:24:26]
+[2023/08/03 19:24:26] ######################################################################
+[2023/08/03 19:24:26] ======================================
+[2023/08/03 19:24:26] [Check 5 Wire Connection]
+[2023/08/03 19:24:26] ======================================
+[2023/08/03 19:24:26] AC Source Quit
+[2023/08/03 19:24:30] Switch to 4 wire: OFF [b'Off_4']
+[2023/08/03 19:24:35] Switch to 5 wire: OFF [b'Off_5']
+[2023/08/03 19:24:40] Switch to 5 wire: ON / 4 wire: OFF [b'On_5']
+[2023/08/03 19:24:40] COM11
+[2023/08/03 19:24:40] S1/S2 relays are off
+[2023/08/03 19:24:40] COM4
+[2023/08/03 19:24:41] S1/S2 relays are off
+[2023/08/03 19:24:41] COM5
+[2023/08/03 19:24:41] S1/S2 relays are off
+[2023/08/03 19:24:41] COM8
+[2023/08/03 19:24:41] S1/S2 relays are off
+[2023/08/03 19:24:41] COM9
+[2023/08/03 19:24:42] S1/S2 relays are off
+[2023/08/03 19:24:42] COM10
+[2023/08/03 19:24:42] S1/S2 relays are off
+[2023/08/03 19:24:42] COM7
+[2023/08/03 19:24:42] S1/S2 relays are off
+[2023/08/03 19:24:42] COM6
+[2023/08/03 19:24:43] S1/S2 relays are off
+[2023/08/03 19:24:43] [Set AC Source Output 120 Volt]
+[2023/08/03 19:24:44] Output is OFF then Turn ON
+[2023/08/03 19:24:44] AC Source Output
+[2023/08/03 19:24:54] Phase R Voltage = 120.03 volt - 5 Wire Connection Check - [PASS]
+[2023/08/03 19:24:54] Phase S Voltage = 120.06 volt - 5 Wire Connection Check - [PASS]
+[2023/08/03 19:24:54] Phase T Voltage = 120.02 volt - 5 Wire Connection Check - [PASS]
+[2023/08/03 19:24:54] Set AC Source Output OFF
+[2023/08/03 19:25:00] ======================================
+[2023/08/03 19:25:00] [C13 Outlet Voltage Detection Test]
+[2023/08/03 19:25:00] ======================================
+[2023/08/03 19:25:00] ===Check C13 Outlet Voltage Source 1 Phase 1===
+[2023/08/03 19:25:00] Set AC Source Output ON
+[2023/08/03 19:25:08] Check [CS1P11]
+[2023/08/03 19:25:09] C13 AC Voltage : 221 Volt Check Complete
+[2023/08/03 19:25:09] Check [CS1P12]
+[2023/08/03 19:25:09] C13 AC Voltage : 222 Volt Check Complete
+[2023/08/03 19:25:09] ===Check C13 Outlet Voltage Source 1 Phase 2===
+[2023/08/03 19:25:09] Set AC Source Output ON
+[2023/08/03 19:25:17] Check [CS1P2]
+[2023/08/03 19:25:17] C13 AC Voltage : 222 Volt Check Complete
+[2023/08/03 19:25:17] ===Check C13 Outlet Voltage Source 1 Phase 3===
+[2023/08/03 19:25:17] Set AC Source Output ON
+[2023/08/03 19:25:25] Check [CS1P3]
+[2023/08/03 19:25:26] C13 AC Voltage : 222 Volt Check Complete
+[2023/08/03 19:25:26] ===Check C13 Outlet Voltage Source 2 Phase 1===
+[2023/08/03 19:25:26] Set AC Source Output ON
+[2023/08/03 19:25:34] Check [CS2P11]
+[2023/08/03 19:25:34] C13 AC Voltage 0 out of range - [209.00 Volt~231.00 Volt]
+[2023/08/03 19:25:34] Retry 1
+[2023/08/03 19:25:36] C13 AC Voltage : 222 Volt Check Complete
+[2023/08/03 19:25:36] Check [CS2P12]
+[2023/08/03 19:25:37] C13 AC Voltage : 222 Volt Check Complete
+[2023/08/03 19:25:37] ===Check C13 Outlet Voltage Source 2 Phase 2===
+[2023/08/03 19:25:37] Set AC Source Output ON
+[2023/08/03 19:25:45] Check [CS2P2]
+[2023/08/03 19:25:45] C13 AC Voltage : 222 Volt Check Complete
+[2023/08/03 19:25:45] ===Check C13 Outlet Voltage Source 2 Phase 3===
+[2023/08/03 19:25:45] Set AC Source Output ON
+[2023/08/03 19:25:53] Check [CS2P3]
+[2023/08/03 19:25:53] C13 AC Voltage : 222 Volt Check Complete
+[2023/08/03 19:25:54] Set AC Source Output OFF
+[2023/08/03 19:25:58] ======================================
+[2023/08/03 19:25:58] [Relay Control Signals Detection Test w/ Y Cable Connection to C13]
+[2023/08/03 19:25:58] ======================================
+[2023/08/03 19:25:58] [Set AC Source Output 220 Volt]
+[2023/08/03 19:25:58] AC Source Output
+[2023/08/03 19:25:58] Turn on the Rack Manager
+[2023/08/03 19:26:01] 2023-08-03 19:26:01.520000 Init to Filesystem Start ...
+[2023/08/03 19:26:31] Pass - Init to Login
+[2023/08/03 19:26:36] Pass - Wait for Password
+[2023/08/03 19:26:45] Pass - Wait for WcsCli
+[2023/08/03 19:26:49] Check RC4 [CS2P11]
+[2023/08/03 19:26:52] C13 AC Voltage 0 out of range - [209.00 Volt~231.00 Volt]
+[2023/08/03 19:26:55] Check RC4 [CS2P11]
+[2023/08/03 19:26:57] C13 AC Voltage 0 out of range - [209.00 Volt~231.00 Volt]
+[2023/08/03 19:27:00] Check RC3 [CS2P12]
+[2023/08/03 19:27:02] C13 AC Voltage 0 out of range - [209.00 Volt~231.00 Volt]
+[2023/08/03 19:27:05] Check RC3 [CS2P12]
+[2023/08/03 19:27:08] C13 AC Voltage 0 out of range - [209.00 Volt~231.00 Volt]
+[2023/08/03 19:27:11] Check RC2 [CS2P2]
+[2023/08/03 19:27:13] C13 AC Voltage 0 out of range - [209.00 Volt~231.00 Volt]
+[2023/08/03 19:27:16] Check RC2 [CS2P2]
+[2023/08/03 19:27:18] C13 AC Voltage 0 out of range - [209.00 Volt~231.00 Volt]
+[2023/08/03 19:27:21] Check RC1 [CS2P3]
+[2023/08/03 19:27:23] C13 AC Voltage 0 out of range - [209.00 Volt~231.00 Volt]
+[2023/08/03 19:27:27] Check RC1 [CS2P3]
+[2023/08/03 19:27:29] C13 AC Voltage 0 out of range - [209.00 Volt~231.00 Volt]
+[2023/08/03 19:28:32] Check RC4 [CS1P11]
+[2023/08/03 19:28:34] C13 AC Voltage : 221 Volt Check Complete
+[2023/08/03 19:28:34] Check RC4 [CS2P11]
+[2023/08/03 19:28:36] C13 AC Voltage : 222 Volt Check Complete
+[2023/08/03 19:28:40] Check RC3 [CS1P12]
+[2023/08/03 19:28:42] C13 AC Voltage : 222 Volt Check Complete
+[2023/08/03 19:28:42] Check RC3 [CS2P12]
+[2023/08/03 19:28:44] C13 AC Voltage : 222 Volt Check Complete
+[2023/08/03 19:28:47] Check RC2 [CS1P2]
+[2023/08/03 19:28:49] C13 AC Voltage : 222 Volt Check Complete
+[2023/08/03 19:28:50] Check RC2 [CS2P2]
+[2023/08/03 19:28:52] C13 AC Voltage : 222 Volt Check Complete
+[2023/08/03 19:28:55] Check RC1 [CS1P3]
+[2023/08/03 19:28:57] C13 AC Voltage : 222 Volt Check Complete
+[2023/08/03 19:28:57] Check RC1 [CS2P3]
+[2023/08/03 19:28:59] C13 AC Voltage : 222 Volt Check Complete
+[2023/08/03 19:29:04] Test elapsed time: 0:04:38.690001
+[2023/08/03 19:29:09] b'show manager fru -b mb\r\n'
+[2023/08/03 19:29:09] b'    Board Address1: 544C8AE2D2F8\r\n'
+[2023/08/03 19:29:09] b'    Board Address2: 544C8AE2D2F9\r\n'
+[2023/08/03 19:29:09] b'    Board Build: Prod\r\n'
+[2023/08/03 19:29:09] b'    Board Fru Id: v1.0\r\n'
+[2023/08/03 19:29:09] b'    Board Manufacturer: Ingrasys\r\n'
+[2023/08/03 19:29:09] b'    Board Manufacturer Date: Sat Jul  8 06:24:00 2023\r\n'
+[2023/08/03 19:29:09] b'    Board Name: M2010 - MB\r\n'
+[2023/08/03 19:29:09] b'    Board Part Number: M1039935-001\r\n'
+[2023/08/03 19:29:09] b'    Board Serial: B99353273176300C\r\n'
+[2023/08/03 19:29:09] b'    Board Version: E\r\n'
+[2023/08/03 19:29:09] b'    Product Assettag: N/A\r\n'
+[2023/08/03 19:29:09] b'    Product Build: F\r\n'
+[2023/08/03 19:29:09] b'    Product Fru Id: v1.0\r\n'
+[2023/08/03 19:29:09] b'    Product Manufacturer: Ingrasys\r\n'
+[2023/08/03 19:29:09] b'    Product Name: M2010 - Mainboard\r\n'
+[2023/08/03 19:29:09] b'    Product Serial: P13193273176300C\r\n'
+[2023/08/03 19:29:09] b'    Product Subproduct: N/A\r\n'
+[2023/08/03 19:29:09] b'    Product Version: M1041319-001\r\n'
+[2023/08/03 19:29:09] b'    Completion Code: Success\r\n'
+[2023/08/03 19:29:09] b'WcsCli# '
+[2023/08/03 19:29:09] ######################################################################
+[2023/08/03 19:29:09] Test2: NIC LED Test
+[2023/08/03 19:29:09] Timestamp: [2023-08-03 19:29:09]
+[2023/08/03 19:29:09] ######################################################################
+[2023/08/03 19:29:09] (visually checking NIC1 & NIC2 LED)
+[2023/08/03 19:29:29] answer: Y
+[2023/08/03 19:29:29] NIC1 & NIC2 LED Test Pass
+[2023/08/03 19:29:29] Test elapsed time: 0:00:20.570000
+[2023/08/03 19:29:29] Output is ON then Turn OFF
+[2023/08/03 19:29:29] AC Source Quit
+[2023/08/03 19:29:29] ######################################################################
+[2023/08/03 19:29:29] Test3: RM1 Bootstrap/DC_throttle/Present Test
+[2023/08/03 19:29:29] Timestamp: [2023-08-03 19:29:29]
+[2023/08/03 19:29:29] ######################################################################
+[2023/08/03 19:29:29] Set AC Source Output ON
+[2023/08/03 19:29:34] Output is OFF then Turn ON
+[2023/08/03 19:29:34] AC Source Output
+[2023/08/03 19:29:34] Turn on the Rack Manager
+[2023/08/03 19:29:37] 2023-08-03 19:29:37.260000 Init to Filesystem Start ...
+[2023/08/03 19:30:07] Pass - Init to Login
+[2023/08/03 19:30:12] Pass - Wait for Password
+[2023/08/03 19:30:21] Pass - Wait for WcsCli
+[2023/08/03 19:30:27] Turn off the Rack Manager...
+[2023/08/03 19:30:27] 0x53 0x48 0x02 0x03 0x03 0x50
+[2023/08/03 19:30:32] ======================================
+[2023/08/03 19:30:32] [Bootstrap from TFTP Image]
+[2023/08/03 19:30:32] ======================================
+[2023/08/03 19:30:32] Change the boot sequence to U-Boot...
+[2023/08/03 19:30:32] 0x53 0x48 0x02 0x03 0x01 0x50
+[2023/08/03 19:30:59] 0x53 0x48 0x02 0x03 0x03 0x50
+[2023/08/03 19:31:00] 0x53 0x48 0x02 0x03 0x01 0x50
+[2023/08/03 19:31:32] b'\x00\x00'
+[2023/08/03 19:31:32] Bootstrap test Pass
+[2023/08/03 19:31:33] Turn off the Rack Manager...
+[2023/08/03 19:31:34] Turn on the Rack Manager
+[2023/08/03 19:31:37] 2023-08-03 19:31:37.410000 Init to Filesystem Start ...
+[2023/08/03 19:32:09] Pass - Init to Login
+[2023/08/03 19:32:14] Pass - Wait for Password
+[2023/08/03 19:32:23] Pass - Wait for WcsCli
+[2023/08/03 19:32:23] ======================================
+[2023/08/03 19:32:23] [RM1 DC_throttle and RM_present test]
+[2023/08/03 19:32:23] ======================================
+[2023/08/03 19:32:26] b'%'
+[2023/08/03 19:32:26] RM_present test Pass
+[2023/08/03 19:32:34] DC_throttle enable test Pass
+[2023/08/03 19:32:45] b'sh manager powermeter alert\r\n'
+[2023/08/03 19:32:45] b'    AlertLimitInWatts: 19970.0\r\n'
+[2023/08/03 19:32:45] b'    IsAlertActive: False\r\n'
+[2023/08/03 19:32:45] b'    IsAlertEnabled: False\r\n'
+[2023/08/03 19:32:45] b'    IsDcThrottleActive: True\r\n'
+[2023/08/03 19:32:45] b'    IsDcThrottleEnabled: True\r\n'
+[2023/08/03 19:32:45] b'    PowerDrawnInWatts: 0.0\r\n'
+[2023/08/03 19:32:45] b'    Completion Code: Success\r\n'
+[2023/08/03 19:32:45] b'WcsCli# '
+[2023/08/03 19:32:45] DC_throttle active test Pass
+[2023/08/03 19:32:50] b'sh manager powermeter alert\r\n'
+[2023/08/03 19:32:50] b'    AlertLimitInWatts: 19970.0\r\n'
+[2023/08/03 19:32:50] b'    IsAlertActive: False\r\n'
+[2023/08/03 19:32:50] b'    IsAlertEnabled: False\r\n'
+[2023/08/03 19:32:50] b'    IsDcThrottleActive: False\r\n'
+[2023/08/03 19:32:50] b'    IsDcThrottleEnabled: True\r\n'
+[2023/08/03 19:32:50] b'    PowerDrawnInWatts: 0.0\r\n'
+[2023/08/03 19:32:50] b'    Completion Code: Success\r\n'
+[2023/08/03 19:32:50] b'WcsCli# '
+[2023/08/03 19:32:50] DC_throttle inactive test Pass
+[2023/08/03 19:32:58] DC_throttle disable test Pass
+[2023/08/03 19:32:58] Test elapsed time: 0:03:28.820001
+[2023/08/03 19:32:58] ######################################################################
+[2023/08/03 19:32:58] Test4: Firmware & Time Check
+[2023/08/03 19:32:58] Timestamp: [2023-08-03 19:32:58]
+[2023/08/03 19:32:58] ######################################################################
+[2023/08/03 19:33:21] answer: Y
+[2023/08/03 19:33:25] b'sh version\r\n'
+[2023/08/03 19:33:25] b' \r\n'
+[2023/08/03 19:33:25] b'--------------------------------------------------------\r\n'
+[2023/08/03 19:33:25] b'  Microsoft OCS Rack Manager software version summary\r\n'
+[2023/08/03 19:33:25] b' \r\n'
+[2023/08/03 19:33:25] b'  Package version    : 1.1.8.16\r\n'
+[2023/08/03 19:33:25] b' \r\n'
+[2023/08/03 19:33:25] b'  Rootfs version     : 1.1.8.16\r\n'
+[2023/08/03 19:33:25] b'  U-Boot version     : 1.1.5.1\r\n'
+[2023/08/03 19:33:25] b'  Kernel version     : 1.1.8.16\r\n'
+[2023/08/03 19:33:25] b'  Devicetree version : 1.1.8.16\r\n'
+[2023/08/03 19:33:25] b' \r\n'
+[2023/08/03 19:33:25] b'  PRU FW version     : 0.15\r\n'
+[2023/08/03 19:33:25] b' \r\n'
+[2023/08/03 19:33:25] b'--------------------------------------------------------\r\n'
+[2023/08/03 19:33:25] b' \r\n'
+[2023/08/03 19:33:25] b'\r\n'
+[2023/08/03 19:33:25] b'WcsCli# '
+[2023/08/03 19:33:25] Get firmware Pass
+[2023/08/03 19:33:29] RMTimeYear: 2023/08/03 19:30:51
+[2023/08/03 19:33:29] DateTimeYear: 2023/08/03 19:33:29
+[2023/08/03 19:33:29] DIFF Second: |63826688009 - 63826687851| = 158
+[2023/08/03 19:33:29] [Execute the sync time]
+[2023/08/03 19:33:29] DateTimeYear: 2023/08/03 19:33:29
+[2023/08/03 19:33:29] Sync date & time with Host PC
+[2023/08/03 19:33:37] Current filesystem: 2023-08-03 19:33:32
+[2023/08/03 19:34:11] 2023-08-03 19:34:11.590000 Init to Filesystem Start ...
+[2023/08/03 19:34:26] Pass - Init to Login
+[2023/08/03 19:34:31] Pass - Wait for Password
+[2023/08/03 19:34:40] Pass - Wait for WcsCli
+[2023/08/03 19:34:44] RMTimeYear: 2023/08/03 19:34:40
+[2023/08/03 19:34:44] DateTimeYear: 2023/08/03 19:34:44
+[2023/08/03 19:34:44] DIFF Second: |63826688084 - 63826688080| = 4
+[2023/08/03 19:34:44] Sync time Pass
+[2023/08/03 19:34:44] Check time Pass
+[2023/08/03 19:34:44] Test elapsed time: 0:01:46.070000
+[2023/08/03 19:34:44] ######################################################################
+[2023/08/03 19:34:44] Test5: UART Test
+[2023/08/03 19:34:44] Timestamp: [2023-08-03 19:34:44]
+[2023/08/03 19:34:44] ######################################################################
+[2023/08/03 19:34:44] UART S2 test start...
+[2023/08/03 19:34:57] Login RM successfully.
+[2023/08/03 19:34:57] UART S2 Test Pass
+[2023/08/03 19:34:57] Test elapsed time: 0:00:13.079999
+[2023/08/03 19:34:57] ######################################################################
+[2023/08/03 19:34:57] Test6: RJ4 Test
+[2023/08/03 19:34:57] Timestamp: [2023-08-03 19:34:57]
+[2023/08/03 19:34:57] ######################################################################
+[2023/08/03 19:34:57] RJ4 Test Start ...
+[2023/08/03 19:35:01] [b'start aux console\r\n', b'\r\n', b'\r\r\r\n', b'User Name:']
+[2023/08/03 19:35:01] Access Marvell console successfully.
+[2023/08/03 19:35:01] RJ4 Test Pass
+[2023/08/03 19:35:06] Test elapsed time: 0:00:08.190000
+[2023/08/03 19:35:06] ######################################################################
+[2023/08/03 19:35:06] Test7: ETH Test
+[2023/08/03 19:35:06] Timestamp: [2023-08-03 19:35:06]
+[2023/08/03 19:35:06] ######################################################################
+[2023/08/03 19:35:06] Set eth0 Static IP Start ...
+[2023/08/03 19:35:10] Wait 10 seconds for eth0 `LinkStatus: LinkUp`
+[2023/08/03 19:35:20] Check eth0 IP setting
+[2023/08/03 19:35:25] Set Static IP eth0 Pass
+[2023/08/03 19:35:25] Set eth1 Static IP Start ...
+[2023/08/03 19:35:29] Wait 10 seconds for eth1 `LinkStatus: LinkUp`
+[2023/08/03 19:35:39] Check eth1 IP setting
+[2023/08/03 19:35:44] Set Static IP eth1 Pass
+[2023/08/03 19:35:48] Ping 192.168.0.100
+[2023/08/03 19:35:50] Ping 192.168.1.100
+[2023/08/03 19:35:56] Lan Port Test Pass
+[2023/08/03 19:35:56] Test elapsed time: 0:00:50.560000
+[2023/08/03 19:35:56] ######################################################################
+[2023/08/03 19:35:56] Test8: RM1 RM_ONFF Test
+[2023/08/03 19:35:56] Timestamp: [2023-08-03 19:35:56]
+[2023/08/03 19:35:56] ######################################################################
+[2023/08/03 19:35:56] Set RM OFF
+[2023/08/03 19:36:01] Ping 192.168.0.100
+[2023/08/03 19:36:15] RM off: ping 192.168.0.100 unreached expectedly
+[2023/08/03 19:36:15] Ping 192.168.1.100
+[2023/08/03 19:36:29] RM off: ping 192.168.1.100 unreached expectedly
+[2023/08/03 19:36:32] RM ONOFF Test Pass
+[2023/08/03 19:36:32] Turn on the Rack Manager
+[2023/08/03 19:36:36] 2023-08-03 19:36:36.030000 Init to Filesystem Start ...
+[2023/08/03 19:37:07] Pass - Init to Login
+[2023/08/03 19:37:12] Pass - Wait for Password
+[2023/08/03 19:37:21] Pass - Wait for WcsCli
+[2023/08/03 19:37:22] Test elapsed time: 0:01:25.490000
+[2023/08/03 19:37:22] ######################################################################
+[2023/08/03 19:37:22] Test9: Update FRU
+[2023/08/03 19:37:22] Timestamp: [2023-08-03 19:37:22]
+[2023/08/03 19:37:22] ######################################################################
+[2023/08/03 19:37:29] b'show manager fru -b mb\r\n'
+[2023/08/03 19:37:29] b'    Board Address1: 544C8AE2D2F8\r\n'
+[2023/08/03 19:37:29] b'    Board Address2: 544C8AE2D2F9\r\n'
+[2023/08/03 19:37:29] b'    Board Build: Prod\r\n'
+[2023/08/03 19:37:29] b'    Board Fru Id: v1.0\r\n'
+[2023/08/03 19:37:29] b'    Board Manufacturer: Ingrasys\r\n'
+[2023/08/03 19:37:29] b'    Board Manufacturer Date: Sat Jul  8 06:24:00 2023\r\n'
+[2023/08/03 19:37:29] b'    Board Name: M2010 - MB\r\n'
+[2023/08/03 19:37:29] b'    Board Part Number: M1039935-001\r\n'
+[2023/08/03 19:37:29] b'    Board Serial: B99353273176300C\r\n'
+[2023/08/03 19:37:29] b'    Board Version: E\r\n'
+[2023/08/03 19:37:29] b'    Product Assettag: N/A\r\n'
+[2023/08/03 19:37:29] b'    Product Build: F\r\n'
+[2023/08/03 19:37:29] b'    Product Fru Id: v1.0\r\n'
+[2023/08/03 19:37:29] b'    Product Manufacturer: Ingrasys\r\n'
+[2023/08/03 19:37:29] b'    Product Name: M2010 - Mainboard\r\n'
+[2023/08/03 19:37:29] b'    Product Serial: P13193273176300C\r\n'
+[2023/08/03 19:37:29] b'    Product Subproduct: N/A\r\n'
+[2023/08/03 19:37:29] b'    Product Version: M1041319-001\r\n'
+[2023/08/03 19:37:29] b'    Completion Code: Success\r\n'
+[2023/08/03 19:37:29] b'WcsCli# '
+[2023/08/03 19:37:30] Check Product FRU PASS
+[2023/08/03 19:37:35] b'show manager fru -b acdc\r\n'
+[2023/08/03 19:37:35] b'    Board Build: Prod\r\n'
+[2023/08/03 19:37:35] b'    Board Fru Id: v1.0\r\n'
+[2023/08/03 19:37:35] b'    Board Manufacturer: Ingrasys\r\n'
+[2023/08/03 19:37:35] b'    Board Manufacturer Date: Fri Jul  7 02:01:00 2023\r\n'
+[2023/08/03 19:37:35] b'    Board Name: M2010 - AC-DC\r\n'
+[2023/08/03 19:37:35] b'    Board Part Number: M1035796-001\r\n'
+[2023/08/03 19:37:35] b'    Board Serial: B57963272020500C\r\n'
+[2023/08/03 19:37:35] b'    Board Version: H\r\n'
+[2023/08/03 19:37:35] b'    Product Assettag: N/A\r\n'
+[2023/08/03 19:37:35] b'    Product Build: H\r\n'
+[2023/08/03 19:37:35] b'    Product Fru Id: v1.0\r\n'
+[2023/08/03 19:37:35] b'    Product Manufacturer: Ingrasys\r\n'
+[2023/08/03 19:37:35] b'    Product Name: M2010 - ACDC\r\n'
+[2023/08/03 19:37:35] b'    Product Serial: P35083272020500C\r\n'
+[2023/08/03 19:37:35] b'    Product Subproduct: N/A\r\n'
+[2023/08/03 19:37:35] b'    Product Version: M1033508-001\r\n'
+[2023/08/03 19:37:35] b'    Completion Code: Success\r\n'
+[2023/08/03 19:37:35] b'WcsCli# '
+[2023/08/03 19:37:35] Check Product FRU PASS
+[2023/08/03 19:37:35] Reading original data for PIB
+[2023/08/03 19:37:45] Init Items PASS
+[2023/08/03 19:37:55] Change Items PASS
+[2023/08/03 19:38:27] Flash pib FRU Pass
+[2023/08/03 19:38:32] b'show manager fru -b pib\r\n'
+[2023/08/03 19:38:32] b'    Board Build: Prod\r\n'
+[2023/08/03 19:38:32] b'    Board Fru Id: v1.0\r\n'
+[2023/08/03 19:38:32] b'    Board Manufacturer: Ingrasys\r\n'
+[2023/08/03 19:38:32] b'    Board Manufacturer Date: Sat Jul  8 20:21:00 2023\r\n'
+[2023/08/03 19:38:32] b'    Board Name: M2010 - PIB\r\n'
+[2023/08/03 19:38:32] b'    Board Part Number: M1035794-002\r\n'
+[2023/08/03 19:38:32] b'    Board Serial: B57943275139400C\r\n'
+[2023/08/03 19:38:32] b'    Board Version: C\r\n'
+[2023/08/03 19:38:32] b'    Product Assettag: 21096688\r\n'
+[2023/08/03 19:38:32] b'    Product Build: D\r\n'
+[2023/08/03 19:38:32] b'    Product Fru Id: v1.0\r\n'
+[2023/08/03 19:38:32] b'    Product Manufacturer: Ingrasys\r\n'
+[2023/08/03 19:38:32] b'    Product Name: D2014 - PMDU 48U\r\n'
+[2023/08/03 19:38:32] b'    Product Serial: P175833060574042\r\n'
+[2023/08/03 19:38:32] b'    Product Subproduct: B99353273176300C\r\n'
+[2023/08/03 19:38:32] b'    Product Version: M1131758-002\r\n'
+[2023/08/03 19:38:32] b'    Completion Code: Success\r\n'
+[2023/08/03 19:38:32] b'WcsCli# '
+[2023/08/03 19:38:33] Check Product FRU PASS
+[2023/08/03 19:38:33] PIB FRU update Pass
+[2023/08/03 19:38:33] Test elapsed time: 0:01:10.940001
+[2023/08/03 19:38:33] ######################################################################
+[2023/08/03 19:38:33] Test10: FCI Test
+[2023/08/03 19:38:33] Timestamp: [2023-08-03 19:38:33]
+[2023/08/03 19:38:33] ######################################################################
+[2023/08/03 19:38:33] ======================================
+[2023/08/03 19:38:33] [Check FCI AC Output Voltage Test]
+[2023/08/03 19:38:33] ======================================
+[2023/08/03 19:38:33] ===Check FCI AC Output Voltage Source 1 Phase 1===
+[2023/08/03 19:38:33] Set AC Source Output ON
+[2023/08/03 19:38:39] COM11
+[2023/08/03 19:38:41] FCI1_Voltage=215 Volt
+[2023/08/03 19:38:41] FCI Source1 Phase 1 FCI1 Voltage Check Complete (U1)
+[2023/08/03 19:38:41] FCI2_Voltage=220 Volt
+[2023/08/03 19:38:41] FCI Source1 Phase 1 FCI2 Voltage Check Complete (U2)
+[2023/08/03 19:38:41] FCI3_Voltage=216 Volt
+[2023/08/03 19:38:41] FCI Source1 Phase 1 FCI3 Voltage Check Complete (U3)
+[2023/08/03 19:38:41] FCI4_Voltage=219 Volt
+[2023/08/03 19:38:41] FCI Source1 Phase 1 FCI4 Voltage Check Complete (U4)
+[2023/08/03 19:38:41] FCI5_Voltage=216 Volt
+[2023/08/03 19:38:41] FCI Source1 Phase 1 FCI5 Voltage Check Complete (U5)
+[2023/08/03 19:38:41] FCI6_Voltage=217 Volt
+[2023/08/03 19:38:41] FCI Source1 Phase 1 FCI6 Voltage Check Complete (U6)
+[2023/08/03 19:38:41] COM4
+[2023/08/03 19:38:43] FCI1_Voltage=217 Volt
+[2023/08/03 19:38:43] FCI Source1 Phase 1 FCI1 Voltage Check Complete (U7)
+[2023/08/03 19:38:43] FCI2_Voltage=220 Volt
+[2023/08/03 19:38:43] FCI Source1 Phase 1 FCI2 Voltage Check Complete (U8)
+[2023/08/03 19:38:43] FCI3_Voltage=217 Volt
+[2023/08/03 19:38:43] FCI Source1 Phase 1 FCI3 Voltage Check Complete (U9)
+[2023/08/03 19:38:43] FCI4_Voltage=222 Volt
+[2023/08/03 19:38:43] FCI Source1 Phase 1 FCI4 Voltage Check Complete (U10)
+[2023/08/03 19:38:43] FCI5_Voltage=217 Volt
+[2023/08/03 19:38:43] FCI Source1 Phase 1 FCI5 Voltage Check Complete (U11)
+[2023/08/03 19:38:43] FCI6_Voltage=217 Volt
+[2023/08/03 19:38:43] FCI Source1 Phase 1 FCI6 Voltage Check Complete (U12)
+[2023/08/03 19:38:43] COM5
+[2023/08/03 19:38:46] FCI1_Voltage=221 Volt
+[2023/08/03 19:38:46] FCI Source1 Phase 1 FCI1 Voltage Check Complete (U13)
+[2023/08/03 19:38:46] FCI2_Voltage=217 Volt
+[2023/08/03 19:38:46] FCI Source1 Phase 1 FCI2 Voltage Check Complete (U14)
+[2023/08/03 19:38:46] FCI3_Voltage=220 Volt
+[2023/08/03 19:38:46] FCI Source1 Phase 1 FCI3 Voltage Check Complete (U15)
+[2023/08/03 19:38:46] FCI4_Voltage=223 Volt
+[2023/08/03 19:38:46] FCI Source1 Phase 1 FCI4 Voltage Check Complete (U16)
+[2023/08/03 19:38:46] FCI5_Voltage=224 Volt
+[2023/08/03 19:38:46] FCI Source1 Phase 1 FCI5 Voltage Check Complete (U17)
+[2023/08/03 19:38:46] FCI6_Voltage=222 Volt
+[2023/08/03 19:38:46] FCI Source1 Phase 1 FCI6 Voltage Check Complete (U18)
+[2023/08/03 19:38:46] COM8
+[2023/08/03 19:38:48] FCI1_Voltage=220 Volt
+[2023/08/03 19:38:48] FCI Source1 Phase 1 FCI1 Voltage Check Complete (U19)
+[2023/08/03 19:38:48] FCI2_Voltage=216 Volt
+[2023/08/03 19:38:48] FCI Source1 Phase 1 FCI2 Voltage Check Complete (U20)
+[2023/08/03 19:38:48] FCI3_Voltage=219 Volt
+[2023/08/03 19:38:48] FCI Source1 Phase 1 FCI3 Voltage Check Complete (U21)
+[2023/08/03 19:38:48] FCI4_Voltage=220 Volt
+[2023/08/03 19:38:48] FCI Source1 Phase 1 FCI4 Voltage Check Complete (U22)
+[2023/08/03 19:38:48] FCI5_Voltage=223 Volt
+[2023/08/03 19:38:48] FCI Source1 Phase 1 FCI5 Voltage Check Complete (U23)
+[2023/08/03 19:38:48] FCI6_Voltage=220 Volt
+[2023/08/03 19:38:48] FCI Source1 Phase 1 FCI6 Voltage Check Complete (U24)
+[2023/08/03 19:38:48] COM9
+[2023/08/03 19:38:50] FCI1_Voltage=223 Volt
+[2023/08/03 19:38:50] FCI Source1 Phase 1 FCI1 Voltage Check Complete (U25)
+[2023/08/03 19:38:50] FCI2_Voltage=223 Volt
+[2023/08/03 19:38:50] FCI Source1 Phase 1 FCI2 Voltage Check Complete (U26)
+[2023/08/03 19:38:50] FCI3_Voltage=223 Volt
+[2023/08/03 19:38:50] FCI Source1 Phase 1 FCI3 Voltage Check Complete (U27)
+[2023/08/03 19:38:50] FCI4_Voltage=223 Volt
+[2023/08/03 19:38:50] FCI Source1 Phase 1 FCI4 Voltage Check Complete (U28)
+[2023/08/03 19:38:50] FCI5_Voltage=221 Volt
+[2023/08/03 19:38:50] FCI Source1 Phase 1 FCI5 Voltage Check Complete (U29)
+[2023/08/03 19:38:50] FCI6_Voltage=223 Volt
+[2023/08/03 19:38:50] FCI Source1 Phase 1 FCI6 Voltage Check Complete (U30)
+[2023/08/03 19:38:50] COM10
+[2023/08/03 19:38:53] FCI1_Voltage=221 Volt
+[2023/08/03 19:38:53] FCI Source1 Phase 1 FCI1 Voltage Check Complete (U31)
+[2023/08/03 19:38:53] FCI2_Voltage=222 Volt
+[2023/08/03 19:38:53] FCI Source1 Phase 1 FCI2 Voltage Check Complete (U32)
+[2023/08/03 19:38:53] FCI3_Voltage=219 Volt
+[2023/08/03 19:38:53] FCI Source1 Phase 1 FCI3 Voltage Check Complete (U33)
+[2023/08/03 19:38:53] FCI4_Voltage=222 Volt
+[2023/08/03 19:38:53] FCI Source1 Phase 1 FCI4 Voltage Check Complete (U34)
+[2023/08/03 19:38:53] FCI5_Voltage=220 Volt
+[2023/08/03 19:38:53] FCI Source1 Phase 1 FCI5 Voltage Check Complete (U35)
+[2023/08/03 19:38:53] FCI6_Voltage=217 Volt
+[2023/08/03 19:38:53] FCI Source1 Phase 1 FCI6 Voltage Check Complete (U36)
+[2023/08/03 19:38:53] COM7
+[2023/08/03 19:38:55] FCI1_Voltage=217 Volt
+[2023/08/03 19:38:55] FCI Source1 Phase 1 FCI1 Voltage Check Complete (U37)
+[2023/08/03 19:38:55] FCI2_Voltage=219 Volt
+[2023/08/03 19:38:55] FCI Source1 Phase 1 FCI2 Voltage Check Complete (U38)
+[2023/08/03 19:38:55] FCI3_Voltage=220 Volt
+[2023/08/03 19:38:55] FCI Source1 Phase 1 FCI3 Voltage Check Complete (U39)
+[2023/08/03 19:38:55] FCI4_Voltage=219 Volt
+[2023/08/03 19:38:55] FCI Source1 Phase 1 FCI4 Voltage Check Complete (U40)
+[2023/08/03 19:38:55] FCI5_Voltage=218 Volt
+[2023/08/03 19:38:55] FCI Source1 Phase 1 FCI5 Voltage Check Complete (U41)
+[2023/08/03 19:38:55] FCI6_Voltage=219 Volt
+[2023/08/03 19:38:55] FCI Source1 Phase 1 FCI6 Voltage Check Complete (U42)
+[2023/08/03 19:38:55] COM6
+[2023/08/03 19:38:57] FCI1_Voltage=221 Volt
+[2023/08/03 19:38:57] FCI Source1 Phase 1 FCI1 Voltage Check Complete (U43)
+[2023/08/03 19:38:57] FCI2_Voltage=219 Volt
+[2023/08/03 19:38:57] FCI Source1 Phase 1 FCI2 Voltage Check Complete (U44)
+[2023/08/03 19:38:57] FCI3_Voltage=222 Volt
+[2023/08/03 19:38:57] FCI Source1 Phase 1 FCI3 Voltage Check Complete (U45)
+[2023/08/03 19:38:57] FCI4_Voltage=220 Volt
+[2023/08/03 19:38:57] FCI Source1 Phase 1 FCI4 Voltage Check Complete (U46)
+[2023/08/03 19:38:57] FCI5_Voltage=221 Volt
+[2023/08/03 19:38:57] FCI Source1 Phase 1 FCI5 Voltage Check Complete (U47)
+[2023/08/03 19:38:57] FCI6_Voltage=220 Volt
+[2023/08/03 19:38:57] FCI Source1 Phase 1 FCI6 Voltage Check Complete (U48)
+[2023/08/03 19:38:57] ===Check FCI AC Output Voltage Source 1 Phase 2===
+[2023/08/03 19:38:57] Set AC Source Output ON
+[2023/08/03 19:39:04] COM11
+[2023/08/03 19:39:06] FCI1_Voltage=216 Volt
+[2023/08/03 19:39:06] FCI Source1 Phase 2 FCI1 Voltage Check Complete (U1)
+[2023/08/03 19:39:06] FCI2_Voltage=216 Volt
+[2023/08/03 19:39:06] FCI Source1 Phase 2 FCI2 Voltage Check Complete (U2)
+[2023/08/03 19:39:06] FCI3_Voltage=216 Volt
+[2023/08/03 19:39:06] FCI Source1 Phase 2 FCI3 Voltage Check Complete (U3)
+[2023/08/03 19:39:06] FCI4_Voltage=216 Volt
+[2023/08/03 19:39:06] FCI Source1 Phase 2 FCI4 Voltage Check Complete (U4)
+[2023/08/03 19:39:06] FCI5_Voltage=216 Volt
+[2023/08/03 19:39:06] FCI Source1 Phase 2 FCI5 Voltage Check Complete (U5)
+[2023/08/03 19:39:06] FCI6_Voltage=216 Volt
+[2023/08/03 19:39:06] FCI Source1 Phase 2 FCI6 Voltage Check Complete (U6)
+[2023/08/03 19:39:06] COM4
+[2023/08/03 19:39:08] FCI1_Voltage=222 Volt
+[2023/08/03 19:39:08] FCI Source1 Phase 2 FCI1 Voltage Check Complete (U7)
+[2023/08/03 19:39:08] FCI2_Voltage=217 Volt
+[2023/08/03 19:39:08] FCI Source1 Phase 2 FCI2 Voltage Check Complete (U8)
+[2023/08/03 19:39:08] FCI3_Voltage=217 Volt
+[2023/08/03 19:39:08] FCI Source1 Phase 2 FCI3 Voltage Check Complete (U9)
+[2023/08/03 19:39:08] FCI4_Voltage=221 Volt
+[2023/08/03 19:39:08] FCI Source1 Phase 2 FCI4 Voltage Check Complete (U10)
+[2023/08/03 19:39:08] FCI5_Voltage=218 Volt
+[2023/08/03 19:39:08] FCI Source1 Phase 2 FCI5 Voltage Check Complete (U11)
+[2023/08/03 19:39:08] FCI6_Voltage=223 Volt
+[2023/08/03 19:39:08] FCI Source1 Phase 2 FCI6 Voltage Check Complete (U12)
+[2023/08/03 19:39:08] COM5
+[2023/08/03 19:39:10] FCI1_Voltage=217 Volt
+[2023/08/03 19:39:10] FCI Source1 Phase 2 FCI1 Voltage Check Complete (U13)
+[2023/08/03 19:39:10] FCI2_Voltage=220 Volt
+[2023/08/03 19:39:10] FCI Source1 Phase 2 FCI2 Voltage Check Complete (U14)
+[2023/08/03 19:39:10] FCI3_Voltage=217 Volt
+[2023/08/03 19:39:10] FCI Source1 Phase 2 FCI3 Voltage Check Complete (U15)
+[2023/08/03 19:39:10] FCI4_Voltage=217 Volt
+[2023/08/03 19:39:10] FCI Source1 Phase 2 FCI4 Voltage Check Complete (U16)
+[2023/08/03 19:39:10] FCI5_Voltage=217 Volt
+[2023/08/03 19:39:10] FCI Source1 Phase 2 FCI5 Voltage Check Complete (U17)
+[2023/08/03 19:39:10] FCI6_Voltage=222 Volt
+[2023/08/03 19:39:10] FCI Source1 Phase 2 FCI6 Voltage Check Complete (U18)
+[2023/08/03 19:39:10] COM8
+[2023/08/03 19:39:13] FCI1_Voltage=218 Volt
+[2023/08/03 19:39:13] FCI Source1 Phase 2 FCI1 Voltage Check Complete (U19)
+[2023/08/03 19:39:13] FCI2_Voltage=220 Volt
+[2023/08/03 19:39:13] FCI Source1 Phase 2 FCI2 Voltage Check Complete (U20)
+[2023/08/03 19:39:13] FCI3_Voltage=219 Volt
+[2023/08/03 19:39:13] FCI Source1 Phase 2 FCI3 Voltage Check Complete (U21)
+[2023/08/03 19:39:13] FCI4_Voltage=219 Volt
+[2023/08/03 19:39:13] FCI Source1 Phase 2 FCI4 Voltage Check Complete (U22)
+[2023/08/03 19:39:13] FCI5_Voltage=218 Volt
+[2023/08/03 19:39:13] FCI Source1 Phase 2 FCI5 Voltage Check Complete (U23)
+[2023/08/03 19:39:13] FCI6_Voltage=218 Volt
+[2023/08/03 19:39:13] FCI Source1 Phase 2 FCI6 Voltage Check Complete (U24)
+[2023/08/03 19:39:13] COM9
+[2023/08/03 19:39:15] FCI1_Voltage=223 Volt
+[2023/08/03 19:39:15] FCI Source1 Phase 2 FCI1 Voltage Check Complete (U25)
+[2023/08/03 19:39:15] FCI2_Voltage=219 Volt
+[2023/08/03 19:39:15] FCI Source1 Phase 2 FCI2 Voltage Check Complete (U26)
+[2023/08/03 19:39:15] FCI3_Voltage=223 Volt
+[2023/08/03 19:39:15] FCI Source1 Phase 2 FCI3 Voltage Check Complete (U27)
+[2023/08/03 19:39:15] FCI4_Voltage=219 Volt
+[2023/08/03 19:39:15] FCI Source1 Phase 2 FCI4 Voltage Check Complete (U28)
+[2023/08/03 19:39:15] FCI5_Voltage=221 Volt
+[2023/08/03 19:39:15] FCI Source1 Phase 2 FCI5 Voltage Check Complete (U29)
+[2023/08/03 19:39:15] FCI6_Voltage=223 Volt
+[2023/08/03 19:39:15] FCI Source1 Phase 2 FCI6 Voltage Check Complete (U30)
+[2023/08/03 19:39:15] COM10
+[2023/08/03 19:39:17] FCI1_Voltage=217 Volt
+[2023/08/03 19:39:17] FCI Source1 Phase 2 FCI1 Voltage Check Complete (U31)
+[2023/08/03 19:39:17] FCI2_Voltage=217 Volt
+[2023/08/03 19:39:17] FCI Source1 Phase 2 FCI2 Voltage Check Complete (U32)
+[2023/08/03 19:39:17] FCI3_Voltage=220 Volt
+[2023/08/03 19:39:17] FCI Source1 Phase 2 FCI3 Voltage Check Complete (U33)
+[2023/08/03 19:39:17] FCI4_Voltage=217 Volt
+[2023/08/03 19:39:17] FCI Source1 Phase 2 FCI4 Voltage Check Complete (U34)
+[2023/08/03 19:39:17] FCI5_Voltage=217 Volt
+[2023/08/03 19:39:17] FCI Source1 Phase 2 FCI5 Voltage Check Complete (U35)
+[2023/08/03 19:39:17] FCI6_Voltage=216 Volt
+[2023/08/03 19:39:17] FCI Source1 Phase 2 FCI6 Voltage Check Complete (U36)
+[2023/08/03 19:39:17] COM7
+[2023/08/03 19:39:20] FCI1_Voltage=218 Volt
+[2023/08/03 19:39:20] FCI Source1 Phase 2 FCI1 Voltage Check Complete (U37)
+[2023/08/03 19:39:20] FCI2_Voltage=217 Volt
+[2023/08/03 19:39:20] FCI Source1 Phase 2 FCI2 Voltage Check Complete (U38)
+[2023/08/03 19:39:20] FCI3_Voltage=217 Volt
+[2023/08/03 19:39:20] FCI Source1 Phase 2 FCI3 Voltage Check Complete (U39)
+[2023/08/03 19:39:20] FCI4_Voltage=218 Volt
+[2023/08/03 19:39:20] FCI Source1 Phase 2 FCI4 Voltage Check Complete (U40)
+[2023/08/03 19:39:20] FCI5_Voltage=218 Volt
+[2023/08/03 19:39:20] FCI Source1 Phase 2 FCI5 Voltage Check Complete (U41)
+[2023/08/03 19:39:20] FCI6_Voltage=220 Volt
+[2023/08/03 19:39:20] FCI Source1 Phase 2 FCI6 Voltage Check Complete (U42)
+[2023/08/03 19:39:20] COM6
+[2023/08/03 19:39:22] FCI1_Voltage=221 Volt
+[2023/08/03 19:39:22] FCI Source1 Phase 2 FCI1 Voltage Check Complete (U43)
+[2023/08/03 19:39:22] FCI2_Voltage=219 Volt
+[2023/08/03 19:39:22] FCI Source1 Phase 2 FCI2 Voltage Check Complete (U44)
+[2023/08/03 19:39:22] FCI3_Voltage=222 Volt
+[2023/08/03 19:39:22] FCI Source1 Phase 2 FCI3 Voltage Check Complete (U45)
+[2023/08/03 19:39:22] FCI4_Voltage=220 Volt
+[2023/08/03 19:39:22] FCI Source1 Phase 2 FCI4 Voltage Check Complete (U46)
+[2023/08/03 19:39:22] FCI5_Voltage=220 Volt
+[2023/08/03 19:39:22] FCI Source1 Phase 2 FCI5 Voltage Check Complete (U47)
+[2023/08/03 19:39:22] FCI6_Voltage=224 Volt
+[2023/08/03 19:39:22] FCI Source1 Phase 2 FCI6 Voltage Check Complete (U48)
+[2023/08/03 19:39:22] ===Check FCI AC Output Voltage Source 1 Phase 3===
+[2023/08/03 19:39:22] Set AC Source Output ON
+[2023/08/03 19:39:28] COM11
+[2023/08/03 19:39:31] FCI1_Voltage=216 Volt
+[2023/08/03 19:39:31] FCI Source1 Phase 3 FCI1 Voltage Check Complete (U1)
+[2023/08/03 19:39:31] FCI2_Voltage=218 Volt
+[2023/08/03 19:39:31] FCI Source1 Phase 3 FCI2 Voltage Check Complete (U2)
+[2023/08/03 19:39:31] FCI3_Voltage=216 Volt
+[2023/08/03 19:39:31] FCI Source1 Phase 3 FCI3 Voltage Check Complete (U3)
+[2023/08/03 19:39:31] FCI4_Voltage=216 Volt
+[2023/08/03 19:39:31] FCI Source1 Phase 3 FCI4 Voltage Check Complete (U4)
+[2023/08/03 19:39:31] FCI5_Voltage=216 Volt
+[2023/08/03 19:39:31] FCI Source1 Phase 3 FCI5 Voltage Check Complete (U5)
+[2023/08/03 19:39:31] FCI6_Voltage=215 Volt
+[2023/08/03 19:39:31] FCI Source1 Phase 3 FCI6 Voltage Check Complete (U6)
+[2023/08/03 19:39:31] COM4
+[2023/08/03 19:39:33] FCI1_Voltage=217 Volt
+[2023/08/03 19:39:33] FCI Source1 Phase 3 FCI1 Voltage Check Complete (U7)
+[2023/08/03 19:39:33] FCI2_Voltage=216 Volt
+[2023/08/03 19:39:33] FCI Source1 Phase 3 FCI2 Voltage Check Complete (U8)
+[2023/08/03 19:39:33] FCI3_Voltage=217 Volt
+[2023/08/03 19:39:33] FCI Source1 Phase 3 FCI3 Voltage Check Complete (U9)
+[2023/08/03 19:39:33] FCI4_Voltage=221 Volt
+[2023/08/03 19:39:33] FCI Source1 Phase 3 FCI4 Voltage Check Complete (U10)
+[2023/08/03 19:39:33] FCI5_Voltage=221 Volt
+[2023/08/03 19:39:33] FCI Source1 Phase 3 FCI5 Voltage Check Complete (U11)
+[2023/08/03 19:39:33] FCI6_Voltage=217 Volt
+[2023/08/03 19:39:33] FCI Source1 Phase 3 FCI6 Voltage Check Complete (U12)
+[2023/08/03 19:39:33] COM5
+[2023/08/03 19:39:35] FCI1_Voltage=217 Volt
+[2023/08/03 19:39:35] FCI Source1 Phase 3 FCI1 Voltage Check Complete (U13)
+[2023/08/03 19:39:35] FCI2_Voltage=217 Volt
+[2023/08/03 19:39:35] FCI Source1 Phase 3 FCI2 Voltage Check Complete (U14)
+[2023/08/03 19:39:35] FCI3_Voltage=222 Volt
+[2023/08/03 19:39:35] FCI Source1 Phase 3 FCI3 Voltage Check Complete (U15)
+[2023/08/03 19:39:35] FCI4_Voltage=223 Volt
+[2023/08/03 19:39:35] FCI Source1 Phase 3 FCI4 Voltage Check Complete (U16)
+[2023/08/03 19:39:35] FCI5_Voltage=222 Volt
+[2023/08/03 19:39:35] FCI Source1 Phase 3 FCI5 Voltage Check Complete (U17)
+[2023/08/03 19:39:35] FCI6_Voltage=217 Volt
+[2023/08/03 19:39:35] FCI Source1 Phase 3 FCI6 Voltage Check Complete (U18)
+[2023/08/03 19:39:35] COM8
+[2023/08/03 19:39:38] FCI1_Voltage=218 Volt
+[2023/08/03 19:39:38] FCI Source1 Phase 3 FCI1 Voltage Check Complete (U19)
+[2023/08/03 19:39:38] FCI2_Voltage=219 Volt
+[2023/08/03 19:39:38] FCI Source1 Phase 3 FCI2 Voltage Check Complete (U20)
+[2023/08/03 19:39:38] FCI3_Voltage=222 Volt
+[2023/08/03 19:39:38] FCI Source1 Phase 3 FCI3 Voltage Check Complete (U21)
+[2023/08/03 19:39:38] FCI4_Voltage=221 Volt
+[2023/08/03 19:39:38] FCI Source1 Phase 3 FCI4 Voltage Check Complete (U22)
+[2023/08/03 19:39:38] FCI5_Voltage=223 Volt
+[2023/08/03 19:39:38] FCI Source1 Phase 3 FCI5 Voltage Check Complete (U23)
+[2023/08/03 19:39:38] FCI6_Voltage=225 Volt
+[2023/08/03 19:39:38] FCI Source1 Phase 3 FCI6 Voltage Check Complete (U24)
+[2023/08/03 19:39:38] COM9
+[2023/08/03 19:39:40] FCI1_Voltage=217 Volt
+[2023/08/03 19:39:40] FCI Source1 Phase 3 FCI1 Voltage Check Complete (U25)
+[2023/08/03 19:39:40] FCI2_Voltage=222 Volt
+[2023/08/03 19:39:40] FCI Source1 Phase 3 FCI2 Voltage Check Complete (U26)
+[2023/08/03 19:39:40] FCI3_Voltage=223 Volt
+[2023/08/03 19:39:40] FCI Source1 Phase 3 FCI3 Voltage Check Complete (U27)
+[2023/08/03 19:39:40] FCI4_Voltage=223 Volt
+[2023/08/03 19:39:40] FCI Source1 Phase 3 FCI4 Voltage Check Complete (U28)
+[2023/08/03 19:39:40] FCI5_Voltage=225 Volt
+[2023/08/03 19:39:40] FCI Source1 Phase 3 FCI5 Voltage Check Complete (U29)
+[2023/08/03 19:39:40] FCI6_Voltage=224 Volt
+[2023/08/03 19:39:40] FCI Source1 Phase 3 FCI6 Voltage Check Complete (U30)
+[2023/08/03 19:39:40] COM10
+[2023/08/03 19:39:42] FCI1_Voltage=223 Volt
+[2023/08/03 19:39:42] FCI Source1 Phase 3 FCI1 Voltage Check Complete (U31)
+[2023/08/03 19:39:42] FCI2_Voltage=221 Volt
+[2023/08/03 19:39:42] FCI Source1 Phase 3 FCI2 Voltage Check Complete (U32)
+[2023/08/03 19:39:42] FCI3_Voltage=225 Volt
+[2023/08/03 19:39:42] FCI Source1 Phase 3 FCI3 Voltage Check Complete (U33)
+[2023/08/03 19:39:42] FCI4_Voltage=216 Volt
+[2023/08/03 19:39:42] FCI Source1 Phase 3 FCI4 Voltage Check Complete (U34)
+[2023/08/03 19:39:42] FCI5_Voltage=222 Volt
+[2023/08/03 19:39:42] FCI Source1 Phase 3 FCI5 Voltage Check Complete (U35)
+[2023/08/03 19:39:42] FCI6_Voltage=223 Volt
+[2023/08/03 19:39:42] FCI Source1 Phase 3 FCI6 Voltage Check Complete (U36)
+[2023/08/03 19:39:42] COM7
+[2023/08/03 19:39:45] FCI1_Voltage=217 Volt
+[2023/08/03 19:39:45] FCI Source1 Phase 3 FCI1 Voltage Check Complete (U37)
+[2023/08/03 19:39:45] FCI2_Voltage=220 Volt
+[2023/08/03 19:39:45] FCI Source1 Phase 3 FCI2 Voltage Check Complete (U38)
+[2023/08/03 19:39:45] FCI3_Voltage=219 Volt
+[2023/08/03 19:39:45] FCI Source1 Phase 3 FCI3 Voltage Check Complete (U39)
+[2023/08/03 19:39:45] FCI4_Voltage=218 Volt
+[2023/08/03 19:39:45] FCI Source1 Phase 3 FCI4 Voltage Check Complete (U40)
+[2023/08/03 19:39:45] FCI5_Voltage=218 Volt
+[2023/08/03 19:39:45] FCI Source1 Phase 3 FCI5 Voltage Check Complete (U41)
+[2023/08/03 19:39:45] FCI6_Voltage=223 Volt
+[2023/08/03 19:39:45] FCI Source1 Phase 3 FCI6 Voltage Check Complete (U42)
+[2023/08/03 19:39:45] COM6
+[2023/08/03 19:39:47] FCI1_Voltage=221 Volt
+[2023/08/03 19:39:47] FCI Source1 Phase 3 FCI1 Voltage Check Complete (U43)
+[2023/08/03 19:39:47] FCI2_Voltage=220 Volt
+[2023/08/03 19:39:47] FCI Source1 Phase 3 FCI2 Voltage Check Complete (U44)
+[2023/08/03 19:39:47] FCI3_Voltage=219 Volt
+[2023/08/03 19:39:47] FCI Source1 Phase 3 FCI3 Voltage Check Complete (U45)
+[2023/08/03 19:39:47] FCI4_Voltage=220 Volt
+[2023/08/03 19:39:47] FCI Source1 Phase 3 FCI4 Voltage Check Complete (U46)
+[2023/08/03 19:39:47] FCI5_Voltage=220 Volt
+[2023/08/03 19:39:47] FCI Source1 Phase 3 FCI5 Voltage Check Complete (U47)
+[2023/08/03 19:39:47] FCI6_Voltage=218 Volt
+[2023/08/03 19:39:47] FCI Source1 Phase 3 FCI6 Voltage Check Complete (U48)
+[2023/08/03 19:39:47] ===Check FCI AC Output Voltage Source 2 Phase 1===
+[2023/08/03 19:39:47] Set AC Source Output ON
+[2023/08/03 19:39:53] COM11
+[2023/08/03 19:39:55] FCI1_Voltage=216 Volt
+[2023/08/03 19:39:55] FCI Source2 Phase 1 FCI1 Voltage Check Complete (U1)
+[2023/08/03 19:39:55] FCI2_Voltage=216 Volt
+[2023/08/03 19:39:55] FCI Source2 Phase 1 FCI2 Voltage Check Complete (U2)
+[2023/08/03 19:39:55] FCI3_Voltage=216 Volt
+[2023/08/03 19:39:55] FCI Source2 Phase 1 FCI3 Voltage Check Complete (U3)
+[2023/08/03 19:39:55] FCI4_Voltage=216 Volt
+[2023/08/03 19:39:55] FCI Source2 Phase 1 FCI4 Voltage Check Complete (U4)
+[2023/08/03 19:39:55] FCI5_Voltage=216 Volt
+[2023/08/03 19:39:55] FCI Source2 Phase 1 FCI5 Voltage Check Complete (U5)
+[2023/08/03 19:39:55] FCI6_Voltage=216 Volt
+[2023/08/03 19:39:55] FCI Source2 Phase 1 FCI6 Voltage Check Complete (U6)
+[2023/08/03 19:39:55] COM4
+[2023/08/03 19:39:58] FCI1_Voltage=217 Volt
+[2023/08/03 19:39:58] FCI Source2 Phase 1 FCI1 Voltage Check Complete (U7)
+[2023/08/03 19:39:58] FCI2_Voltage=223 Volt
+[2023/08/03 19:39:58] FCI Source2 Phase 1 FCI2 Voltage Check Complete (U8)
+[2023/08/03 19:39:58] FCI3_Voltage=222 Volt
+[2023/08/03 19:39:58] FCI Source2 Phase 1 FCI3 Voltage Check Complete (U9)
+[2023/08/03 19:39:58] FCI4_Voltage=225 Volt
+[2023/08/03 19:39:58] FCI Source2 Phase 1 FCI4 Voltage Check Complete (U10)
+[2023/08/03 19:39:58] FCI5_Voltage=220 Volt
+[2023/08/03 19:39:58] FCI Source2 Phase 1 FCI5 Voltage Check Complete (U11)
+[2023/08/03 19:39:58] FCI6_Voltage=224 Volt
+[2023/08/03 19:39:58] FCI Source2 Phase 1 FCI6 Voltage Check Complete (U12)
+[2023/08/03 19:39:58] COM5
+[2023/08/03 19:40:00] FCI1_Voltage=217 Volt
+[2023/08/03 19:40:00] FCI Source2 Phase 1 FCI1 Voltage Check Complete (U13)
+[2023/08/03 19:40:00] FCI2_Voltage=217 Volt
+[2023/08/03 19:40:00] FCI Source2 Phase 1 FCI2 Voltage Check Complete (U14)
+[2023/08/03 19:40:00] FCI3_Voltage=217 Volt
+[2023/08/03 19:40:00] FCI Source2 Phase 1 FCI3 Voltage Check Complete (U15)
+[2023/08/03 19:40:00] FCI4_Voltage=223 Volt
+[2023/08/03 19:40:00] FCI Source2 Phase 1 FCI4 Voltage Check Complete (U16)
+[2023/08/03 19:40:00] FCI5_Voltage=222 Volt
+[2023/08/03 19:40:00] FCI Source2 Phase 1 FCI5 Voltage Check Complete (U17)
+[2023/08/03 19:40:00] FCI6_Voltage=217 Volt
+[2023/08/03 19:40:00] FCI Source2 Phase 1 FCI6 Voltage Check Complete (U18)
+[2023/08/03 19:40:00] COM8
+[2023/08/03 19:40:02] FCI1_Voltage=219 Volt
+[2023/08/03 19:40:02] FCI Source2 Phase 1 FCI1 Voltage Check Complete (U19)
+[2023/08/03 19:40:02] FCI2_Voltage=219 Volt
+[2023/08/03 19:40:02] FCI Source2 Phase 1 FCI2 Voltage Check Complete (U20)
+[2023/08/03 19:40:02] FCI3_Voltage=218 Volt
+[2023/08/03 19:40:02] FCI Source2 Phase 1 FCI3 Voltage Check Complete (U21)
+[2023/08/03 19:40:02] FCI4_Voltage=219 Volt
+[2023/08/03 19:40:02] FCI Source2 Phase 1 FCI4 Voltage Check Complete (U22)
+[2023/08/03 19:40:02] FCI5_Voltage=219 Volt
+[2023/08/03 19:40:02] FCI Source2 Phase 1 FCI5 Voltage Check Complete (U23)
+[2023/08/03 19:40:02] FCI6_Voltage=219 Volt
+[2023/08/03 19:40:02] FCI Source2 Phase 1 FCI6 Voltage Check Complete (U24)
+[2023/08/03 19:40:02] COM9
+[2023/08/03 19:40:05] FCI1_Voltage=223 Volt
+[2023/08/03 19:40:05] FCI Source2 Phase 1 FCI1 Voltage Check Complete (U25)
+[2023/08/03 19:40:05] FCI2_Voltage=223 Volt
+[2023/08/03 19:40:05] FCI Source2 Phase 1 FCI2 Voltage Check Complete (U26)
+[2023/08/03 19:40:05] FCI3_Voltage=222 Volt
+[2023/08/03 19:40:05] FCI Source2 Phase 1 FCI3 Voltage Check Complete (U27)
+[2023/08/03 19:40:05] FCI4_Voltage=224 Volt
+[2023/08/03 19:40:05] FCI Source2 Phase 1 FCI4 Voltage Check Complete (U28)
+[2023/08/03 19:40:05] FCI5_Voltage=225 Volt
+[2023/08/03 19:40:05] FCI Source2 Phase 1 FCI5 Voltage Check Complete (U29)
+[2023/08/03 19:40:05] FCI6_Voltage=226 Volt
+[2023/08/03 19:40:05] FCI Source2 Phase 1 FCI6 Voltage Check Complete (U30)
+[2023/08/03 19:40:05] COM10
+[2023/08/03 19:40:07] FCI1_Voltage=216 Volt
+[2023/08/03 19:40:07] FCI Source2 Phase 1 FCI1 Voltage Check Complete (U31)
+[2023/08/03 19:40:07] FCI2_Voltage=217 Volt
+[2023/08/03 19:40:07] FCI Source2 Phase 1 FCI2 Voltage Check Complete (U32)
+[2023/08/03 19:40:07] FCI3_Voltage=221 Volt
+[2023/08/03 19:40:07] FCI Source2 Phase 1 FCI3 Voltage Check Complete (U33)
+[2023/08/03 19:40:07] FCI4_Voltage=217 Volt
+[2023/08/03 19:40:07] FCI Source2 Phase 1 FCI4 Voltage Check Complete (U34)
+[2023/08/03 19:40:07] FCI5_Voltage=217 Volt
+[2023/08/03 19:40:07] FCI Source2 Phase 1 FCI5 Voltage Check Complete (U35)
+[2023/08/03 19:40:07] FCI6_Voltage=217 Volt
+[2023/08/03 19:40:07] FCI Source2 Phase 1 FCI6 Voltage Check Complete (U36)
+[2023/08/03 19:40:07] COM7
+[2023/08/03 19:40:09] FCI1_Voltage=217 Volt
+[2023/08/03 19:40:09] FCI Source2 Phase 1 FCI1 Voltage Check Complete (U37)
+[2023/08/03 19:40:09] FCI2_Voltage=220 Volt
+[2023/08/03 19:40:09] FCI Source2 Phase 1 FCI2 Voltage Check Complete (U38)
+[2023/08/03 19:40:09] FCI3_Voltage=218 Volt
+[2023/08/03 19:40:09] FCI Source2 Phase 1 FCI3 Voltage Check Complete (U39)
+[2023/08/03 19:40:09] FCI4_Voltage=219 Volt
+[2023/08/03 19:40:09] FCI Source2 Phase 1 FCI4 Voltage Check Complete (U40)
+[2023/08/03 19:40:09] FCI5_Voltage=218 Volt
+[2023/08/03 19:40:09] FCI Source2 Phase 1 FCI5 Voltage Check Complete (U41)
+[2023/08/03 19:40:09] FCI6_Voltage=218 Volt
+[2023/08/03 19:40:09] FCI Source2 Phase 1 FCI6 Voltage Check Complete (U42)
+[2023/08/03 19:40:09] COM6
+[2023/08/03 19:40:12] FCI1_Voltage=221 Volt
+[2023/08/03 19:40:12] FCI Source2 Phase 1 FCI1 Voltage Check Complete (U43)
+[2023/08/03 19:40:12] FCI2_Voltage=219 Volt
+[2023/08/03 19:40:12] FCI Source2 Phase 1 FCI2 Voltage Check Complete (U44)
+[2023/08/03 19:40:12] FCI3_Voltage=221 Volt
+[2023/08/03 19:40:12] FCI Source2 Phase 1 FCI3 Voltage Check Complete (U45)
+[2023/08/03 19:40:12] FCI4_Voltage=226 Volt
+[2023/08/03 19:40:12] FCI Source2 Phase 1 FCI4 Voltage Check Complete (U46)
+[2023/08/03 19:40:12] FCI5_Voltage=220 Volt
+[2023/08/03 19:40:12] FCI Source2 Phase 1 FCI5 Voltage Check Complete (U47)
+[2023/08/03 19:40:12] FCI6_Voltage=221 Volt
+[2023/08/03 19:40:12] FCI Source2 Phase 1 FCI6 Voltage Check Complete (U48)
+[2023/08/03 19:40:12] ===Check FCI AC Output Voltage Source 2 Phase 2===
+[2023/08/03 19:40:12] Set AC Source Output ON
+[2023/08/03 19:40:18] COM11
+[2023/08/03 19:40:20] FCI1_Voltage=216 Volt
+[2023/08/03 19:40:20] FCI Source2 Phase 2 FCI1 Voltage Check Complete (U1)
+[2023/08/03 19:40:20] FCI2_Voltage=218 Volt
+[2023/08/03 19:40:20] FCI Source2 Phase 2 FCI2 Voltage Check Complete (U2)
+[2023/08/03 19:40:20] FCI3_Voltage=216 Volt
+[2023/08/03 19:40:20] FCI Source2 Phase 2 FCI3 Voltage Check Complete (U3)
+[2023/08/03 19:40:20] FCI4_Voltage=216 Volt
+[2023/08/03 19:40:20] FCI Source2 Phase 2 FCI4 Voltage Check Complete (U4)
+[2023/08/03 19:40:20] FCI5_Voltage=216 Volt
+[2023/08/03 19:40:20] FCI Source2 Phase 2 FCI5 Voltage Check Complete (U5)
+[2023/08/03 19:40:20] FCI6_Voltage=216 Volt
+[2023/08/03 19:40:20] FCI Source2 Phase 2 FCI6 Voltage Check Complete (U6)
+[2023/08/03 19:40:20] COM4
+[2023/08/03 19:40:23] FCI1_Voltage=217 Volt
+[2023/08/03 19:40:23] FCI Source2 Phase 2 FCI1 Voltage Check Complete (U7)
+[2023/08/03 19:40:23] FCI2_Voltage=217 Volt
+[2023/08/03 19:40:23] FCI Source2 Phase 2 FCI2 Voltage Check Complete (U8)
+[2023/08/03 19:40:23] FCI3_Voltage=216 Volt
+[2023/08/03 19:40:23] FCI Source2 Phase 2 FCI3 Voltage Check Complete (U9)
+[2023/08/03 19:40:23] FCI4_Voltage=217 Volt
+[2023/08/03 19:40:23] FCI Source2 Phase 2 FCI4 Voltage Check Complete (U10)
+[2023/08/03 19:40:23] FCI5_Voltage=226 Volt
+[2023/08/03 19:40:23] FCI Source2 Phase 2 FCI5 Voltage Check Complete (U11)
+[2023/08/03 19:40:23] FCI6_Voltage=219 Volt
+[2023/08/03 19:40:23] FCI Source2 Phase 2 FCI6 Voltage Check Complete (U12)
+[2023/08/03 19:40:23] COM5
+[2023/08/03 19:40:25] FCI1_Voltage=223 Volt
+[2023/08/03 19:40:25] FCI Source2 Phase 2 FCI1 Voltage Check Complete (U13)
+[2023/08/03 19:40:25] FCI2_Voltage=221 Volt
+[2023/08/03 19:40:25] FCI Source2 Phase 2 FCI2 Voltage Check Complete (U14)
+[2023/08/03 19:40:25] FCI3_Voltage=220 Volt
+[2023/08/03 19:40:25] FCI Source2 Phase 2 FCI3 Voltage Check Complete (U15)
+[2023/08/03 19:40:25] FCI4_Voltage=224 Volt
+[2023/08/03 19:40:25] FCI Source2 Phase 2 FCI4 Voltage Check Complete (U16)
+[2023/08/03 19:40:25] FCI5_Voltage=220 Volt
+[2023/08/03 19:40:25] FCI Source2 Phase 2 FCI5 Voltage Check Complete (U17)
+[2023/08/03 19:40:25] FCI6_Voltage=220 Volt
+[2023/08/03 19:40:25] FCI Source2 Phase 2 FCI6 Voltage Check Complete (U18)
+[2023/08/03 19:40:25] COM8
+[2023/08/03 19:40:27] FCI1_Voltage=219 Volt
+[2023/08/03 19:40:27] FCI Source2 Phase 2 FCI1 Voltage Check Complete (U19)
+[2023/08/03 19:40:27] FCI2_Voltage=219 Volt
+[2023/08/03 19:40:27] FCI Source2 Phase 2 FCI2 Voltage Check Complete (U20)
+[2023/08/03 19:40:27] FCI3_Voltage=225 Volt
+[2023/08/03 19:40:27] FCI Source2 Phase 2 FCI3 Voltage Check Complete (U21)
+[2023/08/03 19:40:27] FCI4_Voltage=221 Volt
+[2023/08/03 19:40:27] FCI Source2 Phase 2 FCI4 Voltage Check Complete (U22)
+[2023/08/03 19:40:27] FCI5_Voltage=225 Volt
+[2023/08/03 19:40:27] FCI Source2 Phase 2 FCI5 Voltage Check Complete (U23)
+[2023/08/03 19:40:27] FCI6_Voltage=218 Volt
+[2023/08/03 19:40:27] FCI Source2 Phase 2 FCI6 Voltage Check Complete (U24)
+[2023/08/03 19:40:27] COM9
+[2023/08/03 19:40:30] FCI1_Voltage=222 Volt
+[2023/08/03 19:40:30] FCI Source2 Phase 2 FCI1 Voltage Check Complete (U25)
+[2023/08/03 19:40:30] FCI2_Voltage=223 Volt
+[2023/08/03 19:40:30] FCI Source2 Phase 2 FCI2 Voltage Check Complete (U26)
+[2023/08/03 19:40:30] FCI3_Voltage=219 Volt
+[2023/08/03 19:40:30] FCI Source2 Phase 2 FCI3 Voltage Check Complete (U27)
+[2023/08/03 19:40:30] FCI4_Voltage=224 Volt
+[2023/08/03 19:40:30] FCI Source2 Phase 2 FCI4 Voltage Check Complete (U28)
+[2023/08/03 19:40:30] FCI5_Voltage=223 Volt
+[2023/08/03 19:40:30] FCI Source2 Phase 2 FCI5 Voltage Check Complete (U29)
+[2023/08/03 19:40:30] FCI6_Voltage=218 Volt
+[2023/08/03 19:40:30] FCI Source2 Phase 2 FCI6 Voltage Check Complete (U30)
+[2023/08/03 19:40:30] COM10
+[2023/08/03 19:40:32] FCI1_Voltage=223 Volt
+[2023/08/03 19:40:32] FCI Source2 Phase 2 FCI1 Voltage Check Complete (U31)
+[2023/08/03 19:40:32] FCI2_Voltage=222 Volt
+[2023/08/03 19:40:32] FCI Source2 Phase 2 FCI2 Voltage Check Complete (U32)
+[2023/08/03 19:40:32] FCI3_Voltage=221 Volt
+[2023/08/03 19:40:32] FCI Source2 Phase 2 FCI3 Voltage Check Complete (U33)
+[2023/08/03 19:40:32] FCI4_Voltage=221 Volt
+[2023/08/03 19:40:32] FCI Source2 Phase 2 FCI4 Voltage Check Complete (U34)
+[2023/08/03 19:40:32] FCI5_Voltage=224 Volt
+[2023/08/03 19:40:32] FCI Source2 Phase 2 FCI5 Voltage Check Complete (U35)
+[2023/08/03 19:40:32] FCI6_Voltage=218 Volt
+[2023/08/03 19:40:32] FCI Source2 Phase 2 FCI6 Voltage Check Complete (U36)
+[2023/08/03 19:40:32] COM7
+[2023/08/03 19:40:34] FCI1_Voltage=219 Volt
+[2023/08/03 19:40:34] FCI Source2 Phase 2 FCI1 Voltage Check Complete (U37)
+[2023/08/03 19:40:34] FCI2_Voltage=219 Volt
+[2023/08/03 19:40:34] FCI Source2 Phase 2 FCI2 Voltage Check Complete (U38)
+[2023/08/03 19:40:34] FCI3_Voltage=219 Volt
+[2023/08/03 19:40:34] FCI Source2 Phase 2 FCI3 Voltage Check Complete (U39)
+[2023/08/03 19:40:34] FCI4_Voltage=223 Volt
+[2023/08/03 19:40:34] FCI Source2 Phase 2 FCI4 Voltage Check Complete (U40)
+[2023/08/03 19:40:34] FCI5_Voltage=224 Volt
+[2023/08/03 19:40:34] FCI Source2 Phase 2 FCI5 Voltage Check Complete (U41)
+[2023/08/03 19:40:34] FCI6_Voltage=220 Volt
+[2023/08/03 19:40:34] FCI Source2 Phase 2 FCI6 Voltage Check Complete (U42)
+[2023/08/03 19:40:34] COM6
+[2023/08/03 19:40:37] FCI1_Voltage=220 Volt
+[2023/08/03 19:40:37] FCI Source2 Phase 2 FCI1 Voltage Check Complete (U43)
+[2023/08/03 19:40:37] FCI2_Voltage=222 Volt
+[2023/08/03 19:40:37] FCI Source2 Phase 2 FCI2 Voltage Check Complete (U44)
+[2023/08/03 19:40:37] FCI3_Voltage=221 Volt
+[2023/08/03 19:40:37] FCI Source2 Phase 2 FCI3 Voltage Check Complete (U45)
+[2023/08/03 19:40:37] FCI4_Voltage=221 Volt
+[2023/08/03 19:40:37] FCI Source2 Phase 2 FCI4 Voltage Check Complete (U46)
+[2023/08/03 19:40:37] FCI5_Voltage=220 Volt
+[2023/08/03 19:40:37] FCI Source2 Phase 2 FCI5 Voltage Check Complete (U47)
+[2023/08/03 19:40:37] FCI6_Voltage=220 Volt
+[2023/08/03 19:40:37] FCI Source2 Phase 2 FCI6 Voltage Check Complete (U48)
+[2023/08/03 19:40:37] ===Check FCI AC Output Voltage Source 2 Phase 3===
+[2023/08/03 19:40:37] Set AC Source Output ON
+[2023/08/03 19:40:43] COM11
+[2023/08/03 19:40:45] FCI1_Voltage=216 Volt
+[2023/08/03 19:40:45] FCI Source2 Phase 3 FCI1 Voltage Check Complete (U1)
+[2023/08/03 19:40:45] FCI2_Voltage=216 Volt
+[2023/08/03 19:40:45] FCI Source2 Phase 3 FCI2 Voltage Check Complete (U2)
+[2023/08/03 19:40:45] FCI3_Voltage=216 Volt
+[2023/08/03 19:40:45] FCI Source2 Phase 3 FCI3 Voltage Check Complete (U3)
+[2023/08/03 19:40:45] FCI4_Voltage=219 Volt
+[2023/08/03 19:40:45] FCI Source2 Phase 3 FCI4 Voltage Check Complete (U4)
+[2023/08/03 19:40:45] FCI5_Voltage=216 Volt
+[2023/08/03 19:40:45] FCI Source2 Phase 3 FCI5 Voltage Check Complete (U5)
+[2023/08/03 19:40:45] FCI6_Voltage=216 Volt
+[2023/08/03 19:40:45] FCI Source2 Phase 3 FCI6 Voltage Check Complete (U6)
+[2023/08/03 19:40:45] COM4
+[2023/08/03 19:40:47] FCI1_Voltage=219 Volt
+[2023/08/03 19:40:47] FCI Source2 Phase 3 FCI1 Voltage Check Complete (U7)
+[2023/08/03 19:40:47] FCI2_Voltage=217 Volt
+[2023/08/03 19:40:47] FCI Source2 Phase 3 FCI2 Voltage Check Complete (U8)
+[2023/08/03 19:40:47] FCI3_Voltage=217 Volt
+[2023/08/03 19:40:47] FCI Source2 Phase 3 FCI3 Voltage Check Complete (U9)
+[2023/08/03 19:40:47] FCI4_Voltage=222 Volt
+[2023/08/03 19:40:47] FCI Source2 Phase 3 FCI4 Voltage Check Complete (U10)
+[2023/08/03 19:40:47] FCI5_Voltage=222 Volt
+[2023/08/03 19:40:47] FCI Source2 Phase 3 FCI5 Voltage Check Complete (U11)
+[2023/08/03 19:40:47] FCI6_Voltage=225 Volt
+[2023/08/03 19:40:47] FCI Source2 Phase 3 FCI6 Voltage Check Complete (U12)
+[2023/08/03 19:40:47] COM5
+[2023/08/03 19:40:50] FCI1_Voltage=218 Volt
+[2023/08/03 19:40:50] FCI Source2 Phase 3 FCI1 Voltage Check Complete (U13)
+[2023/08/03 19:40:50] FCI2_Voltage=217 Volt
+[2023/08/03 19:40:50] FCI Source2 Phase 3 FCI2 Voltage Check Complete (U14)
+[2023/08/03 19:40:50] FCI3_Voltage=218 Volt
+[2023/08/03 19:40:50] FCI Source2 Phase 3 FCI3 Voltage Check Complete (U15)
+[2023/08/03 19:40:50] FCI4_Voltage=223 Volt
+[2023/08/03 19:40:50] FCI Source2 Phase 3 FCI4 Voltage Check Complete (U16)
+[2023/08/03 19:40:50] FCI5_Voltage=217 Volt
+[2023/08/03 19:40:50] FCI Source2 Phase 3 FCI5 Voltage Check Complete (U17)
+[2023/08/03 19:40:50] FCI6_Voltage=217 Volt
+[2023/08/03 19:40:50] FCI Source2 Phase 3 FCI6 Voltage Check Complete (U18)
+[2023/08/03 19:40:50] COM8
+[2023/08/03 19:40:52] FCI1_Voltage=218 Volt
+[2023/08/03 19:40:52] FCI Source2 Phase 3 FCI1 Voltage Check Complete (U19)
+[2023/08/03 19:40:52] FCI2_Voltage=219 Volt
+[2023/08/03 19:40:52] FCI Source2 Phase 3 FCI2 Voltage Check Complete (U20)
+[2023/08/03 19:40:52] FCI3_Voltage=219 Volt
+[2023/08/03 19:40:52] FCI Source2 Phase 3 FCI3 Voltage Check Complete (U21)
+[2023/08/03 19:40:52] FCI4_Voltage=222 Volt
+[2023/08/03 19:40:52] FCI Source2 Phase 3 FCI4 Voltage Check Complete (U22)
+[2023/08/03 19:40:52] FCI5_Voltage=218 Volt
+[2023/08/03 19:40:52] FCI Source2 Phase 3 FCI5 Voltage Check Complete (U23)
+[2023/08/03 19:40:52] FCI6_Voltage=220 Volt
+[2023/08/03 19:40:52] FCI Source2 Phase 3 FCI6 Voltage Check Complete (U24)
+[2023/08/03 19:40:52] COM9
+[2023/08/03 19:40:54] FCI1_Voltage=223 Volt
+[2023/08/03 19:40:54] FCI Source2 Phase 3 FCI1 Voltage Check Complete (U25)
+[2023/08/03 19:40:54] FCI2_Voltage=221 Volt
+[2023/08/03 19:40:54] FCI Source2 Phase 3 FCI2 Voltage Check Complete (U26)
+[2023/08/03 19:40:54] FCI3_Voltage=219 Volt
+[2023/08/03 19:40:54] FCI Source2 Phase 3 FCI3 Voltage Check Complete (U27)
+[2023/08/03 19:40:54] FCI4_Voltage=221 Volt
+[2023/08/03 19:40:54] FCI Source2 Phase 3 FCI4 Voltage Check Complete (U28)
+[2023/08/03 19:40:54] FCI5_Voltage=222 Volt
+[2023/08/03 19:40:54] FCI Source2 Phase 3 FCI5 Voltage Check Complete (U29)
+[2023/08/03 19:40:54] FCI6_Voltage=223 Volt
+[2023/08/03 19:40:54] FCI Source2 Phase 3 FCI6 Voltage Check Complete (U30)
+[2023/08/03 19:40:54] COM10
+[2023/08/03 19:40:57] FCI1_Voltage=217 Volt
+[2023/08/03 19:40:57] FCI Source2 Phase 3 FCI1 Voltage Check Complete (U31)
+[2023/08/03 19:40:57] FCI2_Voltage=218 Volt
+[2023/08/03 19:40:57] FCI Source2 Phase 3 FCI2 Voltage Check Complete (U32)
+[2023/08/03 19:40:57] FCI3_Voltage=217 Volt
+[2023/08/03 19:40:57] FCI Source2 Phase 3 FCI3 Voltage Check Complete (U33)
+[2023/08/03 19:40:57] FCI4_Voltage=223 Volt
+[2023/08/03 19:40:57] FCI Source2 Phase 3 FCI4 Voltage Check Complete (U34)
+[2023/08/03 19:40:57] FCI5_Voltage=216 Volt
+[2023/08/03 19:40:57] FCI Source2 Phase 3 FCI5 Voltage Check Complete (U35)
+[2023/08/03 19:40:57] FCI6_Voltage=219 Volt
+[2023/08/03 19:40:57] FCI Source2 Phase 3 FCI6 Voltage Check Complete (U36)
+[2023/08/03 19:40:57] COM7
+[2023/08/03 19:40:59] FCI1_Voltage=218 Volt
+[2023/08/03 19:40:59] FCI Source2 Phase 3 FCI1 Voltage Check Complete (U37)
+[2023/08/03 19:40:59] FCI2_Voltage=218 Volt
+[2023/08/03 19:40:59] FCI Source2 Phase 3 FCI2 Voltage Check Complete (U38)
+[2023/08/03 19:40:59] FCI3_Voltage=218 Volt
+[2023/08/03 19:40:59] FCI Source2 Phase 3 FCI3 Voltage Check Complete (U39)
+[2023/08/03 19:40:59] FCI4_Voltage=217 Volt
+[2023/08/03 19:40:59] FCI Source2 Phase 3 FCI4 Voltage Check Complete (U40)
+[2023/08/03 19:40:59] FCI5_Voltage=218 Volt
+[2023/08/03 19:40:59] FCI Source2 Phase 3 FCI5 Voltage Check Complete (U41)
+[2023/08/03 19:40:59] FCI6_Voltage=218 Volt
+[2023/08/03 19:40:59] FCI Source2 Phase 3 FCI6 Voltage Check Complete (U42)
+[2023/08/03 19:40:59] COM6
+[2023/08/03 19:41:01] FCI1_Voltage=220 Volt
+[2023/08/03 19:41:01] FCI Source2 Phase 3 FCI1 Voltage Check Complete (U43)
+[2023/08/03 19:41:01] FCI2_Voltage=221 Volt
+[2023/08/03 19:41:01] FCI Source2 Phase 3 FCI2 Voltage Check Complete (U44)
+[2023/08/03 19:41:01] FCI3_Voltage=220 Volt
+[2023/08/03 19:41:01] FCI Source2 Phase 3 FCI3 Voltage Check Complete (U45)
+[2023/08/03 19:41:01] FCI4_Voltage=220 Volt
+[2023/08/03 19:41:01] FCI Source2 Phase 3 FCI4 Voltage Check Complete (U46)
+[2023/08/03 19:41:01] FCI5_Voltage=220 Volt
+[2023/08/03 19:41:01] FCI Source2 Phase 3 FCI5 Voltage Check Complete (U47)
+[2023/08/03 19:41:01] FCI6_Voltage=221 Volt
+[2023/08/03 19:41:01] FCI Source2 Phase 3 FCI6 Voltage Check Complete (U48)
+[2023/08/03 19:41:01] Set AC Source Output OFF
+[2023/08/03 19:41:07] Test elapsed time: 0:02:34.970000
+[2023/08/03 19:41:07] ######################################################################
+[2023/08/03 19:41:07] Test11: Current Detect Test
+[2023/08/03 19:41:07] Timestamp: [2023-08-03 19:41:07]
+[2023/08/03 19:41:07] ######################################################################
+[2023/08/03 19:41:07] ======================================
+[2023/08/03 19:41:07] [Current phase detect]
+[2023/08/03 19:41:07] ======================================
+[2023/08/03 19:41:08] Set AC Source Output OFF
+[2023/08/03 19:41:17] COM11
+[2023/08/03 19:41:17] S1/S2 relays are off
+[2023/08/03 19:41:19] Turn Relay 1 ON
+[2023/08/03 19:41:21] S1 relays are on
+[2023/08/03 19:41:21] COM4
+[2023/08/03 19:41:22] S1/S2 relays are off
+[2023/08/03 19:41:24] Turn Relay 1 ON
+[2023/08/03 19:41:26] S1 relays are on
+[2023/08/03 19:41:26] COM5
+[2023/08/03 19:41:26] S1/S2 relays are off
+[2023/08/03 19:41:28] Turn Relay 1 ON
+[2023/08/03 19:41:31] S1 relays are on
+[2023/08/03 19:41:31] COM8
+[2023/08/03 19:41:31] S1/S2 relays are off
+[2023/08/03 19:41:33] Turn Relay 1 ON
+[2023/08/03 19:41:35] S1 relays are on
+[2023/08/03 19:41:35] COM9
+[2023/08/03 19:41:36] S1/S2 relays are off
+[2023/08/03 19:41:38] Turn Relay 1 ON
+[2023/08/03 19:41:40] S1 relays are on
+[2023/08/03 19:41:40] COM10
+[2023/08/03 19:41:40] S1/S2 relays are off
+[2023/08/03 19:41:42] Turn Relay 1 ON
+[2023/08/03 19:41:44] S1 relays are on
+[2023/08/03 19:41:44] COM7
+[2023/08/03 19:41:45] S1/S2 relays are off
+[2023/08/03 19:41:47] Turn Relay 1 ON
+[2023/08/03 19:41:49] S1 relays are on
+[2023/08/03 19:41:49] COM6
+[2023/08/03 19:41:49] S1/S2 relays are off
+[2023/08/03 19:41:52] Turn Relay 1 ON
+[2023/08/03 19:41:54] S1 relays are on
+[2023/08/03 19:41:54] 
+
+===Start Source 1 Current detect===
+
+[2023/08/03 19:41:54] [Set AC Source Output 208 Volt]
+[2023/08/03 19:41:54] AC Source Output
+[2023/08/03 19:41:54] 2023-08-03 19:41:54.540000 Init to Filesystem Start ...
+[2023/08/03 19:42:27] Pass - Init to Login
+[2023/08/03 19:42:32] Pass - Wait for Password
+[2023/08/03 19:42:41] Pass - Wait for WcsCli
+[2023/08/03 19:42:42] Initial Gain/Offset parameter
+[2023/08/03 19:43:10] Write ADC Calibration to EEPROM(B:1 D:51) Complete
+[2023/08/03 19:43:14] b'show manager powermeter calibration\r\n'
+[2023/08/03 19:43:14] b'    Current: \r\n'
+[2023/08/03 19:43:14] b'        Feed1: \r\n'
+[2023/08/03 19:43:14] b'            Phase1: \r\n'
+[2023/08/03 19:43:14] b'                Gain: 16384\r\n'
+[2023/08/03 19:43:14] b'                Offset: 0\r\n'
+[2023/08/03 19:43:14] b'            Phase2: \r\n'
+[2023/08/03 19:43:14] b'                Gain: 16384\r\n'
+[2023/08/03 19:43:14] b'                Offset: 0\r\n'
+[2023/08/03 19:43:14] b'            Phase3: \r\n'
+[2023/08/03 19:43:14] b'                Gain: 16384\r\n'
+[2023/08/03 19:43:14] b'                Offset: 0\r\n'
+[2023/08/03 19:43:14] b'        Feed2: \r\n'
+[2023/08/03 19:43:14] b'            Phase1: \r\n'
+[2023/08/03 19:43:14] b'                Gain: 16384\r\n'
+[2023/08/03 19:43:14] b'                Offset: 0\r\n'
+[2023/08/03 19:43:14] b'            Phase2: \r\n'
+[2023/08/03 19:43:14] b'                Gain: 16384\r\n'
+[2023/08/03 19:43:14] b'                Offset: 0\r\n'
+[2023/08/03 19:43:14] b'            Phase3: \r\n'
+[2023/08/03 19:43:14] b'                Gain: 16384\r\n'
+[2023/08/03 19:43:14] b'                Offset: 0\r\n'
+[2023/08/03 19:43:14] b'    Voltage: \r\n'
+[2023/08/03 19:43:14] b'        Feed1: \r\n'
+[2023/08/03 19:43:14] b'            Phase1: \r\n'
+[2023/08/03 19:43:14] b'                Gain: 16384\r\n'
+[2023/08/03 19:43:14] b'                Offset: 0\r\n'
+[2023/08/03 19:43:14] b'            Phase2: \r\n'
+[2023/08/03 19:43:14] b'                Gain: 16384\r\n'
+[2023/08/03 19:43:14] b'                Offset: 0\r\n'
+[2023/08/03 19:43:14] b'            Phase3: \r\n'
+[2023/08/03 19:43:14] b'                Gain: 16384\r\n'
+[2023/08/03 19:43:14] b'                Offset: 0\r\n'
+[2023/08/03 19:43:14] b'        Feed2: \r\n'
+[2023/08/03 19:43:14] b'            Phase1: \r\n'
+[2023/08/03 19:43:14] b'                Gain: 16384\r\n'
+[2023/08/03 19:43:14] b'                Offset: 0\r\n'
+[2023/08/03 19:43:14] b'            Phase2: \r\n'
+[2023/08/03 19:43:14] b'                Gain: 16384\r\n'
+[2023/08/03 19:43:14] b'                Offset: 0\r\n'
+[2023/08/03 19:43:14] b'            Phase3: \r\n'
+[2023/08/03 19:43:14] b'                Gain: 16384\r\n'
+[2023/08/03 19:43:14] b'                Offset: 0\r\n'
+[2023/08/03 19:43:14] b'    Completion Code: Success\r\n'
+[2023/08/03 19:43:14] b'WcsCli# '
+[2023/08/03 19:43:14] [Set AC Load as amp]
+[2023/08/03 19:43:17] Set AC Load ON
+[2023/08/03 19:43:27] [Current detect phase R/S/T - PRU Current]
+[2023/08/03 19:43:35] PRU S1 RIpru1 Current = 5.069300 amp
+[2023/08/03 19:43:35] PRU S1 SIpru1 Current = 10.186500 amp
+[2023/08/03 19:43:35] PRU S1 TIpru1 Current = 15.251400 amp
+[2023/08/03 19:43:35] S1 Current R phase detect: PASS
+[2023/08/03 19:43:35] S1 Current S phase detect: PASS
+[2023/08/03 19:43:35] S1 Current T phase detect: PASS
+[2023/08/03 19:43:35] Set AC Source Output OFF
+[2023/08/03 19:43:44] COM11
+[2023/08/03 19:43:45] Turn Relay OFF
+[2023/08/03 19:43:47] S1/S2 relays are off
+[2023/08/03 19:43:49] Turn Relay 2 ON
+[2023/08/03 19:43:51] S2 relays are on
+[2023/08/03 19:43:51] COM4
+[2023/08/03 19:43:52] Turn Relay OFF
+[2023/08/03 19:43:54] S1/S2 relays are off
+[2023/08/03 19:43:56] Turn Relay 2 ON
+[2023/08/03 19:43:58] S2 relays are on
+[2023/08/03 19:43:58] COM5
+[2023/08/03 19:43:59] Turn Relay OFF
+[2023/08/03 19:44:01] S1/S2 relays are off
+[2023/08/03 19:44:03] Turn Relay 2 ON
+[2023/08/03 19:44:05] S2 relays are on
+[2023/08/03 19:44:05] COM8
+[2023/08/03 19:44:06] Turn Relay OFF
+[2023/08/03 19:44:08] S1/S2 relays are off
+[2023/08/03 19:44:10] Turn Relay 2 ON
+[2023/08/03 19:44:12] S2 relays are on
+[2023/08/03 19:44:12] COM9
+[2023/08/03 19:44:13] Turn Relay OFF
+[2023/08/03 19:44:15] S1/S2 relays are off
+[2023/08/03 19:44:17] Turn Relay 2 ON
+[2023/08/03 19:44:19] S2 relays are on
+[2023/08/03 19:44:19] COM10
+[2023/08/03 19:44:20] Turn Relay OFF
+[2023/08/03 19:44:22] S1/S2 relays are off
+[2023/08/03 19:44:24] Turn Relay 2 ON
+[2023/08/03 19:44:26] S2 relays are on
+[2023/08/03 19:44:26] COM7
+[2023/08/03 19:44:27] Turn Relay OFF
+[2023/08/03 19:44:29] S1/S2 relays are off
+[2023/08/03 19:44:31] Turn Relay 2 ON
+[2023/08/03 19:44:33] S2 relays are on
+[2023/08/03 19:44:33] COM6
+[2023/08/03 19:44:34] Turn Relay OFF
+[2023/08/03 19:44:36] S1/S2 relays are off
+[2023/08/03 19:44:38] Turn Relay 2 ON
+[2023/08/03 19:44:40] S2 relays are on
+[2023/08/03 19:44:40] 
+
+===Start Source 2 Current detect===
+
+[2023/08/03 19:44:40] [Set AC Source Output 208 Volt]
+[2023/08/03 19:44:40] AC Source Output
+[2023/08/03 19:44:41] 2023-08-03 19:44:41 Init to Filesystem Start ...
+[2023/08/03 19:45:14] Pass - Init to Login
+[2023/08/03 19:45:19] Pass - Wait for Password
+[2023/08/03 19:45:28] Pass - Wait for WcsCli
+[2023/08/03 19:45:28] [Set AC Load as amp]
+[2023/08/03 19:45:30] Set AC Load ON
+[2023/08/03 19:45:40] [Current detect phase R/S/T - PRU Current]
+[2023/08/03 19:45:49] PRU S2 RIpru1 Current = 1.330600 amp
+[2023/08/03 19:45:49] PRU S2 SIpru1 Current = 10.169100 amp
+[2023/08/03 19:45:49] PRU S2 TIpru1 Current = 15.277600 amp
+[2023/08/03 19:45:49] ERROR ! S2 Current R phase (5amp) detect error
+[2023/08/03 19:45:49] S2 Current S phase detect: PASS
+[2023/08/03 19:45:49] S2 Current T phase detect: PASS
+[2023/08/03 19:45:49] Test elapsed time: 0:04:41.230000
+[2023/08/03 19:45:49] Failed tests:
+[2023/08/03 19:45:49]     Test11: Current Detect Test | ERROR ! S2 Current R phase (5amp) detect error
+[2023/08/03 19:45:49] Output is ON then Turn OFF
+[2023/08/03 19:45:49] AC Source Quit
+[2023/08/03 19:45:53] Switch to 4/5 wire: OFF [b'Reset']
+[2023/08/03 19:45:53] COM11
+[2023/08/03 19:45:53] Turn Relay OFF
+[2023/08/03 19:45:53] COM4
+[2023/08/03 19:45:53] Turn Relay OFF
+[2023/08/03 19:45:53] COM5
+[2023/08/03 19:45:53] Turn Relay OFF
+[2023/08/03 19:45:53] COM8
+[2023/08/03 19:45:54] Turn Relay OFF
+[2023/08/03 19:45:54] COM9
+[2023/08/03 19:45:54] Turn Relay OFF
+[2023/08/03 19:45:54] COM10
+[2023/08/03 19:45:54] Turn Relay OFF
+[2023/08/03 19:45:54] COM7
+[2023/08/03 19:45:54] Turn Relay OFF
+[2023/08/03 19:45:54] COM6
+[2023/08/03 19:45:54] Turn Relay OFF
+[2023/08/03 19:45:54] End Timestamp: [2023-08-03 19:45:54]
+[2023/08/03 19:45:54] Test Duration : 21m:32s

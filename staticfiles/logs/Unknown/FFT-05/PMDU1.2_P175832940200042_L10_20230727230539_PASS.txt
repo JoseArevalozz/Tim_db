@@ -1,0 +1,3141 @@
+[2023/07/27 23:06:19] Foxconn Test Program Rev: PROD051 (non-SFC)
+[2023/07/27 23:06:19] Description: PMDU1.2 PMDU L10 Test
+[2023/07/27 23:06:19] Support package version: 1.1.8.16
+[2023/07/27 23:06:19] Factory: RMA
+[2023/07/27 23:06:19] Station ID: PMDU-FFT003
+[2023/07/27 23:08:22] ======================================
+[2023/07/27 23:08:22] [M2010 L10 48U Test]
+[2023/07/27 23:08:22] ======================================
+[2023/07/27 23:08:22]  48U configuration set pass
+[2023/07/27 23:08:25] Start Timestamp: [2023-07-27 23:08:25]
+[2023/07/27 23:08:25] ======================================
+[2023/07/27 23:08:25] [AC Source 61830 Initialization]
+[2023/07/27 23:08:25] ======================================
+[2023/07/27 23:08:26] Chroma ATE,61512,001984,2.10 Feb 21 2022
+
+[2023/07/27 23:08:26] Three Phase Mode - [Checked]
+[2023/07/27 23:08:26] VOLTage:RANGe HIGH - [Checked]
+[2023/07/27 23:08:26] VOLTage:LIMit:AC 300 - [Checked]
+[2023/07/27 23:08:26] Set VOLTage:RANGe HIGH - [Checked]
+[2023/07/27 23:08:26] Set Frequency 60 Hz - [Checked]
+[2023/07/27 23:08:26] ======================================
+[2023/07/27 23:08:26] AC Source 61830 Initialization - [Complete]
+[2023/07/27 23:08:26] ======================================
+
+[2023/07/27 23:08:26] ======================================
+[2023/07/27 23:08:26] [AC Load 63800 Initialization]
+[2023/07/27 23:08:26] ======================================
+[2023/07/27 23:08:26] ===Load 1 : GPIB ADDRESS 0x8 (GPIB0::1::INSTR)===
+[2023/07/27 23:08:26] Chroma,63804,3338,1.70
+
+[2023/07/27 23:08:26] Constant Current Mode - [Checked]
+[2023/07/27 23:08:26] CURR:PEAK:MAX 50 Amp - [Checked]
+[2023/07/27 23:08:26] ===Load 2 : GPIB ADDRESS 0x28 (GPIB0::2::INSTR)===
+[2023/07/27 23:08:26] Chroma,63804,3312,1.70
+
+[2023/07/27 23:08:26] Constant Current Mode - [Checked]
+[2023/07/27 23:08:26] CURR:PEAK:MAX 50 Amp - [Checked]
+[2023/07/27 23:08:26] ===Load 3 : GPIB ADDRESS 0x22 (GPIB0::3::INSTR)===
+[2023/07/27 23:08:26] Chroma,63804,3318,1.70
+
+[2023/07/27 23:08:26] Constant Current Mode - [Checked]
+[2023/07/27 23:08:26] CURR:PEAK:MAX 50 Amp - [Checked]
+[2023/07/27 23:08:26] ======================================
+[2023/07/27 23:08:26] AC Load 63800 Initialization - [Complete]
+[2023/07/27 23:08:26] ======================================
+
+[2023/07/27 23:08:26] ======================================
+[2023/07/27 23:08:26] [Meter WT500 Initialization]
+[2023/07/27 23:08:26] ======================================
+[2023/07/27 23:08:26] YOKOGAWA,760203,C2YH30003V,F1.31
+
+[2023/07/27 23:08:27] ======================================
+[2023/07/27 23:08:27] Meter WT500 Initialization - [Complete]
+[2023/07/27 23:08:27] ======================================
+
+[2023/07/27 23:08:27] ######################################################################
+[2023/07/27 23:08:27] Test1: 5V Relay Test via C13
+[2023/07/27 23:08:27] Timestamp: [2023-07-27 23:08:27]
+[2023/07/27 23:08:27] ######################################################################
+[2023/07/27 23:08:27] ======================================
+[2023/07/27 23:08:27] [Check 5 Wire Connection]
+[2023/07/27 23:08:27] ======================================
+[2023/07/27 23:08:27] AC Source Quit
+[2023/07/27 23:08:31] Switch to 4 wire: OFF [b'Off_4']
+[2023/07/27 23:08:36] Switch to 5 wire: OFF [b'Off_5']
+[2023/07/27 23:08:41] Switch to 5 wire: ON / 4 wire: OFF [b'On_5']
+[2023/07/27 23:08:41] COM11
+[2023/07/27 23:08:42] S1/S2 relays are off
+[2023/07/27 23:08:42] COM4
+[2023/07/27 23:08:42] S1/S2 relays are off
+[2023/07/27 23:08:42] COM5
+[2023/07/27 23:08:42] S1/S2 relays are off
+[2023/07/27 23:08:42] COM8
+[2023/07/27 23:08:43] S1/S2 relays are off
+[2023/07/27 23:08:43] COM9
+[2023/07/27 23:08:43] S1/S2 relays are off
+[2023/07/27 23:08:43] COM10
+[2023/07/27 23:08:43] S1/S2 relays are off
+[2023/07/27 23:08:43] COM7
+[2023/07/27 23:08:44] S1/S2 relays are off
+[2023/07/27 23:08:44] COM6
+[2023/07/27 23:08:44] S1/S2 relays are off
+[2023/07/27 23:08:44] [Set AC Source Output 120 Volt]
+[2023/07/27 23:08:45] Output is OFF then Turn ON
+[2023/07/27 23:08:45] AC Source Output
+[2023/07/27 23:08:55] Phase R Voltage = 120.02 volt - 5 Wire Connection Check - [PASS]
+[2023/07/27 23:08:55] Phase S Voltage = 120.06 volt - 5 Wire Connection Check - [PASS]
+[2023/07/27 23:08:55] Phase T Voltage = 120.02 volt - 5 Wire Connection Check - [PASS]
+[2023/07/27 23:08:56] Set AC Source Output OFF
+[2023/07/27 23:09:02] ======================================
+[2023/07/27 23:09:02] [C13 Outlet Voltage Detection Test]
+[2023/07/27 23:09:02] ======================================
+[2023/07/27 23:09:02] ===Check C13 Outlet Voltage Source 1 Phase 1===
+[2023/07/27 23:09:02] Set AC Source Output ON
+[2023/07/27 23:09:10] Check [CS1P11]
+[2023/07/27 23:09:10] C13 AC Voltage : 221 Volt Check Complete
+[2023/07/27 23:09:10] Check [CS1P12]
+[2023/07/27 23:09:10] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/27 23:09:10] ===Check C13 Outlet Voltage Source 1 Phase 2===
+[2023/07/27 23:09:10] Set AC Source Output ON
+[2023/07/27 23:09:18] Check [CS1P2]
+[2023/07/27 23:09:19] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/27 23:09:19] ===Check C13 Outlet Voltage Source 1 Phase 3===
+[2023/07/27 23:09:19] Set AC Source Output ON
+[2023/07/27 23:09:27] Check [CS1P3]
+[2023/07/27 23:09:27] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/27 23:09:27] ===Check C13 Outlet Voltage Source 2 Phase 1===
+[2023/07/27 23:09:27] Set AC Source Output ON
+[2023/07/27 23:09:35] Check [CS2P11]
+[2023/07/27 23:09:36] C13 AC Voltage 0 out of range - [209.00 Volt~231.00 Volt]
+[2023/07/27 23:09:36] Retry 1
+[2023/07/27 23:09:38] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/27 23:09:38] Check [CS2P12]
+[2023/07/27 23:09:38] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/27 23:09:38] ===Check C13 Outlet Voltage Source 2 Phase 2===
+[2023/07/27 23:09:38] Set AC Source Output ON
+[2023/07/27 23:09:46] Check [CS2P2]
+[2023/07/27 23:09:46] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/27 23:09:46] ===Check C13 Outlet Voltage Source 2 Phase 3===
+[2023/07/27 23:09:47] Set AC Source Output ON
+[2023/07/27 23:09:55] Check [CS2P3]
+[2023/07/27 23:09:55] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/27 23:09:55] Set AC Source Output OFF
+[2023/07/27 23:09:59] ======================================
+[2023/07/27 23:09:59] [Relay Control Signals Detection Test w/ Y Cable Connection to C13]
+[2023/07/27 23:09:59] ======================================
+[2023/07/27 23:09:59] [Set AC Source Output 220 Volt]
+[2023/07/27 23:09:59] AC Source Output
+[2023/07/27 23:09:59] Turn on the Rack Manager
+[2023/07/27 23:10:03] 2023-07-27 23:10:03.011600 Init to Filesystem Start ...
+[2023/07/27 23:10:32] Pass - Init to Login
+[2023/07/27 23:10:37] Pass - Wait for Password
+[2023/07/27 23:10:46] Pass - Wait for WcsCli
+[2023/07/27 23:10:51] Check RC4 [CS2P11]
+[2023/07/27 23:10:53] C13 AC Voltage 0 out of range - [209.00 Volt~231.00 Volt]
+[2023/07/27 23:10:56] Check RC4 [CS2P11]
+[2023/07/27 23:10:58] C13 AC Voltage 0 out of range - [209.00 Volt~231.00 Volt]
+[2023/07/27 23:11:01] Check RC3 [CS2P12]
+[2023/07/27 23:11:03] C13 AC Voltage 0 out of range - [209.00 Volt~231.00 Volt]
+[2023/07/27 23:11:07] Check RC3 [CS2P12]
+[2023/07/27 23:11:09] C13 AC Voltage 0 out of range - [209.00 Volt~231.00 Volt]
+[2023/07/27 23:11:12] Check RC2 [CS2P2]
+[2023/07/27 23:11:14] C13 AC Voltage 0 out of range - [209.00 Volt~231.00 Volt]
+[2023/07/27 23:11:17] Check RC2 [CS2P2]
+[2023/07/27 23:11:19] C13 AC Voltage 0 out of range - [209.00 Volt~231.00 Volt]
+[2023/07/27 23:11:22] Check RC1 [CS2P3]
+[2023/07/27 23:11:25] C13 AC Voltage 0 out of range - [209.00 Volt~231.00 Volt]
+[2023/07/27 23:11:28] Check RC1 [CS2P3]
+[2023/07/27 23:11:30] C13 AC Voltage 0 out of range - [209.00 Volt~231.00 Volt]
+[2023/07/27 23:12:33] Check RC4 [CS1P11]
+[2023/07/27 23:12:35] C13 AC Voltage : 221 Volt Check Complete
+[2023/07/27 23:12:35] Check RC4 [CS2P11]
+[2023/07/27 23:12:38] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/27 23:12:41] Check RC3 [CS1P12]
+[2023/07/27 23:12:43] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/27 23:12:43] Check RC3 [CS2P12]
+[2023/07/27 23:12:45] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/27 23:12:48] Check RC2 [CS1P2]
+[2023/07/27 23:12:51] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/27 23:12:51] Check RC2 [CS2P2]
+[2023/07/27 23:12:53] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/27 23:12:56] Check RC1 [CS1P3]
+[2023/07/27 23:12:58] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/27 23:12:58] Check RC1 [CS2P3]
+[2023/07/27 23:13:01] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/27 23:13:06] Test elapsed time: 0:04:38.439999
+[2023/07/27 23:13:10] b'show manager fru -b mb\r\n'
+[2023/07/27 23:13:10] b'    Board Address1: 544C8AE2D2C6\r\n'
+[2023/07/27 23:13:10] b'    Board Address2: 544C8AE2D2C7\r\n'
+[2023/07/27 23:13:10] b'    Board Build: Prod\r\n'
+[2023/07/27 23:13:10] b'    Board Fru Id: v1.0\r\n'
+[2023/07/27 23:13:10] b'    Board Manufacturer: Ingrasys\r\n'
+[2023/07/27 23:13:10] b'    Board Manufacturer Date: Thu Jul  6 20:24:00 2023\r\n'
+[2023/07/27 23:13:10] b'    Board Name: M2010 - MB\r\n'
+[2023/07/27 23:13:10] b'    Board Part Number: M1039935-001\r\n'
+[2023/07/27 23:13:10] b'    Board Serial: B99353273101000C\r\n'
+[2023/07/27 23:13:10] b'    Board Version: E\r\n'
+[2023/07/27 23:13:10] b'    Product Assettag: N/A\r\n'
+[2023/07/27 23:13:10] b'    Product Build: F\r\n'
+[2023/07/27 23:13:10] b'    Product Fru Id: v1.0\r\n'
+[2023/07/27 23:13:10] b'    Product Manufacturer: Ingrasys\r\n'
+[2023/07/27 23:13:10] b'    Product Name: M2010 - Mainboard\r\n'
+[2023/07/27 23:13:10] b'    Product Serial: P13193273101000C\r\n'
+[2023/07/27 23:13:10] b'    Product Subproduct: N/A\r\n'
+[2023/07/27 23:13:10] b'    Product Version: M1041319-001\r\n'
+[2023/07/27 23:13:10] b'    Completion Code: Success\r\n'
+[2023/07/27 23:13:10] b'WcsCli# '
+[2023/07/27 23:13:10] ######################################################################
+[2023/07/27 23:13:10] Test2: NIC LED Test
+[2023/07/27 23:13:10] Timestamp: [2023-07-27 23:13:10]
+[2023/07/27 23:13:10] ######################################################################
+[2023/07/27 23:13:10] (visually checking NIC1 & NIC2 LED)
+[2023/07/27 23:14:27] answer: y
+[2023/07/27 23:14:27] NIC1 & NIC2 LED Test Pass
+[2023/07/27 23:14:27] Test elapsed time: 0:01:17.190001
+[2023/07/27 23:14:27] Output is ON then Turn OFF
+[2023/07/27 23:14:27] AC Source Quit
+[2023/07/27 23:14:27] ######################################################################
+[2023/07/27 23:14:27] Test3: RM1 Bootstrap/DC_throttle/Present Test
+[2023/07/27 23:14:27] Timestamp: [2023-07-27 23:14:27]
+[2023/07/27 23:14:27] ######################################################################
+[2023/07/27 23:14:27] Set AC Source Output ON
+[2023/07/27 23:14:31] Output is OFF then Turn ON
+[2023/07/27 23:14:31] AC Source Output
+[2023/07/27 23:14:31] Turn on the Rack Manager
+[2023/07/27 23:14:35] 2023-07-27 23:14:35.061600 Init to Filesystem Start ...
+[2023/07/27 23:15:05] Pass - Init to Login
+[2023/07/27 23:15:10] Pass - Wait for Password
+[2023/07/27 23:15:19] Pass - Wait for WcsCli
+[2023/07/27 23:15:25] Turn off the Rack Manager...
+[2023/07/27 23:15:25] 0x53 0x48 0x02 0x03 0x03 0x50
+[2023/07/27 23:15:30] ======================================
+[2023/07/27 23:15:30] [Bootstrap from TFTP Image]
+[2023/07/27 23:15:30] ======================================
+[2023/07/27 23:15:30] Change the boot sequence to U-Boot...
+[2023/07/27 23:15:30] 0x53 0x48 0x02 0x03 0x01 0x50
+[2023/07/27 23:15:57] 0x53 0x48 0x02 0x03 0x03 0x50
+[2023/07/27 23:15:58] 0x53 0x48 0x02 0x03 0x01 0x50
+[2023/07/27 23:16:30] b'\x00\x00'
+[2023/07/27 23:16:30] Bootstrap test Pass
+[2023/07/27 23:16:30] Turn off the Rack Manager...
+[2023/07/27 23:16:31] Turn on the Rack Manager
+[2023/07/27 23:16:34] 2023-07-27 23:16:34.931600 Init to Filesystem Start ...
+[2023/07/27 23:17:06] Pass - Init to Login
+[2023/07/27 23:17:11] Pass - Wait for Password
+[2023/07/27 23:17:20] Pass - Wait for WcsCli
+[2023/07/27 23:17:20] ======================================
+[2023/07/27 23:17:20] [RM1 DC_throttle and RM_present test]
+[2023/07/27 23:17:20] ======================================
+[2023/07/27 23:17:23] b'%'
+[2023/07/27 23:17:23] RM_present test Pass
+[2023/07/27 23:17:31] DC_throttle enable test Pass
+[2023/07/27 23:17:42] b'sh manager powermeter alert\r\n'
+[2023/07/27 23:17:42] b'    AlertLimitInWatts: 19970.0\r\n'
+[2023/07/27 23:17:42] b'    IsAlertActive: False\r\n'
+[2023/07/27 23:17:42] b'    IsAlertEnabled: False\r\n'
+[2023/07/27 23:17:42] b'    IsDcThrottleActive: True\r\n'
+[2023/07/27 23:17:42] b'    IsDcThrottleEnabled: True\r\n'
+[2023/07/27 23:17:42] b'    PowerDrawnInWatts: 0.0\r\n'
+[2023/07/27 23:17:42] b'    Completion Code: Success\r\n'
+[2023/07/27 23:17:42] b'WcsCli# '
+[2023/07/27 23:17:42] DC_throttle active test Pass
+[2023/07/27 23:17:47] b'sh manager powermeter alert\r\n'
+[2023/07/27 23:17:47] b'    AlertLimitInWatts: 19970.0\r\n'
+[2023/07/27 23:17:47] b'    IsAlertActive: False\r\n'
+[2023/07/27 23:17:47] b'    IsAlertEnabled: False\r\n'
+[2023/07/27 23:17:47] b'    IsDcThrottleActive: False\r\n'
+[2023/07/27 23:17:47] b'    IsDcThrottleEnabled: True\r\n'
+[2023/07/27 23:17:47] b'    PowerDrawnInWatts: 0.0\r\n'
+[2023/07/27 23:17:47] b'    Completion Code: Success\r\n'
+[2023/07/27 23:17:47] b'WcsCli# '
+[2023/07/27 23:17:47] DC_throttle inactive test Pass
+[2023/07/27 23:17:55] DC_throttle disable test Pass
+[2023/07/27 23:17:56] Test elapsed time: 0:03:28.520000
+[2023/07/27 23:17:56] ######################################################################
+[2023/07/27 23:17:56] Test4: Firmware & Time Check
+[2023/07/27 23:17:56] Timestamp: [2023-07-27 23:17:56]
+[2023/07/27 23:17:56] ######################################################################
+[2023/07/27 23:18:03] answer: y
+[2023/07/27 23:18:07] b'sh version\r\n'
+[2023/07/27 23:18:07] b' \r\n'
+[2023/07/27 23:18:07] b'--------------------------------------------------------\r\n'
+[2023/07/27 23:18:07] b'  Microsoft OCS Rack Manager software version summary\r\n'
+[2023/07/27 23:18:07] b' \r\n'
+[2023/07/27 23:18:07] b'  Package version    : 1.1.8.16\r\n'
+[2023/07/27 23:18:07] b' \r\n'
+[2023/07/27 23:18:07] b'  Rootfs version     : 1.1.8.16\r\n'
+[2023/07/27 23:18:07] b'  U-Boot version     : 1.1.5.1\r\n'
+[2023/07/27 23:18:07] b'  Kernel version     : 1.1.8.16\r\n'
+[2023/07/27 23:18:07] b'  Devicetree version : 1.1.8.16\r\n'
+[2023/07/27 23:18:07] b' \r\n'
+[2023/07/27 23:18:07] b'  PRU FW version     : 0.15\r\n'
+[2023/07/27 23:18:07] b' \r\n'
+[2023/07/27 23:18:07] b'--------------------------------------------------------\r\n'
+[2023/07/27 23:18:07] b' \r\n'
+[2023/07/27 23:18:07] b'\r\n'
+[2023/07/27 23:18:07] b'WcsCli# '
+[2023/07/27 23:18:07] Get firmware Pass
+[2023/07/27 23:18:11] RMTimeYear: 2023/07/27 23:17:45
+[2023/07/27 23:18:11] DateTimeYear: 2023/07/27 23:18:11
+[2023/07/27 23:18:11] DIFF Second: |63826096691 - 63826096665| = 26
+[2023/07/27 23:18:11] Check time Pass
+[2023/07/27 23:18:11] Test elapsed time: 0:00:15.640000
+[2023/07/27 23:18:11] ######################################################################
+[2023/07/27 23:18:11] Test5: UART Test
+[2023/07/27 23:18:11] Timestamp: [2023-07-27 23:18:11]
+[2023/07/27 23:18:11] ######################################################################
+[2023/07/27 23:18:11] UART S2 test start...
+[2023/07/27 23:18:24] Login RM successfully.
+[2023/07/27 23:18:24] UART S2 Test Pass
+[2023/07/27 23:18:24] Test elapsed time: 0:00:12.680001
+[2023/07/27 23:18:24] ######################################################################
+[2023/07/27 23:18:24] Test6: RJ4 Test
+[2023/07/27 23:18:24] Timestamp: [2023-07-27 23:18:24]
+[2023/07/27 23:18:24] ######################################################################
+[2023/07/27 23:18:24] RJ4 Test Start ...
+[2023/07/27 23:18:28] [b'start aux console\r\n', b'\r\n', b'\r\r\r\n', b'User Name:']
+[2023/07/27 23:18:28] Access Marvell console successfully.
+[2023/07/27 23:18:28] RJ4 Test Pass
+[2023/07/27 23:18:32] Test elapsed time: 0:00:08.149999
+[2023/07/27 23:18:32] ######################################################################
+[2023/07/27 23:18:32] Test7: ETH Test
+[2023/07/27 23:18:32] Timestamp: [2023-07-27 23:18:32]
+[2023/07/27 23:18:32] ######################################################################
+[2023/07/27 23:18:32] Set eth0 Static IP Start ...
+[2023/07/27 23:18:36] Wait 10 seconds for eth0 `LinkStatus: LinkUp`
+[2023/07/27 23:18:46] Check eth0 IP setting
+[2023/07/27 23:18:51] Set Static IP eth0 Pass
+[2023/07/27 23:18:51] Set eth1 Static IP Start ...
+[2023/07/27 23:18:55] Wait 10 seconds for eth1 `LinkStatus: LinkUp`
+[2023/07/27 23:19:05] Check eth1 IP setting
+[2023/07/27 23:19:10] Set Static IP eth1 Pass
+[2023/07/27 23:19:14] Ping 192.168.0.100
+[2023/07/27 23:19:17] Ping 192.168.1.100
+[2023/07/27 23:19:23] Lan Port Test Pass
+[2023/07/27 23:19:23] Test elapsed time: 0:00:50.550001
+[2023/07/27 23:19:23] ######################################################################
+[2023/07/27 23:19:23] Test8: RM1 RM_ONFF Test
+[2023/07/27 23:19:23] Timestamp: [2023-07-27 23:19:23]
+[2023/07/27 23:19:23] ######################################################################
+[2023/07/27 23:19:23] Set RM OFF
+[2023/07/27 23:19:28] Ping 192.168.0.100
+[2023/07/27 23:19:42] RM off: ping 192.168.0.100 unreached expectedly
+[2023/07/27 23:19:42] Ping 192.168.1.100
+[2023/07/27 23:19:56] RM off: ping 192.168.1.100 unreached expectedly
+[2023/07/27 23:19:59] RM ONOFF Test Pass
+[2023/07/27 23:19:59] Turn on the Rack Manager
+[2023/07/27 23:20:02] 2023-07-27 23:20:02.601600 Init to Filesystem Start ...
+[2023/07/27 23:20:34] Pass - Init to Login
+[2023/07/27 23:20:39] Pass - Wait for Password
+[2023/07/27 23:20:48] Pass - Wait for WcsCli
+[2023/07/27 23:20:48] Test elapsed time: 0:01:25.790000
+[2023/07/27 23:20:48] ######################################################################
+[2023/07/27 23:20:48] Test9: Update FRU
+[2023/07/27 23:20:48] Timestamp: [2023-07-27 23:20:48]
+[2023/07/27 23:20:48] ######################################################################
+[2023/07/27 23:20:56] b'show manager fru -b mb\r\n'
+[2023/07/27 23:20:56] b'    Board Address1: 544C8AE2D2C6\r\n'
+[2023/07/27 23:20:56] b'    Board Address2: 544C8AE2D2C7\r\n'
+[2023/07/27 23:20:56] b'    Board Build: Prod\r\n'
+[2023/07/27 23:20:56] b'    Board Fru Id: v1.0\r\n'
+[2023/07/27 23:20:56] b'    Board Manufacturer: Ingrasys\r\n'
+[2023/07/27 23:20:56] b'    Board Manufacturer Date: Thu Jul  6 20:24:00 2023\r\n'
+[2023/07/27 23:20:56] b'    Board Name: M2010 - MB\r\n'
+[2023/07/27 23:20:56] b'    Board Part Number: M1039935-001\r\n'
+[2023/07/27 23:20:56] b'    Board Serial: B99353273101000C\r\n'
+[2023/07/27 23:20:56] b'    Board Version: E\r\n'
+[2023/07/27 23:20:56] b'    Product Assettag: N/A\r\n'
+[2023/07/27 23:20:56] b'    Product Build: F\r\n'
+[2023/07/27 23:20:56] b'    Product Fru Id: v1.0\r\n'
+[2023/07/27 23:20:56] b'    Product Manufacturer: Ingrasys\r\n'
+[2023/07/27 23:20:56] b'    Product Name: M2010 - Mainboard\r\n'
+[2023/07/27 23:20:56] b'    Product Serial: P13193273101000C\r\n'
+[2023/07/27 23:20:56] b'    Product Subproduct: N/A\r\n'
+[2023/07/27 23:20:56] b'    Product Version: M1041319-001\r\n'
+[2023/07/27 23:20:56] b'    Completion Code: Success\r\n'
+[2023/07/27 23:20:56] b'WcsCli# '
+[2023/07/27 23:20:56] Check Product FRU PASS
+[2023/07/27 23:21:01] b'show manager fru -b acdc\r\n'
+[2023/07/27 23:21:01] b'    Board Build: Prod\r\n'
+[2023/07/27 23:21:01] b'    Board Fru Id: v1.0\r\n'
+[2023/07/27 23:21:01] b'    Board Manufacturer: Ingrasys\r\n'
+[2023/07/27 23:21:01] b'    Board Manufacturer Date: Fri Jul  7 10:59:00 2023\r\n'
+[2023/07/27 23:21:01] b'    Board Name: M2010 - AC-DC\r\n'
+[2023/07/27 23:21:01] b'    Board Part Number: M1035796-001\r\n'
+[2023/07/27 23:21:01] b'    Board Serial: B57963272051400C\r\n'
+[2023/07/27 23:21:01] b'    Board Version: H\r\n'
+[2023/07/27 23:21:01] b'    Product Assettag: N/A\r\n'
+[2023/07/27 23:21:01] b'    Product Build: H\r\n'
+[2023/07/27 23:21:01] b'    Product Fru Id: v1.0\r\n'
+[2023/07/27 23:21:01] b'    Product Manufacturer: Ingrasys\r\n'
+[2023/07/27 23:21:01] b'    Product Name: M2010 - ACDC\r\n'
+[2023/07/27 23:21:01] b'    Product Serial: P35083272051400C\r\n'
+[2023/07/27 23:21:01] b'    Product Subproduct: N/A\r\n'
+[2023/07/27 23:21:01] b'    Product Version: M1033508-001\r\n'
+[2023/07/27 23:21:01] b'    Completion Code: Success\r\n'
+[2023/07/27 23:21:01] b'WcsCli# '
+[2023/07/27 23:21:01] Check Product FRU PASS
+[2023/07/27 23:21:02] Reading original data for PIB
+[2023/07/27 23:21:12] Init Items PASS
+[2023/07/27 23:21:22] Change Items PASS
+[2023/07/27 23:21:47] Flash pib FRU Pass
+[2023/07/27 23:21:52] b'show manager fru -b pib\r\n'
+[2023/07/27 23:21:52] b'    Board Build: Prod\r\n'
+[2023/07/27 23:21:52] b'    Board Fru Id: v1.0\r\n'
+[2023/07/27 23:21:52] b'    Board Manufacturer: Ingrasys\r\n'
+[2023/07/27 23:21:52] b'    Board Manufacturer Date: Sat Jul  8 16:31:00 2023\r\n'
+[2023/07/27 23:21:52] b'    Board Name: M2010 - PIB\r\n'
+[2023/07/27 23:21:52] b'    Board Part Number: M1035794-002\r\n'
+[2023/07/27 23:21:52] b'    Board Serial: B57943275151300C\r\n'
+[2023/07/27 23:21:52] b'    Board Version: C\r\n'
+[2023/07/27 23:21:52] b'    Product Assettag: 21099496\r\n'
+[2023/07/27 23:21:52] b'    Product Build: D\r\n'
+[2023/07/27 23:21:52] b'    Product Fru Id: v1.0\r\n'
+[2023/07/27 23:21:52] b'    Product Manufacturer: Ingrasys\r\n'
+[2023/07/27 23:21:52] b'    Product Name: D2014 - PMDU 48U\r\n'
+[2023/07/27 23:21:52] b'    Product Serial: P175832940200042\r\n'
+[2023/07/27 23:21:52] b'    Product Subproduct: B99353273101000C\r\n'
+[2023/07/27 23:21:52] b'    Product Version: M1131758-002\r\n'
+[2023/07/27 23:21:52] b'    Completion Code: Success\r\n'
+[2023/07/27 23:21:52] b'WcsCli# '
+[2023/07/27 23:21:52] Check Product FRU PASS
+[2023/07/27 23:21:52] PIB FRU update Pass
+[2023/07/27 23:21:52] Test elapsed time: 0:01:03.589999
+[2023/07/27 23:21:52] ######################################################################
+[2023/07/27 23:21:52] Test10: FCI Test
+[2023/07/27 23:21:52] Timestamp: [2023-07-27 23:21:52]
+[2023/07/27 23:21:52] ######################################################################
+[2023/07/27 23:21:52] ======================================
+[2023/07/27 23:21:52] [Check FCI AC Output Voltage Test]
+[2023/07/27 23:21:52] ======================================
+[2023/07/27 23:21:52] ===Check FCI AC Output Voltage Source 1 Phase 1===
+[2023/07/27 23:21:52] Set AC Source Output ON
+[2023/07/27 23:21:58] COM11
+[2023/07/27 23:22:01] FCI1_Voltage=215 Volt
+[2023/07/27 23:22:01] FCI Source1 Phase 1 FCI1 Voltage Check Complete (U1)
+[2023/07/27 23:22:01] FCI2_Voltage=220 Volt
+[2023/07/27 23:22:01] FCI Source1 Phase 1 FCI2 Voltage Check Complete (U2)
+[2023/07/27 23:22:01] FCI3_Voltage=215 Volt
+[2023/07/27 23:22:01] FCI Source1 Phase 1 FCI3 Voltage Check Complete (U3)
+[2023/07/27 23:22:01] FCI4_Voltage=219 Volt
+[2023/07/27 23:22:01] FCI Source1 Phase 1 FCI4 Voltage Check Complete (U4)
+[2023/07/27 23:22:01] FCI5_Voltage=216 Volt
+[2023/07/27 23:22:01] FCI Source1 Phase 1 FCI5 Voltage Check Complete (U5)
+[2023/07/27 23:22:01] FCI6_Voltage=218 Volt
+[2023/07/27 23:22:01] FCI Source1 Phase 1 FCI6 Voltage Check Complete (U6)
+[2023/07/27 23:22:01] COM4
+[2023/07/27 23:22:03] FCI1_Voltage=216 Volt
+[2023/07/27 23:22:03] FCI Source1 Phase 1 FCI1 Voltage Check Complete (U7)
+[2023/07/27 23:22:03] FCI2_Voltage=219 Volt
+[2023/07/27 23:22:03] FCI Source1 Phase 1 FCI2 Voltage Check Complete (U8)
+[2023/07/27 23:22:03] FCI3_Voltage=217 Volt
+[2023/07/27 23:22:03] FCI Source1 Phase 1 FCI3 Voltage Check Complete (U9)
+[2023/07/27 23:22:03] FCI4_Voltage=223 Volt
+[2023/07/27 23:22:03] FCI Source1 Phase 1 FCI4 Voltage Check Complete (U10)
+[2023/07/27 23:22:03] FCI5_Voltage=217 Volt
+[2023/07/27 23:22:03] FCI Source1 Phase 1 FCI5 Voltage Check Complete (U11)
+[2023/07/27 23:22:03] FCI6_Voltage=217 Volt
+[2023/07/27 23:22:03] FCI Source1 Phase 1 FCI6 Voltage Check Complete (U12)
+[2023/07/27 23:22:03] COM5
+[2023/07/27 23:22:05] FCI1_Voltage=220 Volt
+[2023/07/27 23:22:05] FCI Source1 Phase 1 FCI1 Voltage Check Complete (U13)
+[2023/07/27 23:22:05] FCI2_Voltage=220 Volt
+[2023/07/27 23:22:05] FCI Source1 Phase 1 FCI2 Voltage Check Complete (U14)
+[2023/07/27 23:22:05] FCI3_Voltage=220 Volt
+[2023/07/27 23:22:05] FCI Source1 Phase 1 FCI3 Voltage Check Complete (U15)
+[2023/07/27 23:22:05] FCI4_Voltage=223 Volt
+[2023/07/27 23:22:05] FCI Source1 Phase 1 FCI4 Voltage Check Complete (U16)
+[2023/07/27 23:22:05] FCI5_Voltage=222 Volt
+[2023/07/27 23:22:05] FCI Source1 Phase 1 FCI5 Voltage Check Complete (U17)
+[2023/07/27 23:22:05] FCI6_Voltage=222 Volt
+[2023/07/27 23:22:05] FCI Source1 Phase 1 FCI6 Voltage Check Complete (U18)
+[2023/07/27 23:22:05] COM8
+[2023/07/27 23:22:08] FCI1_Voltage=219 Volt
+[2023/07/27 23:22:08] FCI Source1 Phase 1 FCI1 Voltage Check Complete (U19)
+[2023/07/27 23:22:08] FCI2_Voltage=220 Volt
+[2023/07/27 23:22:08] FCI Source1 Phase 1 FCI2 Voltage Check Complete (U20)
+[2023/07/27 23:22:08] FCI3_Voltage=218 Volt
+[2023/07/27 23:22:08] FCI Source1 Phase 1 FCI3 Voltage Check Complete (U21)
+[2023/07/27 23:22:08] FCI4_Voltage=223 Volt
+[2023/07/27 23:22:08] FCI Source1 Phase 1 FCI4 Voltage Check Complete (U22)
+[2023/07/27 23:22:08] FCI5_Voltage=222 Volt
+[2023/07/27 23:22:08] FCI Source1 Phase 1 FCI5 Voltage Check Complete (U23)
+[2023/07/27 23:22:08] FCI6_Voltage=221 Volt
+[2023/07/27 23:22:08] FCI Source1 Phase 1 FCI6 Voltage Check Complete (U24)
+[2023/07/27 23:22:08] COM9
+[2023/07/27 23:22:10] FCI1_Voltage=222 Volt
+[2023/07/27 23:22:10] FCI Source1 Phase 1 FCI1 Voltage Check Complete (U25)
+[2023/07/27 23:22:10] FCI2_Voltage=223 Volt
+[2023/07/27 23:22:10] FCI Source1 Phase 1 FCI2 Voltage Check Complete (U26)
+[2023/07/27 23:22:10] FCI3_Voltage=225 Volt
+[2023/07/27 23:22:10] FCI Source1 Phase 1 FCI3 Voltage Check Complete (U27)
+[2023/07/27 23:22:10] FCI4_Voltage=222 Volt
+[2023/07/27 23:22:10] FCI Source1 Phase 1 FCI4 Voltage Check Complete (U28)
+[2023/07/27 23:22:10] FCI5_Voltage=221 Volt
+[2023/07/27 23:22:10] FCI Source1 Phase 1 FCI5 Voltage Check Complete (U29)
+[2023/07/27 23:22:10] FCI6_Voltage=222 Volt
+[2023/07/27 23:22:10] FCI Source1 Phase 1 FCI6 Voltage Check Complete (U30)
+[2023/07/27 23:22:10] COM10
+[2023/07/27 23:22:12] FCI1_Voltage=222 Volt
+[2023/07/27 23:22:12] FCI Source1 Phase 1 FCI1 Voltage Check Complete (U31)
+[2023/07/27 23:22:12] FCI2_Voltage=223 Volt
+[2023/07/27 23:22:12] FCI Source1 Phase 1 FCI2 Voltage Check Complete (U32)
+[2023/07/27 23:22:12] FCI3_Voltage=223 Volt
+[2023/07/27 23:22:12] FCI Source1 Phase 1 FCI3 Voltage Check Complete (U33)
+[2023/07/27 23:22:12] FCI4_Voltage=216 Volt
+[2023/07/27 23:22:12] FCI Source1 Phase 1 FCI4 Voltage Check Complete (U34)
+[2023/07/27 23:22:12] FCI5_Voltage=224 Volt
+[2023/07/27 23:22:12] FCI Source1 Phase 1 FCI5 Voltage Check Complete (U35)
+[2023/07/27 23:22:12] FCI6_Voltage=218 Volt
+[2023/07/27 23:22:12] FCI Source1 Phase 1 FCI6 Voltage Check Complete (U36)
+[2023/07/27 23:22:12] COM7
+[2023/07/27 23:22:15] FCI1_Voltage=217 Volt
+[2023/07/27 23:22:15] FCI Source1 Phase 1 FCI1 Voltage Check Complete (U37)
+[2023/07/27 23:22:15] FCI2_Voltage=219 Volt
+[2023/07/27 23:22:15] FCI Source1 Phase 1 FCI2 Voltage Check Complete (U38)
+[2023/07/27 23:22:15] FCI3_Voltage=222 Volt
+[2023/07/27 23:22:15] FCI Source1 Phase 1 FCI3 Voltage Check Complete (U39)
+[2023/07/27 23:22:15] FCI4_Voltage=218 Volt
+[2023/07/27 23:22:15] FCI Source1 Phase 1 FCI4 Voltage Check Complete (U40)
+[2023/07/27 23:22:15] FCI5_Voltage=218 Volt
+[2023/07/27 23:22:15] FCI Source1 Phase 1 FCI5 Voltage Check Complete (U41)
+[2023/07/27 23:22:15] FCI6_Voltage=219 Volt
+[2023/07/27 23:22:15] FCI Source1 Phase 1 FCI6 Voltage Check Complete (U42)
+[2023/07/27 23:22:15] COM6
+[2023/07/27 23:22:17] FCI1_Voltage=222 Volt
+[2023/07/27 23:22:17] FCI Source1 Phase 1 FCI1 Voltage Check Complete (U43)
+[2023/07/27 23:22:17] FCI2_Voltage=222 Volt
+[2023/07/27 23:22:17] FCI Source1 Phase 1 FCI2 Voltage Check Complete (U44)
+[2023/07/27 23:22:17] FCI3_Voltage=223 Volt
+[2023/07/27 23:22:17] FCI Source1 Phase 1 FCI3 Voltage Check Complete (U45)
+[2023/07/27 23:22:17] FCI4_Voltage=222 Volt
+[2023/07/27 23:22:17] FCI Source1 Phase 1 FCI4 Voltage Check Complete (U46)
+[2023/07/27 23:22:17] FCI5_Voltage=221 Volt
+[2023/07/27 23:22:17] FCI Source1 Phase 1 FCI5 Voltage Check Complete (U47)
+[2023/07/27 23:22:17] FCI6_Voltage=221 Volt
+[2023/07/27 23:22:17] FCI Source1 Phase 1 FCI6 Voltage Check Complete (U48)
+[2023/07/27 23:22:17] ===Check FCI AC Output Voltage Source 1 Phase 2===
+[2023/07/27 23:22:17] Set AC Source Output ON
+[2023/07/27 23:22:23] COM11
+[2023/07/27 23:22:25] FCI1_Voltage=216 Volt
+[2023/07/27 23:22:25] FCI Source1 Phase 2 FCI1 Voltage Check Complete (U1)
+[2023/07/27 23:22:25] FCI2_Voltage=216 Volt
+[2023/07/27 23:22:25] FCI Source1 Phase 2 FCI2 Voltage Check Complete (U2)
+[2023/07/27 23:22:25] FCI3_Voltage=217 Volt
+[2023/07/27 23:22:25] FCI Source1 Phase 2 FCI3 Voltage Check Complete (U3)
+[2023/07/27 23:22:25] FCI4_Voltage=216 Volt
+[2023/07/27 23:22:25] FCI Source1 Phase 2 FCI4 Voltage Check Complete (U4)
+[2023/07/27 23:22:25] FCI5_Voltage=216 Volt
+[2023/07/27 23:22:25] FCI Source1 Phase 2 FCI5 Voltage Check Complete (U5)
+[2023/07/27 23:22:25] FCI6_Voltage=216 Volt
+[2023/07/27 23:22:25] FCI Source1 Phase 2 FCI6 Voltage Check Complete (U6)
+[2023/07/27 23:22:25] COM4
+[2023/07/27 23:22:28] FCI1_Voltage=219 Volt
+[2023/07/27 23:22:28] FCI Source1 Phase 2 FCI1 Voltage Check Complete (U7)
+[2023/07/27 23:22:28] FCI2_Voltage=217 Volt
+[2023/07/27 23:22:28] FCI Source1 Phase 2 FCI2 Voltage Check Complete (U8)
+[2023/07/27 23:22:28] FCI3_Voltage=217 Volt
+[2023/07/27 23:22:28] FCI Source1 Phase 2 FCI3 Voltage Check Complete (U9)
+[2023/07/27 23:22:28] FCI4_Voltage=222 Volt
+[2023/07/27 23:22:28] FCI Source1 Phase 2 FCI4 Voltage Check Complete (U10)
+[2023/07/27 23:22:28] FCI5_Voltage=222 Volt
+[2023/07/27 23:22:28] FCI Source1 Phase 2 FCI5 Voltage Check Complete (U11)
+[2023/07/27 23:22:28] FCI6_Voltage=223 Volt
+[2023/07/27 23:22:28] FCI Source1 Phase 2 FCI6 Voltage Check Complete (U12)
+[2023/07/27 23:22:28] COM5
+[2023/07/27 23:22:30] FCI1_Voltage=217 Volt
+[2023/07/27 23:22:30] FCI Source1 Phase 2 FCI1 Voltage Check Complete (U13)
+[2023/07/27 23:22:30] FCI2_Voltage=221 Volt
+[2023/07/27 23:22:30] FCI Source1 Phase 2 FCI2 Voltage Check Complete (U14)
+[2023/07/27 23:22:30] FCI3_Voltage=219 Volt
+[2023/07/27 23:22:30] FCI Source1 Phase 2 FCI3 Voltage Check Complete (U15)
+[2023/07/27 23:22:30] FCI4_Voltage=217 Volt
+[2023/07/27 23:22:30] FCI Source1 Phase 2 FCI4 Voltage Check Complete (U16)
+[2023/07/27 23:22:30] FCI5_Voltage=218 Volt
+[2023/07/27 23:22:30] FCI Source1 Phase 2 FCI5 Voltage Check Complete (U17)
+[2023/07/27 23:22:30] FCI6_Voltage=222 Volt
+[2023/07/27 23:22:30] FCI Source1 Phase 2 FCI6 Voltage Check Complete (U18)
+[2023/07/27 23:22:30] COM8
+[2023/07/27 23:22:32] FCI1_Voltage=218 Volt
+[2023/07/27 23:22:32] FCI Source1 Phase 2 FCI1 Voltage Check Complete (U19)
+[2023/07/27 23:22:32] FCI2_Voltage=220 Volt
+[2023/07/27 23:22:32] FCI Source1 Phase 2 FCI2 Voltage Check Complete (U20)
+[2023/07/27 23:22:32] FCI3_Voltage=219 Volt
+[2023/07/27 23:22:32] FCI Source1 Phase 2 FCI3 Voltage Check Complete (U21)
+[2023/07/27 23:22:32] FCI4_Voltage=217 Volt
+[2023/07/27 23:22:32] FCI Source1 Phase 2 FCI4 Voltage Check Complete (U22)
+[2023/07/27 23:22:32] FCI5_Voltage=219 Volt
+[2023/07/27 23:22:32] FCI Source1 Phase 2 FCI5 Voltage Check Complete (U23)
+[2023/07/27 23:22:32] FCI6_Voltage=218 Volt
+[2023/07/27 23:22:32] FCI Source1 Phase 2 FCI6 Voltage Check Complete (U24)
+[2023/07/27 23:22:32] COM9
+[2023/07/27 23:22:35] FCI1_Voltage=223 Volt
+[2023/07/27 23:22:35] FCI Source1 Phase 2 FCI1 Voltage Check Complete (U25)
+[2023/07/27 23:22:35] FCI2_Voltage=223 Volt
+[2023/07/27 23:22:35] FCI Source1 Phase 2 FCI2 Voltage Check Complete (U26)
+[2023/07/27 23:22:35] FCI3_Voltage=225 Volt
+[2023/07/27 23:22:35] FCI Source1 Phase 2 FCI3 Voltage Check Complete (U27)
+[2023/07/27 23:22:35] FCI4_Voltage=224 Volt
+[2023/07/27 23:22:35] FCI Source1 Phase 2 FCI4 Voltage Check Complete (U28)
+[2023/07/27 23:22:35] FCI5_Voltage=220 Volt
+[2023/07/27 23:22:35] FCI Source1 Phase 2 FCI5 Voltage Check Complete (U29)
+[2023/07/27 23:22:35] FCI6_Voltage=220 Volt
+[2023/07/27 23:22:35] FCI Source1 Phase 2 FCI6 Voltage Check Complete (U30)
+[2023/07/27 23:22:35] COM10
+[2023/07/27 23:22:37] FCI1_Voltage=217 Volt
+[2023/07/27 23:22:37] FCI Source1 Phase 2 FCI1 Voltage Check Complete (U31)
+[2023/07/27 23:22:37] FCI2_Voltage=217 Volt
+[2023/07/27 23:22:37] FCI Source1 Phase 2 FCI2 Voltage Check Complete (U32)
+[2023/07/27 23:22:37] FCI3_Voltage=224 Volt
+[2023/07/27 23:22:37] FCI Source1 Phase 2 FCI3 Voltage Check Complete (U33)
+[2023/07/27 23:22:37] FCI4_Voltage=217 Volt
+[2023/07/27 23:22:37] FCI Source1 Phase 2 FCI4 Voltage Check Complete (U34)
+[2023/07/27 23:22:37] FCI5_Voltage=217 Volt
+[2023/07/27 23:22:37] FCI Source1 Phase 2 FCI5 Voltage Check Complete (U35)
+[2023/07/27 23:22:37] FCI6_Voltage=216 Volt
+[2023/07/27 23:22:37] FCI Source1 Phase 2 FCI6 Voltage Check Complete (U36)
+[2023/07/27 23:22:37] COM7
+[2023/07/27 23:22:39] FCI1_Voltage=219 Volt
+[2023/07/27 23:22:39] FCI Source1 Phase 2 FCI1 Voltage Check Complete (U37)
+[2023/07/27 23:22:39] FCI2_Voltage=218 Volt
+[2023/07/27 23:22:39] FCI Source1 Phase 2 FCI2 Voltage Check Complete (U38)
+[2023/07/27 23:22:39] FCI3_Voltage=218 Volt
+[2023/07/27 23:22:39] FCI Source1 Phase 2 FCI3 Voltage Check Complete (U39)
+[2023/07/27 23:22:39] FCI4_Voltage=218 Volt
+[2023/07/27 23:22:39] FCI Source1 Phase 2 FCI4 Voltage Check Complete (U40)
+[2023/07/27 23:22:39] FCI5_Voltage=218 Volt
+[2023/07/27 23:22:39] FCI Source1 Phase 2 FCI5 Voltage Check Complete (U41)
+[2023/07/27 23:22:39] FCI6_Voltage=220 Volt
+[2023/07/27 23:22:39] FCI Source1 Phase 2 FCI6 Voltage Check Complete (U42)
+[2023/07/27 23:22:39] COM6
+[2023/07/27 23:22:42] FCI1_Voltage=216 Volt
+[2023/07/27 23:22:42] FCI Source1 Phase 2 FCI1 Voltage Check Complete (U43)
+[2023/07/27 23:22:42] FCI2_Voltage=217 Volt
+[2023/07/27 23:22:42] FCI Source1 Phase 2 FCI2 Voltage Check Complete (U44)
+[2023/07/27 23:22:42] FCI3_Voltage=221 Volt
+[2023/07/27 23:22:42] FCI Source1 Phase 2 FCI3 Voltage Check Complete (U45)
+[2023/07/27 23:22:42] FCI4_Voltage=221 Volt
+[2023/07/27 23:22:42] FCI Source1 Phase 2 FCI4 Voltage Check Complete (U46)
+[2023/07/27 23:22:42] FCI5_Voltage=221 Volt
+[2023/07/27 23:22:42] FCI Source1 Phase 2 FCI5 Voltage Check Complete (U47)
+[2023/07/27 23:22:42] FCI6_Voltage=220 Volt
+[2023/07/27 23:22:42] FCI Source1 Phase 2 FCI6 Voltage Check Complete (U48)
+[2023/07/27 23:22:42] ===Check FCI AC Output Voltage Source 1 Phase 3===
+[2023/07/27 23:22:42] Set AC Source Output ON
+[2023/07/27 23:22:48] COM11
+[2023/07/27 23:22:50] FCI1_Voltage=216 Volt
+[2023/07/27 23:22:50] FCI Source1 Phase 3 FCI1 Voltage Check Complete (U1)
+[2023/07/27 23:22:50] FCI2_Voltage=219 Volt
+[2023/07/27 23:22:50] FCI Source1 Phase 3 FCI2 Voltage Check Complete (U2)
+[2023/07/27 23:22:50] FCI3_Voltage=216 Volt
+[2023/07/27 23:22:50] FCI Source1 Phase 3 FCI3 Voltage Check Complete (U3)
+[2023/07/27 23:22:50] FCI4_Voltage=216 Volt
+[2023/07/27 23:22:50] FCI Source1 Phase 3 FCI4 Voltage Check Complete (U4)
+[2023/07/27 23:22:50] FCI5_Voltage=216 Volt
+[2023/07/27 23:22:50] FCI Source1 Phase 3 FCI5 Voltage Check Complete (U5)
+[2023/07/27 23:22:50] FCI6_Voltage=216 Volt
+[2023/07/27 23:22:50] FCI Source1 Phase 3 FCI6 Voltage Check Complete (U6)
+[2023/07/27 23:22:50] COM4
+[2023/07/27 23:22:52] FCI1_Voltage=217 Volt
+[2023/07/27 23:22:52] FCI Source1 Phase 3 FCI1 Voltage Check Complete (U7)
+[2023/07/27 23:22:52] FCI2_Voltage=216 Volt
+[2023/07/27 23:22:52] FCI Source1 Phase 3 FCI2 Voltage Check Complete (U8)
+[2023/07/27 23:22:52] FCI3_Voltage=217 Volt
+[2023/07/27 23:22:52] FCI Source1 Phase 3 FCI3 Voltage Check Complete (U9)
+[2023/07/27 23:22:52] FCI4_Voltage=220 Volt
+[2023/07/27 23:22:52] FCI Source1 Phase 3 FCI4 Voltage Check Complete (U10)
+[2023/07/27 23:22:52] FCI5_Voltage=221 Volt
+[2023/07/27 23:22:52] FCI Source1 Phase 3 FCI5 Voltage Check Complete (U11)
+[2023/07/27 23:22:52] FCI6_Voltage=219 Volt
+[2023/07/27 23:22:52] FCI Source1 Phase 3 FCI6 Voltage Check Complete (U12)
+[2023/07/27 23:22:52] COM5
+[2023/07/27 23:22:55] FCI1_Voltage=219 Volt
+[2023/07/27 23:22:55] FCI Source1 Phase 3 FCI1 Voltage Check Complete (U13)
+[2023/07/27 23:22:55] FCI2_Voltage=217 Volt
+[2023/07/27 23:22:55] FCI Source1 Phase 3 FCI2 Voltage Check Complete (U14)
+[2023/07/27 23:22:55] FCI3_Voltage=225 Volt
+[2023/07/27 23:22:55] FCI Source1 Phase 3 FCI3 Voltage Check Complete (U15)
+[2023/07/27 23:22:55] FCI4_Voltage=223 Volt
+[2023/07/27 23:22:55] FCI Source1 Phase 3 FCI4 Voltage Check Complete (U16)
+[2023/07/27 23:22:55] FCI5_Voltage=222 Volt
+[2023/07/27 23:22:55] FCI Source1 Phase 3 FCI5 Voltage Check Complete (U17)
+[2023/07/27 23:22:55] FCI6_Voltage=220 Volt
+[2023/07/27 23:22:55] FCI Source1 Phase 3 FCI6 Voltage Check Complete (U18)
+[2023/07/27 23:22:55] COM8
+[2023/07/27 23:22:57] FCI1_Voltage=218 Volt
+[2023/07/27 23:22:57] FCI Source1 Phase 3 FCI1 Voltage Check Complete (U19)
+[2023/07/27 23:22:57] FCI2_Voltage=219 Volt
+[2023/07/27 23:22:57] FCI Source1 Phase 3 FCI2 Voltage Check Complete (U20)
+[2023/07/27 23:22:57] FCI3_Voltage=223 Volt
+[2023/07/27 23:22:57] FCI Source1 Phase 3 FCI3 Voltage Check Complete (U21)
+[2023/07/27 23:22:57] FCI4_Voltage=224 Volt
+[2023/07/27 23:22:57] FCI Source1 Phase 3 FCI4 Voltage Check Complete (U22)
+[2023/07/27 23:22:57] FCI5_Voltage=222 Volt
+[2023/07/27 23:22:57] FCI Source1 Phase 3 FCI5 Voltage Check Complete (U23)
+[2023/07/27 23:22:57] FCI6_Voltage=225 Volt
+[2023/07/27 23:22:57] FCI Source1 Phase 3 FCI6 Voltage Check Complete (U24)
+[2023/07/27 23:22:57] COM9
+[2023/07/27 23:22:59] FCI1_Voltage=220 Volt
+[2023/07/27 23:22:59] FCI Source1 Phase 3 FCI1 Voltage Check Complete (U25)
+[2023/07/27 23:22:59] FCI2_Voltage=223 Volt
+[2023/07/27 23:22:59] FCI Source1 Phase 3 FCI2 Voltage Check Complete (U26)
+[2023/07/27 23:22:59] FCI3_Voltage=223 Volt
+[2023/07/27 23:22:59] FCI Source1 Phase 3 FCI3 Voltage Check Complete (U27)
+[2023/07/27 23:22:59] FCI4_Voltage=223 Volt
+[2023/07/27 23:22:59] FCI Source1 Phase 3 FCI4 Voltage Check Complete (U28)
+[2023/07/27 23:22:59] FCI5_Voltage=226 Volt
+[2023/07/27 23:22:59] FCI Source1 Phase 3 FCI5 Voltage Check Complete (U29)
+[2023/07/27 23:22:59] FCI6_Voltage=222 Volt
+[2023/07/27 23:22:59] FCI Source1 Phase 3 FCI6 Voltage Check Complete (U30)
+[2023/07/27 23:22:59] COM10
+[2023/07/27 23:23:02] FCI1_Voltage=223 Volt
+[2023/07/27 23:23:02] FCI Source1 Phase 3 FCI1 Voltage Check Complete (U31)
+[2023/07/27 23:23:02] FCI2_Voltage=219 Volt
+[2023/07/27 23:23:02] FCI Source1 Phase 3 FCI2 Voltage Check Complete (U32)
+[2023/07/27 23:23:02] FCI3_Voltage=223 Volt
+[2023/07/27 23:23:02] FCI Source1 Phase 3 FCI3 Voltage Check Complete (U33)
+[2023/07/27 23:23:02] FCI4_Voltage=216 Volt
+[2023/07/27 23:23:02] FCI Source1 Phase 3 FCI4 Voltage Check Complete (U34)
+[2023/07/27 23:23:02] FCI5_Voltage=223 Volt
+[2023/07/27 23:23:02] FCI Source1 Phase 3 FCI5 Voltage Check Complete (U35)
+[2023/07/27 23:23:02] FCI6_Voltage=223 Volt
+[2023/07/27 23:23:02] FCI Source1 Phase 3 FCI6 Voltage Check Complete (U36)
+[2023/07/27 23:23:02] COM7
+[2023/07/27 23:23:04] FCI1_Voltage=218 Volt
+[2023/07/27 23:23:04] FCI Source1 Phase 3 FCI1 Voltage Check Complete (U37)
+[2023/07/27 23:23:04] FCI2_Voltage=219 Volt
+[2023/07/27 23:23:04] FCI Source1 Phase 3 FCI2 Voltage Check Complete (U38)
+[2023/07/27 23:23:04] FCI3_Voltage=218 Volt
+[2023/07/27 23:23:04] FCI Source1 Phase 3 FCI3 Voltage Check Complete (U39)
+[2023/07/27 23:23:04] FCI4_Voltage=219 Volt
+[2023/07/27 23:23:04] FCI Source1 Phase 3 FCI4 Voltage Check Complete (U40)
+[2023/07/27 23:23:04] FCI5_Voltage=218 Volt
+[2023/07/27 23:23:04] FCI Source1 Phase 3 FCI5 Voltage Check Complete (U41)
+[2023/07/27 23:23:04] FCI6_Voltage=225 Volt
+[2023/07/27 23:23:04] FCI Source1 Phase 3 FCI6 Voltage Check Complete (U42)
+[2023/07/27 23:23:04] COM6
+[2023/07/27 23:23:06] FCI1_Voltage=222 Volt
+[2023/07/27 23:23:06] FCI Source1 Phase 3 FCI1 Voltage Check Complete (U43)
+[2023/07/27 23:23:06] FCI2_Voltage=221 Volt
+[2023/07/27 23:23:06] FCI Source1 Phase 3 FCI2 Voltage Check Complete (U44)
+[2023/07/27 23:23:06] FCI3_Voltage=221 Volt
+[2023/07/27 23:23:06] FCI Source1 Phase 3 FCI3 Voltage Check Complete (U45)
+[2023/07/27 23:23:06] FCI4_Voltage=218 Volt
+[2023/07/27 23:23:06] FCI Source1 Phase 3 FCI4 Voltage Check Complete (U46)
+[2023/07/27 23:23:06] FCI5_Voltage=220 Volt
+[2023/07/27 23:23:06] FCI Source1 Phase 3 FCI5 Voltage Check Complete (U47)
+[2023/07/27 23:23:06] FCI6_Voltage=219 Volt
+[2023/07/27 23:23:06] FCI Source1 Phase 3 FCI6 Voltage Check Complete (U48)
+[2023/07/27 23:23:06] ===Check FCI AC Output Voltage Source 2 Phase 1===
+[2023/07/27 23:23:06] Set AC Source Output ON
+[2023/07/27 23:23:13] COM11
+[2023/07/27 23:23:15] FCI1_Voltage=216 Volt
+[2023/07/27 23:23:15] FCI Source2 Phase 1 FCI1 Voltage Check Complete (U1)
+[2023/07/27 23:23:15] FCI2_Voltage=215 Volt
+[2023/07/27 23:23:15] FCI Source2 Phase 1 FCI2 Voltage Check Complete (U2)
+[2023/07/27 23:23:15] FCI3_Voltage=216 Volt
+[2023/07/27 23:23:15] FCI Source2 Phase 1 FCI3 Voltage Check Complete (U3)
+[2023/07/27 23:23:15] FCI4_Voltage=216 Volt
+[2023/07/27 23:23:15] FCI Source2 Phase 1 FCI4 Voltage Check Complete (U4)
+[2023/07/27 23:23:15] FCI5_Voltage=216 Volt
+[2023/07/27 23:23:15] FCI Source2 Phase 1 FCI5 Voltage Check Complete (U5)
+[2023/07/27 23:23:15] FCI6_Voltage=216 Volt
+[2023/07/27 23:23:15] FCI Source2 Phase 1 FCI6 Voltage Check Complete (U6)
+[2023/07/27 23:23:15] COM4
+[2023/07/27 23:23:17] FCI1_Voltage=217 Volt
+[2023/07/27 23:23:17] FCI Source2 Phase 1 FCI1 Voltage Check Complete (U7)
+[2023/07/27 23:23:17] FCI2_Voltage=222 Volt
+[2023/07/27 23:23:17] FCI Source2 Phase 1 FCI2 Voltage Check Complete (U8)
+[2023/07/27 23:23:17] FCI3_Voltage=221 Volt
+[2023/07/27 23:23:17] FCI Source2 Phase 1 FCI3 Voltage Check Complete (U9)
+[2023/07/27 23:23:17] FCI4_Voltage=223 Volt
+[2023/07/27 23:23:17] FCI Source2 Phase 1 FCI4 Voltage Check Complete (U10)
+[2023/07/27 23:23:17] FCI5_Voltage=223 Volt
+[2023/07/27 23:23:17] FCI Source2 Phase 1 FCI5 Voltage Check Complete (U11)
+[2023/07/27 23:23:17] FCI6_Voltage=225 Volt
+[2023/07/27 23:23:17] FCI Source2 Phase 1 FCI6 Voltage Check Complete (U12)
+[2023/07/27 23:23:17] COM5
+[2023/07/27 23:23:19] FCI1_Voltage=217 Volt
+[2023/07/27 23:23:19] FCI Source2 Phase 1 FCI1 Voltage Check Complete (U13)
+[2023/07/27 23:23:19] FCI2_Voltage=217 Volt
+[2023/07/27 23:23:19] FCI Source2 Phase 1 FCI2 Voltage Check Complete (U14)
+[2023/07/27 23:23:19] FCI3_Voltage=217 Volt
+[2023/07/27 23:23:19] FCI Source2 Phase 1 FCI3 Voltage Check Complete (U15)
+[2023/07/27 23:23:19] FCI4_Voltage=223 Volt
+[2023/07/27 23:23:19] FCI Source2 Phase 1 FCI4 Voltage Check Complete (U16)
+[2023/07/27 23:23:19] FCI5_Voltage=220 Volt
+[2023/07/27 23:23:19] FCI Source2 Phase 1 FCI5 Voltage Check Complete (U17)
+[2023/07/27 23:23:20] FCI6_Voltage=217 Volt
+[2023/07/27 23:23:20] FCI Source2 Phase 1 FCI6 Voltage Check Complete (U18)
+[2023/07/27 23:23:20] COM8
+[2023/07/27 23:23:22] FCI1_Voltage=220 Volt
+[2023/07/27 23:23:22] FCI Source2 Phase 1 FCI1 Voltage Check Complete (U19)
+[2023/07/27 23:23:22] FCI2_Voltage=218 Volt
+[2023/07/27 23:23:22] FCI Source2 Phase 1 FCI2 Voltage Check Complete (U20)
+[2023/07/27 23:23:22] FCI3_Voltage=218 Volt
+[2023/07/27 23:23:22] FCI Source2 Phase 1 FCI3 Voltage Check Complete (U21)
+[2023/07/27 23:23:22] FCI4_Voltage=219 Volt
+[2023/07/27 23:23:22] FCI Source2 Phase 1 FCI4 Voltage Check Complete (U22)
+[2023/07/27 23:23:22] FCI5_Voltage=219 Volt
+[2023/07/27 23:23:22] FCI Source2 Phase 1 FCI5 Voltage Check Complete (U23)
+[2023/07/27 23:23:22] FCI6_Voltage=219 Volt
+[2023/07/27 23:23:22] FCI Source2 Phase 1 FCI6 Voltage Check Complete (U24)
+[2023/07/27 23:23:22] COM9
+[2023/07/27 23:23:24] FCI1_Voltage=223 Volt
+[2023/07/27 23:23:24] FCI Source2 Phase 1 FCI1 Voltage Check Complete (U25)
+[2023/07/27 23:23:24] FCI2_Voltage=223 Volt
+[2023/07/27 23:23:24] FCI Source2 Phase 1 FCI2 Voltage Check Complete (U26)
+[2023/07/27 23:23:24] FCI3_Voltage=223 Volt
+[2023/07/27 23:23:24] FCI Source2 Phase 1 FCI3 Voltage Check Complete (U27)
+[2023/07/27 23:23:24] FCI4_Voltage=222 Volt
+[2023/07/27 23:23:24] FCI Source2 Phase 1 FCI4 Voltage Check Complete (U28)
+[2023/07/27 23:23:24] FCI5_Voltage=223 Volt
+[2023/07/27 23:23:24] FCI Source2 Phase 1 FCI5 Voltage Check Complete (U29)
+[2023/07/27 23:23:24] FCI6_Voltage=223 Volt
+[2023/07/27 23:23:24] FCI Source2 Phase 1 FCI6 Voltage Check Complete (U30)
+[2023/07/27 23:23:24] COM10
+[2023/07/27 23:23:26] FCI1_Voltage=216 Volt
+[2023/07/27 23:23:26] FCI Source2 Phase 1 FCI1 Voltage Check Complete (U31)
+[2023/07/27 23:23:26] FCI2_Voltage=218 Volt
+[2023/07/27 23:23:26] FCI Source2 Phase 1 FCI2 Voltage Check Complete (U32)
+[2023/07/27 23:23:26] FCI3_Voltage=220 Volt
+[2023/07/27 23:23:26] FCI Source2 Phase 1 FCI3 Voltage Check Complete (U33)
+[2023/07/27 23:23:26] FCI4_Voltage=217 Volt
+[2023/07/27 23:23:26] FCI Source2 Phase 1 FCI4 Voltage Check Complete (U34)
+[2023/07/27 23:23:26] FCI5_Voltage=217 Volt
+[2023/07/27 23:23:26] FCI Source2 Phase 1 FCI5 Voltage Check Complete (U35)
+[2023/07/27 23:23:26] FCI6_Voltage=219 Volt
+[2023/07/27 23:23:26] FCI Source2 Phase 1 FCI6 Voltage Check Complete (U36)
+[2023/07/27 23:23:26] COM7
+[2023/07/27 23:23:29] FCI1_Voltage=218 Volt
+[2023/07/27 23:23:29] FCI Source2 Phase 1 FCI1 Voltage Check Complete (U37)
+[2023/07/27 23:23:29] FCI2_Voltage=217 Volt
+[2023/07/27 23:23:29] FCI Source2 Phase 1 FCI2 Voltage Check Complete (U38)
+[2023/07/27 23:23:29] FCI3_Voltage=218 Volt
+[2023/07/27 23:23:29] FCI Source2 Phase 1 FCI3 Voltage Check Complete (U39)
+[2023/07/27 23:23:29] FCI4_Voltage=218 Volt
+[2023/07/27 23:23:29] FCI Source2 Phase 1 FCI4 Voltage Check Complete (U40)
+[2023/07/27 23:23:29] FCI5_Voltage=218 Volt
+[2023/07/27 23:23:29] FCI Source2 Phase 1 FCI5 Voltage Check Complete (U41)
+[2023/07/27 23:23:29] FCI6_Voltage=219 Volt
+[2023/07/27 23:23:29] FCI Source2 Phase 1 FCI6 Voltage Check Complete (U42)
+[2023/07/27 23:23:29] COM6
+[2023/07/27 23:23:31] FCI1_Voltage=220 Volt
+[2023/07/27 23:23:31] FCI Source2 Phase 1 FCI1 Voltage Check Complete (U43)
+[2023/07/27 23:23:31] FCI2_Voltage=219 Volt
+[2023/07/27 23:23:31] FCI Source2 Phase 1 FCI2 Voltage Check Complete (U44)
+[2023/07/27 23:23:31] FCI3_Voltage=220 Volt
+[2023/07/27 23:23:31] FCI Source2 Phase 1 FCI3 Voltage Check Complete (U45)
+[2023/07/27 23:23:31] FCI4_Voltage=225 Volt
+[2023/07/27 23:23:31] FCI Source2 Phase 1 FCI4 Voltage Check Complete (U46)
+[2023/07/27 23:23:31] FCI5_Voltage=220 Volt
+[2023/07/27 23:23:31] FCI Source2 Phase 1 FCI5 Voltage Check Complete (U47)
+[2023/07/27 23:23:31] FCI6_Voltage=221 Volt
+[2023/07/27 23:23:31] FCI Source2 Phase 1 FCI6 Voltage Check Complete (U48)
+[2023/07/27 23:23:31] ===Check FCI AC Output Voltage Source 2 Phase 2===
+[2023/07/27 23:23:31] Set AC Source Output ON
+[2023/07/27 23:23:37] COM11
+[2023/07/27 23:23:40] FCI1_Voltage=216 Volt
+[2023/07/27 23:23:40] FCI Source2 Phase 2 FCI1 Voltage Check Complete (U1)
+[2023/07/27 23:23:40] FCI2_Voltage=216 Volt
+[2023/07/27 23:23:40] FCI Source2 Phase 2 FCI2 Voltage Check Complete (U2)
+[2023/07/27 23:23:40] FCI3_Voltage=216 Volt
+[2023/07/27 23:23:40] FCI Source2 Phase 2 FCI3 Voltage Check Complete (U3)
+[2023/07/27 23:23:40] FCI4_Voltage=216 Volt
+[2023/07/27 23:23:40] FCI Source2 Phase 2 FCI4 Voltage Check Complete (U4)
+[2023/07/27 23:23:40] FCI5_Voltage=216 Volt
+[2023/07/27 23:23:40] FCI Source2 Phase 2 FCI5 Voltage Check Complete (U5)
+[2023/07/27 23:23:40] FCI6_Voltage=215 Volt
+[2023/07/27 23:23:40] FCI Source2 Phase 2 FCI6 Voltage Check Complete (U6)
+[2023/07/27 23:23:40] COM4
+[2023/07/27 23:23:42] FCI1_Voltage=217 Volt
+[2023/07/27 23:23:42] FCI Source2 Phase 2 FCI1 Voltage Check Complete (U7)
+[2023/07/27 23:23:42] FCI2_Voltage=217 Volt
+[2023/07/27 23:23:42] FCI Source2 Phase 2 FCI2 Voltage Check Complete (U8)
+[2023/07/27 23:23:42] FCI3_Voltage=217 Volt
+[2023/07/27 23:23:42] FCI Source2 Phase 2 FCI3 Voltage Check Complete (U9)
+[2023/07/27 23:23:42] FCI4_Voltage=217 Volt
+[2023/07/27 23:23:42] FCI Source2 Phase 2 FCI4 Voltage Check Complete (U10)
+[2023/07/27 23:23:42] FCI5_Voltage=227 Volt
+[2023/07/27 23:23:42] FCI Source2 Phase 2 FCI5 Voltage Check Complete (U11)
+[2023/07/27 23:23:42] FCI6_Voltage=219 Volt
+[2023/07/27 23:23:42] FCI Source2 Phase 2 FCI6 Voltage Check Complete (U12)
+[2023/07/27 23:23:42] COM5
+[2023/07/27 23:23:44] FCI1_Voltage=223 Volt
+[2023/07/27 23:23:44] FCI Source2 Phase 2 FCI1 Voltage Check Complete (U13)
+[2023/07/27 23:23:44] FCI2_Voltage=221 Volt
+[2023/07/27 23:23:44] FCI Source2 Phase 2 FCI2 Voltage Check Complete (U14)
+[2023/07/27 23:23:44] FCI3_Voltage=221 Volt
+[2023/07/27 23:23:44] FCI Source2 Phase 2 FCI3 Voltage Check Complete (U15)
+[2023/07/27 23:23:44] FCI4_Voltage=222 Volt
+[2023/07/27 23:23:44] FCI Source2 Phase 2 FCI4 Voltage Check Complete (U16)
+[2023/07/27 23:23:44] FCI5_Voltage=222 Volt
+[2023/07/27 23:23:44] FCI Source2 Phase 2 FCI5 Voltage Check Complete (U17)
+[2023/07/27 23:23:44] FCI6_Voltage=222 Volt
+[2023/07/27 23:23:44] FCI Source2 Phase 2 FCI6 Voltage Check Complete (U18)
+[2023/07/27 23:23:44] COM8
+[2023/07/27 23:23:47] FCI1_Voltage=218 Volt
+[2023/07/27 23:23:47] FCI Source2 Phase 2 FCI1 Voltage Check Complete (U19)
+[2023/07/27 23:23:47] FCI2_Voltage=219 Volt
+[2023/07/27 23:23:47] FCI Source2 Phase 2 FCI2 Voltage Check Complete (U20)
+[2023/07/27 23:23:47] FCI3_Voltage=223 Volt
+[2023/07/27 23:23:47] FCI Source2 Phase 2 FCI3 Voltage Check Complete (U21)
+[2023/07/27 23:23:47] FCI4_Voltage=219 Volt
+[2023/07/27 23:23:47] FCI Source2 Phase 2 FCI4 Voltage Check Complete (U22)
+[2023/07/27 23:23:47] FCI5_Voltage=225 Volt
+[2023/07/27 23:23:47] FCI Source2 Phase 2 FCI5 Voltage Check Complete (U23)
+[2023/07/27 23:23:47] FCI6_Voltage=218 Volt
+[2023/07/27 23:23:47] FCI Source2 Phase 2 FCI6 Voltage Check Complete (U24)
+[2023/07/27 23:23:47] COM9
+[2023/07/27 23:23:49] FCI1_Voltage=226 Volt
+[2023/07/27 23:23:49] FCI Source2 Phase 2 FCI1 Voltage Check Complete (U25)
+[2023/07/27 23:23:49] FCI2_Voltage=223 Volt
+[2023/07/27 23:23:49] FCI Source2 Phase 2 FCI2 Voltage Check Complete (U26)
+[2023/07/27 23:23:49] FCI3_Voltage=223 Volt
+[2023/07/27 23:23:49] FCI Source2 Phase 2 FCI3 Voltage Check Complete (U27)
+[2023/07/27 23:23:49] FCI4_Voltage=222 Volt
+[2023/07/27 23:23:49] FCI Source2 Phase 2 FCI4 Voltage Check Complete (U28)
+[2023/07/27 23:23:49] FCI5_Voltage=222 Volt
+[2023/07/27 23:23:49] FCI Source2 Phase 2 FCI5 Voltage Check Complete (U29)
+[2023/07/27 23:23:49] FCI6_Voltage=223 Volt
+[2023/07/27 23:23:49] FCI Source2 Phase 2 FCI6 Voltage Check Complete (U30)
+[2023/07/27 23:23:49] COM10
+[2023/07/27 23:23:51] FCI1_Voltage=223 Volt
+[2023/07/27 23:23:51] FCI Source2 Phase 2 FCI1 Voltage Check Complete (U31)
+[2023/07/27 23:23:51] FCI2_Voltage=220 Volt
+[2023/07/27 23:23:51] FCI Source2 Phase 2 FCI2 Voltage Check Complete (U32)
+[2023/07/27 23:23:51] FCI3_Voltage=220 Volt
+[2023/07/27 23:23:51] FCI Source2 Phase 2 FCI3 Voltage Check Complete (U33)
+[2023/07/27 23:23:51] FCI4_Voltage=221 Volt
+[2023/07/27 23:23:51] FCI Source2 Phase 2 FCI4 Voltage Check Complete (U34)
+[2023/07/27 23:23:51] FCI5_Voltage=225 Volt
+[2023/07/27 23:23:51] FCI Source2 Phase 2 FCI5 Voltage Check Complete (U35)
+[2023/07/27 23:23:51] FCI6_Voltage=219 Volt
+[2023/07/27 23:23:51] FCI Source2 Phase 2 FCI6 Voltage Check Complete (U36)
+[2023/07/27 23:23:51] COM7
+[2023/07/27 23:23:54] FCI1_Voltage=219 Volt
+[2023/07/27 23:23:54] FCI Source2 Phase 2 FCI1 Voltage Check Complete (U37)
+[2023/07/27 23:23:54] FCI2_Voltage=219 Volt
+[2023/07/27 23:23:54] FCI Source2 Phase 2 FCI2 Voltage Check Complete (U38)
+[2023/07/27 23:23:54] FCI3_Voltage=217 Volt
+[2023/07/27 23:23:54] FCI Source2 Phase 2 FCI3 Voltage Check Complete (U39)
+[2023/07/27 23:23:54] FCI4_Voltage=223 Volt
+[2023/07/27 23:23:54] FCI Source2 Phase 2 FCI4 Voltage Check Complete (U40)
+[2023/07/27 23:23:54] FCI5_Voltage=223 Volt
+[2023/07/27 23:23:54] FCI Source2 Phase 2 FCI5 Voltage Check Complete (U41)
+[2023/07/27 23:23:54] FCI6_Voltage=223 Volt
+[2023/07/27 23:23:54] FCI Source2 Phase 2 FCI6 Voltage Check Complete (U42)
+[2023/07/27 23:23:54] COM6
+[2023/07/27 23:23:56] FCI1_Voltage=222 Volt
+[2023/07/27 23:23:56] FCI Source2 Phase 2 FCI1 Voltage Check Complete (U43)
+[2023/07/27 23:23:56] FCI2_Voltage=219 Volt
+[2023/07/27 23:23:56] FCI Source2 Phase 2 FCI2 Voltage Check Complete (U44)
+[2023/07/27 23:23:56] FCI3_Voltage=219 Volt
+[2023/07/27 23:23:56] FCI Source2 Phase 2 FCI3 Voltage Check Complete (U45)
+[2023/07/27 23:23:56] FCI4_Voltage=220 Volt
+[2023/07/27 23:23:56] FCI Source2 Phase 2 FCI4 Voltage Check Complete (U46)
+[2023/07/27 23:23:56] FCI5_Voltage=217 Volt
+[2023/07/27 23:23:56] FCI Source2 Phase 2 FCI5 Voltage Check Complete (U47)
+[2023/07/27 23:23:56] FCI6_Voltage=221 Volt
+[2023/07/27 23:23:56] FCI Source2 Phase 2 FCI6 Voltage Check Complete (U48)
+[2023/07/27 23:23:56] ===Check FCI AC Output Voltage Source 2 Phase 3===
+[2023/07/27 23:23:56] Set AC Source Output ON
+[2023/07/27 23:24:02] COM11
+[2023/07/27 23:24:04] FCI1_Voltage=216 Volt
+[2023/07/27 23:24:04] FCI Source2 Phase 3 FCI1 Voltage Check Complete (U1)
+[2023/07/27 23:24:04] FCI2_Voltage=217 Volt
+[2023/07/27 23:24:04] FCI Source2 Phase 3 FCI2 Voltage Check Complete (U2)
+[2023/07/27 23:24:04] FCI3_Voltage=216 Volt
+[2023/07/27 23:24:04] FCI Source2 Phase 3 FCI3 Voltage Check Complete (U3)
+[2023/07/27 23:24:04] FCI4_Voltage=219 Volt
+[2023/07/27 23:24:04] FCI Source2 Phase 3 FCI4 Voltage Check Complete (U4)
+[2023/07/27 23:24:04] FCI5_Voltage=216 Volt
+[2023/07/27 23:24:04] FCI Source2 Phase 3 FCI5 Voltage Check Complete (U5)
+[2023/07/27 23:24:04] FCI6_Voltage=216 Volt
+[2023/07/27 23:24:04] FCI Source2 Phase 3 FCI6 Voltage Check Complete (U6)
+[2023/07/27 23:24:04] COM4
+[2023/07/27 23:24:07] FCI1_Voltage=214 Volt
+[2023/07/27 23:24:07] FCI Source2 Phase 3 FCI1 Voltage Check Complete (U7)
+[2023/07/27 23:24:07] FCI2_Voltage=217 Volt
+[2023/07/27 23:24:07] FCI Source2 Phase 3 FCI2 Voltage Check Complete (U8)
+[2023/07/27 23:24:07] FCI3_Voltage=220 Volt
+[2023/07/27 23:24:07] FCI Source2 Phase 3 FCI3 Voltage Check Complete (U9)
+[2023/07/27 23:24:07] FCI4_Voltage=222 Volt
+[2023/07/27 23:24:07] FCI Source2 Phase 3 FCI4 Voltage Check Complete (U10)
+[2023/07/27 23:24:07] FCI5_Voltage=222 Volt
+[2023/07/27 23:24:07] FCI Source2 Phase 3 FCI5 Voltage Check Complete (U11)
+[2023/07/27 23:24:07] FCI6_Voltage=227 Volt
+[2023/07/27 23:24:07] FCI Source2 Phase 3 FCI6 Voltage Check Complete (U12)
+[2023/07/27 23:24:07] COM5
+[2023/07/27 23:24:09] FCI1_Voltage=218 Volt
+[2023/07/27 23:24:09] FCI Source2 Phase 3 FCI1 Voltage Check Complete (U13)
+[2023/07/27 23:24:09] FCI2_Voltage=217 Volt
+[2023/07/27 23:24:09] FCI Source2 Phase 3 FCI2 Voltage Check Complete (U14)
+[2023/07/27 23:24:09] FCI3_Voltage=218 Volt
+[2023/07/27 23:24:09] FCI Source2 Phase 3 FCI3 Voltage Check Complete (U15)
+[2023/07/27 23:24:09] FCI4_Voltage=223 Volt
+[2023/07/27 23:24:09] FCI Source2 Phase 3 FCI4 Voltage Check Complete (U16)
+[2023/07/27 23:24:09] FCI5_Voltage=217 Volt
+[2023/07/27 23:24:09] FCI Source2 Phase 3 FCI5 Voltage Check Complete (U17)
+[2023/07/27 23:24:09] FCI6_Voltage=217 Volt
+[2023/07/27 23:24:09] FCI Source2 Phase 3 FCI6 Voltage Check Complete (U18)
+[2023/07/27 23:24:09] COM8
+[2023/07/27 23:24:11] FCI1_Voltage=218 Volt
+[2023/07/27 23:24:11] FCI Source2 Phase 3 FCI1 Voltage Check Complete (U19)
+[2023/07/27 23:24:11] FCI2_Voltage=219 Volt
+[2023/07/27 23:24:11] FCI Source2 Phase 3 FCI2 Voltage Check Complete (U20)
+[2023/07/27 23:24:11] FCI3_Voltage=219 Volt
+[2023/07/27 23:24:11] FCI Source2 Phase 3 FCI3 Voltage Check Complete (U21)
+[2023/07/27 23:24:11] FCI4_Voltage=223 Volt
+[2023/07/27 23:24:11] FCI Source2 Phase 3 FCI4 Voltage Check Complete (U22)
+[2023/07/27 23:24:11] FCI5_Voltage=218 Volt
+[2023/07/27 23:24:11] FCI Source2 Phase 3 FCI5 Voltage Check Complete (U23)
+[2023/07/27 23:24:11] FCI6_Voltage=219 Volt
+[2023/07/27 23:24:11] FCI Source2 Phase 3 FCI6 Voltage Check Complete (U24)
+[2023/07/27 23:24:11] COM9
+[2023/07/27 23:24:14] FCI1_Voltage=224 Volt
+[2023/07/27 23:24:14] FCI Source2 Phase 3 FCI1 Voltage Check Complete (U25)
+[2023/07/27 23:24:14] FCI2_Voltage=223 Volt
+[2023/07/27 23:24:14] FCI Source2 Phase 3 FCI2 Voltage Check Complete (U26)
+[2023/07/27 23:24:14] FCI3_Voltage=222 Volt
+[2023/07/27 23:24:14] FCI Source2 Phase 3 FCI3 Voltage Check Complete (U27)
+[2023/07/27 23:24:14] FCI4_Voltage=223 Volt
+[2023/07/27 23:24:14] FCI Source2 Phase 3 FCI4 Voltage Check Complete (U28)
+[2023/07/27 23:24:14] FCI5_Voltage=220 Volt
+[2023/07/27 23:24:14] FCI Source2 Phase 3 FCI5 Voltage Check Complete (U29)
+[2023/07/27 23:24:14] FCI6_Voltage=223 Volt
+[2023/07/27 23:24:14] FCI Source2 Phase 3 FCI6 Voltage Check Complete (U30)
+[2023/07/27 23:24:14] COM10
+[2023/07/27 23:24:16] FCI1_Voltage=217 Volt
+[2023/07/27 23:24:16] FCI Source2 Phase 3 FCI1 Voltage Check Complete (U31)
+[2023/07/27 23:24:16] FCI2_Voltage=218 Volt
+[2023/07/27 23:24:16] FCI Source2 Phase 3 FCI2 Voltage Check Complete (U32)
+[2023/07/27 23:24:16] FCI3_Voltage=216 Volt
+[2023/07/27 23:24:16] FCI Source2 Phase 3 FCI3 Voltage Check Complete (U33)
+[2023/07/27 23:24:16] FCI4_Voltage=219 Volt
+[2023/07/27 23:24:16] FCI Source2 Phase 3 FCI4 Voltage Check Complete (U34)
+[2023/07/27 23:24:16] FCI5_Voltage=216 Volt
+[2023/07/27 23:24:16] FCI Source2 Phase 3 FCI5 Voltage Check Complete (U35)
+[2023/07/27 23:24:16] FCI6_Voltage=219 Volt
+[2023/07/27 23:24:16] FCI Source2 Phase 3 FCI6 Voltage Check Complete (U36)
+[2023/07/27 23:24:16] COM7
+[2023/07/27 23:24:18] FCI1_Voltage=218 Volt
+[2023/07/27 23:24:18] FCI Source2 Phase 3 FCI1 Voltage Check Complete (U37)
+[2023/07/27 23:24:18] FCI2_Voltage=219 Volt
+[2023/07/27 23:24:18] FCI Source2 Phase 3 FCI2 Voltage Check Complete (U38)
+[2023/07/27 23:24:18] FCI3_Voltage=217 Volt
+[2023/07/27 23:24:18] FCI Source2 Phase 3 FCI3 Voltage Check Complete (U39)
+[2023/07/27 23:24:18] FCI4_Voltage=217 Volt
+[2023/07/27 23:24:18] FCI Source2 Phase 3 FCI4 Voltage Check Complete (U40)
+[2023/07/27 23:24:18] FCI5_Voltage=218 Volt
+[2023/07/27 23:24:18] FCI Source2 Phase 3 FCI5 Voltage Check Complete (U41)
+[2023/07/27 23:24:18] FCI6_Voltage=218 Volt
+[2023/07/27 23:24:18] FCI Source2 Phase 3 FCI6 Voltage Check Complete (U42)
+[2023/07/27 23:24:18] COM6
+[2023/07/27 23:24:21] FCI1_Voltage=219 Volt
+[2023/07/27 23:24:21] FCI Source2 Phase 3 FCI1 Voltage Check Complete (U43)
+[2023/07/27 23:24:21] FCI2_Voltage=220 Volt
+[2023/07/27 23:24:21] FCI Source2 Phase 3 FCI2 Voltage Check Complete (U44)
+[2023/07/27 23:24:21] FCI3_Voltage=221 Volt
+[2023/07/27 23:24:21] FCI Source2 Phase 3 FCI3 Voltage Check Complete (U45)
+[2023/07/27 23:24:21] FCI4_Voltage=220 Volt
+[2023/07/27 23:24:21] FCI Source2 Phase 3 FCI4 Voltage Check Complete (U46)
+[2023/07/27 23:24:21] FCI5_Voltage=221 Volt
+[2023/07/27 23:24:21] FCI Source2 Phase 3 FCI5 Voltage Check Complete (U47)
+[2023/07/27 23:24:21] FCI6_Voltage=219 Volt
+[2023/07/27 23:24:21] FCI Source2 Phase 3 FCI6 Voltage Check Complete (U48)
+[2023/07/27 23:24:21] Set AC Source Output OFF
+[2023/07/27 23:24:27] Test elapsed time: 0:02:34.760000
+[2023/07/27 23:24:27] ######################################################################
+[2023/07/27 23:24:27] Test11: Current Detect Test
+[2023/07/27 23:24:27] Timestamp: [2023-07-27 23:24:27]
+[2023/07/27 23:24:27] ######################################################################
+[2023/07/27 23:24:27] ======================================
+[2023/07/27 23:24:27] [Current phase detect]
+[2023/07/27 23:24:27] ======================================
+[2023/07/27 23:24:27] Set AC Source Output OFF
+[2023/07/27 23:24:36] COM11
+[2023/07/27 23:24:36] S1/S2 relays are off
+[2023/07/27 23:24:38] Turn Relay 1 ON
+[2023/07/27 23:24:41] S1 relays are on
+[2023/07/27 23:24:41] COM4
+[2023/07/27 23:24:41] S1/S2 relays are off
+[2023/07/27 23:24:43] Turn Relay 1 ON
+[2023/07/27 23:24:45] S1 relays are on
+[2023/07/27 23:24:45] COM5
+[2023/07/27 23:24:46] S1/S2 relays are off
+[2023/07/27 23:24:48] Turn Relay 1 ON
+[2023/07/27 23:24:50] S1 relays are on
+[2023/07/27 23:24:50] COM8
+[2023/07/27 23:24:50] S1/S2 relays are off
+[2023/07/27 23:24:52] Turn Relay 1 ON
+[2023/07/27 23:24:55] S1 relays are on
+[2023/07/27 23:24:55] COM9
+[2023/07/27 23:24:55] S1/S2 relays are off
+[2023/07/27 23:24:57] Turn Relay 1 ON
+[2023/07/27 23:24:59] S1 relays are on
+[2023/07/27 23:24:59] COM10
+[2023/07/27 23:25:00] S1/S2 relays are off
+[2023/07/27 23:25:02] Turn Relay 1 ON
+[2023/07/27 23:25:04] S1 relays are on
+[2023/07/27 23:25:04] COM7
+[2023/07/27 23:25:04] S1/S2 relays are off
+[2023/07/27 23:25:06] Turn Relay 1 ON
+[2023/07/27 23:25:08] S1 relays are on
+[2023/07/27 23:25:08] COM6
+[2023/07/27 23:25:09] S1/S2 relays are off
+[2023/07/27 23:25:11] Turn Relay 1 ON
+[2023/07/27 23:25:13] S1 relays are on
+[2023/07/27 23:25:13] 
+
+===Start Source 1 Current detect===
+
+[2023/07/27 23:25:13] [Set AC Source Output 208 Volt]
+[2023/07/27 23:25:13] AC Source Output
+[2023/07/27 23:25:13] 2023-07-27 23:25:13.911600 Init to Filesystem Start ...
+[2023/07/27 23:25:47] Pass - Init to Login
+[2023/07/27 23:25:52] Pass - Wait for Password
+[2023/07/27 23:26:01] Pass - Wait for WcsCli
+[2023/07/27 23:26:01] Initial Gain/Offset parameter
+[2023/07/27 23:26:30] Write ADC Calibration to EEPROM(B:1 D:51) Complete
+[2023/07/27 23:26:34] b'show manager powermeter calibration\r\n'
+[2023/07/27 23:26:34] b'    Current: \r\n'
+[2023/07/27 23:26:34] b'        Feed1: \r\n'
+[2023/07/27 23:26:34] b'            Phase1: \r\n'
+[2023/07/27 23:26:34] b'                Gain: 16384\r\n'
+[2023/07/27 23:26:34] b'                Offset: 0\r\n'
+[2023/07/27 23:26:34] b'            Phase2: \r\n'
+[2023/07/27 23:26:34] b'                Gain: 16384\r\n'
+[2023/07/27 23:26:34] b'                Offset: 0\r\n'
+[2023/07/27 23:26:34] b'            Phase3: \r\n'
+[2023/07/27 23:26:34] b'                Gain: 16384\r\n'
+[2023/07/27 23:26:34] b'                Offset: 0\r\n'
+[2023/07/27 23:26:34] b'        Feed2: \r\n'
+[2023/07/27 23:26:34] b'            Phase1: \r\n'
+[2023/07/27 23:26:34] b'                Gain: 16384\r\n'
+[2023/07/27 23:26:34] b'                Offset: 0\r\n'
+[2023/07/27 23:26:34] b'            Phase2: \r\n'
+[2023/07/27 23:26:34] b'                Gain: 16384\r\n'
+[2023/07/27 23:26:34] b'                Offset: 0\r\n'
+[2023/07/27 23:26:34] b'            Phase3: \r\n'
+[2023/07/27 23:26:34] b'                Gain: 16384\r\n'
+[2023/07/27 23:26:34] b'                Offset: 0\r\n'
+[2023/07/27 23:26:34] b'    Voltage: \r\n'
+[2023/07/27 23:26:34] b'        Feed1: \r\n'
+[2023/07/27 23:26:34] b'            Phase1: \r\n'
+[2023/07/27 23:26:34] b'                Gain: 16384\r\n'
+[2023/07/27 23:26:34] b'                Offset: 0\r\n'
+[2023/07/27 23:26:34] b'            Phase2: \r\n'
+[2023/07/27 23:26:34] b'                Gain: 16384\r\n'
+[2023/07/27 23:26:34] b'                Offset: 0\r\n'
+[2023/07/27 23:26:34] b'            Phase3: \r\n'
+[2023/07/27 23:26:34] b'                Gain: 16384\r\n'
+[2023/07/27 23:26:34] b'                Offset: 0\r\n'
+[2023/07/27 23:26:34] b'        Feed2: \r\n'
+[2023/07/27 23:26:34] b'            Phase1: \r\n'
+[2023/07/27 23:26:34] b'                Gain: 16384\r\n'
+[2023/07/27 23:26:34] b'                Offset: 0\r\n'
+[2023/07/27 23:26:34] b'            Phase2: \r\n'
+[2023/07/27 23:26:34] b'                Gain: 16384\r\n'
+[2023/07/27 23:26:34] b'                Offset: 0\r\n'
+[2023/07/27 23:26:34] b'            Phase3: \r\n'
+[2023/07/27 23:26:34] b'                Gain: 16384\r\n'
+[2023/07/27 23:26:34] b'                Offset: 0\r\n'
+[2023/07/27 23:26:34] b'    Completion Code: Success\r\n'
+[2023/07/27 23:26:34] b'WcsCli# '
+[2023/07/27 23:26:34] [Set AC Load as amp]
+[2023/07/27 23:26:36] Set AC Load ON
+[2023/07/27 23:26:46] [Current detect phase R/S/T - PRU Current]
+[2023/07/27 23:26:55] PRU S1 RIpru1 Current = 5.086700 amp
+[2023/07/27 23:26:55] PRU S1 SIpru1 Current = 10.204000 amp
+[2023/07/27 23:26:55] PRU S1 TIpru1 Current = 15.308100 amp
+[2023/07/27 23:26:55] S1 Current R phase detect: PASS
+[2023/07/27 23:26:55] S1 Current S phase detect: PASS
+[2023/07/27 23:26:55] S1 Current T phase detect: PASS
+[2023/07/27 23:26:55] Set AC Source Output OFF
+[2023/07/27 23:27:04] COM11
+[2023/07/27 23:27:04] Turn Relay OFF
+[2023/07/27 23:27:07] S1/S2 relays are off
+[2023/07/27 23:27:09] Turn Relay 2 ON
+[2023/07/27 23:27:11] S2 relays are on
+[2023/07/27 23:27:11] COM4
+[2023/07/27 23:27:11] Turn Relay OFF
+[2023/07/27 23:27:14] S1/S2 relays are off
+[2023/07/27 23:27:16] Turn Relay 2 ON
+[2023/07/27 23:27:18] S2 relays are on
+[2023/07/27 23:27:18] COM5
+[2023/07/27 23:27:18] Turn Relay OFF
+[2023/07/27 23:27:21] S1/S2 relays are off
+[2023/07/27 23:27:23] Turn Relay 2 ON
+[2023/07/27 23:27:25] S2 relays are on
+[2023/07/27 23:27:25] COM8
+[2023/07/27 23:27:25] Turn Relay OFF
+[2023/07/27 23:27:28] S1/S2 relays are off
+[2023/07/27 23:27:30] Turn Relay 2 ON
+[2023/07/27 23:27:32] S2 relays are on
+[2023/07/27 23:27:32] COM9
+[2023/07/27 23:27:32] Turn Relay OFF
+[2023/07/27 23:27:35] S1/S2 relays are off
+[2023/07/27 23:27:37] Turn Relay 2 ON
+[2023/07/27 23:27:39] S2 relays are on
+[2023/07/27 23:27:39] COM10
+[2023/07/27 23:27:39] Turn Relay OFF
+[2023/07/27 23:27:42] S1/S2 relays are off
+[2023/07/27 23:27:44] Turn Relay 2 ON
+[2023/07/27 23:27:46] S2 relays are on
+[2023/07/27 23:27:46] COM7
+[2023/07/27 23:27:46] Turn Relay OFF
+[2023/07/27 23:27:49] S1/S2 relays are off
+[2023/07/27 23:27:51] Turn Relay 2 ON
+[2023/07/27 23:27:53] S2 relays are on
+[2023/07/27 23:27:53] COM6
+[2023/07/27 23:27:53] Turn Relay OFF
+[2023/07/27 23:27:56] S1/S2 relays are off
+[2023/07/27 23:27:58] Turn Relay 2 ON
+[2023/07/27 23:28:00] S2 relays are on
+[2023/07/27 23:28:00] 
+
+===Start Source 2 Current detect===
+
+[2023/07/27 23:28:00] [Set AC Source Output 208 Volt]
+[2023/07/27 23:28:00] AC Source Output
+[2023/07/27 23:28:00] 2023-07-27 23:28:00.631600 Init to Filesystem Start ...
+[2023/07/27 23:28:34] Pass - Init to Login
+[2023/07/27 23:28:39] Pass - Wait for Password
+[2023/07/27 23:28:48] Pass - Wait for WcsCli
+[2023/07/27 23:28:48] [Set AC Load as amp]
+[2023/07/27 23:28:50] Set AC Load ON
+[2023/07/27 23:29:00] [Current detect phase R/S/T - PRU Current]
+[2023/07/27 23:29:09] PRU S2 RIpru1 Current = 5.165200 amp
+[2023/07/27 23:29:09] PRU S2 SIpru1 Current = 10.125400 amp
+[2023/07/27 23:29:09] PRU S2 TIpru1 Current = 15.247100 amp
+[2023/07/27 23:29:09] S2 Current R phase detect: PASS
+[2023/07/27 23:29:09] S2 Current S phase detect: PASS
+[2023/07/27 23:29:09] S2 Current T phase detect: PASS
+[2023/07/27 23:29:09] Output is ON then Turn OFF
+[2023/07/27 23:29:09] AC Source Quit
+[2023/07/27 23:29:11] Turn Relay OFF
+[2023/07/27 23:29:11] Test elapsed time: 0:04:44.280000
+[2023/07/27 23:29:11] ######################################################################
+[2023/07/27 23:29:11] Test12: Calibration Test
+[2023/07/27 23:29:11] Timestamp: [2023-07-27 23:29:11]
+[2023/07/27 23:29:11] ######################################################################
+[2023/07/27 23:29:11] ======================================
+[2023/07/27 23:29:11] [Calibration]
+[2023/07/27 23:29:11] ======================================
+[2023/07/27 23:29:11] Set AC Source Output OFF
+[2023/07/27 23:29:20] COM11
+[2023/07/27 23:29:21] Turn Relay OFF
+[2023/07/27 23:29:23] S1/S2 relays are off
+[2023/07/27 23:29:25] Turn Relay 1 ON
+[2023/07/27 23:29:27] S1 relays are on
+[2023/07/27 23:29:27] COM4
+[2023/07/27 23:29:28] Turn Relay OFF
+[2023/07/27 23:29:30] S1/S2 relays are off
+[2023/07/27 23:29:32] Turn Relay 1 ON
+[2023/07/27 23:29:34] S1 relays are on
+[2023/07/27 23:29:34] COM5
+[2023/07/27 23:29:35] Turn Relay OFF
+[2023/07/27 23:29:37] S1/S2 relays are off
+[2023/07/27 23:29:39] Turn Relay 1 ON
+[2023/07/27 23:29:42] S1 relays are on
+[2023/07/27 23:29:42] COM8
+[2023/07/27 23:29:42] Turn Relay OFF
+[2023/07/27 23:29:44] S1/S2 relays are off
+[2023/07/27 23:29:47] Turn Relay 1 ON
+[2023/07/27 23:29:49] S1 relays are on
+[2023/07/27 23:29:49] COM9
+[2023/07/27 23:29:49] Turn Relay OFF
+[2023/07/27 23:29:52] S1/S2 relays are off
+[2023/07/27 23:29:54] Turn Relay 1 ON
+[2023/07/27 23:29:56] S1 relays are on
+[2023/07/27 23:29:56] COM10
+[2023/07/27 23:29:56] Turn Relay OFF
+[2023/07/27 23:29:59] S1/S2 relays are off
+[2023/07/27 23:30:01] Turn Relay 1 ON
+[2023/07/27 23:30:03] S1 relays are on
+[2023/07/27 23:30:03] COM7
+[2023/07/27 23:30:03] Turn Relay OFF
+[2023/07/27 23:30:06] S1/S2 relays are off
+[2023/07/27 23:30:08] Turn Relay 1 ON
+[2023/07/27 23:30:10] S1 relays are on
+[2023/07/27 23:30:10] COM6
+[2023/07/27 23:30:10] S1/S2 relays are off
+[2023/07/27 23:30:13] Turn Relay 1 ON
+[2023/07/27 23:30:15] S1 relays are on
+[2023/07/27 23:30:15] 
+
+===Start Source 1 Voltage Calibration===
+
+[2023/07/27 23:30:15] [Set AC Source Output 190 Volt]
+[2023/07/27 23:30:15] Output is OFF then Turn ON
+[2023/07/27 23:30:15] AC Source Output
+[2023/07/27 23:30:15] 2023-07-27 23:30:15.551600 Init to Filesystem Start ...
+[2023/07/27 23:30:49] Pass - Init to Login
+[2023/07/27 23:30:54] Pass - Wait for Password
+[2023/07/27 23:31:03] Pass - Wait for WcsCli
+[2023/07/27 23:31:03] Initial Gain/Offset parameter
+[2023/07/27 23:31:32] Write ADC Calibration to EEPROM(B:1 D:51) Complete
+[2023/07/27 23:31:36] b'show manager powermeter calibration\r\n'
+[2023/07/27 23:31:36] b'    Current: \r\n'
+[2023/07/27 23:31:36] b'        Feed1: \r\n'
+[2023/07/27 23:31:36] b'            Phase1: \r\n'
+[2023/07/27 23:31:36] b'                Gain: 16384\r\n'
+[2023/07/27 23:31:36] b'                Offset: 0\r\n'
+[2023/07/27 23:31:36] b'            Phase2: \r\n'
+[2023/07/27 23:31:36] b'                Gain: 16384\r\n'
+[2023/07/27 23:31:36] b'                Offset: 0\r\n'
+[2023/07/27 23:31:36] b'            Phase3: \r\n'
+[2023/07/27 23:31:36] b'                Gain: 16384\r\n'
+[2023/07/27 23:31:36] b'                Offset: 0\r\n'
+[2023/07/27 23:31:36] b'        Feed2: \r\n'
+[2023/07/27 23:31:36] b'            Phase1: \r\n'
+[2023/07/27 23:31:36] b'                Gain: 16384\r\n'
+[2023/07/27 23:31:36] b'                Offset: 0\r\n'
+[2023/07/27 23:31:36] b'            Phase2: \r\n'
+[2023/07/27 23:31:36] b'                Gain: 16384\r\n'
+[2023/07/27 23:31:36] b'                Offset: 0\r\n'
+[2023/07/27 23:31:36] b'            Phase3: \r\n'
+[2023/07/27 23:31:36] b'                Gain: 16384\r\n'
+[2023/07/27 23:31:36] b'                Offset: 0\r\n'
+[2023/07/27 23:31:36] b'    Voltage: \r\n'
+[2023/07/27 23:31:36] b'        Feed1: \r\n'
+[2023/07/27 23:31:36] b'            Phase1: \r\n'
+[2023/07/27 23:31:36] b'                Gain: 16384\r\n'
+[2023/07/27 23:31:36] b'                Offset: 0\r\n'
+[2023/07/27 23:31:36] b'            Phase2: \r\n'
+[2023/07/27 23:31:36] b'                Gain: 16384\r\n'
+[2023/07/27 23:31:36] b'                Offset: 0\r\n'
+[2023/07/27 23:31:36] b'            Phase3: \r\n'
+[2023/07/27 23:31:36] b'                Gain: 16384\r\n'
+[2023/07/27 23:31:36] b'                Offset: 0\r\n'
+[2023/07/27 23:31:36] b'        Feed2: \r\n'
+[2023/07/27 23:31:36] b'            Phase1: \r\n'
+[2023/07/27 23:31:36] b'                Gain: 16384\r\n'
+[2023/07/27 23:31:36] b'                Offset: 0\r\n'
+[2023/07/27 23:31:36] b'            Phase2: \r\n'
+[2023/07/27 23:31:36] b'                Gain: 16384\r\n'
+[2023/07/27 23:31:36] b'                Offset: 0\r\n'
+[2023/07/27 23:31:36] b'            Phase3: \r\n'
+[2023/07/27 23:31:36] b'                Gain: 16384\r\n'
+[2023/07/27 23:31:36] b'                Offset: 0\r\n'
+[2023/07/27 23:31:36] b'    Completion Code: Success\r\n'
+[2023/07/27 23:31:36] b'WcsCli# '
+[2023/07/27 23:31:36] [Set AC Load as 10.0 amp]
+[2023/07/27 23:31:38] Set AC Load ON
+[2023/07/27 23:31:48] [Calibration Point 1 - WT500 Voltage]
+[2023/07/27 23:31:48] WT500 S1 RVac1 Voltage = 189.48 volt
+[2023/07/27 23:31:48] WT500 S1 SVac1 Voltage = 189.67 volt
+[2023/07/27 23:31:48] WT500 S1 TVac1 Voltage = 189.52 volt
+[2023/07/27 23:31:48] [Calibration Point 1 - PRU Voltage]
+[2023/07/27 23:31:52] PRU S1 RVpru1 Voltage = 194.764 volt
+[2023/07/27 23:31:52] PRU S1 SVpru1 Voltage = 195.0011 volt
+[2023/07/27 23:31:52] PRU S1 TVpru1 Voltage = 194.764 volt
+[2023/07/27 23:31:52] [Set AC Source Output 250 Volt]
+[2023/07/27 23:32:02] [Calibration Point 2 - WT500 Voltage]
+[2023/07/27 23:32:02] WT500 S1 RVac2 Voltage = 249.45 volt
+[2023/07/27 23:32:02] WT500 S1 SVac2 Voltage = 249.68 volt
+[2023/07/27 23:32:02] WT500 S1 TVac2 Voltage = 249.55 volt
+[2023/07/27 23:32:02] [Calibration Point 2 - PRU Voltage]
+[2023/07/27 23:32:06] PRU S1 RVpru2 Voltage = 256.470900 volt
+[2023/07/27 23:32:06] PRU S1 SVpru2 Voltage = 256.997800 volt
+[2023/07/27 23:32:06] PRU S1 TVpru2 Voltage = 257.603800 volt
+[2023/07/27 23:32:06] [Voltage Gain]
+[2023/07/27 23:32:06] R Voltage RVGain = 0.97185
+[2023/07/27 23:32:06] R Voltage RVGainCMD = 15922
+[2023/07/27 23:32:06] S Voltage SVGain = 0.96795
+[2023/07/27 23:32:06] S Voltage SVGainCMD = 15858
+[2023/07/27 23:32:06] T Voltage TVGain = 0.95529
+[2023/07/27 23:32:06] T Voltage TVGainCMD = 15651
+[2023/07/27 23:32:06] [Voltage Offset]
+[2023/07/27 23:32:06] R Voltage RVOffset = 0.09814
+[2023/07/27 23:32:06] R Voltage RVoffsetCMD = 3
+[2023/07/27 23:32:06] S Voltage SVOffset = 0.81776
+[2023/07/27 23:32:06] S Voltage SVoffsetCMD = 31
+[2023/07/27 23:32:06] T Voltage TVOffset = 3.36462
+[2023/07/27 23:32:06] T Voltage TVoffsetCMD = 127
+[2023/07/27 23:32:06] ===================================
+[2023/07/27 23:32:06] 
+
+===Source 1 Current Calibration===
+
+[2023/07/27 23:32:06] [Set AC Source Output 208 Volt]
+[2023/07/27 23:32:06] AC Source Output
+[2023/07/27 23:32:11] [Set AC Load as 3.0 amp]
+[2023/07/27 23:32:11] Set AC Load ON
+[2023/07/27 23:32:22] [Calibration Point 1 - WT500 Current]
+[2023/07/27 23:32:22] WT500 S1 RIac1 Current = 3.049 amp
+[2023/07/27 23:32:22] WT500 S1 SIac1 Current = 3.019 amp
+[2023/07/27 23:32:22] WT500 S1 TIac1 Current = 3.014 amp
+[2023/07/27 23:32:22] [Calibration Point 1 - PRU Current]
+[2023/07/27 23:32:25] PRU S1 RIpru1 Current = 3.119200 amp
+[2023/07/27 23:32:25] PRU S1 SIpru1 Current = 3.119200 amp
+[2023/07/27 23:32:25] PRU S1 TIpru1 Current = 3.093000 amp
+[2023/07/27 23:32:25] [Set AC Load as 15.0 amp]
+[2023/07/27 23:32:36] [Calibration Point 2 - WT500 Current]
+[2023/07/27 23:32:36] WT500 S1 RIac2 Current = 15.045 amp
+[2023/07/27 23:32:36] WT500 S1 SIac2 Current = 15.019 amp
+[2023/07/27 23:32:36] WT500 S1 TIac2 Current = 15.012 amp
+[2023/07/27 23:32:36] [Calibration Point 2 - PRU Current]
+[2023/07/27 23:32:39] PRU S1 RIpru2 Current = 15.238300 amp
+[2023/07/27 23:32:39] PRU S1 SIpru2 Current = 15.207800 amp
+[2023/07/27 23:32:39] PRU S1 TIpru2 Current = 15.308100 amp
+[2023/07/27 23:32:39] [Current Gain]
+[2023/07/27 23:32:39] R Current RIGain = 0.98984
+[2023/07/27 23:32:39] R Current RIGainCMD = 16217
+[2023/07/27 23:32:39] S Current SIGain = 0.99267
+[2023/07/27 23:32:39] S Current SIGainCMD = 16263
+[2023/07/27 23:32:39] T Current TIGain = 0.98223
+[2023/07/27 23:32:39] T Current TIGainCMD = 16092
+[2023/07/27 23:32:39] [Current Offset]
+[2023/07/27 23:32:39] R Current RIOffset = -0.03852
+[2023/07/27 23:32:39] R Current RIoffsetCMD = 32776
+[2023/07/27 23:32:39] S Current SIOffset = -0.07734
+[2023/07/27 23:32:39] S Current SIoffsetCMD = 32785
+[2023/07/27 23:32:39] T Current TIOffset = -0.02403
+[2023/07/27 23:32:39] T Current TIoffsetCMD = 32773
+[2023/07/27 23:32:39] ===================================
+[2023/07/27 23:32:39] Set AC Source Output OFF
+[2023/07/27 23:32:48] COM11
+[2023/07/27 23:32:49] Turn Relay OFF
+[2023/07/27 23:32:51] S1/S2 relays are off
+[2023/07/27 23:32:53] Turn Relay 2 ON
+[2023/07/27 23:32:55] S2 relays are on
+[2023/07/27 23:32:55] COM4
+[2023/07/27 23:32:55] Turn Relay OFF
+[2023/07/27 23:32:58] S1/S2 relays are off
+[2023/07/27 23:33:00] Turn Relay 2 ON
+[2023/07/27 23:33:02] S2 relays are on
+[2023/07/27 23:33:02] COM5
+[2023/07/27 23:33:02] Turn Relay OFF
+[2023/07/27 23:33:05] S1/S2 relays are off
+[2023/07/27 23:33:07] Turn Relay 2 ON
+[2023/07/27 23:33:09] S2 relays are on
+[2023/07/27 23:33:09] COM8
+[2023/07/27 23:33:09] Turn Relay OFF
+[2023/07/27 23:33:12] S1/S2 relays are off
+[2023/07/27 23:33:14] Turn Relay 2 ON
+[2023/07/27 23:33:16] S2 relays are on
+[2023/07/27 23:33:16] COM9
+[2023/07/27 23:33:16] Turn Relay OFF
+[2023/07/27 23:33:19] S1/S2 relays are off
+[2023/07/27 23:33:21] Turn Relay 2 ON
+[2023/07/27 23:33:23] S2 relays are on
+[2023/07/27 23:33:23] COM10
+[2023/07/27 23:33:23] Turn Relay OFF
+[2023/07/27 23:33:26] S1/S2 relays are off
+[2023/07/27 23:33:28] Turn Relay 2 ON
+[2023/07/27 23:33:30] S2 relays are on
+[2023/07/27 23:33:30] COM7
+[2023/07/27 23:33:30] Turn Relay OFF
+[2023/07/27 23:33:33] S1/S2 relays are off
+[2023/07/27 23:33:35] Turn Relay 2 ON
+[2023/07/27 23:33:37] S2 relays are on
+[2023/07/27 23:33:37] COM6
+[2023/07/27 23:33:37] Turn Relay OFF
+[2023/07/27 23:33:40] S1/S2 relays are off
+[2023/07/27 23:33:42] Turn Relay 2 ON
+[2023/07/27 23:33:44] S2 relays are on
+[2023/07/27 23:33:44] 
+
+===Start Source 2 Voltage Calibration===
+
+[2023/07/27 23:33:44] [Set AC Source Output 190 Volt]
+[2023/07/27 23:33:44] AC Source Output
+[2023/07/27 23:33:44] 2023-07-27 23:33:44.681600 Init to Filesystem Start ...
+[2023/07/27 23:34:18] Pass - Init to Login
+[2023/07/27 23:34:23] Pass - Wait for Password
+[2023/07/27 23:34:32] Pass - Wait for WcsCli
+[2023/07/27 23:34:32] [Set AC Load as 10.0 amp]
+[2023/07/27 23:34:34] Set AC Load ON
+[2023/07/27 23:34:45] [Calibration Point 1 - WT500 Voltage]
+[2023/07/27 23:34:45] WT500 S2 RVac1 Voltage = 189.49 volt
+[2023/07/27 23:34:45] WT500 S2 SVac1 Voltage = 189.66 volt
+[2023/07/27 23:34:45] WT500 S2 TVac1 Voltage = 189.53 volt
+[2023/07/27 23:34:45] [Calibration Point 1 - PRU Voltage]
+[2023/07/27 23:34:48] PRU S2 RVpru1 Voltage = 194.5532 volt
+[2023/07/27 23:34:48] PRU S2 SVpru1 Voltage = 195.4754 volt
+[2023/07/27 23:34:48] PRU S2 TVpru1 Voltage = 194.5532 volt
+[2023/07/27 23:34:48] [Set AC Source Output 250 Volt]
+[2023/07/27 23:34:58] [Calibration Point 2 - WT500 Voltage]
+[2023/07/27 23:34:58] WT500 S2 RVac2 Voltage = 249.50 volt
+[2023/07/27 23:34:58] WT500 S2 SVac2 Voltage = 249.69 volt
+[2023/07/27 23:34:58] WT500 S2 TVac2 Voltage = 249.53 volt
+[2023/07/27 23:34:58] [Calibration Point 2 - PRU Voltage]
+[2023/07/27 23:35:02] PRU S2 RVpru2 Voltage = 256.207400 volt
+[2023/07/27 23:35:02] PRU S2 SVpru2 Voltage = 256.918800 volt
+[2023/07/27 23:35:02] PRU S2 TVpru2 Voltage = 256.734400 volt
+[2023/07/27 23:35:02] [Voltage Gain]
+[2023/07/27 23:35:02] R Voltage RVGain = 0.97333
+[2023/07/27 23:35:02] R Voltage RVGainCMD = 15947
+[2023/07/27 23:35:02] S Voltage SVGain = 0.97700
+[2023/07/27 23:35:02] S Voltage SVGainCMD = 16007
+[2023/07/27 23:35:02] T Voltage TVGain = 0.96492
+[2023/07/27 23:35:02] T Voltage TVGainCMD = 15809
+[2023/07/27 23:35:02] [Voltage Offset]
+[2023/07/27 23:35:02] R Voltage RVOffset = 0.02516
+[2023/07/27 23:35:02] R Voltage RVoffsetCMD = 0
+[2023/07/27 23:35:02] S Voltage SVOffset = -1.21882
+[2023/07/27 23:35:02] S Voltage SVoffsetCMD = 32814
+[2023/07/27 23:35:02] T Voltage TVOffset = 1.70136
+[2023/07/27 23:35:02] T Voltage TVoffsetCMD = 64
+[2023/07/27 23:35:02] ===================================
+[2023/07/27 23:35:02] 
+
+===Source 2 Current Calibration===
+
+[2023/07/27 23:35:02] [Set AC Source Output 208 Volt]
+[2023/07/27 23:35:02] AC Source Output
+[2023/07/27 23:35:07] [Set AC Load as 3.0 amp]
+[2023/07/27 23:35:07] Set AC Load ON
+[2023/07/27 23:35:18] [Calibration Point 1 - WT500 Current]
+[2023/07/27 23:35:18] WT500 S2 RIac1 Current = 3.046 amp
+[2023/07/27 23:35:18] WT500 S2 SIac1 Current = 3.017 amp
+[2023/07/27 23:35:18] WT500 S2 TIac1 Current = 3.017 amp
+[2023/07/27 23:35:18] [Calibration Point 1 - PRU Current]
+[2023/07/27 23:35:21] PRU S2 RIpru1 Current = 3.145400 amp
+[2023/07/27 23:35:21] PRU S2 SIpru1 Current = 3.106100 amp
+[2023/07/27 23:35:21] PRU S2 TIpru1 Current = 3.106100 amp
+[2023/07/27 23:35:21] [Set AC Load as 15.0 amp]
+[2023/07/27 23:35:31] [Calibration Point 2 - WT500 Current]
+[2023/07/27 23:35:31] WT500 S2 RIac2 Current = 15.044 amp
+[2023/07/27 23:35:31] WT500 S2 SIac2 Current = 15.021 amp
+[2023/07/27 23:35:31] WT500 S2 TIac2 Current = 15.009 amp
+[2023/07/27 23:35:31] [Calibration Point 2 - PRU Current]
+[2023/07/27 23:35:35] PRU S2 RIpru2 Current = 15.338700 amp
+[2023/07/27 23:35:35] PRU S2 SIpru2 Current = 15.255800 amp
+[2023/07/27 23:35:35] PRU S2 TIpru2 Current = 15.247100 amp
+[2023/07/27 23:35:35] [Current Gain]
+[2023/07/27 23:35:35] R Current RIGain = 0.98398
+[2023/07/27 23:35:35] R Current RIGainCMD = 16121
+[2023/07/27 23:35:35] S Current SIGain = 0.98801
+[2023/07/27 23:35:35] S Current SIGainCMD = 16187
+[2023/07/27 23:35:35] T Current TIGain = 0.98773
+[2023/07/27 23:35:35] T Current TIGainCMD = 16182
+[2023/07/27 23:35:35] [Current Offset]
+[2023/07/27 23:35:35] R Current RIOffset = -0.04902
+[2023/07/27 23:35:35] R Current RIoffsetCMD = 32779
+[2023/07/27 23:35:35] S Current SIOffset = -0.05185
+[2023/07/27 23:35:35] S Current SIoffsetCMD = 32779
+[2023/07/27 23:35:35] T Current TIOffset = -0.05098
+[2023/07/27 23:35:35] T Current TIoffsetCMD = 32779
+[2023/07/27 23:35:35] ===================================
+[2023/07/27 23:35:35] Update_ADC_Calibration_File
+[2023/07/27 23:36:03] Write ADC Calibration to EEPROM(B:1 D:51) Complete
+[2023/07/27 23:36:04] Set AC Source Output OFF
+[2023/07/27 23:36:13] COM11
+[2023/07/27 23:36:13] Turn Relay OFF
+[2023/07/27 23:36:15] S1/S2 relays are off
+[2023/07/27 23:36:18] Turn Relay 1 ON
+[2023/07/27 23:36:20] S1 relays are on
+[2023/07/27 23:36:20] COM4
+[2023/07/27 23:36:20] Turn Relay OFF
+[2023/07/27 23:36:22] S1/S2 relays are off
+[2023/07/27 23:36:25] Turn Relay 1 ON
+[2023/07/27 23:36:27] S1 relays are on
+[2023/07/27 23:36:27] COM5
+[2023/07/27 23:36:27] Turn Relay OFF
+[2023/07/27 23:36:30] S1/S2 relays are off
+[2023/07/27 23:36:32] Turn Relay 1 ON
+[2023/07/27 23:36:34] S1 relays are on
+[2023/07/27 23:36:34] COM8
+[2023/07/27 23:36:34] Turn Relay OFF
+[2023/07/27 23:36:37] S1/S2 relays are off
+[2023/07/27 23:36:39] Turn Relay 1 ON
+[2023/07/27 23:36:41] S1 relays are on
+[2023/07/27 23:36:41] COM9
+[2023/07/27 23:36:42] Turn Relay OFF
+[2023/07/27 23:36:44] S1/S2 relays are off
+[2023/07/27 23:36:46] Turn Relay 1 ON
+[2023/07/27 23:36:48] S1 relays are on
+[2023/07/27 23:36:48] COM10
+[2023/07/27 23:36:49] Turn Relay OFF
+[2023/07/27 23:36:51] S1/S2 relays are off
+[2023/07/27 23:36:53] Turn Relay 1 ON
+[2023/07/27 23:36:55] S1 relays are on
+[2023/07/27 23:36:55] COM7
+[2023/07/27 23:36:56] Turn Relay OFF
+[2023/07/27 23:36:58] S1/S2 relays are off
+[2023/07/27 23:37:00] Turn Relay 1 ON
+[2023/07/27 23:37:02] S1 relays are on
+[2023/07/27 23:37:02] COM6
+[2023/07/27 23:37:03] Turn Relay OFF
+[2023/07/27 23:37:05] S1/S2 relays are off
+[2023/07/27 23:37:07] Turn Relay 1 ON
+[2023/07/27 23:37:10] S1 relays are on
+[2023/07/27 23:37:10] ======================================
+[2023/07/27 23:37:10] [Calibration Validation]
+[2023/07/27 23:37:10] ======================================
+[2023/07/27 23:37:10] [US Calibration Criteria]
+[2023/07/27 23:37:10] [Set AC Source Output 208 Volt]
+[2023/07/27 23:37:10] AC Source Output
+[2023/07/27 23:37:10] 2023-07-27 23:37:10.341600 Init to Filesystem Start ...
+[2023/07/27 23:37:43] Pass - Init to Login
+[2023/07/27 23:37:48] Pass - Wait for Password
+[2023/07/27 23:37:57] Pass - Wait for WcsCli
+[2023/07/27 23:37:59] Check EEPROM data:
+[2023/07/27 23:38:03] RVGainCMD: 15922
+[2023/07/27 23:38:03] RVoffsetCMD: 3
+[2023/07/27 23:38:03] SVGainCMD: 15858
+[2023/07/27 23:38:03] SVoffsetCMD: 31
+[2023/07/27 23:38:03] TVGainCMD: 15651
+[2023/07/27 23:38:03] TVoffsetCMD: 127
+[2023/07/27 23:38:03] RIGainCMD: 16217
+[2023/07/27 23:38:03] RIoffsetCMD: 32776
+[2023/07/27 23:38:03] SIGainCMD: 16263
+[2023/07/27 23:38:03] SIoffsetCMD: 32785
+[2023/07/27 23:38:03] TIGainCMD: 16092
+[2023/07/27 23:38:03] TIoffsetCMD: 32773
+[2023/07/27 23:38:03] --- US 100% AC Load ---
+[2023/07/27 23:38:03] [Set AC Load as 11.5 amp]
+[2023/07/27 23:38:04] Set AC Load ON
+[2023/07/27 23:38:14] [WT500 Voltage]
+[2023/07/27 23:38:14] WT500 S1 RVac Voltage = 207.41 volt
+[2023/07/27 23:38:14] WT500 S1 SVac Voltage = 207.61 volt
+[2023/07/27 23:38:14] WT500 S1 TVac Voltage = 207.48 volt
+[2023/07/27 23:38:14] [PRU Voltage]
+[2023/07/27 23:38:17] PRU S1 RVpru1 Voltage = 207.2266 volt
+[2023/07/27 23:38:17] PRU S1 SVpru1 Voltage = 208.0961 volt
+[2023/07/27 23:38:17] PRU S1 TVpru1 Voltage = 206.5679 volt
+[2023/07/27 23:38:17] [WT500 Current]
+[2023/07/27 23:38:17] WT500 S1 RIac Current = 11.544 amp
+[2023/07/27 23:38:17] WT500 S1 SIac Current = 11.517 amp
+[2023/07/27 23:38:17] WT500 S1 TIac Current = 11.514 amp
+[2023/07/27 23:38:17] [PRU Current]
+[2023/07/27 23:38:21] PRU S1 RIpru1 Current = 11.495300 amp
+[2023/07/27 23:38:21] PRU S1 SIpru1 Current = 11.469100 amp
+[2023/07/27 23:38:21] PRU S1 TIpru1 Current = 11.482200 amp
+[2023/07/27 23:38:21] [WT500 Power]
+[2023/07/27 23:38:21] WT500 S1 RPwt500 Power = 2394.2000000000003 Watt
+[2023/07/27 23:38:21] WT500 S1 SPwt500 Power = 2391.1 Watt
+[2023/07/27 23:38:21] WT500 S1 TPwt500 Power = 2388.7999999999997 Watt
+[2023/07/27 23:38:21] [PRU Power]
+[2023/07/27 23:38:25] PRU S1 RPpru Power = 2393.6 Watt
+[2023/07/27 23:38:25] PRU S1 SPpru Power = 2378.5 Watt
+[2023/07/27 23:38:25] PRU S1 TPpru Power = 2386.1 Watt
+[2023/07/27 23:38:25] Source1 Phase R Load 100% Calibration Difference: 0.03% - [PASS]
+[2023/07/27 23:38:25] Source1 Phase S Load 100% Calibration Difference: 0.53% - [PASS]
+[2023/07/27 23:38:25] Source1 Phase T Load 100% Calibration Difference: 0.11% - [PASS]
+[2023/07/27 23:38:25] --- US 70% AC Load ---
+[2023/07/27 23:38:25] [Set AC Load as 8.1 amp]
+[2023/07/27 23:38:25] Set AC Load ON
+[2023/07/27 23:38:35] [WT500 Voltage]
+[2023/07/27 23:38:35] WT500 S1 RVac Voltage = 207.64 volt
+[2023/07/27 23:38:35] WT500 S1 SVac Voltage = 207.77 volt
+[2023/07/27 23:38:35] WT500 S1 TVac Voltage = 207.68 volt
+[2023/07/27 23:38:35] [PRU Voltage]
+[2023/07/27 23:38:39] PRU S1 RVpru1 Voltage = 207.7799 volt
+[2023/07/27 23:38:39] PRU S1 SVpru1 Voltage = 207.0948 volt
+[2023/07/27 23:38:39] PRU S1 TVpru1 Voltage = 207.2266 volt
+[2023/07/27 23:38:39] [WT500 Current]
+[2023/07/27 23:38:39] WT500 S1 RIac Current = 8.148 amp
+[2023/07/27 23:38:39] WT500 S1 SIac Current = 8.115 amp
+[2023/07/27 23:38:39] WT500 S1 TIac Current = 8.112 amp
+[2023/07/27 23:38:39] [PRU Current]
+[2023/07/27 23:38:42] PRU S1 RIpru1 Current = 8.088100 amp
+[2023/07/27 23:38:42] PRU S1 SIpru1 Current = 8.088100 amp
+[2023/07/27 23:38:42] PRU S1 TIpru1 Current = 8.105600 amp
+[2023/07/27 23:38:42] [WT500 Power]
+[2023/07/27 23:38:42] WT500 S1 RPwt500 Power = 1691.8 Watt
+[2023/07/27 23:38:42] WT500 S1 SPwt500 Power = 1686.0 Watt
+[2023/07/27 23:38:42] WT500 S1 TPwt500 Power = 1684.7 Watt
+[2023/07/27 23:38:42] [PRU Power]
+[2023/07/27 23:38:46] PRU S1 RPpru Power = 1683.6 Watt
+[2023/07/27 23:38:46] PRU S1 SPpru Power = 1685.5 Watt
+[2023/07/27 23:38:46] PRU S1 TPpru Power = 1676.1 Watt
+[2023/07/27 23:38:46] Source1 Phase R Load 70% Calibration Difference: 0.48% - [PASS]
+[2023/07/27 23:38:46] Source1 Phase S Load 70% Calibration Difference: 0.03% - [PASS]
+[2023/07/27 23:38:46] Source1 Phase T Load 70% Calibration Difference: 0.51% - [PASS]
+[2023/07/27 23:38:46] --- US 20% AC Load ---
+[2023/07/27 23:38:46] [Set AC Load as 2.3 amp]
+[2023/07/27 23:38:46] Set AC Load ON
+[2023/07/27 23:38:56] [WT500 Voltage]
+[2023/07/27 23:38:56] WT500 S1 RVac Voltage = 207.93 volt
+[2023/07/27 23:38:56] WT500 S1 SVac Voltage = 207.97 volt
+[2023/07/27 23:38:56] WT500 S1 TVac Voltage = 207.95 volt
+[2023/07/27 23:38:56] [PRU Voltage]
+[2023/07/27 23:39:00] PRU S1 RVpru1 Voltage = 207.9907 volt
+[2023/07/27 23:39:00] PRU S1 SVpru1 Voltage = 207.4374 volt
+[2023/07/27 23:39:00] PRU S1 TVpru1 Voltage = 207.7799 volt
+[2023/07/27 23:39:00] [WT500 Current]
+[2023/07/27 23:39:00] WT500 S1 RIac Current = 2.347 amp
+[2023/07/27 23:39:00] WT500 S1 SIac Current = 2.315 amp
+[2023/07/27 23:39:00] WT500 S1 TIac Current = 2.314 amp
+[2023/07/27 23:39:00] [PRU Current]
+[2023/07/27 23:39:03] PRU S1 RIpru1 Current = 2.299100 amp
+[2023/07/27 23:39:03] PRU S1 SIpru1 Current = 2.299100 amp
+[2023/07/27 23:39:03] PRU S1 TIpru1 Current = 2.334000 amp
+[2023/07/27 23:39:03] [WT500 Power]
+[2023/07/27 23:39:03] WT500 S1 RPwt500 Power = 487.59999999999997 Watt
+[2023/07/27 23:39:03] WT500 S1 SPwt500 Power = 481.4 Watt
+[2023/07/27 23:39:03] WT500 S1 TPwt500 Power = 481.0 Watt
+[2023/07/27 23:39:03] [PRU Power]
+[2023/07/27 23:39:07] PRU S1 RPpru Power = 493.4 Watt
+[2023/07/27 23:39:07] PRU S1 SPpru Power = 474.6 Watt
+[2023/07/27 23:39:07] PRU S1 TPpru Power = 480.2 Watt
+[2023/07/27 23:39:07] PRU S1 RPpru Power = 493.408800 Watt
+[2023/07/27 23:39:07] PRU S1 SPpru Power = 474.576400 Watt
+[2023/07/27 23:39:07] PRU S1 TPpru Power = 480.226100 Watt
+[2023/07/27 23:39:07] 
+[2023/07/27 23:39:07] Source1 Phase R Load 20% Calibration Difference: 1.19% - [PASS]
+[2023/07/27 23:39:07] Source1 Phase S Load 20% Calibration Difference: 1.42% - [PASS]
+[2023/07/27 23:39:07] Source1 Phase T Load 20% Calibration Difference: 0.16% - [PASS]
+[2023/07/27 23:39:07] Set AC Source Output OFF
+[2023/07/27 23:39:16] COM11
+[2023/07/27 23:39:16] Turn Relay OFF
+[2023/07/27 23:39:19] S1/S2 relays are off
+[2023/07/27 23:39:21] Turn Relay 2 ON
+[2023/07/27 23:39:23] S2 relays are on
+[2023/07/27 23:39:23] COM4
+[2023/07/27 23:39:23] Turn Relay OFF
+[2023/07/27 23:39:26] S1/S2 relays are off
+[2023/07/27 23:39:28] Turn Relay 2 ON
+[2023/07/27 23:39:30] S2 relays are on
+[2023/07/27 23:39:30] COM5
+[2023/07/27 23:39:30] Turn Relay OFF
+[2023/07/27 23:39:33] S1/S2 relays are off
+[2023/07/27 23:39:35] Turn Relay 2 ON
+[2023/07/27 23:39:37] S2 relays are on
+[2023/07/27 23:39:37] COM8
+[2023/07/27 23:39:37] Turn Relay OFF
+[2023/07/27 23:39:40] S1/S2 relays are off
+[2023/07/27 23:39:42] Turn Relay 2 ON
+[2023/07/27 23:39:44] S2 relays are on
+[2023/07/27 23:39:44] COM9
+[2023/07/27 23:39:44] Turn Relay OFF
+[2023/07/27 23:39:47] S1/S2 relays are off
+[2023/07/27 23:39:49] Turn Relay 2 ON
+[2023/07/27 23:39:51] S2 relays are on
+[2023/07/27 23:39:51] COM10
+[2023/07/27 23:39:51] Turn Relay OFF
+[2023/07/27 23:39:54] S1/S2 relays are off
+[2023/07/27 23:39:56] Turn Relay 2 ON
+[2023/07/27 23:39:58] S2 relays are on
+[2023/07/27 23:39:58] COM7
+[2023/07/27 23:39:58] Turn Relay OFF
+[2023/07/27 23:40:01] S1/S2 relays are off
+[2023/07/27 23:40:03] Turn Relay 2 ON
+[2023/07/27 23:40:05] S2 relays are on
+[2023/07/27 23:40:05] COM6
+[2023/07/27 23:40:05] Turn Relay OFF
+[2023/07/27 23:40:08] S1/S2 relays are off
+[2023/07/27 23:40:10] Turn Relay 2 ON
+[2023/07/27 23:40:12] S2 relays are on
+[2023/07/27 23:40:12] ======================================
+[2023/07/27 23:40:12] [Calibration Validation]
+[2023/07/27 23:40:12] ======================================
+[2023/07/27 23:40:12] [EU Calibration Criteria]
+[2023/07/27 23:40:12] [Set AC Source Output 240 Volt]
+[2023/07/27 23:40:12] AC Source Output
+[2023/07/27 23:40:12] 2023-07-27 23:40:12.671600 Init to Filesystem Start ...
+[2023/07/27 23:40:46] Pass - Init to Login
+[2023/07/27 23:40:51] Pass - Wait for Password
+[2023/07/27 23:41:00] Pass - Wait for WcsCli
+[2023/07/27 23:41:02] Check EEPROM data:
+[2023/07/27 23:41:06] RVGainCMD: 15947
+[2023/07/27 23:41:06] RVoffsetCMD: 0
+[2023/07/27 23:41:06] SVGainCMD: 16007
+[2023/07/27 23:41:06] SVoffsetCMD: 32814
+[2023/07/27 23:41:06] TVGainCMD: 15809
+[2023/07/27 23:41:06] TVoffsetCMD: 64
+[2023/07/27 23:41:06] RIGainCMD: 16121
+[2023/07/27 23:41:06] RIoffsetCMD: 32779
+[2023/07/27 23:41:06] SIGainCMD: 16187
+[2023/07/27 23:41:06] SIoffsetCMD: 32779
+[2023/07/27 23:41:06] TIGainCMD: 16182
+[2023/07/27 23:41:06] TIoffsetCMD: 32779
+[2023/07/27 23:41:06] --- EU 100% AC Load ---
+[2023/07/27 23:41:06] [Set AC Load as 15.4 amp]
+[2023/07/27 23:41:06] Set AC Load ON
+[2023/07/27 23:41:17] [WT500 Voltage]
+[2023/07/27 23:41:17] WT500 S2 RVac Voltage = 239.21 volt
+[2023/07/27 23:41:17] WT500 S2 SVac Voltage = 239.50 volt
+[2023/07/27 23:41:17] WT500 S2 TVac Voltage = 239.31 volt
+[2023/07/27 23:41:17] [PRU Voltage]
+[2023/07/27 23:41:20] PRU S2 RVpru1 Voltage = 239.6872 volt
+[2023/07/27 23:41:20] PRU S2 SVpru1 Voltage = 239.3974 volt
+[2023/07/27 23:41:20] PRU S2 TVpru1 Voltage = 240.1615 volt
+[2023/07/27 23:41:20] [WT500 Current]
+[2023/07/27 23:41:20] WT500 S2 RIac Current = 15.439 amp
+[2023/07/27 23:41:20] WT500 S2 SIac Current = 15.423 amp
+[2023/07/27 23:41:20] WT500 S2 TIac Current = 15.412 amp
+[2023/07/27 23:41:20] [PRU Current]
+[2023/07/27 23:41:24] PRU S2 RIpru1 Current = 15.382300 amp
+[2023/07/27 23:41:24] PRU S2 SIpru1 Current = 15.360500 amp
+[2023/07/27 23:41:24] PRU S2 TIpru1 Current = 15.351800 amp
+[2023/07/27 23:41:24] [WT500 Power]
+[2023/07/27 23:41:24] WT500 S2 RPwt500 Power = 3693.1 Watt
+[2023/07/27 23:41:24] WT500 S2 SPwt500 Power = 3693.8 Watt
+[2023/07/27 23:41:24] WT500 S2 TPwt500 Power = 3688.1 Watt
+[2023/07/27 23:41:24] [PRU Power]
+[2023/07/27 23:41:27] PRU S2 RPpru Power = 3679.8 Watt
+[2023/07/27 23:41:27] PRU S2 SPpru Power = 3679.8 Watt
+[2023/07/27 23:41:27] PRU S2 TPpru Power = 3693.0 Watt
+[2023/07/27 23:41:27] Source2 Phase R Load 100% Calibration Difference: 0.36% - [PASS]
+[2023/07/27 23:41:27] Source2 Phase S Load 100% Calibration Difference: 0.38% - [PASS]
+[2023/07/27 23:41:27] Source2 Phase T Load 100% Calibration Difference: 0.13% - [PASS]
+[2023/07/27 23:41:27] --- EU 70% AC Load ---
+[2023/07/27 23:41:27] [Set AC Load as 10.7 amp]
+[2023/07/27 23:41:27] Set AC Load ON
+[2023/07/27 23:41:38] [WT500 Voltage]
+[2023/07/27 23:41:38] WT500 S2 RVac Voltage = 239.53 volt
+[2023/07/27 23:41:38] WT500 S2 SVac Voltage = 239.70 volt
+[2023/07/27 23:41:38] WT500 S2 TVac Voltage = 239.60 volt
+[2023/07/27 23:41:38] [PRU Voltage]
+[2023/07/27 23:41:41] PRU S2 RVpru1 Voltage = 240.0825 volt
+[2023/07/27 23:41:41] PRU S2 SVpru1 Voltage = 239.3974 volt
+[2023/07/27 23:41:41] PRU S2 TVpru1 Voltage = 239.213 volt
+[2023/07/27 23:41:41] [WT500 Current]
+[2023/07/27 23:41:41] WT500 S2 RIac Current = 10.745 amp
+[2023/07/27 23:41:41] WT500 S2 SIac Current = 10.719 amp
+[2023/07/27 23:41:41] WT500 S2 TIac Current = 10.716 amp
+[2023/07/27 23:41:41] [PRU Current]
+[2023/07/27 23:41:45] PRU S2 RIpru1 Current = 10.710000 amp
+[2023/07/27 23:41:45] PRU S2 SIpru1 Current = 10.692600 amp
+[2023/07/27 23:41:45] PRU S2 TIpru1 Current = 10.666400 amp
+[2023/07/27 23:41:45] [WT500 Power]
+[2023/07/27 23:41:45] WT500 S2 RPwt500 Power = 2573.6 Watt
+[2023/07/27 23:41:45] WT500 S2 SPwt500 Power = 2569.3 Watt
+[2023/07/27 23:41:45] WT500 S2 TPwt500 Power = 2567.4 Watt
+[2023/07/27 23:41:45] [PRU Power]
+[2023/07/27 23:41:48] PRU S2 RPpru Power = 2574.4 Watt
+[2023/07/27 23:41:48] PRU S2 SPpru Power = 2578.2 Watt
+[2023/07/27 23:41:48] PRU S2 TPpru Power = 2534.8 Watt
+[2023/07/27 23:41:48] Source2 Phase R Load 70% Calibration Difference: 0.03% - [PASS]
+[2023/07/27 23:41:48] Source2 Phase S Load 70% Calibration Difference: 0.34% - [PASS]
+[2023/07/27 23:41:48] Source2 Phase T Load 70% Calibration Difference: 1.27% - [PASS]
+[2023/07/27 23:41:48] --- EU 20% AC Load ---
+[2023/07/27 23:41:48] [Set AC Load as 3.0 amp]
+[2023/07/27 23:41:49] Set AC Load ON
+[2023/07/27 23:41:59] [WT500 Voltage]
+[2023/07/27 23:41:59] WT500 S2 RVac Voltage = 239.88 volt
+[2023/07/27 23:41:59] WT500 S2 SVac Voltage = 240.01 volt
+[2023/07/27 23:41:59] WT500 S2 TVac Voltage = 239.90 volt
+[2023/07/27 23:41:59] [PRU Voltage]
+[2023/07/27 23:42:03] PRU S2 RVpru1 Voltage = 239.7926 volt
+[2023/07/27 23:42:03] PRU S2 SVpru1 Voltage = 239.7926 volt
+[2023/07/27 23:42:03] PRU S2 TVpru1 Voltage = 240.0825 volt
+[2023/07/27 23:42:03] [WT500 Current]
+[2023/07/27 23:42:03] WT500 S2 RIac Current = 3.045 amp
+[2023/07/27 23:42:03] WT500 S2 SIac Current = 3.018 amp
+[2023/07/27 23:42:03] WT500 S2 TIac Current = 3.019 amp
+[2023/07/27 23:42:03] [PRU Current]
+[2023/07/27 23:42:06] PRU S2 RIpru1 Current = 3.045000 amp
+[2023/07/27 23:42:06] PRU S2 SIpru1 Current = 3.005800 amp
+[2023/07/27 23:42:06] PRU S2 TIpru1 Current = 3.032000 amp
+[2023/07/27 23:42:06] [WT500 Power]
+[2023/07/27 23:42:06] WT500 S2 RPwt500 Power = 730.1999999999999 Watt
+[2023/07/27 23:42:06] WT500 S2 SPwt500 Power = 724.3000000000001 Watt
+[2023/07/27 23:42:06] WT500 S2 TPwt500 Power = 723.9 Watt
+[2023/07/27 23:42:06] [PRU Power]
+[2023/07/27 23:42:09] PRU S2 RPpru Power = 725.0 Watt
+[2023/07/27 23:42:09] PRU S2 SPpru Power = 726.9 Watt
+[2023/07/27 23:42:09] PRU S2 TPpru Power = 717.5 Watt
+[2023/07/27 23:42:09] PRU S2 RPpru Power = 725.047200 Watt
+[2023/07/27 23:42:09] PRU S2 SPpru Power = 726.930500 Watt
+[2023/07/27 23:42:09] PRU S2 TPpru Power = 717.514300 Watt
+[2023/07/27 23:42:09] 
+[2023/07/27 23:42:09] Source2 Phase R Load 20% Calibration Difference: 0.71% - [PASS]
+[2023/07/27 23:42:09] Source2 Phase S Load 20% Calibration Difference: 0.36% - [PASS]
+[2023/07/27 23:42:09] Source2 Phase T Load 20% Calibration Difference: 0.88% - [PASS]
+[2023/07/27 23:42:10] Output is ON then Turn OFF
+[2023/07/27 23:42:10] AC Source Quit
+[2023/07/27 23:42:12] Turn Relay OFF
+[2023/07/27 23:42:12] Test elapsed time: 0:13:00.600001
+[2023/07/27 23:42:12] ######################################################################
+[2023/07/27 23:42:12] Test13: Sled ID Test
+[2023/07/27 23:42:12] Timestamp: [2023-07-27 23:42:12]
+[2023/07/27 23:42:12] ######################################################################
+[2023/07/27 23:42:12] ======================================
+[2023/07/27 23:42:12] [Sled ID Detection Test]
+[2023/07/27 23:42:12] ======================================
+[2023/07/27 23:42:12] [Set AC Source Output 220 Volt]
+[2023/07/27 23:42:12] Output is OFF then Turn ON
+[2023/07/27 23:42:12] AC Source Output
+[2023/07/27 23:42:13] 2023-07-27 23:42:13.981600 Init to Filesystem Start ...
+[2023/07/27 23:42:46] Pass - Init to Login
+[2023/07/27 23:42:51] Pass - Wait for Password
+[2023/07/27 23:43:00] Pass - Wait for WcsCli
+[2023/07/27 23:43:00] COM11
+[2023/07/27 23:43:02] ret[0]:  69 | 0x45 | 01000101
+[2023/07/27 23:43:02] ret[1]: 160 | 0xa0 | 10100000
+[2023/07/27 23:43:02] ret[2]: 127 | 0x7f | 01111111
+[2023/07/27 23:43:02] ret[3]:   0 |  0x0 | 00000000
+[2023/07/27 23:43:02] ret[4]: 156 | 0x9c | 10011100
+[2023/07/27 23:43:02] Sled 1 Present
+[2023/07/27 23:43:02] Sled 2 Present
+[2023/07/27 23:43:02] Sled 3 Present
+[2023/07/27 23:43:02] Sled 4 Present
+[2023/07/27 23:43:02] Sled 5 Present
+[2023/07/27 23:43:02] Sled 6 Present
+[2023/07/27 23:43:02] COM4
+[2023/07/27 23:43:04] ret[0]:  69 | 0x45 | 01000101
+[2023/07/27 23:43:04] ret[1]: 160 | 0xa0 | 10100000
+[2023/07/27 23:43:04] ret[2]: 127 | 0x7f | 01111111
+[2023/07/27 23:43:04] ret[3]:  17 | 0x11 | 00010001
+[2023/07/27 23:43:04] ret[4]: 139 | 0x8b | 10001011
+[2023/07/27 23:43:04] Sled 1 Present
+[2023/07/27 23:43:04] Sled 2 Present
+[2023/07/27 23:43:04] Sled 3 Present
+[2023/07/27 23:43:04] Sled 4 Present
+[2023/07/27 23:43:04] Sled 5 Present
+[2023/07/27 23:43:04] Sled 6 Present
+[2023/07/27 23:43:04] COM5
+[2023/07/27 23:43:07] ret[0]:  69 | 0x45 | 01000101
+[2023/07/27 23:43:07] ret[1]: 160 | 0xa0 | 10100000
+[2023/07/27 23:43:07] ret[2]: 127 | 0x7f | 01111111
+[2023/07/27 23:43:07] ret[3]:  34 | 0x22 | 00100010
+[2023/07/27 23:43:07] ret[4]: 122 | 0x7a | 01111010
+[2023/07/27 23:43:07] Sled 1 Present
+[2023/07/27 23:43:07] Sled 2 Present
+[2023/07/27 23:43:07] Sled 3 Present
+[2023/07/27 23:43:07] Sled 4 Present
+[2023/07/27 23:43:07] Sled 5 Present
+[2023/07/27 23:43:07] Sled 6 Present
+[2023/07/27 23:43:07] COM8
+[2023/07/27 23:43:09] ret[0]:  69 | 0x45 | 01000101
+[2023/07/27 23:43:09] ret[1]: 160 | 0xa0 | 10100000
+[2023/07/27 23:43:09] ret[2]: 127 | 0x7f | 01111111
+[2023/07/27 23:43:09] ret[3]:  51 | 0x33 | 00110011
+[2023/07/27 23:43:09] ret[4]: 105 | 0x69 | 01101001
+[2023/07/27 23:43:09] Sled 1 Present
+[2023/07/27 23:43:09] Sled 2 Present
+[2023/07/27 23:43:09] Sled 3 Present
+[2023/07/27 23:43:09] Sled 4 Present
+[2023/07/27 23:43:09] Sled 5 Present
+[2023/07/27 23:43:09] Sled 6 Present
+[2023/07/27 23:43:09] COM9
+[2023/07/27 23:43:11] ret[0]:  69 | 0x45 | 01000101
+[2023/07/27 23:43:11] ret[1]: 160 | 0xa0 | 10100000
+[2023/07/27 23:43:11] ret[2]: 127 | 0x7f | 01111111
+[2023/07/27 23:43:11] ret[3]:  68 | 0x44 | 01000100
+[2023/07/27 23:43:11] ret[4]:  88 | 0x58 | 01011000
+[2023/07/27 23:43:11] Sled 1 Present
+[2023/07/27 23:43:11] Sled 2 Present
+[2023/07/27 23:43:11] Sled 3 Present
+[2023/07/27 23:43:11] Sled 4 Present
+[2023/07/27 23:43:11] Sled 5 Present
+[2023/07/27 23:43:11] Sled 6 Present
+[2023/07/27 23:43:11] COM10
+[2023/07/27 23:43:14] ret[0]:  69 | 0x45 | 01000101
+[2023/07/27 23:43:14] ret[1]: 160 | 0xa0 | 10100000
+[2023/07/27 23:43:14] ret[2]: 127 | 0x7f | 01111111
+[2023/07/27 23:43:14] ret[3]:  85 | 0x55 | 01010101
+[2023/07/27 23:43:14] ret[4]:  71 | 0x47 | 01000111
+[2023/07/27 23:43:14] Sled 1 Present
+[2023/07/27 23:43:14] Sled 2 Present
+[2023/07/27 23:43:14] Sled 3 Present
+[2023/07/27 23:43:14] Sled 4 Present
+[2023/07/27 23:43:14] Sled 5 Present
+[2023/07/27 23:43:14] Sled 6 Present
+[2023/07/27 23:43:14] COM7
+[2023/07/27 23:43:16] ret[0]:  69 | 0x45 | 01000101
+[2023/07/27 23:43:16] ret[1]: 160 | 0xa0 | 10100000
+[2023/07/27 23:43:16] ret[2]: 127 | 0x7f | 01111111
+[2023/07/27 23:43:16] ret[3]: 102 | 0x66 | 01100110
+[2023/07/27 23:43:16] ret[4]:  54 | 0x36 | 00110110
+[2023/07/27 23:43:16] Sled 1 Present
+[2023/07/27 23:43:16] Sled 2 Present
+[2023/07/27 23:43:16] Sled 3 Present
+[2023/07/27 23:43:16] Sled 4 Present
+[2023/07/27 23:43:16] Sled 5 Present
+[2023/07/27 23:43:16] Sled 6 Present
+[2023/07/27 23:43:16] COM6
+[2023/07/27 23:43:18] ret[0]:  69 | 0x45 | 01000101
+[2023/07/27 23:43:18] ret[1]: 160 | 0xa0 | 10100000
+[2023/07/27 23:43:18] ret[2]: 127 | 0x7f | 01111111
+[2023/07/27 23:43:18] ret[3]: 119 | 0x77 | 01110111
+[2023/07/27 23:43:18] ret[4]:  37 | 0x25 | 00100101
+[2023/07/27 23:43:18] Sled 1 Present
+[2023/07/27 23:43:18] Sled 2 Present
+[2023/07/27 23:43:18] Sled 3 Present
+[2023/07/27 23:43:18] Sled 4 Present
+[2023/07/27 23:43:18] Sled 5 Present
+[2023/07/27 23:43:18] Sled 6 Present
+[2023/07/27 23:43:18] Test elapsed time: 0:01:06.689999
+[2023/07/27 23:43:18] ######################################################################
+[2023/07/27 23:43:18] Test14: Signal Loopback Test
+[2023/07/27 23:43:18] Timestamp: [2023-07-27 23:43:18]
+[2023/07/27 23:43:18] ######################################################################
+[2023/07/27 23:43:18] 2023-07-27 23:43:18.921600 Init to Filesystem Start ...
+[2023/07/27 23:43:23] Already in WcsCli command & quit
+[2023/07/27 23:43:24] Write Serial Command:[b'set manager port off -i 1 -f\n']
+[2023/07/27 23:43:25] Read Serial Output:
+[2023/07/27 23:43:25] b'set manager port off -i 1 -f\r\n'
+[2023/07/27 23:43:25] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:25] b'WcsCli# '
+[2023/07/27 23:43:26] Write Serial Command:[b'set manager port off -i 2 -f\n']
+[2023/07/27 23:43:27] Read Serial Output:
+[2023/07/27 23:43:27] b'set manager port off -i 2 -f\r\n'
+[2023/07/27 23:43:27] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:27] b'WcsCli# '
+[2023/07/27 23:43:27] Write Serial Command:[b'set manager port off -i 3 -f\n']
+[2023/07/27 23:43:29] Read Serial Output:
+[2023/07/27 23:43:29] b'set manager port off -i 3 -f\r\n'
+[2023/07/27 23:43:29] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:29] b'WcsCli# '
+[2023/07/27 23:43:29] Write Serial Command:[b'set manager port off -i 4 -f\n']
+[2023/07/27 23:43:31] Read Serial Output:
+[2023/07/27 23:43:31] b'set manager port off -i 4 -f\r\n'
+[2023/07/27 23:43:31] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:31] b'WcsCli# '
+[2023/07/27 23:43:31] Write Serial Command:[b'set manager port off -i 5 -f\n']
+[2023/07/27 23:43:33] Read Serial Output:
+[2023/07/27 23:43:33] b'set manager port off -i 5 -f\r\n'
+[2023/07/27 23:43:33] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:33] b'WcsCli# '
+[2023/07/27 23:43:33] Write Serial Command:[b'set manager port off -i 6 -f\n']
+[2023/07/27 23:43:35] Read Serial Output:
+[2023/07/27 23:43:35] b'set manager port off -i 6 -f\r\n'
+[2023/07/27 23:43:35] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:35] b'WcsCli# '
+[2023/07/27 23:43:35] Write Serial Command:[b'set manager port off -i 7 -f\n']
+[2023/07/27 23:43:36] Read Serial Output:
+[2023/07/27 23:43:36] b'set manager port off -i 7 -f\r\n'
+[2023/07/27 23:43:36] Write Serial Command:[b'set manager port off -i 8 -f\n']
+[2023/07/27 23:43:37] Read Serial Output:
+[2023/07/27 23:43:37] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:37] b'WcsCli# set manager port off -i 8 -f\r\n'
+[2023/07/27 23:43:37] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:37] b'WcsCli# '
+[2023/07/27 23:43:38] Write Serial Command:[b'set manager port off -i 9 -f\n']
+[2023/07/27 23:43:39] Read Serial Output:
+[2023/07/27 23:43:39] b'set manager port off -i 9 -f\r\n'
+[2023/07/27 23:43:39] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:39] b'WcsCli# '
+[2023/07/27 23:43:39] Write Serial Command:[b'set manager port off -i 10 -f\n']
+[2023/07/27 23:43:41] Read Serial Output:
+[2023/07/27 23:43:41] b'set manager port off -i 10 -f\r\n'
+[2023/07/27 23:43:41] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:41] b'WcsCli# '
+[2023/07/27 23:43:41] Write Serial Command:[b'set manager port off -i 11 -f\n']
+[2023/07/27 23:43:43] Read Serial Output:
+[2023/07/27 23:43:43] b'set manager port off -i 11 -f\r\n'
+[2023/07/27 23:43:43] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:43] b'WcsCli# '
+[2023/07/27 23:43:43] Write Serial Command:[b'set manager port off -i 12 -f\n']
+[2023/07/27 23:43:45] Read Serial Output:
+[2023/07/27 23:43:45] b'set manager port off -i 12 -f\r\n'
+[2023/07/27 23:43:45] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:45] b'WcsCli# '
+[2023/07/27 23:43:45] Write Serial Command:[b'set manager port off -i 13 -f\n']
+[2023/07/27 23:43:47] Read Serial Output:
+[2023/07/27 23:43:47] b'set manager port off -i 13 -f\r\n'
+[2023/07/27 23:43:47] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:47] b'WcsCli# '
+[2023/07/27 23:43:47] Write Serial Command:[b'set manager port off -i 14 -f\n']
+[2023/07/27 23:43:49] Read Serial Output:
+[2023/07/27 23:43:49] b'set manager port off -i 14 -f\r\n'
+[2023/07/27 23:43:49] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:49] b'WcsCli# '
+[2023/07/27 23:43:49] Write Serial Command:[b'set manager port off -i 15 -f\n']
+[2023/07/27 23:43:50] Read Serial Output:
+[2023/07/27 23:43:50] b'set manager port off -i 15 -f\r\n'
+[2023/07/27 23:43:50] Write Serial Command:[b'set manager port off -i 16 -f\n']
+[2023/07/27 23:43:51] Read Serial Output:
+[2023/07/27 23:43:51] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:51] b'WcsCli# set manager port off -i 16 -f\r\n'
+[2023/07/27 23:43:51] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:51] b'WcsCli# '
+[2023/07/27 23:43:52] Write Serial Command:[b'set manager port off -i 17 -f\n']
+[2023/07/27 23:43:53] Read Serial Output:
+[2023/07/27 23:43:53] b'set manager port off -i 17 -f\r\n'
+[2023/07/27 23:43:53] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:53] b'WcsCli# '
+[2023/07/27 23:43:53] Write Serial Command:[b'set manager port off -i 18 -f\n']
+[2023/07/27 23:43:55] Read Serial Output:
+[2023/07/27 23:43:55] b'set manager port off -i 18 -f\r\n'
+[2023/07/27 23:43:55] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:55] b'WcsCli# '
+[2023/07/27 23:43:55] Write Serial Command:[b'set manager port off -i 19 -f\n']
+[2023/07/27 23:43:57] Read Serial Output:
+[2023/07/27 23:43:57] b'set manager port off -i 19 -f\r\n'
+[2023/07/27 23:43:57] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:57] b'WcsCli# '
+[2023/07/27 23:43:57] Write Serial Command:[b'set manager port off -i 20 -f\n']
+[2023/07/27 23:43:59] Read Serial Output:
+[2023/07/27 23:43:59] b'set manager port off -i 20 -f\r\n'
+[2023/07/27 23:43:59] b'    Completion Code: Success\r\n'
+[2023/07/27 23:43:59] b'WcsCli# '
+[2023/07/27 23:43:59] Write Serial Command:[b'set manager port off -i 21 -f\n']
+[2023/07/27 23:44:01] Read Serial Output:
+[2023/07/27 23:44:01] b'set manager port off -i 21 -f\r\n'
+[2023/07/27 23:44:01] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:01] b'WcsCli# '
+[2023/07/27 23:44:01] Write Serial Command:[b'set manager port off -i 22 -f\n']
+[2023/07/27 23:44:03] Read Serial Output:
+[2023/07/27 23:44:03] b'set manager port off -i 22 -f\r\n'
+[2023/07/27 23:44:03] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:03] b'WcsCli# '
+[2023/07/27 23:44:03] Write Serial Command:[b'set manager port off -i 23 -f\n']
+[2023/07/27 23:44:04] Read Serial Output:
+[2023/07/27 23:44:04] b'set manager port off -i 23 -f\r\n'
+[2023/07/27 23:44:04] Write Serial Command:[b'set manager port off -i 24 -f\n']
+[2023/07/27 23:44:05] Read Serial Output:
+[2023/07/27 23:44:05] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:05] b'WcsCli# set manager port off -i 24 -f\r\n'
+[2023/07/27 23:44:05] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:05] b'WcsCli# '
+[2023/07/27 23:44:06] Write Serial Command:[b'set manager port off -i 25 -f\n']
+[2023/07/27 23:44:07] Read Serial Output:
+[2023/07/27 23:44:07] b'set manager port off -i 25 -f\r\n'
+[2023/07/27 23:44:07] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:07] b'WcsCli# '
+[2023/07/27 23:44:07] Write Serial Command:[b'set manager port off -i 26 -f\n']
+[2023/07/27 23:44:09] Read Serial Output:
+[2023/07/27 23:44:09] b'set manager port off -i 26 -f\r\n'
+[2023/07/27 23:44:09] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:09] b'WcsCli# '
+[2023/07/27 23:44:09] Write Serial Command:[b'set manager port off -i 27 -f\n']
+[2023/07/27 23:44:11] Read Serial Output:
+[2023/07/27 23:44:11] b'set manager port off -i 27 -f\r\n'
+[2023/07/27 23:44:11] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:11] b'WcsCli# '
+[2023/07/27 23:44:11] Write Serial Command:[b'set manager port off -i 28 -f\n']
+[2023/07/27 23:44:13] Read Serial Output:
+[2023/07/27 23:44:13] b'set manager port off -i 28 -f\r\n'
+[2023/07/27 23:44:13] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:13] b'WcsCli# '
+[2023/07/27 23:44:13] Write Serial Command:[b'set manager port off -i 29 -f\n']
+[2023/07/27 23:44:15] Read Serial Output:
+[2023/07/27 23:44:15] b'set manager port off -i 29 -f\r\n'
+[2023/07/27 23:44:15] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:15] b'WcsCli# '
+[2023/07/27 23:44:15] Write Serial Command:[b'set manager port off -i 30 -f\n']
+[2023/07/27 23:44:17] Read Serial Output:
+[2023/07/27 23:44:17] b'set manager port off -i 30 -f\r\n'
+[2023/07/27 23:44:17] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:17] b'WcsCli# '
+[2023/07/27 23:44:17] Write Serial Command:[b'set manager port off -i 31 -f\n']
+[2023/07/27 23:44:19] Read Serial Output:
+[2023/07/27 23:44:19] b'set manager port off -i 31 -f\r\n'
+[2023/07/27 23:44:19] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:19] b'WcsCli# '
+[2023/07/27 23:44:19] Write Serial Command:[b'set manager port off -i 32 -f\n']
+[2023/07/27 23:44:21] Read Serial Output:
+[2023/07/27 23:44:21] b'set manager port off -i 32 -f\r\n'
+[2023/07/27 23:44:21] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:21] b'WcsCli# '
+[2023/07/27 23:44:21] Write Serial Command:[b'set manager port off -i 33 -f\n']
+[2023/07/27 23:44:23] Read Serial Output:
+[2023/07/27 23:44:23] b'set manager port off -i 33 -f\r\n'
+[2023/07/27 23:44:23] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:23] b'WcsCli# '
+[2023/07/27 23:44:23] Write Serial Command:[b'set manager port off -i 34 -f\n']
+[2023/07/27 23:44:24] Read Serial Output:
+[2023/07/27 23:44:24] b'set manager port off -i 34 -f\r\n'
+[2023/07/27 23:44:24] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:24] b'WcsCli# '
+[2023/07/27 23:44:24] Write Serial Command:[b'set manager port off -i 35 -f\n']
+[2023/07/27 23:44:26] Read Serial Output:
+[2023/07/27 23:44:26] b'set manager port off -i 35 -f\r\n'
+[2023/07/27 23:44:26] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:26] b'WcsCli# '
+[2023/07/27 23:44:26] Write Serial Command:[b'set manager port off -i 36 -f\n']
+[2023/07/27 23:44:28] Read Serial Output:
+[2023/07/27 23:44:28] b'set manager port off -i 36 -f\r\n'
+[2023/07/27 23:44:28] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:28] b'WcsCli# '
+[2023/07/27 23:44:28] Write Serial Command:[b'set manager port off -i 37 -f\n']
+[2023/07/27 23:44:30] Read Serial Output:
+[2023/07/27 23:44:30] b'set manager port off -i 37 -f\r\n'
+[2023/07/27 23:44:30] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:30] b'WcsCli# '
+[2023/07/27 23:44:30] Write Serial Command:[b'set manager port off -i 38 -f\n']
+[2023/07/27 23:44:32] Read Serial Output:
+[2023/07/27 23:44:32] b'set manager port off -i 38 -f\r\n'
+[2023/07/27 23:44:32] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:32] b'WcsCli# '
+[2023/07/27 23:44:32] Write Serial Command:[b'set manager port off -i 39 -f\n']
+[2023/07/27 23:44:34] Read Serial Output:
+[2023/07/27 23:44:34] b'set manager port off -i 39 -f\r\n'
+[2023/07/27 23:44:34] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:34] b'WcsCli# '
+[2023/07/27 23:44:34] Write Serial Command:[b'set manager port off -i 40 -f\n']
+[2023/07/27 23:44:36] Read Serial Output:
+[2023/07/27 23:44:36] b'set manager port off -i 40 -f\r\n'
+[2023/07/27 23:44:36] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:36] b'WcsCli# '
+[2023/07/27 23:44:36] Write Serial Command:[b'set manager port off -i 41 -f\n']
+[2023/07/27 23:44:37] Read Serial Output:
+[2023/07/27 23:44:37] b'set manager port off -i 41 -f\r\n'
+[2023/07/27 23:44:37] Write Serial Command:[b'set manager port off -i 42 -f\n']
+[2023/07/27 23:44:38] Read Serial Output:
+[2023/07/27 23:44:38] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:38] b'WcsCli# set manager port off -i 42 -f\r\n'
+[2023/07/27 23:44:38] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:38] b'WcsCli# '
+[2023/07/27 23:44:39] Write Serial Command:[b'set manager port off -i 43 -f\n']
+[2023/07/27 23:44:40] Read Serial Output:
+[2023/07/27 23:44:40] b'set manager port off -i 43 -f\r\n'
+[2023/07/27 23:44:40] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:40] b'WcsCli# '
+[2023/07/27 23:44:40] Write Serial Command:[b'set manager port off -i 44 -f\n']
+[2023/07/27 23:44:41] Read Serial Output:
+[2023/07/27 23:44:41] b'set manager port off -i 44 -f\r\n'
+[2023/07/27 23:44:41] Write Serial Command:[b'set manager port off -i 45 -f\n']
+[2023/07/27 23:44:42] Read Serial Output:
+[2023/07/27 23:44:42] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:42] b'WcsCli# set manager port off -i 45 -f\r\n'
+[2023/07/27 23:44:42] Write Serial Command:[b'set manager port off -i 46 -f\n']
+[2023/07/27 23:44:44] Read Serial Output:
+[2023/07/27 23:44:44] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:44] b'WcsCli# set manager port off -i 46 -f\r\n'
+[2023/07/27 23:44:44] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:44] b'WcsCli# '
+[2023/07/27 23:44:44] Write Serial Command:[b'set manager port off -i 47 -f\n']
+[2023/07/27 23:44:45] Read Serial Output:
+[2023/07/27 23:44:45] b'set manager port off -i 47 -f\r\n'
+[2023/07/27 23:44:45] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:45] b'WcsCli# '
+[2023/07/27 23:44:46] Write Serial Command:[b'set manager port off -i 48 -f\n']
+[2023/07/27 23:44:47] Read Serial Output:
+[2023/07/27 23:44:47] b'set manager port off -i 48 -f\r\n'
+[2023/07/27 23:44:47] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:47] b'WcsCli# '
+[2023/07/27 23:44:48] Write Serial Command:[b'set manager throttle force enable on\n']
+[2023/07/27 23:44:49] Read Serial Output:
+[2023/07/27 23:44:49] b'set manager throttle force enable on\r\n'
+[2023/07/27 23:44:49] b'    Completion Code: Success\r\n'
+[2023/07/27 23:44:49] b'WcsCli# '
+[2023/07/27 23:44:49] Write Serial Command:[b'sh manager port presence -i 1\n']
+[2023/07/27 23:44:52] Read Serial Output:
+[2023/07/27 23:44:52] [b'sh manager port presence -i 1\r\n']
+[2023/07/27 23:44:52] [b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:44:52] Port Present 1 read success
+[2023/07/27 23:44:52] Write Serial Command:[b'sh manager port presence -i 2\n']
+[2023/07/27 23:44:53] Read Serial Output:
+[2023/07/27 23:44:53] [b'sh manager port presence -i 2\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:44:54] Port Present 2 read success
+[2023/07/27 23:44:54] Write Serial Command:[b'sh manager port presence -i 3\n']
+[2023/07/27 23:44:55] Read Serial Output:
+[2023/07/27 23:44:55] [b'sh manager port presence -i 3\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:44:55] Port Present 3 read success
+[2023/07/27 23:44:55] Write Serial Command:[b'sh manager port presence -i 4\n']
+[2023/07/27 23:44:57] Read Serial Output:
+[2023/07/27 23:44:57] [b'sh manager port presence -i 4\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:44:57] Port Present 4 read success
+[2023/07/27 23:44:57] Write Serial Command:[b'sh manager port presence -i 5\n']
+[2023/07/27 23:44:58] Read Serial Output:
+[2023/07/27 23:44:58] [b'sh manager port presence -i 5\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:44:58] Port Present 5 read success
+[2023/07/27 23:44:58] Write Serial Command:[b'sh manager port presence -i 6\n']
+[2023/07/27 23:45:00] Read Serial Output:
+[2023/07/27 23:45:00] [b'sh manager port presence -i 6\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:00] Port Present 6 read success
+[2023/07/27 23:45:00] Write Serial Command:[b'sh manager port presence -i 7\n']
+[2023/07/27 23:45:02] Read Serial Output:
+[2023/07/27 23:45:02] [b'sh manager port presence -i 7\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:02] Port Present 7 read success
+[2023/07/27 23:45:02] Write Serial Command:[b'sh manager port presence -i 8\n']
+[2023/07/27 23:45:03] Read Serial Output:
+[2023/07/27 23:45:03] [b'sh manager port presence -i 8\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:04] Port Present 8 read success
+[2023/07/27 23:45:04] Write Serial Command:[b'sh manager port presence -i 9\n']
+[2023/07/27 23:45:05] Read Serial Output:
+[2023/07/27 23:45:05] [b'sh manager port presence -i 9\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:05] Port Present 9 read success
+[2023/07/27 23:45:05] Write Serial Command:[b'sh manager port presence -i 10\n']
+[2023/07/27 23:45:07] Read Serial Output:
+[2023/07/27 23:45:07] [b'sh manager port presence -i 10\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:07] Port Present 10 read success
+[2023/07/27 23:45:07] Write Serial Command:[b'sh manager port presence -i 11\n']
+[2023/07/27 23:45:08] Read Serial Output:
+[2023/07/27 23:45:08] [b'sh manager port presence -i 11\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:08] Port Present 11 read success
+[2023/07/27 23:45:08] Write Serial Command:[b'sh manager port presence -i 12\n']
+[2023/07/27 23:45:10] Read Serial Output:
+[2023/07/27 23:45:10] [b'sh manager port presence -i 12\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:10] Port Present 12 read success
+[2023/07/27 23:45:10] Write Serial Command:[b'sh manager port presence -i 13\n']
+[2023/07/27 23:45:12] Read Serial Output:
+[2023/07/27 23:45:12] [b'sh manager port presence -i 13\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:12] Port Present 13 read success
+[2023/07/27 23:45:12] Write Serial Command:[b'sh manager port presence -i 14\n']
+[2023/07/27 23:45:13] Read Serial Output:
+[2023/07/27 23:45:13] [b'sh manager port presence -i 14\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:14] Port Present 14 read success
+[2023/07/27 23:45:14] Write Serial Command:[b'sh manager port presence -i 15\n']
+[2023/07/27 23:45:15] Read Serial Output:
+[2023/07/27 23:45:15] [b'sh manager port presence -i 15\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:15] Port Present 15 read success
+[2023/07/27 23:45:15] Write Serial Command:[b'sh manager port presence -i 16\n']
+[2023/07/27 23:45:17] Read Serial Output:
+[2023/07/27 23:45:17] [b'sh manager port presence -i 16\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:17] Port Present 16 read success
+[2023/07/27 23:45:17] Write Serial Command:[b'sh manager port presence -i 17\n']
+[2023/07/27 23:45:18] Read Serial Output:
+[2023/07/27 23:45:18] [b'sh manager port presence -i 17\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:19] Port Present 17 read success
+[2023/07/27 23:45:19] Write Serial Command:[b'sh manager port presence -i 18\n']
+[2023/07/27 23:45:20] Read Serial Output:
+[2023/07/27 23:45:20] [b'sh manager port presence -i 18\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:20] Port Present 18 read success
+[2023/07/27 23:45:20] Write Serial Command:[b'sh manager port presence -i 19\n']
+[2023/07/27 23:45:22] Read Serial Output:
+[2023/07/27 23:45:22] [b'sh manager port presence -i 19\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:22] Port Present 19 read success
+[2023/07/27 23:45:22] Write Serial Command:[b'sh manager port presence -i 20\n']
+[2023/07/27 23:45:23] Read Serial Output:
+[2023/07/27 23:45:23] [b'sh manager port presence -i 20\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:24] Port Present 20 read success
+[2023/07/27 23:45:24] Write Serial Command:[b'sh manager port presence -i 21\n']
+[2023/07/27 23:45:25] Read Serial Output:
+[2023/07/27 23:45:25] [b'sh manager port presence -i 21\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:25] Port Present 21 read success
+[2023/07/27 23:45:25] Write Serial Command:[b'sh manager port presence -i 22\n']
+[2023/07/27 23:45:27] Read Serial Output:
+[2023/07/27 23:45:27] [b'sh manager port presence -i 22\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:27] Port Present 22 read success
+[2023/07/27 23:45:27] Write Serial Command:[b'sh manager port presence -i 23\n']
+[2023/07/27 23:45:29] Read Serial Output:
+[2023/07/27 23:45:29] [b'sh manager port presence -i 23\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:29] Port Present 23 read success
+[2023/07/27 23:45:29] Write Serial Command:[b'sh manager port presence -i 24\n']
+[2023/07/27 23:45:30] Read Serial Output:
+[2023/07/27 23:45:30] [b'sh manager port presence -i 24\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:30] Port Present 24 read success
+[2023/07/27 23:45:30] Write Serial Command:[b'sh manager port presence -i 25\n']
+[2023/07/27 23:45:32] Read Serial Output:
+[2023/07/27 23:45:32] [b'sh manager port presence -i 25\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:32] Port Present 25 read success
+[2023/07/27 23:45:32] Write Serial Command:[b'sh manager port presence -i 26\n']
+[2023/07/27 23:45:34] Read Serial Output:
+[2023/07/27 23:45:34] [b'sh manager port presence -i 26\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:34] Port Present 26 read success
+[2023/07/27 23:45:34] Write Serial Command:[b'sh manager port presence -i 27\n']
+[2023/07/27 23:45:35] Read Serial Output:
+[2023/07/27 23:45:35] [b'sh manager port presence -i 27\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:36] Port Present 27 read success
+[2023/07/27 23:45:36] Write Serial Command:[b'sh manager port presence -i 28\n']
+[2023/07/27 23:45:37] Read Serial Output:
+[2023/07/27 23:45:37] [b'sh manager port presence -i 28\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:37] Port Present 28 read success
+[2023/07/27 23:45:37] Write Serial Command:[b'sh manager port presence -i 29\n']
+[2023/07/27 23:45:39] Read Serial Output:
+[2023/07/27 23:45:39] [b'sh manager port presence -i 29\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:39] Port Present 29 read success
+[2023/07/27 23:45:39] Write Serial Command:[b'sh manager port presence -i 30\n']
+[2023/07/27 23:45:40] Read Serial Output:
+[2023/07/27 23:45:40] [b'sh manager port presence -i 30\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:41] Port Present 30 read success
+[2023/07/27 23:45:41] Write Serial Command:[b'sh manager port presence -i 31\n']
+[2023/07/27 23:45:42] Read Serial Output:
+[2023/07/27 23:45:42] [b'sh manager port presence -i 31\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:42] Port Present 31 read success
+[2023/07/27 23:45:42] Write Serial Command:[b'sh manager port presence -i 32\n']
+[2023/07/27 23:45:44] Read Serial Output:
+[2023/07/27 23:45:44] [b'sh manager port presence -i 32\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:44] Port Present 32 read success
+[2023/07/27 23:45:44] Write Serial Command:[b'sh manager port presence -i 33\n']
+[2023/07/27 23:45:45] Read Serial Output:
+[2023/07/27 23:45:45] [b'sh manager port presence -i 33\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:46] Port Present 33 read success
+[2023/07/27 23:45:46] Write Serial Command:[b'sh manager port presence -i 34\n']
+[2023/07/27 23:45:47] Read Serial Output:
+[2023/07/27 23:45:47] [b'sh manager port presence -i 34\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:47] Port Present 34 read success
+[2023/07/27 23:45:47] Write Serial Command:[b'sh manager port presence -i 35\n']
+[2023/07/27 23:45:49] Read Serial Output:
+[2023/07/27 23:45:49] [b'sh manager port presence -i 35\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:49] Port Present 35 read success
+[2023/07/27 23:45:49] Write Serial Command:[b'sh manager port presence -i 36\n']
+[2023/07/27 23:45:51] Read Serial Output:
+[2023/07/27 23:45:51] [b'sh manager port presence -i 36\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:51] Port Present 36 read success
+[2023/07/27 23:45:51] Write Serial Command:[b'sh manager port presence -i 37\n']
+[2023/07/27 23:45:52] Read Serial Output:
+[2023/07/27 23:45:52] [b'sh manager port presence -i 37\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:52] Port Present 37 read success
+[2023/07/27 23:45:52] Write Serial Command:[b'sh manager port presence -i 38\n']
+[2023/07/27 23:45:54] Read Serial Output:
+[2023/07/27 23:45:54] [b'sh manager port presence -i 38\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:54] Port Present 38 read success
+[2023/07/27 23:45:54] Write Serial Command:[b'sh manager port presence -i 39\n']
+[2023/07/27 23:45:56] Read Serial Output:
+[2023/07/27 23:45:56] [b'sh manager port presence -i 39\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:56] Port Present 39 read success
+[2023/07/27 23:45:56] Write Serial Command:[b'sh manager port presence -i 40\n']
+[2023/07/27 23:45:57] Read Serial Output:
+[2023/07/27 23:45:57] [b'sh manager port presence -i 40\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:57] Port Present 40 read success
+[2023/07/27 23:45:57] Write Serial Command:[b'sh manager port presence -i 41\n']
+[2023/07/27 23:45:59] Read Serial Output:
+[2023/07/27 23:45:59] [b'sh manager port presence -i 41\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:45:59] Port Present 41 read success
+[2023/07/27 23:45:59] Write Serial Command:[b'sh manager port presence -i 42\n']
+[2023/07/27 23:46:00] Read Serial Output:
+[2023/07/27 23:46:00] [b'sh manager port presence -i 42\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:01] Port Present 42 read success
+[2023/07/27 23:46:01] Write Serial Command:[b'sh manager port presence -i 43\n']
+[2023/07/27 23:46:02] Read Serial Output:
+[2023/07/27 23:46:02] [b'sh manager port presence -i 43\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:02] Port Present 43 read success
+[2023/07/27 23:46:02] Write Serial Command:[b'sh manager port presence -i 44\n']
+[2023/07/27 23:46:04] Read Serial Output:
+[2023/07/27 23:46:04] [b'sh manager port presence -i 44\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:04] Port Present 44 read success
+[2023/07/27 23:46:04] Write Serial Command:[b'sh manager port presence -i 45\n']
+[2023/07/27 23:46:06] Read Serial Output:
+[2023/07/27 23:46:06] [b'sh manager port presence -i 45\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:06] Port Present 45 read success
+[2023/07/27 23:46:06] Write Serial Command:[b'sh manager port presence -i 46\n']
+[2023/07/27 23:46:07] Read Serial Output:
+[2023/07/27 23:46:07] [b'sh manager port presence -i 46\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:07] Port Present 46 read success
+[2023/07/27 23:46:07] Write Serial Command:[b'sh manager port presence -i 47\n']
+[2023/07/27 23:46:09] Read Serial Output:
+[2023/07/27 23:46:09] [b'sh manager port presence -i 47\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:09] Port Present 47 read success
+[2023/07/27 23:46:09] Write Serial Command:[b'sh manager port presence -i 48\n']
+[2023/07/27 23:46:11] Read Serial Output:
+[2023/07/27 23:46:11] [b'sh manager port presence -i 48\r\n', b'    Port Presence: False\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:11] Port Present 48 read success
+[2023/07/27 23:46:11] Write Serial Command:[b'set manager throttle force enable off\n']
+[2023/07/27 23:46:12] Read Serial Output:
+[2023/07/27 23:46:12] b'set manager throttle force enable off\r\n'
+[2023/07/27 23:46:12] b'    Completion Code: Success\r\n'
+[2023/07/27 23:46:12] b'WcsCli# '
+[2023/07/27 23:46:12] Write Serial Command:[b'sh manager port presence -i 1\n']
+[2023/07/27 23:46:14] Read Serial Output:
+[2023/07/27 23:46:14] [b'sh manager port presence -i 1\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:14] Port Present 1 read success
+[2023/07/27 23:46:14] Write Serial Command:[b'sh manager port presence -i 2\n']
+[2023/07/27 23:46:16] Read Serial Output:
+[2023/07/27 23:46:16] [b'sh manager port presence -i 2\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:16] Port Present 2 read success
+[2023/07/27 23:46:16] Write Serial Command:[b'sh manager port presence -i 3\n']
+[2023/07/27 23:46:17] Read Serial Output:
+[2023/07/27 23:46:17] [b'sh manager port presence -i 3\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:18] Port Present 3 read success
+[2023/07/27 23:46:18] Write Serial Command:[b'sh manager port presence -i 4\n']
+[2023/07/27 23:46:19] Read Serial Output:
+[2023/07/27 23:46:19] [b'sh manager port presence -i 4\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:19] Port Present 4 read success
+[2023/07/27 23:46:19] Write Serial Command:[b'sh manager port presence -i 5\n']
+[2023/07/27 23:46:21] Read Serial Output:
+[2023/07/27 23:46:21] [b'sh manager port presence -i 5\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:21] Port Present 5 read success
+[2023/07/27 23:46:21] Write Serial Command:[b'sh manager port presence -i 6\n']
+[2023/07/27 23:46:22] Read Serial Output:
+[2023/07/27 23:46:22] [b'sh manager port presence -i 6\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:23] Port Present 6 read success
+[2023/07/27 23:46:23] Write Serial Command:[b'sh manager port presence -i 7\n']
+[2023/07/27 23:46:24] Read Serial Output:
+[2023/07/27 23:46:24] [b'sh manager port presence -i 7\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:24] Port Present 7 read success
+[2023/07/27 23:46:24] Write Serial Command:[b'sh manager port presence -i 8\n']
+[2023/07/27 23:46:26] Read Serial Output:
+[2023/07/27 23:46:26] [b'sh manager port presence -i 8\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:26] Port Present 8 read success
+[2023/07/27 23:46:26] Write Serial Command:[b'sh manager port presence -i 9\n']
+[2023/07/27 23:46:28] Read Serial Output:
+[2023/07/27 23:46:28] [b'sh manager port presence -i 9\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:28] Port Present 9 read success
+[2023/07/27 23:46:28] Write Serial Command:[b'sh manager port presence -i 10\n']
+[2023/07/27 23:46:29] Read Serial Output:
+[2023/07/27 23:46:29] [b'sh manager port presence -i 10\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:30] Port Present 10 read success
+[2023/07/27 23:46:30] Write Serial Command:[b'sh manager port presence -i 11\n']
+[2023/07/27 23:46:31] Read Serial Output:
+[2023/07/27 23:46:31] [b'sh manager port presence -i 11\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:31] Port Present 11 read success
+[2023/07/27 23:46:31] Write Serial Command:[b'sh manager port presence -i 12\n']
+[2023/07/27 23:46:33] Read Serial Output:
+[2023/07/27 23:46:33] [b'sh manager port presence -i 12\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:33] Port Present 12 read success
+[2023/07/27 23:46:33] Write Serial Command:[b'sh manager port presence -i 13\n']
+[2023/07/27 23:46:35] Read Serial Output:
+[2023/07/27 23:46:35] [b'sh manager port presence -i 13\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:35] Port Present 13 read success
+[2023/07/27 23:46:35] Write Serial Command:[b'sh manager port presence -i 14\n']
+[2023/07/27 23:46:36] Read Serial Output:
+[2023/07/27 23:46:36] [b'sh manager port presence -i 14\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:36] Port Present 14 read success
+[2023/07/27 23:46:36] Write Serial Command:[b'sh manager port presence -i 15\n']
+[2023/07/27 23:46:38] Read Serial Output:
+[2023/07/27 23:46:38] [b'sh manager port presence -i 15\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:38] Port Present 15 read success
+[2023/07/27 23:46:38] Write Serial Command:[b'sh manager port presence -i 16\n']
+[2023/07/27 23:46:40] Read Serial Output:
+[2023/07/27 23:46:40] [b'sh manager port presence -i 16\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:40] Port Present 16 read success
+[2023/07/27 23:46:40] Write Serial Command:[b'sh manager port presence -i 17\n']
+[2023/07/27 23:46:41] Read Serial Output:
+[2023/07/27 23:46:41] [b'sh manager port presence -i 17\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:42] Port Present 17 read success
+[2023/07/27 23:46:42] Write Serial Command:[b'sh manager port presence -i 18\n']
+[2023/07/27 23:46:43] Read Serial Output:
+[2023/07/27 23:46:43] [b'sh manager port presence -i 18\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:43] Port Present 18 read success
+[2023/07/27 23:46:43] Write Serial Command:[b'sh manager port presence -i 19\n']
+[2023/07/27 23:46:45] Read Serial Output:
+[2023/07/27 23:46:45] [b'sh manager port presence -i 19\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:45] Port Present 19 read success
+[2023/07/27 23:46:45] Write Serial Command:[b'sh manager port presence -i 20\n']
+[2023/07/27 23:46:47] Read Serial Output:
+[2023/07/27 23:46:47] [b'sh manager port presence -i 20\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:47] Port Present 20 read success
+[2023/07/27 23:46:47] Write Serial Command:[b'sh manager port presence -i 21\n']
+[2023/07/27 23:46:48] Read Serial Output:
+[2023/07/27 23:46:48] [b'sh manager port presence -i 21\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:48] Port Present 21 read success
+[2023/07/27 23:46:48] Write Serial Command:[b'sh manager port presence -i 22\n']
+[2023/07/27 23:46:50] Read Serial Output:
+[2023/07/27 23:46:50] [b'sh manager port presence -i 22\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:50] Port Present 22 read success
+[2023/07/27 23:46:50] Write Serial Command:[b'sh manager port presence -i 23\n']
+[2023/07/27 23:46:52] Read Serial Output:
+[2023/07/27 23:46:52] [b'sh manager port presence -i 23\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:52] Port Present 23 read success
+[2023/07/27 23:46:52] Write Serial Command:[b'sh manager port presence -i 24\n']
+[2023/07/27 23:46:53] Read Serial Output:
+[2023/07/27 23:46:53] [b'sh manager port presence -i 24\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:54] Port Present 24 read success
+[2023/07/27 23:46:54] Write Serial Command:[b'sh manager port presence -i 25\n']
+[2023/07/27 23:46:55] Read Serial Output:
+[2023/07/27 23:46:55] [b'sh manager port presence -i 25\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:55] Port Present 25 read success
+[2023/07/27 23:46:55] Write Serial Command:[b'sh manager port presence -i 26\n']
+[2023/07/27 23:46:57] Read Serial Output:
+[2023/07/27 23:46:57] [b'sh manager port presence -i 26\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:57] Port Present 26 read success
+[2023/07/27 23:46:57] Write Serial Command:[b'sh manager port presence -i 27\n']
+[2023/07/27 23:46:58] Read Serial Output:
+[2023/07/27 23:46:58] [b'sh manager port presence -i 27\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:46:59] Port Present 27 read success
+[2023/07/27 23:46:59] Write Serial Command:[b'sh manager port presence -i 28\n']
+[2023/07/27 23:47:00] Read Serial Output:
+[2023/07/27 23:47:00] [b'sh manager port presence -i 28\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:00] Port Present 28 read success
+[2023/07/27 23:47:00] Write Serial Command:[b'sh manager port presence -i 29\n']
+[2023/07/27 23:47:02] Read Serial Output:
+[2023/07/27 23:47:02] [b'sh manager port presence -i 29\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:02] Port Present 29 read success
+[2023/07/27 23:47:02] Write Serial Command:[b'sh manager port presence -i 30\n']
+[2023/07/27 23:47:04] Read Serial Output:
+[2023/07/27 23:47:04] [b'sh manager port presence -i 30\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:04] Port Present 30 read success
+[2023/07/27 23:47:04] Write Serial Command:[b'sh manager port presence -i 31\n']
+[2023/07/27 23:47:05] Read Serial Output:
+[2023/07/27 23:47:05] [b'sh manager port presence -i 31\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:06] Port Present 31 read success
+[2023/07/27 23:47:06] Write Serial Command:[b'sh manager port presence -i 32\n']
+[2023/07/27 23:47:07] Read Serial Output:
+[2023/07/27 23:47:07] [b'sh manager port presence -i 32\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:07] Port Present 32 read success
+[2023/07/27 23:47:07] Write Serial Command:[b'sh manager port presence -i 33\n']
+[2023/07/27 23:47:09] Read Serial Output:
+[2023/07/27 23:47:09] [b'sh manager port presence -i 33\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:09] Port Present 33 read success
+[2023/07/27 23:47:09] Write Serial Command:[b'sh manager port presence -i 34\n']
+[2023/07/27 23:47:10] Read Serial Output:
+[2023/07/27 23:47:10] [b'sh manager port presence -i 34\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:11] Port Present 34 read success
+[2023/07/27 23:47:11] Write Serial Command:[b'sh manager port presence -i 35\n']
+[2023/07/27 23:47:12] Read Serial Output:
+[2023/07/27 23:47:12] [b'sh manager port presence -i 35\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:12] Port Present 35 read success
+[2023/07/27 23:47:12] Write Serial Command:[b'sh manager port presence -i 36\n']
+[2023/07/27 23:47:14] Read Serial Output:
+[2023/07/27 23:47:14] [b'sh manager port presence -i 36\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:14] Port Present 36 read success
+[2023/07/27 23:47:14] Write Serial Command:[b'sh manager port presence -i 37\n']
+[2023/07/27 23:47:15] Read Serial Output:
+[2023/07/27 23:47:15] [b'sh manager port presence -i 37\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:16] Port Present 37 read success
+[2023/07/27 23:47:16] Write Serial Command:[b'sh manager port presence -i 38\n']
+[2023/07/27 23:47:17] Read Serial Output:
+[2023/07/27 23:47:17] [b'sh manager port presence -i 38\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:17] Port Present 38 read success
+[2023/07/27 23:47:17] Write Serial Command:[b'sh manager port presence -i 39\n']
+[2023/07/27 23:47:19] Read Serial Output:
+[2023/07/27 23:47:19] [b'sh manager port presence -i 39\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:19] Port Present 39 read success
+[2023/07/27 23:47:19] Write Serial Command:[b'sh manager port presence -i 40\n']
+[2023/07/27 23:47:21] Read Serial Output:
+[2023/07/27 23:47:21] [b'sh manager port presence -i 40\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:21] Port Present 40 read success
+[2023/07/27 23:47:21] Write Serial Command:[b'sh manager port presence -i 41\n']
+[2023/07/27 23:47:22] Read Serial Output:
+[2023/07/27 23:47:22] [b'sh manager port presence -i 41\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:22] Port Present 41 read success
+[2023/07/27 23:47:22] Write Serial Command:[b'sh manager port presence -i 42\n']
+[2023/07/27 23:47:24] Read Serial Output:
+[2023/07/27 23:47:24] [b'sh manager port presence -i 42\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:24] Port Present 42 read success
+[2023/07/27 23:47:24] Write Serial Command:[b'sh manager port presence -i 43\n']
+[2023/07/27 23:47:26] Read Serial Output:
+[2023/07/27 23:47:26] [b'sh manager port presence -i 43\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:26] Port Present 43 read success
+[2023/07/27 23:47:26] Write Serial Command:[b'sh manager port presence -i 44\n']
+[2023/07/27 23:47:27] Read Serial Output:
+[2023/07/27 23:47:27] [b'sh manager port presence -i 44\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:27] Port Present 44 read success
+[2023/07/27 23:47:27] Write Serial Command:[b'sh manager port presence -i 45\n']
+[2023/07/27 23:47:29] Read Serial Output:
+[2023/07/27 23:47:29] [b'sh manager port presence -i 45\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:29] Port Present 45 read success
+[2023/07/27 23:47:29] Write Serial Command:[b'sh manager port presence -i 46\n']
+[2023/07/27 23:47:31] Read Serial Output:
+[2023/07/27 23:47:31] [b'sh manager port presence -i 46\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:31] Port Present 46 read success
+[2023/07/27 23:47:31] Write Serial Command:[b'sh manager port presence -i 47\n']
+[2023/07/27 23:47:32] Read Serial Output:
+[2023/07/27 23:47:32] [b'sh manager port presence -i 47\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:32] Port Present 47 read success
+[2023/07/27 23:47:32] Write Serial Command:[b'sh manager port presence -i 48\n']
+[2023/07/27 23:47:34] Read Serial Output:
+[2023/07/27 23:47:34] [b'sh manager port presence -i 48\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:47:34] Port Present 48 read success
+[2023/07/27 23:47:34] Write Serial Command:[b'set manager throttle force enable on\n']
+[2023/07/27 23:47:36] Read Serial Output:
+[2023/07/27 23:47:36] b'set manager throttle force enable on\r\n'
+[2023/07/27 23:47:36] b'    Completion Code: Success\r\n'
+[2023/07/27 23:47:36] b'WcsCli# '
+[2023/07/27 23:47:36] Write Serial Command:[b'set manager port on -i 1\n']
+[2023/07/27 23:47:37] Read Serial Output:
+[2023/07/27 23:47:37] b'set manager port on -i 1\r\n'
+[2023/07/27 23:47:37] Write Serial Command:[b'set manager port on -i 2\n']
+[2023/07/27 23:47:37] Read Serial Output:
+[2023/07/27 23:47:37] b'    Completion Code: Success\r\n'
+[2023/07/27 23:47:37] b'WcsCli# set manager port on -i 2\r\n'
+[2023/07/27 23:47:38] Write Serial Command:[b'set manager port on -i 3\n']
+[2023/07/27 23:47:38] Read Serial Output:
+[2023/07/27 23:47:38] b'    Completion Code: Success\r\n'
+[2023/07/27 23:47:38] b'WcsCli# set manager port on -i 3\r\n'
+[2023/07/27 23:47:38] Write Serial Command:[b'set manager port on -i 4\n']
+[2023/07/27 23:47:39] Read Serial Output:
+[2023/07/27 23:47:39] b'    Completion Code: Success\r\n'
+[2023/07/27 23:47:39] b'WcsCli# set manager port on -i 4\r\n'
+[2023/07/27 23:47:39] Write Serial Command:[b'set manager port on -i 5\n']
+[2023/07/27 23:47:40] Read Serial Output:
+[2023/07/27 23:47:40] b'    Completion Code: Success\r\n'
+[2023/07/27 23:47:40] b'WcsCli# set manager port on -i 5\r\n'
+[2023/07/27 23:47:40] Write Serial Command:[b'set manager port on -i 6\n']
+[2023/07/27 23:47:42] Read Serial Output:
+[2023/07/27 23:47:42] b'    Completion Code: Success\r\n'
+[2023/07/27 23:47:42] b'WcsCli# set manager port on -i 6\r\n'
+[2023/07/27 23:47:42] b'    Completion Code: Success\r\n'
+[2023/07/27 23:47:42] b'WcsCli# '
+[2023/07/27 23:47:42] Write Serial Command:[b'set manager port on -i 7\n']
+[2023/07/27 23:47:44] Read Serial Output:
+[2023/07/27 23:47:44] b'set manager port on -i 7\r\n'
+[2023/07/27 23:47:44] b'    Completion Code: Success\r\n'
+[2023/07/27 23:47:44] b'WcsCli# '
+[2023/07/27 23:47:44] Write Serial Command:[b'set manager port on -i 8\n']
+[2023/07/27 23:47:45] Read Serial Output:
+[2023/07/27 23:47:45] b'set manager port on -i 8\r\n'
+[2023/07/27 23:47:45] Write Serial Command:[b'set manager port on -i 9\n']
+[2023/07/27 23:47:46] Read Serial Output:
+[2023/07/27 23:47:46] b'    Completion Code: Success\r\n'
+[2023/07/27 23:47:46] b'WcsCli# set manager port on -i 9\r\n'
+[2023/07/27 23:47:46] b'    Completion Code: Success\r\n'
+[2023/07/27 23:47:46] b'WcsCli# '
+[2023/07/27 23:47:47] Write Serial Command:[b'set manager port on -i 10\n']
+[2023/07/27 23:47:48] Read Serial Output:
+[2023/07/27 23:47:48] b'set manager port on -i 10\r\n'
+[2023/07/27 23:47:48] b'    Completion Code: Success\r\n'
+[2023/07/27 23:47:48] b'WcsCli# '
+[2023/07/27 23:47:49] Write Serial Command:[b'set manager port on -i 11\n']
+[2023/07/27 23:47:50] Read Serial Output:
+[2023/07/27 23:47:50] b'set manager port on -i 11\r\n'
+[2023/07/27 23:47:50] b'    Completion Code: Success\r\n'
+[2023/07/27 23:47:50] b'WcsCli# '
+[2023/07/27 23:47:51] Write Serial Command:[b'set manager port on -i 12\n']
+[2023/07/27 23:47:52] Read Serial Output:
+[2023/07/27 23:47:52] b'set manager port on -i 12\r\n'
+[2023/07/27 23:47:52] b'    Completion Code: Success\r\n'
+[2023/07/27 23:47:52] b'WcsCli# '
+[2023/07/27 23:47:52] Write Serial Command:[b'set manager port on -i 13\n']
+[2023/07/27 23:47:54] Read Serial Output:
+[2023/07/27 23:47:54] b'set manager port on -i 13\r\n'
+[2023/07/27 23:47:54] b'    Completion Code: Success\r\n'
+[2023/07/27 23:47:54] b'WcsCli# '
+[2023/07/27 23:47:54] Write Serial Command:[b'set manager port on -i 14\n']
+[2023/07/27 23:47:56] Read Serial Output:
+[2023/07/27 23:47:56] b'set manager port on -i 14\r\n'
+[2023/07/27 23:47:56] b'    Completion Code: Success\r\n'
+[2023/07/27 23:47:56] b'WcsCli# '
+[2023/07/27 23:47:56] Write Serial Command:[b'set manager port on -i 15\n']
+[2023/07/27 23:47:58] Read Serial Output:
+[2023/07/27 23:47:58] b'set manager port on -i 15\r\n'
+[2023/07/27 23:47:58] b'    Completion Code: Success\r\n'
+[2023/07/27 23:47:58] b'WcsCli# '
+[2023/07/27 23:47:58] Write Serial Command:[b'set manager port on -i 16\n']
+[2023/07/27 23:48:00] Read Serial Output:
+[2023/07/27 23:48:00] b'set manager port on -i 16\r\n'
+[2023/07/27 23:48:00] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:00] b'WcsCli# '
+[2023/07/27 23:48:00] Write Serial Command:[b'set manager port on -i 17\n']
+[2023/07/27 23:48:02] Read Serial Output:
+[2023/07/27 23:48:02] b'set manager port on -i 17\r\n'
+[2023/07/27 23:48:02] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:02] b'WcsCli# '
+[2023/07/27 23:48:02] Write Serial Command:[b'set manager port on -i 18\n']
+[2023/07/27 23:48:04] Read Serial Output:
+[2023/07/27 23:48:04] b'set manager port on -i 18\r\n'
+[2023/07/27 23:48:04] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:04] b'WcsCli# '
+[2023/07/27 23:48:04] Write Serial Command:[b'set manager port on -i 19\n']
+[2023/07/27 23:48:06] Read Serial Output:
+[2023/07/27 23:48:06] b'set manager port on -i 19\r\n'
+[2023/07/27 23:48:06] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:06] b'WcsCli# '
+[2023/07/27 23:48:06] Write Serial Command:[b'set manager port on -i 20\n']
+[2023/07/27 23:48:07] Read Serial Output:
+[2023/07/27 23:48:07] b'set manager port on -i 20\r\n'
+[2023/07/27 23:48:07] Write Serial Command:[b'set manager port on -i 21\n']
+[2023/07/27 23:48:09] Read Serial Output:
+[2023/07/27 23:48:09] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:09] b'WcsCli# set manager port on -i 21\r\n'
+[2023/07/27 23:48:09] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:09] b'WcsCli# '
+[2023/07/27 23:48:09] Write Serial Command:[b'set manager port on -i 22\n']
+[2023/07/27 23:48:11] Read Serial Output:
+[2023/07/27 23:48:11] b'set manager port on -i 22\r\n'
+[2023/07/27 23:48:11] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:11] b'WcsCli# '
+[2023/07/27 23:48:11] Write Serial Command:[b'set manager port on -i 23\n']
+[2023/07/27 23:48:13] Read Serial Output:
+[2023/07/27 23:48:13] b'set manager port on -i 23\r\n'
+[2023/07/27 23:48:13] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:13] b'WcsCli# '
+[2023/07/27 23:48:13] Write Serial Command:[b'set manager port on -i 24\n']
+[2023/07/27 23:48:14] Read Serial Output:
+[2023/07/27 23:48:14] b'set manager port on -i 24\r\n'
+[2023/07/27 23:48:14] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:14] b'WcsCli# '
+[2023/07/27 23:48:15] Write Serial Command:[b'set manager port on -i 25\n']
+[2023/07/27 23:48:16] Read Serial Output:
+[2023/07/27 23:48:16] b'set manager port on -i 25\r\n'
+[2023/07/27 23:48:16] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:16] b'WcsCli# '
+[2023/07/27 23:48:16] Write Serial Command:[b'set manager port on -i 26\n']
+[2023/07/27 23:48:18] Read Serial Output:
+[2023/07/27 23:48:18] b'set manager port on -i 26\r\n'
+[2023/07/27 23:48:18] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:18] b'WcsCli# '
+[2023/07/27 23:48:18] Write Serial Command:[b'set manager port on -i 27\n']
+[2023/07/27 23:48:20] Read Serial Output:
+[2023/07/27 23:48:20] b'set manager port on -i 27\r\n'
+[2023/07/27 23:48:20] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:20] b'WcsCli# '
+[2023/07/27 23:48:20] Write Serial Command:[b'set manager port on -i 28\n']
+[2023/07/27 23:48:22] Read Serial Output:
+[2023/07/27 23:48:22] b'set manager port on -i 28\r\n'
+[2023/07/27 23:48:22] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:22] b'WcsCli# '
+[2023/07/27 23:48:22] Write Serial Command:[b'set manager port on -i 29\n']
+[2023/07/27 23:48:24] Read Serial Output:
+[2023/07/27 23:48:24] b'set manager port on -i 29\r\n'
+[2023/07/27 23:48:24] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:24] b'WcsCli# '
+[2023/07/27 23:48:24] Write Serial Command:[b'set manager port on -i 30\n']
+[2023/07/27 23:48:26] Read Serial Output:
+[2023/07/27 23:48:26] b'set manager port on -i 30\r\n'
+[2023/07/27 23:48:26] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:26] b'WcsCli# '
+[2023/07/27 23:48:26] Write Serial Command:[b'set manager port on -i 31\n']
+[2023/07/27 23:48:28] Read Serial Output:
+[2023/07/27 23:48:28] b'set manager port on -i 31\r\n'
+[2023/07/27 23:48:28] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:28] b'WcsCli# '
+[2023/07/27 23:48:28] Write Serial Command:[b'set manager port on -i 32\n']
+[2023/07/27 23:48:30] Read Serial Output:
+[2023/07/27 23:48:30] b'set manager port on -i 32\r\n'
+[2023/07/27 23:48:30] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:30] b'WcsCli# '
+[2023/07/27 23:48:30] Write Serial Command:[b'set manager port on -i 33\n']
+[2023/07/27 23:48:32] Read Serial Output:
+[2023/07/27 23:48:32] b'set manager port on -i 33\r\n'
+[2023/07/27 23:48:32] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:32] b'WcsCli# '
+[2023/07/27 23:48:32] Write Serial Command:[b'set manager port on -i 34\n']
+[2023/07/27 23:48:34] Read Serial Output:
+[2023/07/27 23:48:34] b'set manager port on -i 34\r\n'
+[2023/07/27 23:48:34] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:34] b'WcsCli# '
+[2023/07/27 23:48:34] Write Serial Command:[b'set manager port on -i 35\n']
+[2023/07/27 23:48:36] Read Serial Output:
+[2023/07/27 23:48:36] b'set manager port on -i 35\r\n'
+[2023/07/27 23:48:36] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:36] b'WcsCli# '
+[2023/07/27 23:48:36] Write Serial Command:[b'set manager port on -i 36\n']
+[2023/07/27 23:48:38] Read Serial Output:
+[2023/07/27 23:48:38] b'set manager port on -i 36\r\n'
+[2023/07/27 23:48:38] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:38] b'WcsCli# '
+[2023/07/27 23:48:38] Write Serial Command:[b'set manager port on -i 37\n']
+[2023/07/27 23:48:40] Read Serial Output:
+[2023/07/27 23:48:40] b'set manager port on -i 37\r\n'
+[2023/07/27 23:48:40] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:40] b'WcsCli# '
+[2023/07/27 23:48:40] Write Serial Command:[b'set manager port on -i 38\n']
+[2023/07/27 23:48:42] Read Serial Output:
+[2023/07/27 23:48:42] b'set manager port on -i 38\r\n'
+[2023/07/27 23:48:42] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:42] b'WcsCli# '
+[2023/07/27 23:48:42] Write Serial Command:[b'set manager port on -i 39\n']
+[2023/07/27 23:48:44] Read Serial Output:
+[2023/07/27 23:48:44] b'set manager port on -i 39\r\n'
+[2023/07/27 23:48:44] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:44] b'WcsCli# '
+[2023/07/27 23:48:44] Write Serial Command:[b'set manager port on -i 40\n']
+[2023/07/27 23:48:46] Read Serial Output:
+[2023/07/27 23:48:46] b'set manager port on -i 40\r\n'
+[2023/07/27 23:48:46] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:46] b'WcsCli# '
+[2023/07/27 23:48:46] Write Serial Command:[b'set manager port on -i 41\n']
+[2023/07/27 23:48:47] Read Serial Output:
+[2023/07/27 23:48:47] b'set manager port on -i 41\r\n'
+[2023/07/27 23:48:47] Write Serial Command:[b'set manager port on -i 42\n']
+[2023/07/27 23:48:49] Read Serial Output:
+[2023/07/27 23:48:49] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:49] b'WcsCli# set manager port on -i 42\r\n'
+[2023/07/27 23:48:49] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:49] b'WcsCli# '
+[2023/07/27 23:48:49] Write Serial Command:[b'set manager port on -i 43\n']
+[2023/07/27 23:48:51] Read Serial Output:
+[2023/07/27 23:48:51] b'set manager port on -i 43\r\n'
+[2023/07/27 23:48:51] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:51] b'WcsCli# '
+[2023/07/27 23:48:51] Write Serial Command:[b'set manager port on -i 44\n']
+[2023/07/27 23:48:53] Read Serial Output:
+[2023/07/27 23:48:53] b'set manager port on -i 44\r\n'
+[2023/07/27 23:48:53] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:53] b'WcsCli# '
+[2023/07/27 23:48:53] Write Serial Command:[b'set manager port on -i 45\n']
+[2023/07/27 23:48:55] Read Serial Output:
+[2023/07/27 23:48:55] b'set manager port on -i 45\r\n'
+[2023/07/27 23:48:55] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:55] b'WcsCli# '
+[2023/07/27 23:48:55] Write Serial Command:[b'set manager port on -i 46\n']
+[2023/07/27 23:48:56] Read Serial Output:
+[2023/07/27 23:48:56] b'set manager port on -i 46\r\n'
+[2023/07/27 23:48:56] Write Serial Command:[b'set manager port on -i 47\n']
+[2023/07/27 23:48:57] Read Serial Output:
+[2023/07/27 23:48:57] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:57] b'WcsCli# set manager port on -i 47\r\n'
+[2023/07/27 23:48:57] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:57] b'WcsCli# '
+[2023/07/27 23:48:58] Write Serial Command:[b'set manager port on -i 48\n']
+[2023/07/27 23:48:59] Read Serial Output:
+[2023/07/27 23:48:59] b'set manager port on -i 48\r\n'
+[2023/07/27 23:48:59] b'    Completion Code: Success\r\n'
+[2023/07/27 23:48:59] b'WcsCli# '
+[2023/07/27 23:49:00] Write Serial Command:[b'sh manager port presence -i 1\n']
+[2023/07/27 23:49:01] Read Serial Output:
+[2023/07/27 23:49:01] [b'sh manager port presence -i 1\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:01] Port Present 1 read success
+[2023/07/27 23:49:01] Write Serial Command:[b'sh manager port presence -i 2\n']
+[2023/07/27 23:49:03] Read Serial Output:
+[2023/07/27 23:49:03] [b'sh manager port presence -i 2\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:03] Port Present 2 read success
+[2023/07/27 23:49:03] Write Serial Command:[b'sh manager port presence -i 3\n']
+[2023/07/27 23:49:05] Read Serial Output:
+[2023/07/27 23:49:05] [b'sh manager port presence -i 3\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:05] Port Present 3 read success
+[2023/07/27 23:49:05] Write Serial Command:[b'sh manager port presence -i 4\n']
+[2023/07/27 23:49:06] Read Serial Output:
+[2023/07/27 23:49:06] [b'sh manager port presence -i 4\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:07] Port Present 4 read success
+[2023/07/27 23:49:07] Write Serial Command:[b'sh manager port presence -i 5\n']
+[2023/07/27 23:49:08] Read Serial Output:
+[2023/07/27 23:49:08] [b'sh manager port presence -i 5\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:08] Port Present 5 read success
+[2023/07/27 23:49:08] Write Serial Command:[b'sh manager port presence -i 6\n']
+[2023/07/27 23:49:10] Read Serial Output:
+[2023/07/27 23:49:10] [b'sh manager port presence -i 6\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:10] Port Present 6 read success
+[2023/07/27 23:49:10] Write Serial Command:[b'sh manager port presence -i 7\n']
+[2023/07/27 23:49:12] Read Serial Output:
+[2023/07/27 23:49:12] [b'sh manager port presence -i 7\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:12] Port Present 7 read success
+[2023/07/27 23:49:12] Write Serial Command:[b'sh manager port presence -i 8\n']
+[2023/07/27 23:49:13] Read Serial Output:
+[2023/07/27 23:49:13] [b'sh manager port presence -i 8\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:14] Port Present 8 read success
+[2023/07/27 23:49:14] Write Serial Command:[b'sh manager port presence -i 9\n']
+[2023/07/27 23:49:15] Read Serial Output:
+[2023/07/27 23:49:15] [b'sh manager port presence -i 9\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:15] Port Present 9 read success
+[2023/07/27 23:49:15] Write Serial Command:[b'sh manager port presence -i 10\n']
+[2023/07/27 23:49:17] Read Serial Output:
+[2023/07/27 23:49:17] [b'sh manager port presence -i 10\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:17] Port Present 10 read success
+[2023/07/27 23:49:17] Write Serial Command:[b'sh manager port presence -i 11\n']
+[2023/07/27 23:49:18] Read Serial Output:
+[2023/07/27 23:49:18] [b'sh manager port presence -i 11\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:19] Port Present 11 read success
+[2023/07/27 23:49:19] Write Serial Command:[b'sh manager port presence -i 12\n']
+[2023/07/27 23:49:20] Read Serial Output:
+[2023/07/27 23:49:20] [b'sh manager port presence -i 12\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:20] Port Present 12 read success
+[2023/07/27 23:49:20] Write Serial Command:[b'sh manager port presence -i 13\n']
+[2023/07/27 23:49:22] Read Serial Output:
+[2023/07/27 23:49:22] [b'sh manager port presence -i 13\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:22] Port Present 13 read success
+[2023/07/27 23:49:22] Write Serial Command:[b'sh manager port presence -i 14\n']
+[2023/07/27 23:49:24] Read Serial Output:
+[2023/07/27 23:49:24] [b'sh manager port presence -i 14\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:24] Port Present 14 read success
+[2023/07/27 23:49:24] Write Serial Command:[b'sh manager port presence -i 15\n']
+[2023/07/27 23:49:25] Read Serial Output:
+[2023/07/27 23:49:25] [b'sh manager port presence -i 15\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:26] Port Present 15 read success
+[2023/07/27 23:49:26] Write Serial Command:[b'sh manager port presence -i 16\n']
+[2023/07/27 23:49:27] Read Serial Output:
+[2023/07/27 23:49:27] [b'sh manager port presence -i 16\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:27] Port Present 16 read success
+[2023/07/27 23:49:27] Write Serial Command:[b'sh manager port presence -i 17\n']
+[2023/07/27 23:49:29] Read Serial Output:
+[2023/07/27 23:49:29] [b'sh manager port presence -i 17\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:29] Port Present 17 read success
+[2023/07/27 23:49:29] Write Serial Command:[b'sh manager port presence -i 18\n']
+[2023/07/27 23:49:31] Read Serial Output:
+[2023/07/27 23:49:31] [b'sh manager port presence -i 18\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:31] Port Present 18 read success
+[2023/07/27 23:49:31] Write Serial Command:[b'sh manager port presence -i 19\n']
+[2023/07/27 23:49:32] Read Serial Output:
+[2023/07/27 23:49:32] [b'sh manager port presence -i 19\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:33] Port Present 19 read success
+[2023/07/27 23:49:33] Write Serial Command:[b'sh manager port presence -i 20\n']
+[2023/07/27 23:49:34] Read Serial Output:
+[2023/07/27 23:49:34] [b'sh manager port presence -i 20\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:34] Port Present 20 read success
+[2023/07/27 23:49:34] Write Serial Command:[b'sh manager port presence -i 21\n']
+[2023/07/27 23:49:36] Read Serial Output:
+[2023/07/27 23:49:36] [b'sh manager port presence -i 21\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:36] Port Present 21 read success
+[2023/07/27 23:49:36] Write Serial Command:[b'sh manager port presence -i 22\n']
+[2023/07/27 23:49:38] Read Serial Output:
+[2023/07/27 23:49:38] [b'sh manager port presence -i 22\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:38] Port Present 22 read success
+[2023/07/27 23:49:38] Write Serial Command:[b'sh manager port presence -i 23\n']
+[2023/07/27 23:49:39] Read Serial Output:
+[2023/07/27 23:49:39] [b'sh manager port presence -i 23\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:40] Port Present 23 read success
+[2023/07/27 23:49:40] Write Serial Command:[b'sh manager port presence -i 24\n']
+[2023/07/27 23:49:41] Read Serial Output:
+[2023/07/27 23:49:41] [b'sh manager port presence -i 24\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:41] Port Present 24 read success
+[2023/07/27 23:49:41] Write Serial Command:[b'sh manager port presence -i 25\n']
+[2023/07/27 23:49:43] Read Serial Output:
+[2023/07/27 23:49:43] [b'sh manager port presence -i 25\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:43] Port Present 25 read success
+[2023/07/27 23:49:43] Write Serial Command:[b'sh manager port presence -i 26\n']
+[2023/07/27 23:49:45] Read Serial Output:
+[2023/07/27 23:49:45] [b'sh manager port presence -i 26\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:45] Port Present 26 read success
+[2023/07/27 23:49:45] Write Serial Command:[b'sh manager port presence -i 27\n']
+[2023/07/27 23:49:46] Read Serial Output:
+[2023/07/27 23:49:46] [b'sh manager port presence -i 27\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:46] Port Present 27 read success
+[2023/07/27 23:49:46] Write Serial Command:[b'sh manager port presence -i 28\n']
+[2023/07/27 23:49:48] Read Serial Output:
+[2023/07/27 23:49:48] [b'sh manager port presence -i 28\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:48] Port Present 28 read success
+[2023/07/27 23:49:48] Write Serial Command:[b'sh manager port presence -i 29\n']
+[2023/07/27 23:49:50] Read Serial Output:
+[2023/07/27 23:49:50] [b'sh manager port presence -i 29\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:50] Port Present 29 read success
+[2023/07/27 23:49:50] Write Serial Command:[b'sh manager port presence -i 30\n']
+[2023/07/27 23:49:51] Read Serial Output:
+[2023/07/27 23:49:51] [b'sh manager port presence -i 30\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:52] Port Present 30 read success
+[2023/07/27 23:49:52] Write Serial Command:[b'sh manager port presence -i 31\n']
+[2023/07/27 23:49:53] Read Serial Output:
+[2023/07/27 23:49:53] [b'sh manager port presence -i 31\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:53] Port Present 31 read success
+[2023/07/27 23:49:53] Write Serial Command:[b'sh manager port presence -i 32\n']
+[2023/07/27 23:49:55] Read Serial Output:
+[2023/07/27 23:49:55] [b'sh manager port presence -i 32\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:55] Port Present 32 read success
+[2023/07/27 23:49:55] Write Serial Command:[b'sh manager port presence -i 33\n']
+[2023/07/27 23:49:57] Read Serial Output:
+[2023/07/27 23:49:57] [b'sh manager port presence -i 33\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:57] Port Present 33 read success
+[2023/07/27 23:49:57] Write Serial Command:[b'sh manager port presence -i 34\n']
+[2023/07/27 23:49:58] Read Serial Output:
+[2023/07/27 23:49:58] [b'sh manager port presence -i 34\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:49:59] Port Present 34 read success
+[2023/07/27 23:49:59] Write Serial Command:[b'sh manager port presence -i 35\n']
+[2023/07/27 23:50:00] Read Serial Output:
+[2023/07/27 23:50:00] [b'sh manager port presence -i 35\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:50:00] Port Present 35 read success
+[2023/07/27 23:50:00] Write Serial Command:[b'sh manager port presence -i 36\n']
+[2023/07/27 23:50:02] Read Serial Output:
+[2023/07/27 23:50:02] [b'sh manager port presence -i 36\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:50:02] Port Present 36 read success
+[2023/07/27 23:50:02] Write Serial Command:[b'sh manager port presence -i 37\n']
+[2023/07/27 23:50:03] Read Serial Output:
+[2023/07/27 23:50:03] [b'sh manager port presence -i 37\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:50:04] Port Present 37 read success
+[2023/07/27 23:50:04] Write Serial Command:[b'sh manager port presence -i 38\n']
+[2023/07/27 23:50:05] Read Serial Output:
+[2023/07/27 23:50:05] [b'sh manager port presence -i 38\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:50:05] Port Present 38 read success
+[2023/07/27 23:50:05] Write Serial Command:[b'sh manager port presence -i 39\n']
+[2023/07/27 23:50:07] Read Serial Output:
+[2023/07/27 23:50:07] [b'sh manager port presence -i 39\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:50:07] Port Present 39 read success
+[2023/07/27 23:50:07] Write Serial Command:[b'sh manager port presence -i 40\n']
+[2023/07/27 23:50:09] Read Serial Output:
+[2023/07/27 23:50:09] [b'sh manager port presence -i 40\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:50:09] Port Present 40 read success
+[2023/07/27 23:50:09] Write Serial Command:[b'sh manager port presence -i 41\n']
+[2023/07/27 23:50:10] Read Serial Output:
+[2023/07/27 23:50:10] [b'sh manager port presence -i 41\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:50:11] Port Present 41 read success
+[2023/07/27 23:50:11] Write Serial Command:[b'sh manager port presence -i 42\n']
+[2023/07/27 23:50:12] Read Serial Output:
+[2023/07/27 23:50:12] [b'sh manager port presence -i 42\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:50:12] Port Present 42 read success
+[2023/07/27 23:50:12] Write Serial Command:[b'sh manager port presence -i 43\n']
+[2023/07/27 23:50:14] Read Serial Output:
+[2023/07/27 23:50:14] [b'sh manager port presence -i 43\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:50:14] Port Present 43 read success
+[2023/07/27 23:50:14] Write Serial Command:[b'sh manager port presence -i 44\n']
+[2023/07/27 23:50:16] Read Serial Output:
+[2023/07/27 23:50:16] [b'sh manager port presence -i 44\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:50:16] Port Present 44 read success
+[2023/07/27 23:50:16] Write Serial Command:[b'sh manager port presence -i 45\n']
+[2023/07/27 23:50:18] Read Serial Output:
+[2023/07/27 23:50:18] [b'sh manager port presence -i 45\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:50:18] Port Present 45 read success
+[2023/07/27 23:50:18] Write Serial Command:[b'sh manager port presence -i 46\n']
+[2023/07/27 23:50:19] Read Serial Output:
+[2023/07/27 23:50:19] [b'sh manager port presence -i 46\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:50:19] Port Present 46 read success
+[2023/07/27 23:50:19] Write Serial Command:[b'sh manager port presence -i 47\n']
+[2023/07/27 23:50:21] Read Serial Output:
+[2023/07/27 23:50:21] [b'sh manager port presence -i 47\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:50:21] Port Present 47 read success
+[2023/07/27 23:50:21] Write Serial Command:[b'sh manager port presence -i 48\n']
+[2023/07/27 23:50:23] Read Serial Output:
+[2023/07/27 23:50:23] [b'sh manager port presence -i 48\r\n', b'    Port Presence: True\r\n', b'    Completion Code: Success\r\n', b'WcsCli# ']
+[2023/07/27 23:50:23] Port Present 48 read success
+[2023/07/27 23:50:23] Test elapsed time: 0:07:04.610001
+[2023/07/27 23:50:23] ######################################################################
+[2023/07/27 23:50:23] Test15: Factory Reset
+[2023/07/27 23:50:23] Timestamp: [2023-07-27 23:50:23]
+[2023/07/27 23:50:23] ######################################################################
+[2023/07/27 23:50:23] Lock the MTE command ...
+[2023/07/27 23:50:31] Lock the MTE command Pass
+The RM board will not accept anymore MTE commands.
+[2023/07/27 23:50:31] Recovering factory state to the QSPI. Please wait for 10 minutes...
+[2023/07/28 00:00:43] Finish Recover factory state to the QSPI
+[2023/07/28 00:00:43] 2023-07-28 00:00:43.661600 Init to Filesystem Start ...
+[2023/07/28 00:00:53] Pass - Init to Login
+[2023/07/28 00:00:58] Pass - Wait for Password
+[2023/07/28 00:01:04] Pass - Wait for WcsCli
+[2023/07/28 00:01:04] Verify firmware versions ...
+[2023/07/28 00:01:08] b'show version\r\n'
+[2023/07/28 00:01:08] b' \r\n'
+[2023/07/28 00:01:08] b'--------------------------------------------------------\r\n'
+[2023/07/28 00:01:08] b'  Microsoft OCS Rack Manager software version summary\r\n'
+[2023/07/28 00:01:08] b' \r\n'
+[2023/07/28 00:01:08] b'  Package version    : 1.1.8.16\r\n'
+[2023/07/28 00:01:08] b' \r\n'
+[2023/07/28 00:01:08] b'  Rootfs version     : 1.1.8.16\r\n'
+[2023/07/28 00:01:08] b'  U-Boot version     : 1.1.5.1\r\n'
+[2023/07/28 00:01:08] b'  Kernel version     : 1.1.8.16\r\n'
+[2023/07/28 00:01:08] b'  Devicetree version : 1.1.8.16\r\n'
+[2023/07/28 00:01:08] b' \r\n'
+[2023/07/28 00:01:08] b'  PRU FW version     : 0.15\r\n'
+[2023/07/28 00:01:08] b' \r\n'
+[2023/07/28 00:01:08] b'--------------------------------------------------------\r\n'
+[2023/07/28 00:01:08] b' \r\n'
+[2023/07/28 00:01:08] b'\r\n'
+[2023/07/28 00:01:08] b'WcsCli# '
+[2023/07/28 00:01:08] (QSPI) Package version 1.1.8.16 check Pass
+Current:
+b'  Package version    : 1.1.8.16\r\n'
+[2023/07/28 00:01:12] b'show manager fwupdate list\r\n'
+[2023/07/28 00:01:12] b'    active: 1.1.8.16\r\n'
+[2023/07/28 00:01:12] b'    factory: 1.1.8.16\r\n'
+[2023/07/28 00:01:12] b'    rollback: 1.1.8.16\r\n'
+[2023/07/28 00:01:12] b'    upgrade: N/A\r\n'
+[2023/07/28 00:01:12] b'    Completion Code: Success\r\n'
+[2023/07/28 00:01:12] b'WcsCli# '
+[2023/07/28 00:01:12] (EMMC) Factory version 1.1.8.16 check Pass
+Current:
+b'    factory: 1.1.8.16\r\n'
+[2023/07/28 00:01:12] Verify QSPI & EMMC firmware Pass
+[2023/07/28 00:01:12] Test elapsed time: 0:10:48.680000
+[2023/07/28 00:01:12] ######################################################################
+[2023/07/28 00:01:12] Test16: Check 4 Wire and 5 Wire Test
+[2023/07/28 00:01:12] Timestamp: [2023-07-28 00:01:12]
+[2023/07/28 00:01:12] Output is ON then Turn OFF
+[2023/07/28 00:01:12] AC Source Quit
+[2023/07/28 00:01:12] ######################################################################
+[2023/07/28 00:01:12] ======================================
+[2023/07/28 00:01:12] [Check 4 Wire Connection]
+[2023/07/28 00:01:12] ======================================
+[2023/07/28 00:01:12] AC Source Quit
+[2023/07/28 00:01:16] Switch to 4 wire: OFF [b'Off_4']
+[2023/07/28 00:01:21] Switch to 5 wire: OFF [b'Off_5']
+[2023/07/28 00:01:26] Switch to 4 wire: ON / 5 wire: OFF [b'On_4']
+[2023/07/28 00:01:26] COM11
+[2023/07/28 00:01:27] Turn Relay OFF
+[2023/07/28 00:01:28] S1/S2 relays are off
+[2023/07/28 00:01:28] COM4
+[2023/07/28 00:01:28] Turn Relay OFF
+[2023/07/28 00:01:30] S1/S2 relays are off
+[2023/07/28 00:01:30] COM5
+[2023/07/28 00:01:30] Turn Relay OFF
+[2023/07/28 00:01:31] S1/S2 relays are off
+[2023/07/28 00:01:31] COM8
+[2023/07/28 00:01:32] Turn Relay OFF
+[2023/07/28 00:01:33] S1/S2 relays are off
+[2023/07/28 00:01:33] COM9
+[2023/07/28 00:01:34] Turn Relay OFF
+[2023/07/28 00:01:35] S1/S2 relays are off
+[2023/07/28 00:01:35] COM10
+[2023/07/28 00:01:36] Turn Relay OFF
+[2023/07/28 00:01:37] S1/S2 relays are off
+[2023/07/28 00:01:37] COM7
+[2023/07/28 00:01:37] Turn Relay OFF
+[2023/07/28 00:01:39] S1/S2 relays are off
+[2023/07/28 00:01:39] COM6
+[2023/07/28 00:01:39] S1/S2 relays are off
+[2023/07/28 00:01:39] [Set AC Source Output 120 Volt]
+[2023/07/28 00:01:40] Output is OFF then Turn ON
+[2023/07/28 00:01:40] AC Source Output
+[2023/07/28 00:02:00] Phase R Voltage = 207.92 volt - 4 Wire Connection Check - [PASS]
+[2023/07/28 00:02:00] Phase S Voltage = 207.92 volt - 4 Wire Connection Check - [PASS]
+[2023/07/28 00:02:00] Phase T Voltage = 207.85 volt - 4 Wire Connection Check - [PASS]
+[2023/07/28 00:02:00] Test elapsed time: 0:00:48.689999
+[2023/07/28 00:02:00] ######################################################################
+[2023/07/28 00:02:00] Program version check
+[2023/07/28 00:02:00] Timestamp: [2023-07-28 00:02:00]
+[2023/07/28 00:02:00] ######################################################################
+[2023/07/28 00:02:00] Program version check Pass
+[2023/07/28 00:02:00] Factory: RMA
+[2023/07/28 00:02:00] Program Version: PROD051
+[2023/07/28 00:02:00] Test elapsed time: 0:00:00.010000
+[2023/07/28 00:02:00] Failed tests:
+[2023/07/28 00:02:00]     None
+[2023/07/28 00:02:01] Output is ON then Turn OFF
+[2023/07/28 00:02:01] AC Source Quit
+[2023/07/28 00:02:05] Switch to 4/5 wire: OFF [b'Reset']
+[2023/07/28 00:02:05] COM11
+[2023/07/28 00:02:05] Turn Relay OFF
+[2023/07/28 00:02:05] COM4
+[2023/07/28 00:02:05] Turn Relay OFF
+[2023/07/28 00:02:05] COM5
+[2023/07/28 00:02:05] Turn Relay OFF
+[2023/07/28 00:02:05] COM8
+[2023/07/28 00:02:05] Turn Relay OFF
+[2023/07/28 00:02:05] COM9
+[2023/07/28 00:02:05] Turn Relay OFF
+[2023/07/28 00:02:05] COM10
+[2023/07/28 00:02:06] Turn Relay OFF
+[2023/07/28 00:02:06] COM7
+[2023/07/28 00:02:06] Turn Relay OFF
+[2023/07/28 00:02:06] COM6
+[2023/07/28 00:02:06] Turn Relay OFF
+[2023/07/28 00:02:06] End Timestamp: [2023-07-28 00:02:06]
+[2023/07/28 00:02:06] Test Duration : 53m:40s

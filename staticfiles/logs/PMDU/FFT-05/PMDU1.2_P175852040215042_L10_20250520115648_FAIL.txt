@@ -1,0 +1,2888 @@
+[2025/05/20 11:56:54] ===========================================================
+[2025/05/20 11:56:54] Foxconn Diag Program Rev: PROD054
+[2025/05/20 11:56:54] Description: PMDU1.2 PMDU L10 Test
+[2025/05/20 11:56:54] Support Package Version: 1.1.8.16 & 1.1.29.27
+[2025/05/20 11:56:54] Factory: GDL
+[2025/05/20 11:56:54] ===========================================================
+[2025/05/20 11:56:54] PPID: P175852040215042
+[2025/05/20 11:56:54] Part Number: M1131758-002
+[2025/05/20 11:56:54] Asset Tag: 24143973
+[2025/05/20 11:56:54] Station ID: PMDU-FFT006
+[2025/05/20 11:56:54] Operator ID: 4049
+[2025/05/20 11:56:54] ===========================================================
+[2025/05/20 11:56:54] [START] 2025-05-20 11:56:54
+[2025/05/20 11:56:54] ===========================================================
+[2025/05/20 11:56:54] Get SSN current stage Pass
+[2025/05/20 11:56:54] Current Stage: FFT
+[2025/05/20 11:56:54] Check SSN current stage Pass
+[2025/05/20 11:56:54] Get SSN data Pass
+[2025/05/20 11:56:54] Station ID: FFT
+[2025/05/20 11:56:54] Product Version: M1131758-002
+[2025/05/20 11:56:54] Product AssetTag: 24143973
+[2025/05/20 11:56:54] Product Build: K
+[2025/05/20 11:56:54] Board Serial: B579450753142042
+[2025/05/20 11:56:54] Check SSN data Pass
+[2025/05/20 11:56:55] ===========================================================
+[2025/05/20 11:56:55] 48U/42U connector has been checked: y
+[2025/05/20 11:56:55] ======================================
+[2025/05/20 11:56:55] [M2010 L10 48U Test]
+[2025/05/20 11:56:55] ======================================
+[2025/05/20 11:56:55] Set 48U configuration Pass
+[2025/05/20 11:56:58] ======================================
+[2025/05/20 11:56:58] [AC Source 61830 Initialization]
+[2025/05/20 11:56:58] ======================================
+[2025/05/20 11:56:59] AC Source Write >>> '*IDN?'
+[2025/05/20 11:56:59] AC Source Return >>> 'Chroma ATE,61512,000949,01.50 Nov  6 2014'
+[2025/05/20 11:56:59] AC Source Write >>> 'INST:PHASe?'
+[2025/05/20 11:56:59] AC Source Return >>> 'THREE'
+[2025/05/20 11:56:59] Check three phase mode Pass
+[2025/05/20 11:56:59] AC Source Write >>> 'INST:EDIT ALL'
+[2025/05/20 11:56:59] AC Source Write >>> 'VOLTage:RANGe HIGH'
+[2025/05/20 11:56:59] AC Source Write >>> 'SYSTem:ERRor?'
+[2025/05/20 11:56:59] AC Source Return >>> '0,"No error"'
+[2025/05/20 11:56:59] AC Source Write >>> 'VOLTage:RANGe?'
+[2025/05/20 11:56:59] AC Source Return >>> 'HIGH'
+[2025/05/20 11:56:59] Set 'VOLTage:RANGe HIGH' Pass
+[2025/05/20 11:56:59] AC Source Write >>> 'VOLTage:LIMit:AC 300'
+[2025/05/20 11:56:59] AC Source Write >>> 'SYSTem:ERRor?'
+[2025/05/20 11:56:59] AC Source Return >>> '0,"No error"'
+[2025/05/20 11:56:59] AC Source Write >>> 'VOLTage:LIMit:AC?'
+[2025/05/20 11:56:59] AC Source Return >>> '300.0'
+[2025/05/20 11:56:59] Set 'VOLTage:LIMit:AC 300' Pass
+[2025/05/20 11:56:59] AC Source Write >>> 'CURRent:RANGe HIGH'
+[2025/05/20 11:56:59] AC Source Write >>> 'VOLTage:RANGe?'
+[2025/05/20 11:56:59] AC Source Return >>> 'HIGH'
+[2025/05/20 11:56:59] Set 'VOLTage:RANGe HIGH' Pass
+[2025/05/20 11:56:59] AC Source Write >>> 'FREQuency 60'
+[2025/05/20 11:56:59] AC Source Write >>> 'FREQuency?'
+[2025/05/20 11:56:59] AC Source Return >>> '60.00'
+[2025/05/20 11:56:59] Set 'Frequency 60' Pass
+[2025/05/20 11:56:59] AC Source Write >>> 'FUNCtion:SHAPe A'
+[2025/05/20 11:56:59] AC Source Write >>> 'FUNCtion:SHAPe:A SINE'
+[2025/05/20 11:56:59] ======================================
+[2025/05/20 11:56:59] AC Source 61830 Initialization Pass
+[2025/05/20 11:56:59] ======================================
+
+[2025/05/20 11:56:59] ======================================
+[2025/05/20 11:56:59] [AC Load 63800 Initialization]
+[2025/05/20 11:56:59] ======================================
+[2025/05/20 11:56:59] ===AC Load 1: GPIB Address 0x8 (GPIB0::1::INSTR)===
+[2025/05/20 11:56:59] AC Load 1 Write >>> '*IDN?'
+[2025/05/20 11:56:59] AC Load 1 Return >>> 'Chroma,63804,2691,1.70'
+[2025/05/20 11:56:59] AC Load 1 Write >>> 'LOAD:MODE?'
+[2025/05/20 11:56:59] AC Load 1 Return >>> 'CURR'
+[2025/05/20 11:56:59] Check constant current mode Pass
+[2025/05/20 11:56:59] AC Load 1 Write >>> 'CURR:PEAK:MAX 50'
+[2025/05/20 11:56:59] AC Load 1 Write >>> 'SYSTem:ERRor?'
+[2025/05/20 11:56:59] AC Load 1 Return >>> '0,"No error"'
+[2025/05/20 11:56:59] AC Load 1 Write >>> 'CURR:PEAK:MAX?'
+[2025/05/20 11:56:59] AC Load 1 Return >>> '50.0'
+[2025/05/20 11:56:59] Set 'CURR:PEAK:MAX 50' Pass
+[2025/05/20 11:56:59] ===AC Load 2: GPIB Address 0x28 (GPIB0::2::INSTR)===
+[2025/05/20 11:56:59] AC Load 2 Write >>> '*IDN?'
+[2025/05/20 11:56:59] AC Load 2 Return >>> 'Chroma,63804,2812,2.00'
+[2025/05/20 11:56:59] AC Load 2 Write >>> 'LOAD:MODE?'
+[2025/05/20 11:56:59] AC Load 2 Return >>> 'CURR'
+[2025/05/20 11:56:59] Check constant current mode Pass
+[2025/05/20 11:56:59] AC Load 2 Write >>> 'CURR:PEAK:MAX 50'
+[2025/05/20 11:56:59] AC Load 2 Write >>> 'SYSTem:ERRor?'
+[2025/05/20 11:56:59] AC Load 2 Return >>> '0,"No error"'
+[2025/05/20 11:56:59] AC Load 2 Write >>> 'CURR:PEAK:MAX?'
+[2025/05/20 11:56:59] AC Load 2 Return >>> '50.0'
+[2025/05/20 11:56:59] Set 'CURR:PEAK:MAX 50' Pass
+[2025/05/20 11:56:59] ===AC Load 3: GPIB Address 0x22 (GPIB0::3::INSTR)===
+[2025/05/20 11:57:00] AC Load 3 Write >>> '*IDN?'
+[2025/05/20 11:57:00] AC Load 3 Return >>> 'Chroma,63804,2769,2.00'
+[2025/05/20 11:57:00] AC Load 3 Write >>> 'LOAD:MODE?'
+[2025/05/20 11:57:00] AC Load 3 Return >>> 'CURR'
+[2025/05/20 11:57:00] Check constant current mode Pass
+[2025/05/20 11:57:00] AC Load 3 Write >>> 'CURR:PEAK:MAX 50'
+[2025/05/20 11:57:00] AC Load 3 Write >>> 'SYSTem:ERRor?'
+[2025/05/20 11:57:00] AC Load 3 Return >>> '0,"No error"'
+[2025/05/20 11:57:00] AC Load 3 Write >>> 'CURR:PEAK:MAX?'
+[2025/05/20 11:57:00] AC Load 3 Return >>> '50.0'
+[2025/05/20 11:57:00] Set 'CURR:PEAK:MAX 50' Pass
+[2025/05/20 11:57:00] ======================================
+[2025/05/20 11:57:00] AC Load 63800 Initialization Pass
+[2025/05/20 11:57:00] ======================================
+
+[2025/05/20 11:57:00] ======================================
+[2025/05/20 11:57:00] [Meter WT500 Initialization]
+[2025/05/20 11:57:00] ======================================
+[2025/05/20 11:57:00] Meter Write >>> '*IDN?'
+[2025/05/20 11:57:00] Meter Return >>> 'YOKOGAWA,760203,C2WE04008V,F1.31'
+[2025/05/20 11:57:00] Meter Write >>> 'DISPLAY:NUMERIC:NORMAL:FORMAT MATRix'
+[2025/05/20 11:57:00] Meter Write >>> 'NUMERIC:NORMAL:NUMBER 9'
+[2025/05/20 11:57:00] Meter Write >>> 'NUMERIC:NORMAL:ITEM1 U,1'
+[2025/05/20 11:57:00] Meter Write >>> 'NUMERIC:NORMAL:ITEM2 I,1'
+[2025/05/20 11:57:00] Meter Write >>> 'NUMERIC:NORMAL:ITEM3 P,1'
+[2025/05/20 11:57:00] Meter Write >>> 'NUMERIC:NORMAL:ITEM4 U,2'
+[2025/05/20 11:57:00] Meter Write >>> 'NUMERIC:NORMAL:ITEM5 I,2'
+[2025/05/20 11:57:00] Meter Write >>> 'NUMERIC:NORMAL:ITEM6 P,2'
+[2025/05/20 11:57:00] Meter Write >>> 'NUMERIC:NORMAL:ITEM7 U,3'
+[2025/05/20 11:57:00] Meter Write >>> 'NUMERIC:NORMAL:ITEM8 I,3'
+[2025/05/20 11:57:00] Meter Write >>> 'NUMERIC:NORMAL:ITEM9 P,3'
+[2025/05/20 11:57:01] Meter Write >>> 'MEASure:AVERaging:COUNt 16'
+[2025/05/20 11:57:01] Meter Write >>> 'MEASure:AVERaging:STATE ON'
+[2025/05/20 11:57:01] Meter Write >>> 'RATE 200MS'
+[2025/05/20 11:57:01] Meter Write >>> 'INPUT:VOLTAGE:RANGE 300V'
+[2025/05/20 11:57:01] Meter Write >>> 'INPUT:CURRENT:AUTO:ALL ON'
+[2025/05/20 11:57:01] ======================================
+[2025/05/20 11:57:01] Meter WT500 Initialization Pass
+[2025/05/20 11:57:01] ======================================
+
+[2025/05/20 11:57:01] FFT Start
+[2025/05/20 11:57:01] ######################################################################
+[2025/05/20 11:57:01] Test1: 5V Relay Test via C13
+[2025/05/20 11:57:01] Timestamp: [2025-05-20 11:57:01]
+[2025/05/20 11:57:01] ######################################################################
+[2025/05/20 11:57:01] ======================================
+[2025/05/20 11:57:01] [Check 5-wire Connection]
+[2025/05/20 11:57:01] ======================================
+[2025/05/20 11:57:01] Turn AC source output off
+[2025/05/20 11:57:01] AC Source Write >>> 'OUTPut?'
+[2025/05/20 11:57:01] AC Source Return >>> 'OFF'
+[2025/05/20 11:57:01] Switch the 4-wire configuration to off
+[2025/05/20 11:57:02] b'Off_4'
+[2025/05/20 11:57:05] Switch the 5-wire configuration to off
+[2025/05/20 11:57:07] b'Off_5'
+[2025/05/20 11:57:09] Switch the 5-wire configuration to on
+[2025/05/20 11:57:12] b'On_5'
+[2025/05/20 11:57:14] COM11
+[2025/05/20 11:57:14] S1/S2 relays are off
+[2025/05/20 11:57:16] COM4
+[2025/05/20 11:57:16] S1/S2 relays are off
+[2025/05/20 11:57:18] COM5
+[2025/05/20 11:57:18] S1/S2 relays are off
+[2025/05/20 11:57:20] COM8
+[2025/05/20 11:57:20] S1/S2 relays are off
+[2025/05/20 11:57:22] COM9
+[2025/05/20 11:57:22] S1/S2 relays are off
+[2025/05/20 11:57:24] COM10
+[2025/05/20 11:57:24] S1/S2 relays are off
+[2025/05/20 11:57:26] COM7
+[2025/05/20 11:57:26] S1/S2 relays are off
+[2025/05/20 11:57:28] COM6
+[2025/05/20 11:57:28] S1/S2 relays are off
+[2025/05/20 11:57:32] Set AC source output to 120 volt
+[2025/05/20 11:57:32] AC Source Write >>> '*CLS'
+[2025/05/20 11:57:32] AC Source Write >>> 'INST:EDIT ALL'
+[2025/05/20 11:57:32] AC Source Write >>> 'VOLTage:AC 120'
+[2025/05/20 11:57:33] Turn AC source output on
+[2025/05/20 11:57:33] AC Source Write >>> 'OUTPut?'
+[2025/05/20 11:57:33] AC Source Return >>> 'OFF'
+[2025/05/20 11:57:33] Output is 'OFF' then turn 'ON'
+[2025/05/20 11:57:33] AC Source Write >>> 'OUTPut ON'
+[2025/05/20 11:57:43] Read power meter value from WT500
+[2025/05/20 11:57:43] Meter Write >>> '*CLS'
+[2025/05/20 11:57:43] Meter Write >>> 'NUMeric:NORMAL:VALue?'
+[2025/05/20 11:57:43] Meter Return >>> '120.15E+00,25.98E-03,1.06E+00,120.09E+00,23.75E-03,0.84E+00,120.21E+00,24.28E-03,0.87E+00'
+[2025/05/20 11:57:43] Phase R Voltage: 120.15 volt
+[2025/05/20 11:57:43] Phase S Voltage: 120.09 volt
+[2025/05/20 11:57:43] Phase T Voltage: 120.21 volt
+[2025/05/20 11:57:43] Set AC source all phases output 0 volt
+[2025/05/20 11:57:43] AC Source Write >>> '*CLS'
+[2025/05/20 11:57:43] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 11:57:43] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/20 11:57:44] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/20 11:57:45] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/20 11:57:49] Check 5-wire connection Pass
+[2025/05/20 11:57:50] ======================================
+[2025/05/20 11:57:50] [C13 Outlet Voltage Detection Test]
+[2025/05/20 11:57:50] ======================================
+[2025/05/20 11:57:50] ===Check C13 Outlet Voltage Source 1 Phase 1===
+[2025/05/20 11:57:50] Set AC source phase 1 output to 220 volt
+[2025/05/20 11:57:50] AC Source Write >>> '*CLS'
+[2025/05/20 11:57:50] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 11:57:50] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 220'
+[2025/05/20 11:57:51] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/20 11:57:52] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/20 11:57:56] Start C13 voltage calculation
+[2025/05/20 11:57:58] Check CS1P11
+[2025/05/20 11:57:58] C13 AC Voltage: 0 volt
+[2025/05/20 11:57:58] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/20 11:57:58] Retry 1
+[2025/05/20 11:57:58] Start C13 voltage calculation
+[2025/05/20 11:58:00] C13 AC Voltage: 222 volt
+[2025/05/20 11:58:00] Check CS1P12
+[2025/05/20 11:58:00] C13 AC Voltage: 222 volt
+[2025/05/20 11:58:00] ===Check C13 Outlet Voltage Source 1 Phase 2===
+[2025/05/20 11:58:00] Set AC source phase 2 output to 220 volt
+[2025/05/20 11:58:00] AC Source Write >>> '*CLS'
+[2025/05/20 11:58:00] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 11:58:00] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/20 11:58:01] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 220'
+[2025/05/20 11:58:02] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/20 11:58:06] Start C13 voltage calculation
+[2025/05/20 11:58:08] Check CS1P2
+[2025/05/20 11:58:08] C13 AC Voltage: 222 volt
+[2025/05/20 11:58:08] ===Check C13 Outlet Voltage Source 1 Phase 3===
+[2025/05/20 11:58:08] Set AC source phase 3 output to 220 volt
+[2025/05/20 11:58:08] AC Source Write >>> '*CLS'
+[2025/05/20 11:58:08] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 11:58:08] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/20 11:58:09] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/20 11:58:10] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 220'
+[2025/05/20 11:58:14] Start C13 voltage calculation
+[2025/05/20 11:58:16] Check CS1P3
+[2025/05/20 11:58:16] C13 AC Voltage: 222 volt
+[2025/05/20 11:58:16] ===Check C13 Outlet Voltage Source 2 Phase 1===
+[2025/05/20 11:58:16] Set AC source phase 1 output to 220 volt
+[2025/05/20 11:58:16] AC Source Write >>> '*CLS'
+[2025/05/20 11:58:16] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 11:58:16] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 220'
+[2025/05/20 11:58:17] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/20 11:58:18] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/20 11:58:22] Start C13 voltage calculation
+[2025/05/20 11:58:24] Check CS2P11
+[2025/05/20 11:58:24] C13 AC Voltage: 0 volt
+[2025/05/20 11:58:24] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/20 11:58:24] Retry 1
+[2025/05/20 11:58:24] Start C13 voltage calculation
+[2025/05/20 11:58:26] C13 AC Voltage: 222 volt
+[2025/05/20 11:58:26] Check CS2P12
+[2025/05/20 11:58:26] C13 AC Voltage: 222 volt
+[2025/05/20 11:58:26] ===Check C13 Outlet Voltage Source 2 Phase 2===
+[2025/05/20 11:58:26] Set AC source phase 2 output to 220 volt
+[2025/05/20 11:58:26] AC Source Write >>> '*CLS'
+[2025/05/20 11:58:26] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 11:58:26] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/20 11:58:27] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 220'
+[2025/05/20 11:58:28] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/20 11:58:32] Start C13 voltage calculation
+[2025/05/20 11:58:34] Check CS2P2
+[2025/05/20 11:58:34] C13 AC Voltage: 222 volt
+[2025/05/20 11:58:34] ===Check C13 Outlet Voltage Source 2 Phase 3===
+[2025/05/20 11:58:34] Set AC source phase 3 output to 220 volt
+[2025/05/20 11:58:34] AC Source Write >>> '*CLS'
+[2025/05/20 11:58:34] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 11:58:34] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/20 11:58:36] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/20 11:58:37] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 220'
+[2025/05/20 11:58:41] Start C13 voltage calculation
+[2025/05/20 11:58:43] Check CS2P3
+[2025/05/20 11:58:43] C13 AC Voltage: 222 volt
+[2025/05/20 11:58:43] Set AC source all phases output 0 volt
+[2025/05/20 11:58:43] AC Source Write >>> '*CLS'
+[2025/05/20 11:58:43] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 11:58:43] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/20 11:58:44] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/20 11:58:45] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/20 11:58:47] C13 outlet voltage detection test Pass
+[2025/05/20 11:58:47] ======================================
+[2025/05/20 11:58:47] [Relay Control Signals Detection Test w/ Y Cable Connection to C13]
+[2025/05/20 11:58:47] ======================================
+[2025/05/20 11:58:48] Set AC source output to 220 volt
+[2025/05/20 11:58:48] AC Source Write >>> '*CLS'
+[2025/05/20 11:58:48] AC Source Write >>> 'INST:EDIT ALL'
+[2025/05/20 11:58:48] AC Source Write >>> 'VOLTage:AC 220'
+[2025/05/20 11:58:48] Turn AC source output on
+[2025/05/20 11:58:48] AC Source Write >>> 'OUTPut?'
+[2025/05/20 11:58:48] AC Source Return >>> 'ON'
+[2025/05/20 11:58:48] Turn on the Rack Manager
+[2025/05/20 11:58:48] M700 command: [0x53, 0x48, 0x02, 0x06, 0x00, 0x50]
+[2025/05/20 11:58:48] M700 command: [0x53, 0x48, 0x02, 0x07, 0x00, 0x50]
+[2025/05/20 11:58:49] M700 command: [0x53, 0x48, 0x02, 0x03, 0x05, 0x50]
+[2025/05/20 11:59:15] Init to filesystem
+[2025/05/20 11:59:15] Try 1:
+[2025/05/20 11:59:17] b'\r\r\n'
+[2025/05/20 11:59:17] b'login: '
+[2025/05/20 11:59:17] Login phase
+[2025/05/20 11:59:18] b'root\r\n'
+[2025/05/20 11:59:18] b'Password: '
+[2025/05/20 11:59:18] Login phase Pass
+[2025/05/20 11:59:18] Password phase
+[2025/05/20 11:59:18] b'\r\n'
+[2025/05/20 11:59:26] b'WcsCli# '
+[2025/05/20 11:59:26] Password phase Pass
+[2025/05/20 11:59:29] b'set manager relay off -p 4\r\n'
+[2025/05/20 11:59:29] b'    Completion Code: Success\r\n'
+[2025/05/20 11:59:29] b'WcsCli# '
+[2025/05/20 11:59:29] Start C13 voltage calculation
+[2025/05/20 11:59:31] Check RC4 CS2P11
+[2025/05/20 11:59:31] C13 AC Voltage: 0 volt
+[2025/05/20 11:59:31] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/20 11:59:33] b'set manager relay off -p 4\r\n'
+[2025/05/20 11:59:33] b'    Completion Code: Success\r\n'
+[2025/05/20 11:59:33] b'WcsCli# '
+[2025/05/20 11:59:33] Start C13 voltage calculation
+[2025/05/20 11:59:35] Check RC4 CS2P11
+[2025/05/20 11:59:35] C13 AC Voltage: 0 volt
+[2025/05/20 11:59:35] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/20 11:59:36] b'set manager relay off -p 3\r\n'
+[2025/05/20 11:59:36] b'    Completion Code: Success\r\n'
+[2025/05/20 11:59:36] b'WcsCli# '
+[2025/05/20 11:59:36] Start C13 voltage calculation
+[2025/05/20 11:59:39] Check RC3 CS2P12
+[2025/05/20 11:59:39] C13 AC Voltage: 0 volt
+[2025/05/20 11:59:39] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/20 11:59:40] b'set manager relay off -p 3\r\n'
+[2025/05/20 11:59:40] b'    Completion Code: Success\r\n'
+[2025/05/20 11:59:40] b'WcsCli# '
+[2025/05/20 11:59:40] Start C13 voltage calculation
+[2025/05/20 11:59:42] Check RC3 CS2P12
+[2025/05/20 11:59:42] C13 AC Voltage: 0 volt
+[2025/05/20 11:59:42] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/20 11:59:44] b'set manager relay off -p 2\r\n'
+[2025/05/20 11:59:44] b'    Completion Code: Success\r\n'
+[2025/05/20 11:59:44] b'WcsCli# '
+[2025/05/20 11:59:44] Start C13 voltage calculation
+[2025/05/20 11:59:46] Check RC2 CS2P2
+[2025/05/20 11:59:46] C13 AC Voltage: 0 volt
+[2025/05/20 11:59:46] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/20 11:59:47] b'set manager relay off -p 2\r\n'
+[2025/05/20 11:59:47] b'    Completion Code: Success\r\n'
+[2025/05/20 11:59:47] b'WcsCli# '
+[2025/05/20 11:59:47] Start C13 voltage calculation
+[2025/05/20 11:59:49] Check RC2 CS2P2
+[2025/05/20 11:59:49] C13 AC Voltage: 0 volt
+[2025/05/20 11:59:49] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/20 11:59:51] b'set manager relay off -p 1\r\n'
+[2025/05/20 11:59:51] b'    Completion Code: Success\r\n'
+[2025/05/20 11:59:51] b'WcsCli# '
+[2025/05/20 11:59:51] Start C13 voltage calculation
+[2025/05/20 11:59:53] Check RC1 CS2P3
+[2025/05/20 11:59:53] C13 AC Voltage: 0 volt
+[2025/05/20 11:59:53] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/20 11:59:55] b'set manager relay off -p 1\r\n'
+[2025/05/20 11:59:55] b'    Completion Code: Success\r\n'
+[2025/05/20 11:59:55] b'WcsCli# '
+[2025/05/20 11:59:55] Start C13 voltage calculation
+[2025/05/20 11:59:57] Check RC1 CS2P3
+[2025/05/20 11:59:57] C13 AC Voltage: 0 volt
+[2025/05/20 11:59:57] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/20 12:00:58] b'set manager relay on -p 4\r\n'
+[2025/05/20 12:00:58] b'    Completion Code: Success\r\n'
+[2025/05/20 12:00:58] b'WcsCli# '
+[2025/05/20 12:00:58] Start C13 voltage calculation
+[2025/05/20 12:01:00] Check RC4 CS1P11
+[2025/05/20 12:01:00] C13 AC Voltage: 0 volt
+[2025/05/20 12:01:00] C13 AC voltage is out of range (209.00V, 231.00V)
+[2025/05/20 12:01:02] Start C13 voltage calculation
+[2025/05/20 12:01:04] Check RC4 CS1P11
+[2025/05/20 12:01:04] C13 AC Voltage: 222 volt
+[2025/05/20 12:01:04] Start C13 voltage calculation
+[2025/05/20 12:01:06] Check RC4 CS2P11
+[2025/05/20 12:01:06] C13 AC Voltage: 222 volt
+[2025/05/20 12:01:08] b'set manager relay on -p 3\r\n'
+[2025/05/20 12:01:08] b'    Completion Code: Success\r\n'
+[2025/05/20 12:01:08] b'WcsCli# '
+[2025/05/20 12:01:08] Start C13 voltage calculation
+[2025/05/20 12:01:10] Check RC3 CS1P12
+[2025/05/20 12:01:10] C13 AC Voltage: 222 volt
+[2025/05/20 12:01:10] Start C13 voltage calculation
+[2025/05/20 12:01:12] Check RC3 CS2P12
+[2025/05/20 12:01:12] C13 AC Voltage: 222 volt
+[2025/05/20 12:01:13] b'set manager relay on -p 2\r\n'
+[2025/05/20 12:01:13] b'    Completion Code: Success\r\n'
+[2025/05/20 12:01:13] b'WcsCli# '
+[2025/05/20 12:01:13] Start C13 voltage calculation
+[2025/05/20 12:01:15] Check RC2 CS1P2
+[2025/05/20 12:01:15] C13 AC Voltage: 222 volt
+[2025/05/20 12:01:15] Start C13 voltage calculation
+[2025/05/20 12:01:17] Check RC2 CS2P2
+[2025/05/20 12:01:17] C13 AC Voltage: 222 volt
+[2025/05/20 12:01:19] b'set manager relay on -p 1\r\n'
+[2025/05/20 12:01:19] b'    Completion Code: Success\r\n'
+[2025/05/20 12:01:19] b'WcsCli# '
+[2025/05/20 12:01:19] Start C13 voltage calculation
+[2025/05/20 12:01:21] Check RC1 CS1P3
+[2025/05/20 12:01:21] C13 AC Voltage: 222 volt
+[2025/05/20 12:01:21] Start C13 voltage calculation
+[2025/05/20 12:01:23] Check RC1 CS2P3
+[2025/05/20 12:01:23] C13 AC Voltage: 222 volt
+[2025/05/20 12:01:28] Relay control signals detection test Pass
+[2025/05/20 12:01:28] Test elapsed time: 0:04:27.390001
+[2025/05/20 12:01:30] b'show manager fru -b mb\r\n'
+[2025/05/20 12:01:30] b'    Board Address1: E8F673EF15A8\r\n'
+[2025/05/20 12:01:30] b'    Board Address2: E8F673EF15A9\r\n'
+[2025/05/20 12:01:30] b'    Board Build: Prod\r\n'
+[2025/05/20 12:01:30] b'    Board Fru Id: v1.0\r\n'
+[2025/05/20 12:01:30] b'    Board Manufacturer: Ingrasys\r\n'
+[2025/05/20 12:01:30] b'    Board Manufacturer Date: Tue Dec 10 18:00:00 2024\r\n'
+[2025/05/20 12:01:30] b'    Board Name: M2010 - MB\r\n'
+[2025/05/20 12:01:30] b'    Board Part Number: M1039935-001\r\n'
+[2025/05/20 12:01:30] b'    Board Serial: B99354491036000C\r\n'
+[2025/05/20 12:01:30] b'    Board Version: F\r\n'
+[2025/05/20 12:01:30] b'    Product Assettag: N/A\r\n'
+[2025/05/20 12:01:30] b'    Product Build: K\r\n'
+[2025/05/20 12:01:30] b'    Product Fru Id: v1.0\r\n'
+[2025/05/20 12:01:30] b'    Product Manufacturer: Ingrasys\r\n'
+[2025/05/20 12:01:30] b'    Product Name: M2010 - Mainboard\r\n'
+[2025/05/20 12:01:30] b'    Product Serial: P13194491036000C\r\n'
+[2025/05/20 12:01:30] b'    Product Subproduct: N/A\r\n'
+[2025/05/20 12:01:30] b'    Product Version: M1041319-001\r\n'
+[2025/05/20 12:01:30] b'    Completion Code: Success\r\n'
+[2025/05/20 12:01:30] b'WcsCli# '
+[2025/05/20 12:01:30] ######################################################################
+[2025/05/20 12:01:30] Test2: NIC LED Test
+[2025/05/20 12:01:30] Timestamp: [2025-05-20 12:01:30]
+[2025/05/20 12:01:30] ######################################################################
+[2025/05/20 12:01:30] Check NIC1 and NIC2 LED visually
+[2025/05/20 12:02:56] Check if both NIC1 and NIC2 are lighted: y
+[2025/05/20 12:02:56] NIC LED test Pass
+[2025/05/20 12:02:56] Turn AC source output off
+[2025/05/20 12:02:56] AC Source Write >>> 'OUTPut?'
+[2025/05/20 12:02:56] AC Source Return >>> 'ON'
+[2025/05/20 12:02:56] AC Source Write >>> 'OUTPut OFF'
+[2025/05/20 12:02:58] Output is 'ON' then turn 'OFF'
+[2025/05/20 12:02:58] Test elapsed time: 0:01:28.320000
+[2025/05/20 12:02:58] ######################################################################
+[2025/05/20 12:02:58] Test3: RM1 Bootstrap, DC Throttle, and Present Test
+[2025/05/20 12:02:58] Timestamp: [2025-05-20 12:02:58]
+[2025/05/20 12:02:58] ######################################################################
+[2025/05/20 12:02:59] Set AC source phase 1 output to 220 volt
+[2025/05/20 12:02:59] AC Source Write >>> '*CLS'
+[2025/05/20 12:02:59] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 12:02:59] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 220'
+[2025/05/20 12:03:00] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/20 12:03:01] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/20 12:03:04] Turn AC source output on
+[2025/05/20 12:03:04] AC Source Write >>> 'OUTPut?'
+[2025/05/20 12:03:04] AC Source Return >>> 'OFF'
+[2025/05/20 12:03:04] Output is 'OFF' then turn 'ON'
+[2025/05/20 12:03:04] AC Source Write >>> 'OUTPut ON'
+[2025/05/20 12:03:04] Turn on the Rack Manager
+[2025/05/20 12:03:04] M700 command: [0x53, 0x48, 0x02, 0x06, 0x00, 0x50]
+[2025/05/20 12:03:04] M700 command: [0x53, 0x48, 0x02, 0x07, 0x00, 0x50]
+[2025/05/20 12:03:05] M700 command: [0x53, 0x48, 0x02, 0x03, 0x05, 0x50]
+[2025/05/20 12:03:31] Init to filesystem
+[2025/05/20 12:03:31] Try 1:
+[2025/05/20 12:03:32] b'\r\r\n'
+[2025/05/20 12:03:32] b'login: '
+[2025/05/20 12:03:32] Login phase
+[2025/05/20 12:03:33] b'root\r\n'
+[2025/05/20 12:03:33] b'Password: '
+[2025/05/20 12:03:33] Login phase Pass
+[2025/05/20 12:03:34] Password phase
+[2025/05/20 12:03:34] b'\r\n'
+[2025/05/20 12:03:42] b'WcsCli# '
+[2025/05/20 12:03:42] Password phase Pass
+[2025/05/20 12:03:42] ======================================
+[2025/05/20 12:03:42] [Bootstrap Test]
+[2025/05/20 12:03:42] ======================================
+[2025/05/20 12:03:42] Set network interface eth0 to DHCP
+[2025/05/20 12:03:43] b'set network dhcp -i eth0\r\n'
+[2025/05/20 12:03:43] b'    Completion Code: Success\r\n'
+[2025/05/20 12:03:43] b'WcsCli# '
+[2025/05/20 12:03:45] b'sh network interface -i eth0\r\n'
+[2025/05/20 12:03:45] b'    Health: Ok\r\n'
+[2025/05/20 12:03:45] b'    IPv4Addresses: \r\n'
+[2025/05/20 12:03:45] b'        Address: 192.168.0.120\r\n'
+[2025/05/20 12:03:45] b'        AddressOrigin: DHCP\r\n'
+[2025/05/20 12:03:45] b'        Gateway: 192.168.0.254\r\n'
+[2025/05/20 12:03:45] b'        SubnetMask: 255.255.255.0\r\n'
+[2025/05/20 12:03:45] b'    IPv6Addresses: \r\n'
+[2025/05/20 12:03:45] b'        Address: \r\n'
+[2025/05/20 12:03:45] b'        AddressOrigin: \r\n'
+[2025/05/20 12:03:45] b'        PrefixLength: \r\n'
+[2025/05/20 12:03:45] b'    Id: eth0\r\n'
+[2025/05/20 12:03:45] b'    LinkStatus: LinkUp\r\n'
+[2025/05/20 12:03:45] b'    MACAddress: E8:F6:73:EF:15:A8\r\n'
+[2025/05/20 12:03:45] b'    State: Up\r\n'
+[2025/05/20 12:03:45] b'    Completion Code: Success\r\n'
+[2025/05/20 12:03:45] b'WcsCli# '
+[2025/05/20 12:03:45] Turn off the Rack Manager
+[2025/05/20 12:03:45] M700 command: [0x53, 0x48, 0x02, 0x03, 0x03, 0x50]
+[2025/05/20 12:03:50] Change the boot sequence to U-Boot
+[2025/05/20 12:03:50] M700 command: [0x53, 0x48, 0x02, 0x03, 0x01, 0x50]
+[2025/05/20 12:04:11] b'\x00\x00'
+[2025/05/20 12:04:13] Turn off the Rack Manager
+[2025/05/20 12:04:13] M700 command: [0x53, 0x48, 0x02, 0x03, 0x03, 0x50]
+[2025/05/20 12:04:13] Turn on the Rack Manager
+[2025/05/20 12:04:13] M700 command: [0x53, 0x48, 0x02, 0x06, 0x00, 0x50]
+[2025/05/20 12:04:14] M700 command: [0x53, 0x48, 0x02, 0x07, 0x00, 0x50]
+[2025/05/20 12:04:14] M700 command: [0x53, 0x48, 0x02, 0x03, 0x05, 0x50]
+[2025/05/20 12:04:41] Init to filesystem
+[2025/05/20 12:04:41] Try 1:
+[2025/05/20 12:04:43] b'\r\r\n'
+[2025/05/20 12:04:43] b'login: '
+[2025/05/20 12:04:43] Login phase
+[2025/05/20 12:04:44] b'root\r\n'
+[2025/05/20 12:04:44] b'Password: '
+[2025/05/20 12:04:44] Login phase Pass
+[2025/05/20 12:04:44] Password phase
+[2025/05/20 12:04:45] b'\r\n'
+[2025/05/20 12:04:52] b'WcsCli# '
+[2025/05/20 12:04:52] Password phase Pass
+[2025/05/20 12:04:52] Bootstrap test Pass
+[2025/05/20 12:04:52] ======================================
+[2025/05/20 12:04:52] [RM1 DC_THROTTLE and RM_PRESENT Test]
+[2025/05/20 12:04:52] ======================================
+[2025/05/20 12:04:52] === DC_THROTTLE Enable Test ===
+[2025/05/20 12:04:52] Set DC_THROTTLE enable
+[2025/05/20 12:04:53] b'set manager powermeter alert -e 0 -d 1\r\n'
+[2025/05/20 12:04:54] b'    Completion Code: Success\r\n'
+[2025/05/20 12:04:54] b'WcsCli# '
+[2025/05/20 12:04:54] Check DC_THROTTLE status
+[2025/05/20 12:04:56] b'sh manager powermeter alert\r\n'
+[2025/05/20 12:04:56] b'    AlertLimitInWatts: 19970.0\r\n'
+[2025/05/20 12:04:56] b'    IsAlertActive: False\r\n'
+[2025/05/20 12:04:56] b'    IsAlertEnabled: False\r\n'
+[2025/05/20 12:04:56] b'    IsDcThrottleActive: False\r\n'
+[2025/05/20 12:04:56] b'    IsDcThrottleEnabled: True\r\n'
+[2025/05/20 12:04:56] b'    PowerDrawnInWatts: 0.0\r\n'
+[2025/05/20 12:04:56] b'    Completion Code: Success\r\n'
+[2025/05/20 12:04:56] b'WcsCli# '
+[2025/05/20 12:04:56] DC_THROTTLE enable test Pass
+[2025/05/20 12:04:56] === DC_THROTTLE Activate Test ===
+[2025/05/20 12:04:56] Set DC_THROTTLE activate
+[2025/05/20 12:04:56] M700 command: [0x53, 0x48, 0x02, 0x06, 0x00, 0x50]
+[2025/05/20 12:04:57] M700 command: [0x53, 0x48, 0x02, 0x07, 0x00, 0x50]
+[2025/05/20 12:04:58] M700 command: [0x53, 0x48, 0x02, 0x03, 0x00, 0x50]
+[2025/05/20 12:05:03] Check DC_THROTTLE status
+[2025/05/20 12:05:04] b'sh manager powermeter alert\r\n'
+[2025/05/20 12:05:04] b'    AlertLimitInWatts: 19970.0\r\n'
+[2025/05/20 12:05:04] b'    IsAlertActive: False\r\n'
+[2025/05/20 12:05:04] b'    IsAlertEnabled: False\r\n'
+[2025/05/20 12:05:04] b'    IsDcThrottleActive: True\r\n'
+[2025/05/20 12:05:04] b'    IsDcThrottleEnabled: True\r\n'
+[2025/05/20 12:05:04] b'    PowerDrawnInWatts: 0.0\r\n'
+[2025/05/20 12:05:04] b'    Completion Code: Success\r\n'
+[2025/05/20 12:05:04] b'WcsCli# '
+[2025/05/20 12:05:04] DC_THROTTLE active test Pass
+[2025/05/20 12:05:04] === DC_THROTTLE Inactivate Test ===
+[2025/05/20 12:05:04] Set DC_THROTTLE inactivate
+[2025/05/20 12:05:04] M700 command: [0x53, 0x48, 0x02, 0x03, 0x05, 0x50]
+[2025/05/20 12:05:05] Check DC_THROTTLE status
+[2025/05/20 12:05:07] b'sh manager powermeter alert\r\n'
+[2025/05/20 12:05:07] b'    AlertLimitInWatts: 19970.0\r\n'
+[2025/05/20 12:05:07] b'    IsAlertActive: False\r\n'
+[2025/05/20 12:05:07] b'    IsAlertEnabled: False\r\n'
+[2025/05/20 12:05:07] b'    IsDcThrottleActive: False\r\n'
+[2025/05/20 12:05:07] b'    IsDcThrottleEnabled: True\r\n'
+[2025/05/20 12:05:07] b'    PowerDrawnInWatts: 0.0\r\n'
+[2025/05/20 12:05:07] b'    Completion Code: Success\r\n'
+[2025/05/20 12:05:07] b'WcsCli# '
+[2025/05/20 12:05:07] DC_THROTTLE inactive test Pass
+[2025/05/20 12:05:07] === DC_THROTTLE Disable Test ===
+[2025/05/20 12:05:07] Set DC_THROTTLE disable
+[2025/05/20 12:05:08] b'set manager powermeter alert -e 0 -d 0\r\n'
+[2025/05/20 12:05:08] b'    Completion Code: Success\r\n'
+[2025/05/20 12:05:08] b'WcsCli# '
+[2025/05/20 12:05:08] Check DC_THROTTLE status
+[2025/05/20 12:05:10] b'sh manager powermeter alert\r\n'
+[2025/05/20 12:05:10] b'    AlertLimitInWatts: 19970.0\r\n'
+[2025/05/20 12:05:10] b'    IsAlertActive: False\r\n'
+[2025/05/20 12:05:10] b'    IsAlertEnabled: False\r\n'
+[2025/05/20 12:05:10] b'    IsDcThrottleActive: False\r\n'
+[2025/05/20 12:05:10] b'    IsDcThrottleEnabled: False\r\n'
+[2025/05/20 12:05:10] b'    PowerDrawnInWatts: 0.0\r\n'
+[2025/05/20 12:05:10] b'    Completion Code: Success\r\n'
+[2025/05/20 12:05:10] b'WcsCli# '
+[2025/05/20 12:05:10] DC_THROTTLE disable test Pass
+[2025/05/20 12:05:10] === RM_PRESENT Test ===
+[2025/05/20 12:05:10] Get RM_PRESENT signal
+[2025/05/20 12:05:10] M700 command: [0x53, 0x48, 0x02, 0x07, 0xF0, 0x50]
+[2025/05/20 12:05:11] M700 command: [0x53, 0x48, 0x01, 0x01, 0x53, 0x49, 0x01, 0x50]
+[2025/05/20 12:05:13] b'%'
+[2025/05/20 12:05:17] Check RM_PRESENT signal
+[2025/05/20 12:05:17] RM_PRESENT test Pass
+[2025/05/20 12:05:17] RM1 DC_THROTTLE and RM_PRESENT test Pass
+[2025/05/20 12:05:18] Test elapsed time: 0:02:19.109999
+[2025/05/20 12:05:18] ######################################################################
+[2025/05/20 12:05:18] Test4: Firmware and Time Check
+[2025/05/20 12:05:18] Timestamp: [2025-05-20 12:05:18]
+[2025/05/20 12:05:18] ######################################################################
+[2025/05/20 12:05:18] ======================================
+[2025/05/20 12:05:18] [Check Firmware]
+[2025/05/20 12:05:18] ======================================
+[2025/05/20 12:05:18] Checked the TFTP application, IP, and path: y
+[2025/05/20 12:05:19] b'sh version\r\n'
+[2025/05/20 12:05:19] b' \r\n'
+[2025/05/20 12:05:19] b'--------------------------------------------------------\r\n'
+[2025/05/20 12:05:19] b'  Microsoft OCS Rack Manager software version summary\r\n'
+[2025/05/20 12:05:19] b' \r\n'
+[2025/05/20 12:05:19] b'  Package version    : 1.1.8.16\r\n'
+[2025/05/20 12:05:19] b' \r\n'
+[2025/05/20 12:05:19] b'  Rootfs version     : 1.1.8.16\r\n'
+[2025/05/20 12:05:19] b'  U-Boot version     : 1.1.5.1\r\n'
+[2025/05/20 12:05:19] b'  Kernel version     : 1.1.8.16\r\n'
+[2025/05/20 12:05:19] b'  Devicetree version : 1.1.8.16\r\n'
+[2025/05/20 12:05:19] b' \r\n'
+[2025/05/20 12:05:19] b'  PRU FW version     : 0.15\r\n'
+[2025/05/20 12:05:19] b' \r\n'
+[2025/05/20 12:05:19] b'--------------------------------------------------------\r\n'
+[2025/05/20 12:05:19] b' \r\n'
+[2025/05/20 12:05:19] b'\r\n'
+[2025/05/20 12:05:19] b'WcsCli# '
+[2025/05/20 12:05:21] b'sh manager fwupdate list\r\n'
+[2025/05/20 12:05:21] b'    active: 1.1.8.16\r\n'
+[2025/05/20 12:05:21] b'    factory: 1.1.8.16\r\n'
+[2025/05/20 12:05:21] b'    rollback: 1.1.8.16\r\n'
+[2025/05/20 12:05:21] b'    upgrade: N/A\r\n'
+[2025/05/20 12:05:21] b'    Completion Code: Success\r\n'
+[2025/05/20 12:05:21] b'WcsCli# '
+[2025/05/20 12:05:21] Check QSPI and EMMC firmware version Pass
+[2025/05/20 12:05:21] ======================================
+[2025/05/20 12:05:21] [Check Time]
+[2025/05/20 12:05:21] ======================================
+[2025/05/20 12:05:21] Check time synchronicity
+[2025/05/20 12:05:21] === Original Time ===
+[2025/05/20 12:05:22] b'show manager time\r\n'
+[2025/05/20 12:05:22] b'    DateTime: 2025-05-20 12:10:37\r\n'
+[2025/05/20 12:05:22] b'    Completion Code: Success\r\n'
+[2025/05/20 12:05:22] b'WcsCli# '
+[2025/05/20 12:05:22] RM filesystem datetime: 2025/05/20 12:10:37
+[2025/05/20 12:05:22] Host PC datetime: 2025/05/20 12:05:22
+[2025/05/20 12:05:22] Diff seconds: |63883339522 - 63883339837| = 314
+[2025/05/20 12:05:22] === Sync Time ===
+[2025/05/20 12:05:22] Host PC datetime: 2025/05/20 12:05:22
+[2025/05/20 12:05:22] Sync Date and Time with Host PC
+[2025/05/20 12:05:24] b'set manager time -y 2025 -m 5 -d 20 -r 12 -n 5 -s 22\r\n'
+[2025/05/20 12:05:24] b'    Completion Code: Success\r\n'
+[2025/05/20 12:05:24] b'WcsCli# '
+[2025/05/20 12:05:26] b'show manager time\r\n'
+[2025/05/20 12:05:26] b'    DateTime: 2025-05-20 12:05:23\r\n'
+[2025/05/20 12:05:26] b'    Completion Code: Success\r\n'
+[2025/05/20 12:05:26] b'WcsCli# '
+[2025/05/20 12:05:26] RM filesystem datetime: 2025/05/20 12:05:23
+[2025/05/20 12:05:27] b'set manager reboot\r\n'
+[2025/05/20 12:05:27] b'    Status Description: Manager will reboot in 5 seconds.\r\n'
+[2025/05/20 12:05:27] b'    Completion Code: Success\r\n'
+[2025/05/20 12:05:27] b'WcsCli# '
+[2025/05/20 12:06:09] Init to filesystem
+[2025/05/20 12:06:09] Try 1:
+[2025/05/20 12:06:11] b'\r\r\n'
+[2025/05/20 12:06:11] b'login: '
+[2025/05/20 12:06:11] Login phase
+[2025/05/20 12:06:12] b'root\r\n'
+[2025/05/20 12:06:12] b'Password: '
+[2025/05/20 12:06:12] Login phase Pass
+[2025/05/20 12:06:12] Password phase
+[2025/05/20 12:06:13] b'\r\n'
+[2025/05/20 12:06:20] b'WcsCli# '
+[2025/05/20 12:06:20] Password phase Pass
+[2025/05/20 12:06:20] === Check Synced Time ===
+[2025/05/20 12:06:22] b'show manager time\r\n'
+[2025/05/20 12:06:22] b'    DateTime: 2025-05-20 12:06:19\r\n'
+[2025/05/20 12:06:22] b'    Completion Code: Success\r\n'
+[2025/05/20 12:06:22] b'WcsCli# '
+[2025/05/20 12:06:22] RM filesystem datetime: 2025/05/20 12:06:19
+[2025/05/20 12:06:22] Host PC datetime: 2025/05/20 12:06:22
+[2025/05/20 12:06:22] Diff seconds: |63883339582 - 63883339579| = 3
+[2025/05/20 12:06:22] Check time Pass
+[2025/05/20 12:06:22] Test elapsed time: 0:01:04.620001
+[2025/05/20 12:06:22] ######################################################################
+[2025/05/20 12:06:22] Test5: UART Test
+[2025/05/20 12:06:22] Timestamp: [2025-05-20 12:06:22]
+[2025/05/20 12:06:22] ######################################################################
+[2025/05/20 12:06:22] UART S2 test
+[2025/05/20 12:06:22] Try 1:
+[2025/05/20 12:06:23] b'root\r\n'
+[2025/05/20 12:06:23] b'Password: '
+[2025/05/20 12:06:24] b'\r\n'
+[2025/05/20 12:06:24] b'Last login: Tue May 20 12:06:10 +0000 2025 on /dev/ttyS1.\r\n'
+[2025/05/20 12:06:27] UART S2 test Pass
+[2025/05/20 12:06:27] Test elapsed time: 0:00:04.569999
+[2025/05/20 12:06:27] ######################################################################
+[2025/05/20 12:06:27] Test6: RJ4 Test
+[2025/05/20 12:06:27] Timestamp: [2025-05-20 12:06:27]
+[2025/05/20 12:06:27] ######################################################################
+[2025/05/20 12:06:27] Try 1:
+[2025/05/20 12:06:27] b'start aux console\r\n'
+[2025/05/20 12:06:27] b'\r\n'
+[2025/05/20 12:06:27] Try 2:
+[2025/05/20 12:06:29] b'\r\n'
+[2025/05/20 12:06:29] b'WcsCli# start aux console\r\n'
+[2025/05/20 12:06:29] b'\r\n'
+[2025/05/20 12:06:29] b'\r\r\r\n'
+[2025/05/20 12:06:29] b'User Name:\r\n'
+[2025/05/20 12:06:29] b'\r\r\r\n'
+[2025/05/20 12:06:29] b'User Name:'
+[2025/05/20 12:06:29] Access Marvell console successfully
+[2025/05/20 12:06:29] RJ4 test Pass
+[2025/05/20 12:06:31] b'\r\n'
+[2025/05/20 12:06:31] b'\r\n'
+[2025/05/20 12:06:31] b'WcsCli# '
+[2025/05/20 12:06:31] Test elapsed time: 0:00:03.990000
+[2025/05/20 12:06:31] ######################################################################
+[2025/05/20 12:06:31] Test7: ETH Test
+[2025/05/20 12:06:31] Timestamp: [2025-05-20 12:06:31]
+[2025/05/20 12:06:31] ######################################################################
+[2025/05/20 12:06:31] ======================================
+[2025/05/20 12:06:31] [Ethernet eth0 Static IP Setting]
+[2025/05/20 12:06:31] ======================================
+[2025/05/20 12:06:31] Try: 1
+[2025/05/20 12:06:31] Set eth0 IP address to 192.168.0.100, mask to 255.255.255.0, and gateway to 192.168.0.1
+[2025/05/20 12:06:31] b'set network static -i eth0 -a 192.168.0.100 -s 255.255.255.0 -g 192.168. \r0.1\r\n'
+[2025/05/20 12:06:33] b'    Completion Code: Success\r\n'
+[2025/05/20 12:06:33] b'WcsCli# '
+[2025/05/20 12:06:43] Check eth0 IP setting
+[2025/05/20 12:06:44] b'sh network interface -i eth0\r\n'
+[2025/05/20 12:06:44] b'    Health: Ok\r\n'
+[2025/05/20 12:06:44] b'    IPv4Addresses: \r\n'
+[2025/05/20 12:06:44] b'        Address: 192.168.0.100\r\n'
+[2025/05/20 12:06:44] b'        AddressOrigin: Static\r\n'
+[2025/05/20 12:06:44] b'        Gateway: 192.168.0.1\r\n'
+[2025/05/20 12:06:44] b'        SubnetMask: 255.255.255.0\r\n'
+[2025/05/20 12:06:44] b'    IPv6Addresses: \r\n'
+[2025/05/20 12:06:44] b'        Address: fe80::eaf6:73ff:feef:15a8\r\n'
+[2025/05/20 12:06:44] b'        AddressOrigin: \r\n'
+[2025/05/20 12:06:44] b'        PrefixLength: 64\r\n'
+[2025/05/20 12:06:44] b'    Id: eth0\r\n'
+[2025/05/20 12:06:44] b'    LinkStatus: LinkUp\r\n'
+[2025/05/20 12:06:44] b'    MACAddress: E8:F6:73:EF:15:A8\r\n'
+[2025/05/20 12:06:44] b'    State: Up\r\n'
+[2025/05/20 12:06:44] b'    Completion Code: Success\r\n'
+[2025/05/20 12:06:44] b'WcsCli# '
+[2025/05/20 12:06:44] Set static IP eth0 Pass
+[2025/05/20 12:06:44] ======================================
+[2025/05/20 12:06:44] [Ethernet eth1 Static IP Setting]
+[2025/05/20 12:06:44] ======================================
+[2025/05/20 12:06:44] Try: 1
+[2025/05/20 12:06:44] Set eth1 IP address to 192.168.1.100, mask to 255.255.255.0, and gateway to 192.168.0.1
+[2025/05/20 12:06:46] b'set network static -i eth1 -a 192.168.1.100 -s 255.255.255.0 -g 192.168. \r0.1\r\n'
+[2025/05/20 12:06:46] b'    Completion Code: Success\r\n'
+[2025/05/20 12:06:46] b'WcsCli# '
+[2025/05/20 12:06:56] Check eth1 IP setting
+[2025/05/20 12:06:58] b'sh network interface -i eth1\r\n'
+[2025/05/20 12:06:58] b'    Health: Ok\r\n'
+[2025/05/20 12:06:58] b'    IPv4Addresses: \r\n'
+[2025/05/20 12:06:58] b'        Address: 192.168.1.100\r\n'
+[2025/05/20 12:06:58] b'        AddressOrigin: Static\r\n'
+[2025/05/20 12:06:58] b'        Gateway: 192.168.0.1\r\n'
+[2025/05/20 12:06:58] b'        SubnetMask: 255.255.255.0\r\n'
+[2025/05/20 12:06:58] b'    IPv6Addresses: \r\n'
+[2025/05/20 12:06:58] b'        Address: fe80::eaf6:73ff:feef:15a9\r\n'
+[2025/05/20 12:06:58] b'        AddressOrigin: \r\n'
+[2025/05/20 12:06:58] b'        PrefixLength: 64\r\n'
+[2025/05/20 12:06:58] b'    Id: eth1\r\n'
+[2025/05/20 12:06:58] b'    LinkStatus: LinkUp\r\n'
+[2025/05/20 12:06:58] b'    MACAddress: E8:F6:73:EF:15:A9\r\n'
+[2025/05/20 12:06:58] b'    State: Up\r\n'
+[2025/05/20 12:06:58] b'    Completion Code: Success\r\n'
+[2025/05/20 12:06:58] b'WcsCli# '
+[2025/05/20 12:06:58] Set static IP eth1 Pass
+[2025/05/20 12:06:58] ======================================
+[2025/05/20 12:06:58] [Ethernet IP Connection Check]
+[2025/05/20 12:06:58] ======================================
+[2025/05/20 12:06:58] Expect to receive all the packets in this test since the RM is on
+[2025/05/20 12:06:58] Turn firewall off
+[2025/05/20 12:06:59] b'set manager firewall off\r\n'
+[2025/05/20 12:06:59] b'    Completion Code: Success\r\n'
+[2025/05/20 12:06:59] b'WcsCli# '
+[2025/05/20 12:07:00] Check ethernet IP connection
+[2025/05/20 12:07:00] (Try 1) Ping 192.168.0.100, packets: 3
+[2025/05/20 12:07:00] Windows Command: ping -n 3 192.168.0.100
+[2025/05/20 12:07:00] (Try 1) Ping 192.168.1.100, packets: 3
+[2025/05/20 12:07:00] Windows Command: ping -n 3 192.168.1.100
+[2025/05/20 12:07:02] Windows Response: b'\r\nHaciendo ping a 192.168.1.100 con 32 bytes de datos:\r\nRespuesta desde 192.168.1.100: bytes=32 tiempo<1m TTL=64\r\nRespuesta desde 192.168.1.100: bytes=32 tiempo<1m TTL=64\r\nRespuesta desde 192.168.1.100: bytes=32 tiempo<1m TTL=64\r\n\r\nEstad\xa8\xaasticas de ping para 192.168.1.100:\r\n    Paquetes: enviados = 3, recibidos = 3, perdidos = 0\r\n    (0% perdidos),\r\nTiempos aproximados de ida y vuelta en milisegundos:\r\n    M\xa8\xaanimo = 0ms, M\xa8\xa2ximo = 0ms, Media = 0ms\r\n'
+[2025/05/20 12:07:02] Paquetes: enviados = 3, recibidos = 3, perdidos = 0
+[2025/05/20 12:07:02] Windows Response: b'\r\nHaciendo ping a 192.168.0.100 con 32 bytes de datos:\r\nRespuesta desde 192.168.0.100: bytes=32 tiempo<1m TTL=64\r\nRespuesta desde 192.168.0.100: bytes=32 tiempo<1m TTL=64\r\nRespuesta desde 192.168.0.100: bytes=32 tiempo<1m TTL=64\r\n\r\nEstad\xa8\xaasticas de ping para 192.168.0.100:\r\n    Paquetes: enviados = 3, recibidos = 3, perdidos = 0\r\n    (0% perdidos),\r\nTiempos aproximados de ida y vuelta en milisegundos:\r\n    M\xa8\xaanimo = 0ms, M\xa8\xa2ximo = 0ms, Media = 0ms\r\n'
+[2025/05/20 12:07:02] Paquetes: enviados = 3, recibidos = 3, perdidos = 0
+[2025/05/20 12:07:02] Turn firewall on
+[2025/05/20 12:07:03] b'set manager firewall on\r\n'
+[2025/05/20 12:07:04] b'    Completion Code: Success\r\n'
+[2025/05/20 12:07:04] b'WcsCli# '
+[2025/05/20 12:07:04] LAN port check Pass
+[2025/05/20 12:07:04] Test elapsed time: 0:00:33.260000
+[2025/05/20 12:07:04] ######################################################################
+[2025/05/20 12:07:04] Test8: RM1 RM On/Off Test
+[2025/05/20 12:07:04] Timestamp: [2025-05-20 12:07:04]
+[2025/05/20 12:07:04] ######################################################################
+[2025/05/20 12:07:04] ======================================
+[2025/05/20 12:07:04] [RM Turn Off Check]
+[2025/05/20 12:07:04] ======================================
+[2025/05/20 12:07:04] Turn off the Rack Manager
+[2025/05/20 12:07:04] M700 command: [0x53, 0x48, 0x02, 0x07, 0x00, 0x50]
+[2025/05/20 12:07:05] M700 command: [0x53, 0x48, 0x02, 0x03, 0x07, 0x50]
+[2025/05/20 12:07:06] ======================================
+[2025/05/20 12:07:06] [Ethernet IP Connection Check]
+[2025/05/20 12:07:06] ======================================
+[2025/05/20 12:07:06] Expect to lose all the packets in this test since the RM is off
+[2025/05/20 12:07:06] Check ethernet IP connection
+[2025/05/20 12:07:06] (Try 1) Ping 192.168.0.100, packets: 3
+[2025/05/20 12:07:06] Windows Command: ping -n 3 192.168.0.100
+[2025/05/20 12:07:06] (Try 1) Ping 192.168.1.100, packets: 3
+[2025/05/20 12:07:06] Windows Command: ping -n 3 192.168.1.100
+[2025/05/20 12:07:20] Windows Response: b'\r\nHaciendo ping a 192.168.0.100 con 32 bytes de datos:\r\nTiempo de espera agotado para esta solicitud.\r\nTiempo de espera agotado para esta solicitud.\r\nTiempo de espera agotado para esta solicitud.\r\n\r\nEstad\xa8\xaasticas de ping para 192.168.0.100:\r\n    Paquetes: enviados = 3, recibidos = 0, perdidos = 3\r\n    (100% perdidos),\r\n'
+[2025/05/20 12:07:20] Paquetes: enviados = 3, recibidos = 0, perdidos = 3
+[2025/05/20 12:07:20] Windows Response: b'\r\nHaciendo ping a 192.168.1.100 con 32 bytes de datos:\r\nTiempo de espera agotado para esta solicitud.\r\nTiempo de espera agotado para esta solicitud.\r\nTiempo de espera agotado para esta solicitud.\r\n\r\nEstad\xa8\xaasticas de ping para 192.168.1.100:\r\n    Paquetes: enviados = 3, recibidos = 0, perdidos = 3\r\n    (100% perdidos),\r\n'
+[2025/05/20 12:07:20] Paquetes: enviados = 3, recibidos = 0, perdidos = 3
+[2025/05/20 12:07:20] LAN port check Pass
+[2025/05/20 12:07:20] RM turn off check Pass
+[2025/05/20 12:07:20] ======================================
+[2025/05/20 12:07:20] [RM Turn On Check]
+[2025/05/20 12:07:20] ======================================
+[2025/05/20 12:07:20] Turn on the Rack Manager
+[2025/05/20 12:07:20] M700 command: [0x53, 0x48, 0x02, 0x06, 0x00, 0x50]
+[2025/05/20 12:07:20] M700 command: [0x53, 0x48, 0x02, 0x07, 0x00, 0x50]
+[2025/05/20 12:07:21] M700 command: [0x53, 0x48, 0x02, 0x03, 0x05, 0x50]
+[2025/05/20 12:07:48] Init to filesystem
+[2025/05/20 12:07:48] Try 1:
+[2025/05/20 12:07:49] b'\r\r\n'
+[2025/05/20 12:07:49] b'login: '
+[2025/05/20 12:07:49] Login phase
+[2025/05/20 12:07:51] b'root\r\n'
+[2025/05/20 12:07:51] b'Password: '
+[2025/05/20 12:07:51] Login phase Pass
+[2025/05/20 12:07:51] Password phase
+[2025/05/20 12:07:51] b'\r\n'
+[2025/05/20 12:07:59] b'WcsCli# '
+[2025/05/20 12:07:59] Password phase Pass
+[2025/05/20 12:07:59] RM turn on check Pass
+[2025/05/20 12:07:59] Test elapsed time: 0:00:55.160001
+[2025/05/20 12:07:59] ######################################################################
+[2025/05/20 12:07:59] Test9: Update FRU
+[2025/05/20 12:07:59] Timestamp: [2025-05-20 12:07:59]
+[2025/05/20 12:07:59] ######################################################################
+[2025/05/20 12:07:59] Set network interface eth0 to static
+[2025/05/20 12:08:01] b'set network static -i eth0 -a 192.168.0.100 -s 255.255.255.0 -g 192.168. \r0.1\r\n'
+[2025/05/20 12:08:01] b'    Completion Code: Success\r\n'
+[2025/05/20 12:08:01] b'WcsCli# '
+[2025/05/20 12:08:03] b'show manager fru -b mb\r\n'
+[2025/05/20 12:08:03] b'    Board Address1: E8F673EF15A8\r\n'
+[2025/05/20 12:08:03] b'    Board Address2: E8F673EF15A9\r\n'
+[2025/05/20 12:08:03] b'    Board Build: Prod\r\n'
+[2025/05/20 12:08:03] b'    Board Fru Id: v1.0\r\n'
+[2025/05/20 12:08:03] b'    Board Manufacturer: Ingrasys\r\n'
+[2025/05/20 12:08:03] b'    Board Manufacturer Date: Tue Dec 10 18:00:00 2024\r\n'
+[2025/05/20 12:08:03] b'    Board Name: M2010 - MB\r\n'
+[2025/05/20 12:08:03] b'    Board Part Number: M1039935-001\r\n'
+[2025/05/20 12:08:03] b'    Board Serial: B99354491036000C\r\n'
+[2025/05/20 12:08:03] b'    Board Version: F\r\n'
+[2025/05/20 12:08:03] b'    Product Assettag: N/A\r\n'
+[2025/05/20 12:08:03] b'    Product Build: K\r\n'
+[2025/05/20 12:08:03] b'    Product Fru Id: v1.0\r\n'
+[2025/05/20 12:08:03] b'    Product Manufacturer: Ingrasys\r\n'
+[2025/05/20 12:08:03] b'    Product Name: M2010 - Mainboard\r\n'
+[2025/05/20 12:08:03] b'    Product Serial: P13194491036000C\r\n'
+[2025/05/20 12:08:03] b'    Product Subproduct: N/A\r\n'
+[2025/05/20 12:08:03] b'    Product Version: M1041319-001\r\n'
+[2025/05/20 12:08:03] b'    Completion Code: Success\r\n'
+[2025/05/20 12:08:03] b'WcsCli# '
+[2025/05/20 12:08:03] Check MB board & product FRU Pass
+[2025/05/20 12:08:04] b'show manager fru -b acdc\r\n'
+[2025/05/20 12:08:04] b'    Board Build: Prod\r\n'
+[2025/05/20 12:08:04] b'    Board Fru Id: v1.0\r\n'
+[2025/05/20 12:08:04] b'    Board Manufacturer: Ingrasys\r\n'
+[2025/05/20 12:08:04] b'    Board Manufacturer Date: Wed Mar 12 06:36:00 2025\r\n'
+[2025/05/20 12:08:04] b'    Board Name: M2010 - AC-DC\r\n'
+[2025/05/20 12:08:04] b'    Board Part Number: M1035796-001\r\n'
+[2025/05/20 12:08:04] b'    Board Serial: B579651054345042\r\n'
+[2025/05/20 12:08:04] b'    Board Version: J\r\n'
+[2025/05/20 12:08:05] b'    Product Assettag: N/A\r\n'
+[2025/05/20 12:08:05] b'    Product Build: L\r\n'
+[2025/05/20 12:08:05] b'    Product Fru Id: v1.0\r\n'
+[2025/05/20 12:08:05] b'    Product Manufacturer: Ingrasys\r\n'
+[2025/05/20 12:08:05] b'    Product Name: M2010 - ACDC\r\n'
+[2025/05/20 12:08:05] b'    Product Serial: P350851054345042\r\n'
+[2025/05/20 12:08:05] b'    Product Subproduct: N/A\r\n'
+[2025/05/20 12:08:05] b'    Product Version: M1033508-001\r\n'
+[2025/05/20 12:08:05] b'    Completion Code: Success\r\n'
+[2025/05/20 12:08:05] b'WcsCli# '
+[2025/05/20 12:08:05] Check ACDC board & product FRU Pass
+[2025/05/20 12:08:05] Reading original data for PIB
+[2025/05/20 12:08:06] b'show manager fru -b pib\r\n'
+[2025/05/20 12:08:06] b'    Board Build: Prod\r\n'
+[2025/05/20 12:08:06] b'    Board Fru Id: v1.0\r\n'
+[2025/05/20 12:08:06] b'    Board Manufacturer: Ingrasys\r\n'
+[2025/05/20 12:08:06] b'    Board Manufacturer Date: Fri Feb 28 01:11:00 2025\r\n'
+[2025/05/20 12:08:06] b'    Board Name: M2010 - PIB\r\n'
+[2025/05/20 12:08:06] b'    Board Part Number: M1035794-002\r\n'
+[2025/05/20 12:08:06] b'    Board Serial: B579450753142042\r\n'
+[2025/05/20 12:08:06] b'    Board Version: C\r\n'
+[2025/05/20 12:08:06] b'    Product Assettag: N/A\r\n'
+[2025/05/20 12:08:06] b'    Product Build: Prod\r\n'
+[2025/05/20 12:08:06] b'    Product Fru Id: v1.0\r\n'
+[2025/05/20 12:08:06] b'    Product Manufacturer: Ingrasys\r\n'
+[2025/05/20 12:08:06] b'    Product Name: M2010 - PIB\r\n'
+[2025/05/20 12:08:06] b'    Product Serial: B579450753142042\r\n'
+[2025/05/20 12:08:06] b'    Product Subproduct: N/A\r\n'
+[2025/05/20 12:08:06] b'    Product Version: M1035794-002\r\n'
+[2025/05/20 12:08:06] b'    Completion Code: Success\r\n'
+[2025/05/20 12:08:06] b'WcsCli# '
+[2025/05/20 12:08:06] Init Items
+[2025/05/20 12:08:08] b'show manager fru -b pib\r\n'
+[2025/05/20 12:08:08] b'    Board Build: Prod\r\n'
+[2025/05/20 12:08:08] b'    Board Fru Id: v1.0\r\n'
+[2025/05/20 12:08:08] b'    Board Manufacturer: Ingrasys\r\n'
+[2025/05/20 12:08:08] b'    Board Manufacturer Date: Fri Feb 28 01:11:00 2025\r\n'
+[2025/05/20 12:08:08] b'    Board Name: M2010 - PIB\r\n'
+[2025/05/20 12:08:08] b'    Board Part Number: M1035794-002\r\n'
+[2025/05/20 12:08:08] b'    Board Serial: B579450753142042\r\n'
+[2025/05/20 12:08:08] b'    Board Version: C\r\n'
+[2025/05/20 12:08:08] b'    Product Assettag: N/A\r\n'
+[2025/05/20 12:08:08] b'    Product Build: Prod\r\n'
+[2025/05/20 12:08:08] b'    Product Fru Id: v1.0\r\n'
+[2025/05/20 12:08:08] b'    Product Manufacturer: Ingrasys\r\n'
+[2025/05/20 12:08:08] b'    Product Name: M2010 - PIB\r\n'
+[2025/05/20 12:08:08] b'    Product Serial: B579450753142042\r\n'
+[2025/05/20 12:08:08] b'    Product Subproduct: N/A\r\n'
+[2025/05/20 12:08:08] b'    Product Version: M1035794-002\r\n'
+[2025/05/20 12:08:08] b'    Completion Code: Success\r\n'
+[2025/05/20 12:08:08] b'WcsCli# '
+[2025/05/20 12:08:08] 
+Board_MfgTime:2025-02-28 01:11:00
+Board_MfgName:Ingrasys
+Board_Product:M2010 - PIB
+Board_Serial:B579450753142042
+Board_PartNumber:M1035794-002
+Board_FruId:v1.0
+Board_BinaryAdd:
+Board_BinaryAdd:
+Board_Version:C
+Board_Build:Prod
+Product_Mfgr:Ingrasys
+Product_Product:M2010 - PIB
+Product_Model:M1035794-002
+Product_Serial:B579450753142042
+Product_AssetTag:N/A
+Product_FruId:v1.0
+Product_SubProd:N/A
+Product_Build:Prod
+
+[2025/05/20 12:08:08] Init Items Pass
+[2025/05/20 12:08:08] Change Items
+[2025/05/20 12:08:09] b'show manager fru -b mb\r\n'
+[2025/05/20 12:08:09] b'    Board Address1: E8F673EF15A8\r\n'
+[2025/05/20 12:08:09] b'    Board Address2: E8F673EF15A9\r\n'
+[2025/05/20 12:08:09] b'    Board Build: Prod\r\n'
+[2025/05/20 12:08:09] b'    Board Fru Id: v1.0\r\n'
+[2025/05/20 12:08:09] b'    Board Manufacturer: Ingrasys\r\n'
+[2025/05/20 12:08:09] b'    Board Manufacturer Date: Tue Dec 10 18:00:00 2024\r\n'
+[2025/05/20 12:08:09] b'    Board Name: M2010 - MB\r\n'
+[2025/05/20 12:08:09] b'    Board Part Number: M1039935-001\r\n'
+[2025/05/20 12:08:09] b'    Board Serial: B99354491036000C\r\n'
+[2025/05/20 12:08:09] b'    Board Version: F\r\n'
+[2025/05/20 12:08:09] b'    Product Assettag: N/A\r\n'
+[2025/05/20 12:08:09] b'    Product Build: K\r\n'
+[2025/05/20 12:08:09] b'    Product Fru Id: v1.0\r\n'
+[2025/05/20 12:08:09] b'    Product Manufacturer: Ingrasys\r\n'
+[2025/05/20 12:08:09] b'    Product Name: M2010 - Mainboard\r\n'
+[2025/05/20 12:08:09] b'    Product Serial: P13194491036000C\r\n'
+[2025/05/20 12:08:09] b'    Product Subproduct: N/A\r\n'
+[2025/05/20 12:08:09] b'    Product Version: M1041319-001\r\n'
+[2025/05/20 12:08:09] b'    Completion Code: Success\r\n'
+[2025/05/20 12:08:09] b'WcsCli# '
+[2025/05/20 12:08:10] 
+Board_MfgTime:2025-02-28 01:11:00
+Board_MfgName:Ingrasys
+Board_Product:M2010 - PIB
+Board_Serial:B579450753142042
+Board_PartNumber:M1035794-002
+Board_FruId:v1.0
+Board_BinaryAdd:
+Board_BinaryAdd:
+Board_Version:C
+Board_Build:Prod
+Product_Mfgr:Ingrasys
+Product_Product:D2014 - PMDU 48U
+Product_Model:M1131758-002
+Product_Serial:P175852040215042
+Product_AssetTag:24143973
+Product_FruId:v1.0
+Product_SubProd:B99354491036000C
+Product_Build:K
+
+[2025/05/20 12:08:10] Change Items Pass
+[2025/05/20 12:08:10] Transfer FRU File
+[2025/05/20 12:08:14] b'set manager tftp get -s 192.168.0.101 -f pibfruupdate.txt\r\n'
+[2025/05/20 12:08:14] b'    Completion Code: Success\r\n'
+[2025/05/20 12:08:14] b'WcsCli# '
+[2025/05/20 12:08:14] pibfruupdate.txt transfer to RM Pass
+[2025/05/20 12:08:14] Transfer FRU File Pass
+[2025/05/20 12:08:16] b'set manager fru -b pib -f pibfruupdate.txt\r\n'
+[2025/05/20 12:08:16] b'    Completion Code: Success\r\n'
+[2025/05/20 12:08:16] b'WcsCli# '
+[2025/05/20 12:08:16] Flash pib FRU Pass
+[2025/05/20 12:08:18] b'show manager fru -b pib\r\n'
+[2025/05/20 12:08:18] b'    Board Build: Prod\r\n'
+[2025/05/20 12:08:18] b'    Board Fru Id: v1.0\r\n'
+[2025/05/20 12:08:18] b'    Board Manufacturer: Ingrasys\r\n'
+[2025/05/20 12:08:18] b'    Board Manufacturer Date: Fri Feb 28 01:11:00 2025\r\n'
+[2025/05/20 12:08:18] b'    Board Name: M2010 - PIB\r\n'
+[2025/05/20 12:08:18] b'    Board Part Number: M1035794-002\r\n'
+[2025/05/20 12:08:18] b'    Board Serial: B579450753142042\r\n'
+[2025/05/20 12:08:18] b'    Board Version: C\r\n'
+[2025/05/20 12:08:18] b'    Product Assettag: 24143973\r\n'
+[2025/05/20 12:08:18] b'    Product Build: K\r\n'
+[2025/05/20 12:08:18] b'    Product Fru Id: v1.0\r\n'
+[2025/05/20 12:08:18] b'    Product Manufacturer: Ingrasys\r\n'
+[2025/05/20 12:08:18] b'    Product Name: D2014 - PMDU 48U\r\n'
+[2025/05/20 12:08:18] b'    Product Serial: P175852040215042\r\n'
+[2025/05/20 12:08:18] b'    Product Subproduct: B99354491036000C\r\n'
+[2025/05/20 12:08:18] b'    Product Version: M1131758-002\r\n'
+[2025/05/20 12:08:18] b'    Completion Code: Success\r\n'
+[2025/05/20 12:08:18] b'WcsCli# '
+[2025/05/20 12:08:18] Check PIB board & product FRU Pass
+[2025/05/20 12:08:18] Update PIB FRU Pass
+[2025/05/20 12:08:18] Test elapsed time: 0:00:18.710000
+[2025/05/20 12:08:18] ######################################################################
+[2025/05/20 12:08:18] Test10: FCI Test
+[2025/05/20 12:08:18] Timestamp: [2025-05-20 12:08:18]
+[2025/05/20 12:08:18] ######################################################################
+[2025/05/20 12:08:18] ======================================
+[2025/05/20 12:08:18] [Check FCI AC Source 1 Phase 1 Output Voltage]
+[2025/05/20 12:08:18] ======================================
+[2025/05/20 12:08:18] Set AC source phase 1 output to 220 volt
+[2025/05/20 12:08:18] AC Source Write >>> '*CLS'
+[2025/05/20 12:08:18] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 12:08:18] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 220'
+[2025/05/20 12:08:19] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/20 12:08:20] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/20 12:08:24] COM11
+[2025/05/20 12:08:24] Start up test fixture
+[2025/05/20 12:08:26] Get FCI voltage
+[2025/05/20 12:08:26] FCI1 Voltage: 219 volt
+[2025/05/20 12:08:26] FCI source 1 phase 1 FCI1 voltage check complete (U1)
+[2025/05/20 12:08:26] FCI2 Voltage: 219 volt
+[2025/05/20 12:08:26] FCI source 1 phase 1 FCI2 voltage check complete (U2)
+[2025/05/20 12:08:26] FCI3 Voltage: 219 volt
+[2025/05/20 12:08:26] FCI source 1 phase 1 FCI3 voltage check complete (U3)
+[2025/05/20 12:08:26] FCI4 Voltage: 219 volt
+[2025/05/20 12:08:26] FCI source 1 phase 1 FCI4 voltage check complete (U4)
+[2025/05/20 12:08:26] FCI5 Voltage: 219 volt
+[2025/05/20 12:08:26] FCI source 1 phase 1 FCI5 voltage check complete (U5)
+[2025/05/20 12:08:26] FCI6 Voltage: 219 volt
+[2025/05/20 12:08:26] FCI source 1 phase 1 FCI6 voltage check complete (U6)
+[2025/05/20 12:08:26] COM4
+[2025/05/20 12:08:26] Start up test fixture
+[2025/05/20 12:08:29] Get FCI voltage
+[2025/05/20 12:08:29] FCI1 Voltage: 224 volt
+[2025/05/20 12:08:29] FCI source 1 phase 1 FCI1 voltage check complete (U7)
+[2025/05/20 12:08:29] FCI2 Voltage: 223 volt
+[2025/05/20 12:08:29] FCI source 1 phase 1 FCI2 voltage check complete (U8)
+[2025/05/20 12:08:29] FCI3 Voltage: 224 volt
+[2025/05/20 12:08:29] FCI source 1 phase 1 FCI3 voltage check complete (U9)
+[2025/05/20 12:08:29] FCI4 Voltage: 223 volt
+[2025/05/20 12:08:29] FCI source 1 phase 1 FCI4 voltage check complete (U10)
+[2025/05/20 12:08:29] FCI5 Voltage: 224 volt
+[2025/05/20 12:08:29] FCI source 1 phase 1 FCI5 voltage check complete (U11)
+[2025/05/20 12:08:29] FCI6 Voltage: 223 volt
+[2025/05/20 12:08:29] FCI source 1 phase 1 FCI6 voltage check complete (U12)
+[2025/05/20 12:08:29] COM5
+[2025/05/20 12:08:29] Start up test fixture
+[2025/05/20 12:08:31] Get FCI voltage
+[2025/05/20 12:08:31] FCI1 Voltage: 217 volt
+[2025/05/20 12:08:31] FCI source 1 phase 1 FCI1 voltage check complete (U13)
+[2025/05/20 12:08:31] FCI2 Voltage: 218 volt
+[2025/05/20 12:08:31] FCI source 1 phase 1 FCI2 voltage check complete (U14)
+[2025/05/20 12:08:31] FCI3 Voltage: 218 volt
+[2025/05/20 12:08:31] FCI source 1 phase 1 FCI3 voltage check complete (U15)
+[2025/05/20 12:08:31] FCI4 Voltage: 217 volt
+[2025/05/20 12:08:31] FCI source 1 phase 1 FCI4 voltage check complete (U16)
+[2025/05/20 12:08:31] FCI5 Voltage: 217 volt
+[2025/05/20 12:08:31] FCI source 1 phase 1 FCI5 voltage check complete (U17)
+[2025/05/20 12:08:31] FCI6 Voltage: 218 volt
+[2025/05/20 12:08:31] FCI source 1 phase 1 FCI6 voltage check complete (U18)
+[2025/05/20 12:08:31] COM8
+[2025/05/20 12:08:31] Start up test fixture
+[2025/05/20 12:08:33] Get FCI voltage
+[2025/05/20 12:08:33] FCI1 Voltage: 219 volt
+[2025/05/20 12:08:33] FCI source 1 phase 1 FCI1 voltage check complete (U19)
+[2025/05/20 12:08:33] FCI2 Voltage: 220 volt
+[2025/05/20 12:08:33] FCI source 1 phase 1 FCI2 voltage check complete (U20)
+[2025/05/20 12:08:33] FCI3 Voltage: 220 volt
+[2025/05/20 12:08:33] FCI source 1 phase 1 FCI3 voltage check complete (U21)
+[2025/05/20 12:08:33] FCI4 Voltage: 219 volt
+[2025/05/20 12:08:33] FCI source 1 phase 1 FCI4 voltage check complete (U22)
+[2025/05/20 12:08:33] FCI5 Voltage: 220 volt
+[2025/05/20 12:08:33] FCI source 1 phase 1 FCI5 voltage check complete (U23)
+[2025/05/20 12:08:33] FCI6 Voltage: 219 volt
+[2025/05/20 12:08:33] FCI source 1 phase 1 FCI6 voltage check complete (U24)
+[2025/05/20 12:08:33] COM9
+[2025/05/20 12:08:33] Start up test fixture
+[2025/05/20 12:08:35] Get FCI voltage
+[2025/05/20 12:08:35] FCI1 Voltage: 222 volt
+[2025/05/20 12:08:35] FCI source 1 phase 1 FCI1 voltage check complete (U25)
+[2025/05/20 12:08:35] FCI2 Voltage: 226 volt
+[2025/05/20 12:08:35] FCI source 1 phase 1 FCI2 voltage check complete (U26)
+[2025/05/20 12:08:35] FCI3 Voltage: 221 volt
+[2025/05/20 12:08:35] FCI source 1 phase 1 FCI3 voltage check complete (U27)
+[2025/05/20 12:08:35] FCI4 Voltage: 220 volt
+[2025/05/20 12:08:35] FCI source 1 phase 1 FCI4 voltage check complete (U28)
+[2025/05/20 12:08:35] FCI5 Voltage: 220 volt
+[2025/05/20 12:08:35] FCI source 1 phase 1 FCI5 voltage check complete (U29)
+[2025/05/20 12:08:35] FCI6 Voltage: 224 volt
+[2025/05/20 12:08:35] FCI source 1 phase 1 FCI6 voltage check complete (U30)
+[2025/05/20 12:08:35] COM10
+[2025/05/20 12:08:35] Start up test fixture
+[2025/05/20 12:08:37] Get FCI voltage
+[2025/05/20 12:08:37] FCI1 Voltage: 224 volt
+[2025/05/20 12:08:37] FCI source 1 phase 1 FCI1 voltage check complete (U31)
+[2025/05/20 12:08:37] FCI2 Voltage: 223 volt
+[2025/05/20 12:08:37] FCI source 1 phase 1 FCI2 voltage check complete (U32)
+[2025/05/20 12:08:37] FCI3 Voltage: 224 volt
+[2025/05/20 12:08:37] FCI source 1 phase 1 FCI3 voltage check complete (U33)
+[2025/05/20 12:08:37] FCI4 Voltage: 223 volt
+[2025/05/20 12:08:37] FCI source 1 phase 1 FCI4 voltage check complete (U34)
+[2025/05/20 12:08:37] FCI5 Voltage: 224 volt
+[2025/05/20 12:08:37] FCI source 1 phase 1 FCI5 voltage check complete (U35)
+[2025/05/20 12:08:37] FCI6 Voltage: 224 volt
+[2025/05/20 12:08:37] FCI source 1 phase 1 FCI6 voltage check complete (U36)
+[2025/05/20 12:08:37] COM7
+[2025/05/20 12:08:37] Start up test fixture
+[2025/05/20 12:08:39] Get FCI voltage
+[2025/05/20 12:08:39] FCI1 Voltage: 216 volt
+[2025/05/20 12:08:39] FCI source 1 phase 1 FCI1 voltage check complete (U37)
+[2025/05/20 12:08:39] FCI2 Voltage: 215 volt
+[2025/05/20 12:08:39] FCI source 1 phase 1 FCI2 voltage check complete (U38)
+[2025/05/20 12:08:39] FCI3 Voltage: 215 volt
+[2025/05/20 12:08:39] FCI source 1 phase 1 FCI3 voltage check complete (U39)
+[2025/05/20 12:08:39] FCI4 Voltage: 216 volt
+[2025/05/20 12:08:39] FCI source 1 phase 1 FCI4 voltage check complete (U40)
+[2025/05/20 12:08:39] FCI5 Voltage: 216 volt
+[2025/05/20 12:08:39] FCI source 1 phase 1 FCI5 voltage check complete (U41)
+[2025/05/20 12:08:39] FCI6 Voltage: 216 volt
+[2025/05/20 12:08:39] FCI source 1 phase 1 FCI6 voltage check complete (U42)
+[2025/05/20 12:08:39] COM6
+[2025/05/20 12:08:39] Start up test fixture
+[2025/05/20 12:08:41] Get FCI voltage
+[2025/05/20 12:08:41] FCI1 Voltage: 224 volt
+[2025/05/20 12:08:41] FCI source 1 phase 1 FCI1 voltage check complete (U43)
+[2025/05/20 12:08:41] FCI2 Voltage: 224 volt
+[2025/05/20 12:08:41] FCI source 1 phase 1 FCI2 voltage check complete (U44)
+[2025/05/20 12:08:41] FCI3 Voltage: 224 volt
+[2025/05/20 12:08:41] FCI source 1 phase 1 FCI3 voltage check complete (U45)
+[2025/05/20 12:08:41] FCI4 Voltage: 223 volt
+[2025/05/20 12:08:41] FCI source 1 phase 1 FCI4 voltage check complete (U46)
+[2025/05/20 12:08:41] FCI5 Voltage: 224 volt
+[2025/05/20 12:08:41] FCI source 1 phase 1 FCI5 voltage check complete (U47)
+[2025/05/20 12:08:41] FCI6 Voltage: 224 volt
+[2025/05/20 12:08:41] FCI source 1 phase 1 FCI6 voltage check complete (U48)
+[2025/05/20 12:08:41] ======================================
+[2025/05/20 12:08:41] [Check FCI AC Source 1 Phase 2 Output Voltage]
+[2025/05/20 12:08:41] ======================================
+[2025/05/20 12:08:41] Set AC source phase 2 output to 220 volt
+[2025/05/20 12:08:41] AC Source Write >>> '*CLS'
+[2025/05/20 12:08:41] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 12:08:41] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/20 12:08:42] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 220'
+[2025/05/20 12:08:43] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/20 12:08:47] COM11
+[2025/05/20 12:08:47] Start up test fixture
+[2025/05/20 12:08:49] Get FCI voltage
+[2025/05/20 12:08:49] FCI1 Voltage: 219 volt
+[2025/05/20 12:08:49] FCI source 1 phase 2 FCI1 voltage check complete (U1)
+[2025/05/20 12:08:49] FCI2 Voltage: 219 volt
+[2025/05/20 12:08:49] FCI source 1 phase 2 FCI2 voltage check complete (U2)
+[2025/05/20 12:08:49] FCI3 Voltage: 219 volt
+[2025/05/20 12:08:49] FCI source 1 phase 2 FCI3 voltage check complete (U3)
+[2025/05/20 12:08:49] FCI4 Voltage: 219 volt
+[2025/05/20 12:08:49] FCI source 1 phase 2 FCI4 voltage check complete (U4)
+[2025/05/20 12:08:49] FCI5 Voltage: 219 volt
+[2025/05/20 12:08:49] FCI source 1 phase 2 FCI5 voltage check complete (U5)
+[2025/05/20 12:08:49] FCI6 Voltage: 219 volt
+[2025/05/20 12:08:49] FCI source 1 phase 2 FCI6 voltage check complete (U6)
+[2025/05/20 12:08:49] COM4
+[2025/05/20 12:08:49] Start up test fixture
+[2025/05/20 12:08:51] Get FCI voltage
+[2025/05/20 12:08:51] FCI1 Voltage: 222 volt
+[2025/05/20 12:08:51] FCI source 1 phase 2 FCI1 voltage check complete (U7)
+[2025/05/20 12:08:51] FCI2 Voltage: 221 volt
+[2025/05/20 12:08:51] FCI source 1 phase 2 FCI2 voltage check complete (U8)
+[2025/05/20 12:08:51] FCI3 Voltage: 226 volt
+[2025/05/20 12:08:51] FCI source 1 phase 2 FCI3 voltage check complete (U9)
+[2025/05/20 12:08:51] FCI4 Voltage: 211 volt
+[2025/05/20 12:08:51] FCI source 1 phase 2 FCI4 voltage check complete (U10)
+[2025/05/20 12:08:51] FCI5 Voltage: 210 volt
+[2025/05/20 12:08:51] FCI source 1 phase 2 FCI5 voltage check complete (U11)
+[2025/05/20 12:08:51] FCI6 Voltage: 226 volt
+[2025/05/20 12:08:51] FCI source 1 phase 2 FCI6 voltage check complete (U12)
+[2025/05/20 12:08:51] COM5
+[2025/05/20 12:08:51] Start up test fixture
+[2025/05/20 12:08:53] Get FCI voltage
+[2025/05/20 12:08:53] FCI1 Voltage: 217 volt
+[2025/05/20 12:08:53] FCI source 1 phase 2 FCI1 voltage check complete (U13)
+[2025/05/20 12:08:53] FCI2 Voltage: 219 volt
+[2025/05/20 12:08:53] FCI source 1 phase 2 FCI2 voltage check complete (U14)
+[2025/05/20 12:08:53] FCI3 Voltage: 218 volt
+[2025/05/20 12:08:53] FCI source 1 phase 2 FCI3 voltage check complete (U15)
+[2025/05/20 12:08:53] FCI4 Voltage: 217 volt
+[2025/05/20 12:08:53] FCI source 1 phase 2 FCI4 voltage check complete (U16)
+[2025/05/20 12:08:53] FCI5 Voltage: 217 volt
+[2025/05/20 12:08:53] FCI source 1 phase 2 FCI5 voltage check complete (U17)
+[2025/05/20 12:08:53] FCI6 Voltage: 218 volt
+[2025/05/20 12:08:53] FCI source 1 phase 2 FCI6 voltage check complete (U18)
+[2025/05/20 12:08:53] COM8
+[2025/05/20 12:08:53] Start up test fixture
+[2025/05/20 12:08:55] Get FCI voltage
+[2025/05/20 12:08:55] FCI1 Voltage: 219 volt
+[2025/05/20 12:08:56] FCI source 1 phase 2 FCI1 voltage check complete (U19)
+[2025/05/20 12:08:56] FCI2 Voltage: 219 volt
+[2025/05/20 12:08:56] FCI source 1 phase 2 FCI2 voltage check complete (U20)
+[2025/05/20 12:08:56] FCI3 Voltage: 220 volt
+[2025/05/20 12:08:56] FCI source 1 phase 2 FCI3 voltage check complete (U21)
+[2025/05/20 12:08:56] FCI4 Voltage: 219 volt
+[2025/05/20 12:08:56] FCI source 1 phase 2 FCI4 voltage check complete (U22)
+[2025/05/20 12:08:56] FCI5 Voltage: 220 volt
+[2025/05/20 12:08:56] FCI source 1 phase 2 FCI5 voltage check complete (U23)
+[2025/05/20 12:08:56] FCI6 Voltage: 220 volt
+[2025/05/20 12:08:56] FCI source 1 phase 2 FCI6 voltage check complete (U24)
+[2025/05/20 12:08:56] COM9
+[2025/05/20 12:08:56] Start up test fixture
+[2025/05/20 12:08:58] Get FCI voltage
+[2025/05/20 12:08:58] FCI1 Voltage: 226 volt
+[2025/05/20 12:08:58] FCI source 1 phase 2 FCI1 voltage check complete (U25)
+[2025/05/20 12:08:58] FCI2 Voltage: 220 volt
+[2025/05/20 12:08:58] FCI source 1 phase 2 FCI2 voltage check complete (U26)
+[2025/05/20 12:08:58] FCI3 Voltage: 225 volt
+[2025/05/20 12:08:58] FCI source 1 phase 2 FCI3 voltage check complete (U27)
+[2025/05/20 12:08:58] FCI4 Voltage: 227 volt
+[2025/05/20 12:08:58] FCI source 1 phase 2 FCI4 voltage check complete (U28)
+[2025/05/20 12:08:58] FCI5 Voltage: 220 volt
+[2025/05/20 12:08:58] FCI source 1 phase 2 FCI5 voltage check complete (U29)
+[2025/05/20 12:08:58] FCI6 Voltage: 226 volt
+[2025/05/20 12:08:58] FCI source 1 phase 2 FCI6 voltage check complete (U30)
+[2025/05/20 12:08:58] COM10
+[2025/05/20 12:08:58] Start up test fixture
+[2025/05/20 12:09:00] Get FCI voltage
+[2025/05/20 12:09:00] FCI1 Voltage: 222 volt
+[2025/05/20 12:09:00] FCI source 1 phase 2 FCI1 voltage check complete (U31)
+[2025/05/20 12:09:00] FCI2 Voltage: 221 volt
+[2025/05/20 12:09:00] FCI source 1 phase 2 FCI2 voltage check complete (U32)
+[2025/05/20 12:09:00] FCI3 Voltage: 211 volt
+[2025/05/20 12:09:00] FCI source 1 phase 2 FCI3 voltage check complete (U33)
+[2025/05/20 12:09:00] FCI4 Voltage: 211 volt
+[2025/05/20 12:09:00] FCI source 1 phase 2 FCI4 voltage check complete (U34)
+[2025/05/20 12:09:00] FCI5 Voltage: 226 volt
+[2025/05/20 12:09:00] FCI source 1 phase 2 FCI5 voltage check complete (U35)
+[2025/05/20 12:09:00] FCI6 Voltage: 211 volt
+[2025/05/20 12:09:00] FCI source 1 phase 2 FCI6 voltage check complete (U36)
+[2025/05/20 12:09:00] COM7
+[2025/05/20 12:09:00] Start up test fixture
+[2025/05/20 12:09:02] Get FCI voltage
+[2025/05/20 12:09:02] FCI1 Voltage: 214 volt
+[2025/05/20 12:09:02] FCI source 1 phase 2 FCI1 voltage check complete (U37)
+[2025/05/20 12:09:02] FCI2 Voltage: 216 volt
+[2025/05/20 12:09:02] FCI source 1 phase 2 FCI2 voltage check complete (U38)
+[2025/05/20 12:09:02] FCI3 Voltage: 217 volt
+[2025/05/20 12:09:02] FCI source 1 phase 2 FCI3 voltage check complete (U39)
+[2025/05/20 12:09:02] FCI4 Voltage: 218 volt
+[2025/05/20 12:09:02] FCI source 1 phase 2 FCI4 voltage check complete (U40)
+[2025/05/20 12:09:02] FCI5 Voltage: 223 volt
+[2025/05/20 12:09:02] FCI source 1 phase 2 FCI5 voltage check complete (U41)
+[2025/05/20 12:09:02] FCI6 Voltage: 217 volt
+[2025/05/20 12:09:02] FCI source 1 phase 2 FCI6 voltage check complete (U42)
+[2025/05/20 12:09:02] COM6
+[2025/05/20 12:09:02] Start up test fixture
+[2025/05/20 12:09:04] Get FCI voltage
+[2025/05/20 12:09:04] FCI1 Voltage: 221 volt
+[2025/05/20 12:09:04] FCI source 1 phase 2 FCI1 voltage check complete (U43)
+[2025/05/20 12:09:04] FCI2 Voltage: 222 volt
+[2025/05/20 12:09:04] FCI source 1 phase 2 FCI2 voltage check complete (U44)
+[2025/05/20 12:09:04] FCI3 Voltage: 226 volt
+[2025/05/20 12:09:04] FCI source 1 phase 2 FCI3 voltage check complete (U45)
+[2025/05/20 12:09:04] FCI4 Voltage: 210 volt
+[2025/05/20 12:09:04] FCI source 1 phase 2 FCI4 voltage check complete (U46)
+[2025/05/20 12:09:04] FCI5 Voltage: 225 volt
+[2025/05/20 12:09:04] FCI source 1 phase 2 FCI5 voltage check complete (U47)
+[2025/05/20 12:09:04] FCI6 Voltage: 226 volt
+[2025/05/20 12:09:04] FCI source 1 phase 2 FCI6 voltage check complete (U48)
+[2025/05/20 12:09:04] ======================================
+[2025/05/20 12:09:04] [Check FCI AC Source 1 Phase 3 Output Voltage]
+[2025/05/20 12:09:04] ======================================
+[2025/05/20 12:09:04] Set AC source phase 3 output to 220 volt
+[2025/05/20 12:09:04] AC Source Write >>> '*CLS'
+[2025/05/20 12:09:04] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 12:09:04] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/20 12:09:05] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/20 12:09:06] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 220'
+[2025/05/20 12:09:10] COM11
+[2025/05/20 12:09:10] Start up test fixture
+[2025/05/20 12:09:12] Get FCI voltage
+[2025/05/20 12:09:12] FCI1 Voltage: 219 volt
+[2025/05/20 12:09:12] FCI source 1 phase 3 FCI1 voltage check complete (U1)
+[2025/05/20 12:09:12] FCI2 Voltage: 219 volt
+[2025/05/20 12:09:12] FCI source 1 phase 3 FCI2 voltage check complete (U2)
+[2025/05/20 12:09:12] FCI3 Voltage: 219 volt
+[2025/05/20 12:09:12] FCI source 1 phase 3 FCI3 voltage check complete (U3)
+[2025/05/20 12:09:12] FCI4 Voltage: 219 volt
+[2025/05/20 12:09:12] FCI source 1 phase 3 FCI4 voltage check complete (U4)
+[2025/05/20 12:09:12] FCI5 Voltage: 219 volt
+[2025/05/20 12:09:12] FCI source 1 phase 3 FCI5 voltage check complete (U5)
+[2025/05/20 12:09:12] FCI6 Voltage: 219 volt
+[2025/05/20 12:09:12] FCI source 1 phase 3 FCI6 voltage check complete (U6)
+[2025/05/20 12:09:12] COM4
+[2025/05/20 12:09:12] Start up test fixture
+[2025/05/20 12:09:14] Get FCI voltage
+[2025/05/20 12:09:14] FCI1 Voltage: 222 volt
+[2025/05/20 12:09:14] FCI source 1 phase 3 FCI1 voltage check complete (U7)
+[2025/05/20 12:09:14] FCI2 Voltage: 221 volt
+[2025/05/20 12:09:14] FCI source 1 phase 3 FCI2 voltage check complete (U8)
+[2025/05/20 12:09:14] FCI3 Voltage: 212 volt
+[2025/05/20 12:09:14] FCI source 1 phase 3 FCI3 voltage check complete (U9)
+[2025/05/20 12:09:14] FCI4 Voltage: 225 volt
+[2025/05/20 12:09:14] FCI source 1 phase 3 FCI4 voltage check complete (U10)
+[2025/05/20 12:09:14] FCI5 Voltage: 226 volt
+[2025/05/20 12:09:14] FCI source 1 phase 3 FCI5 voltage check complete (U11)
+[2025/05/20 12:09:14] FCI6 Voltage: 225 volt
+[2025/05/20 12:09:14] FCI source 1 phase 3 FCI6 voltage check complete (U12)
+[2025/05/20 12:09:14] COM5
+[2025/05/20 12:09:14] Start up test fixture
+[2025/05/20 12:09:16] Get FCI voltage
+[2025/05/20 12:09:16] FCI1 Voltage: 217 volt
+[2025/05/20 12:09:16] FCI source 1 phase 3 FCI1 voltage check complete (U13)
+[2025/05/20 12:09:16] FCI2 Voltage: 218 volt
+[2025/05/20 12:09:16] FCI source 1 phase 3 FCI2 voltage check complete (U14)
+[2025/05/20 12:09:16] FCI3 Voltage: 217 volt
+[2025/05/20 12:09:16] FCI source 1 phase 3 FCI3 voltage check complete (U15)
+[2025/05/20 12:09:16] FCI4 Voltage: 217 volt
+[2025/05/20 12:09:16] FCI source 1 phase 3 FCI4 voltage check complete (U16)
+[2025/05/20 12:09:16] FCI5 Voltage: 217 volt
+[2025/05/20 12:09:16] FCI source 1 phase 3 FCI5 voltage check complete (U17)
+[2025/05/20 12:09:16] FCI6 Voltage: 218 volt
+[2025/05/20 12:09:16] FCI source 1 phase 3 FCI6 voltage check complete (U18)
+[2025/05/20 12:09:16] COM8
+[2025/05/20 12:09:16] Start up test fixture
+[2025/05/20 12:09:18] Get FCI voltage
+[2025/05/20 12:09:18] FCI1 Voltage: 219 volt
+[2025/05/20 12:09:18] FCI source 1 phase 3 FCI1 voltage check complete (U19)
+[2025/05/20 12:09:18] FCI2 Voltage: 220 volt
+[2025/05/20 12:09:18] FCI source 1 phase 3 FCI2 voltage check complete (U20)
+[2025/05/20 12:09:18] FCI3 Voltage: 220 volt
+[2025/05/20 12:09:18] FCI source 1 phase 3 FCI3 voltage check complete (U21)
+[2025/05/20 12:09:18] FCI4 Voltage: 219 volt
+[2025/05/20 12:09:18] FCI source 1 phase 3 FCI4 voltage check complete (U22)
+[2025/05/20 12:09:18] FCI5 Voltage: 220 volt
+[2025/05/20 12:09:18] FCI source 1 phase 3 FCI5 voltage check complete (U23)
+[2025/05/20 12:09:18] FCI6 Voltage: 219 volt
+[2025/05/20 12:09:18] FCI source 1 phase 3 FCI6 voltage check complete (U24)
+[2025/05/20 12:09:18] COM9
+[2025/05/20 12:09:18] Start up test fixture
+[2025/05/20 12:09:20] Get FCI voltage
+[2025/05/20 12:09:20] FCI1 Voltage: 224 volt
+[2025/05/20 12:09:20] FCI source 1 phase 3 FCI1 voltage check complete (U25)
+[2025/05/20 12:09:20] FCI2 Voltage: 222 volt
+[2025/05/20 12:09:20] FCI source 1 phase 3 FCI2 voltage check complete (U26)
+[2025/05/20 12:09:20] FCI3 Voltage: 220 volt
+[2025/05/20 12:09:20] FCI source 1 phase 3 FCI3 voltage check complete (U27)
+[2025/05/20 12:09:20] FCI4 Voltage: 220 volt
+[2025/05/20 12:09:20] FCI source 1 phase 3 FCI4 voltage check complete (U28)
+[2025/05/20 12:09:20] FCI5 Voltage: 220 volt
+[2025/05/20 12:09:20] FCI source 1 phase 3 FCI5 voltage check complete (U29)
+[2025/05/20 12:09:20] FCI6 Voltage: 220 volt
+[2025/05/20 12:09:20] FCI source 1 phase 3 FCI6 voltage check complete (U30)
+[2025/05/20 12:09:20] COM10
+[2025/05/20 12:09:20] Start up test fixture
+[2025/05/20 12:09:22] Get FCI voltage
+[2025/05/20 12:09:22] FCI1 Voltage: 221 volt
+[2025/05/20 12:09:22] FCI source 1 phase 3 FCI1 voltage check complete (U31)
+[2025/05/20 12:09:22] FCI2 Voltage: 220 volt
+[2025/05/20 12:09:22] FCI source 1 phase 3 FCI2 voltage check complete (U32)
+[2025/05/20 12:09:22] FCI3 Voltage: 226 volt
+[2025/05/20 12:09:22] FCI source 1 phase 3 FCI3 voltage check complete (U33)
+[2025/05/20 12:09:22] FCI4 Voltage: 225 volt
+[2025/05/20 12:09:22] FCI source 1 phase 3 FCI4 voltage check complete (U34)
+[2025/05/20 12:09:22] FCI5 Voltage: 226 volt
+[2025/05/20 12:09:22] FCI source 1 phase 3 FCI5 voltage check complete (U35)
+[2025/05/20 12:09:22] FCI6 Voltage: 226 volt
+[2025/05/20 12:09:22] FCI source 1 phase 3 FCI6 voltage check complete (U36)
+[2025/05/20 12:09:22] COM7
+[2025/05/20 12:09:22] Start up test fixture
+[2025/05/20 12:09:24] Get FCI voltage
+[2025/05/20 12:09:24] FCI1 Voltage: 215 volt
+[2025/05/20 12:09:24] FCI source 1 phase 3 FCI1 voltage check complete (U37)
+[2025/05/20 12:09:24] FCI2 Voltage: 215 volt
+[2025/05/20 12:09:24] FCI source 1 phase 3 FCI2 voltage check complete (U38)
+[2025/05/20 12:09:24] FCI3 Voltage: 216 volt
+[2025/05/20 12:09:24] FCI source 1 phase 3 FCI3 voltage check complete (U39)
+[2025/05/20 12:09:24] FCI4 Voltage: 217 volt
+[2025/05/20 12:09:24] FCI source 1 phase 3 FCI4 voltage check complete (U40)
+[2025/05/20 12:09:24] FCI5 Voltage: 216 volt
+[2025/05/20 12:09:24] FCI source 1 phase 3 FCI5 voltage check complete (U41)
+[2025/05/20 12:09:24] FCI6 Voltage: 220 volt
+[2025/05/20 12:09:24] FCI source 1 phase 3 FCI6 voltage check complete (U42)
+[2025/05/20 12:09:24] COM6
+[2025/05/20 12:09:24] Start up test fixture
+[2025/05/20 12:09:26] Get FCI voltage
+[2025/05/20 12:09:26] FCI1 Voltage: 221 volt
+[2025/05/20 12:09:26] FCI source 1 phase 3 FCI1 voltage check complete (U43)
+[2025/05/20 12:09:26] FCI2 Voltage: 220 volt
+[2025/05/20 12:09:26] FCI source 1 phase 3 FCI2 voltage check complete (U44)
+[2025/05/20 12:09:26] FCI3 Voltage: 215 volt
+[2025/05/20 12:09:26] FCI source 1 phase 3 FCI3 voltage check complete (U45)
+[2025/05/20 12:09:26] FCI4 Voltage: 225 volt
+[2025/05/20 12:09:26] FCI source 1 phase 3 FCI4 voltage check complete (U46)
+[2025/05/20 12:09:26] FCI5 Voltage: 226 volt
+[2025/05/20 12:09:27] FCI source 1 phase 3 FCI5 voltage check complete (U47)
+[2025/05/20 12:09:27] FCI6 Voltage: 226 volt
+[2025/05/20 12:09:27] FCI source 1 phase 3 FCI6 voltage check complete (U48)
+[2025/05/20 12:09:27] ======================================
+[2025/05/20 12:09:27] [Check FCI AC Source 2 Phase 1 Output Voltage]
+[2025/05/20 12:09:27] ======================================
+[2025/05/20 12:09:27] Set AC source phase 1 output to 220 volt
+[2025/05/20 12:09:27] AC Source Write >>> '*CLS'
+[2025/05/20 12:09:27] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 12:09:27] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 220'
+[2025/05/20 12:09:28] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/20 12:09:29] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/20 12:09:33] COM11
+[2025/05/20 12:09:33] Start up test fixture
+[2025/05/20 12:09:35] Get FCI voltage
+[2025/05/20 12:09:35] FCI1 Voltage: 219 volt
+[2025/05/20 12:09:35] FCI source 2 phase 1 FCI1 voltage check complete (U1)
+[2025/05/20 12:09:35] FCI2 Voltage: 219 volt
+[2025/05/20 12:09:35] FCI source 2 phase 1 FCI2 voltage check complete (U2)
+[2025/05/20 12:09:35] FCI3 Voltage: 220 volt
+[2025/05/20 12:09:35] FCI source 2 phase 1 FCI3 voltage check complete (U3)
+[2025/05/20 12:09:35] FCI4 Voltage: 220 volt
+[2025/05/20 12:09:35] FCI source 2 phase 1 FCI4 voltage check complete (U4)
+[2025/05/20 12:09:35] FCI5 Voltage: 219 volt
+[2025/05/20 12:09:35] FCI source 2 phase 1 FCI5 voltage check complete (U5)
+[2025/05/20 12:09:35] FCI6 Voltage: 219 volt
+[2025/05/20 12:09:35] FCI source 2 phase 1 FCI6 voltage check complete (U6)
+[2025/05/20 12:09:35] COM4
+[2025/05/20 12:09:35] Start up test fixture
+[2025/05/20 12:09:37] Get FCI voltage
+[2025/05/20 12:09:37] FCI1 Voltage: 221 volt
+[2025/05/20 12:09:37] FCI source 2 phase 1 FCI1 voltage check complete (U7)
+[2025/05/20 12:09:37] FCI2 Voltage: 221 volt
+[2025/05/20 12:09:37] FCI source 2 phase 1 FCI2 voltage check complete (U8)
+[2025/05/20 12:09:37] FCI3 Voltage: 212 volt
+[2025/05/20 12:09:37] FCI source 2 phase 1 FCI3 voltage check complete (U9)
+[2025/05/20 12:09:37] FCI4 Voltage: 226 volt
+[2025/05/20 12:09:37] FCI source 2 phase 1 FCI4 voltage check complete (U10)
+[2025/05/20 12:09:37] FCI5 Voltage: 226 volt
+[2025/05/20 12:09:37] FCI source 2 phase 1 FCI5 voltage check complete (U11)
+[2025/05/20 12:09:37] FCI6 Voltage: 225 volt
+[2025/05/20 12:09:37] FCI source 2 phase 1 FCI6 voltage check complete (U12)
+[2025/05/20 12:09:37] COM5
+[2025/05/20 12:09:37] Start up test fixture
+[2025/05/20 12:09:39] Get FCI voltage
+[2025/05/20 12:09:39] FCI1 Voltage: 222 volt
+[2025/05/20 12:09:39] FCI source 2 phase 1 FCI1 voltage check complete (U13)
+[2025/05/20 12:09:39] FCI2 Voltage: 224 volt
+[2025/05/20 12:09:39] FCI source 2 phase 1 FCI2 voltage check complete (U14)
+[2025/05/20 12:09:39] FCI3 Voltage: 219 volt
+[2025/05/20 12:09:39] FCI source 2 phase 1 FCI3 voltage check complete (U15)
+[2025/05/20 12:09:39] FCI4 Voltage: 221 volt
+[2025/05/20 12:09:39] FCI source 2 phase 1 FCI4 voltage check complete (U16)
+[2025/05/20 12:09:39] FCI5 Voltage: 217 volt
+[2025/05/20 12:09:39] FCI source 2 phase 1 FCI5 voltage check complete (U17)
+[2025/05/20 12:09:39] FCI6 Voltage: 218 volt
+[2025/05/20 12:09:39] FCI source 2 phase 1 FCI6 voltage check complete (U18)
+[2025/05/20 12:09:39] COM8
+[2025/05/20 12:09:39] Start up test fixture
+[2025/05/20 12:09:41] Get FCI voltage
+[2025/05/20 12:09:41] FCI1 Voltage: 220 volt
+[2025/05/20 12:09:41] FCI source 2 phase 1 FCI1 voltage check complete (U19)
+[2025/05/20 12:09:41] FCI2 Voltage: 220 volt
+[2025/05/20 12:09:41] FCI source 2 phase 1 FCI2 voltage check complete (U20)
+[2025/05/20 12:09:41] FCI3 Voltage: 220 volt
+[2025/05/20 12:09:41] FCI source 2 phase 1 FCI3 voltage check complete (U21)
+[2025/05/20 12:09:41] FCI4 Voltage: 220 volt
+[2025/05/20 12:09:41] FCI source 2 phase 1 FCI4 voltage check complete (U22)
+[2025/05/20 12:09:41] FCI5 Voltage: 220 volt
+[2025/05/20 12:09:41] FCI source 2 phase 1 FCI5 voltage check complete (U23)
+[2025/05/20 12:09:41] FCI6 Voltage: 219 volt
+[2025/05/20 12:09:41] FCI source 2 phase 1 FCI6 voltage check complete (U24)
+[2025/05/20 12:09:41] COM9
+[2025/05/20 12:09:41] Start up test fixture
+[2025/05/20 12:09:43] Get FCI voltage
+[2025/05/20 12:09:43] FCI1 Voltage: 221 volt
+[2025/05/20 12:09:43] FCI source 2 phase 1 FCI1 voltage check complete (U25)
+[2025/05/20 12:09:43] FCI2 Voltage: 225 volt
+[2025/05/20 12:09:43] FCI source 2 phase 1 FCI2 voltage check complete (U26)
+[2025/05/20 12:09:43] FCI3 Voltage: 223 volt
+[2025/05/20 12:09:43] FCI source 2 phase 1 FCI3 voltage check complete (U27)
+[2025/05/20 12:09:43] FCI4 Voltage: 220 volt
+[2025/05/20 12:09:43] FCI source 2 phase 1 FCI4 voltage check complete (U28)
+[2025/05/20 12:09:43] FCI5 Voltage: 220 volt
+[2025/05/20 12:09:43] FCI source 2 phase 1 FCI5 voltage check complete (U29)
+[2025/05/20 12:09:43] FCI6 Voltage: 220 volt
+[2025/05/20 12:09:43] FCI source 2 phase 1 FCI6 voltage check complete (U30)
+[2025/05/20 12:09:43] COM10
+[2025/05/20 12:09:43] Start up test fixture
+[2025/05/20 12:09:45] Get FCI voltage
+[2025/05/20 12:09:45] FCI1 Voltage: 222 volt
+[2025/05/20 12:09:45] FCI source 2 phase 1 FCI1 voltage check complete (U31)
+[2025/05/20 12:09:45] FCI2 Voltage: 220 volt
+[2025/05/20 12:09:45] FCI source 2 phase 1 FCI2 voltage check complete (U32)
+[2025/05/20 12:09:45] FCI3 Voltage: 211 volt
+[2025/05/20 12:09:45] FCI source 2 phase 1 FCI3 voltage check complete (U33)
+[2025/05/20 12:09:45] FCI4 Voltage: 226 volt
+[2025/05/20 12:09:45] FCI source 2 phase 1 FCI4 voltage check complete (U34)
+[2025/05/20 12:09:45] FCI5 Voltage: 211 volt
+[2025/05/20 12:09:45] FCI source 2 phase 1 FCI5 voltage check complete (U35)
+[2025/05/20 12:09:45] FCI6 Voltage: 226 volt
+[2025/05/20 12:09:45] FCI source 2 phase 1 FCI6 voltage check complete (U36)
+[2025/05/20 12:09:45] COM7
+[2025/05/20 12:09:45] Start up test fixture
+[2025/05/20 12:09:47] Get FCI voltage
+[2025/05/20 12:09:47] FCI1 Voltage: 219 volt
+[2025/05/20 12:09:47] FCI source 2 phase 1 FCI1 voltage check complete (U37)
+[2025/05/20 12:09:47] FCI2 Voltage: 215 volt
+[2025/05/20 12:09:47] FCI source 2 phase 1 FCI2 voltage check complete (U38)
+[2025/05/20 12:09:47] FCI3 Voltage: 217 volt
+[2025/05/20 12:09:47] FCI source 2 phase 1 FCI3 voltage check complete (U39)
+[2025/05/20 12:09:47] FCI4 Voltage: 222 volt
+[2025/05/20 12:09:47] FCI source 2 phase 1 FCI4 voltage check complete (U40)
+[2025/05/20 12:09:47] FCI5 Voltage: 215 volt
+[2025/05/20 12:09:47] FCI source 2 phase 1 FCI5 voltage check complete (U41)
+[2025/05/20 12:09:47] FCI6 Voltage: 220 volt
+[2025/05/20 12:09:47] FCI source 2 phase 1 FCI6 voltage check complete (U42)
+[2025/05/20 12:09:47] COM6
+[2025/05/20 12:09:47] Start up test fixture
+[2025/05/20 12:09:49] Get FCI voltage
+[2025/05/20 12:09:49] FCI1 Voltage: 221 volt
+[2025/05/20 12:09:49] FCI source 2 phase 1 FCI1 voltage check complete (U43)
+[2025/05/20 12:09:49] FCI2 Voltage: 220 volt
+[2025/05/20 12:09:49] FCI source 2 phase 1 FCI2 voltage check complete (U44)
+[2025/05/20 12:09:49] FCI3 Voltage: 226 volt
+[2025/05/20 12:09:49] FCI source 2 phase 1 FCI3 voltage check complete (U45)
+[2025/05/20 12:09:49] FCI4 Voltage: 225 volt
+[2025/05/20 12:09:49] FCI source 2 phase 1 FCI4 voltage check complete (U46)
+[2025/05/20 12:09:49] FCI5 Voltage: 226 volt
+[2025/05/20 12:09:49] FCI source 2 phase 1 FCI5 voltage check complete (U47)
+[2025/05/20 12:09:49] FCI6 Voltage: 225 volt
+[2025/05/20 12:09:49] FCI source 2 phase 1 FCI6 voltage check complete (U48)
+[2025/05/20 12:09:49] ======================================
+[2025/05/20 12:09:49] [Check FCI AC Source 2 Phase 2 Output Voltage]
+[2025/05/20 12:09:49] ======================================
+[2025/05/20 12:09:49] Set AC source phase 2 output to 220 volt
+[2025/05/20 12:09:49] AC Source Write >>> '*CLS'
+[2025/05/20 12:09:49] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 12:09:49] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/20 12:09:50] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 220'
+[2025/05/20 12:09:51] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/20 12:09:55] COM11
+[2025/05/20 12:09:55] Start up test fixture
+[2025/05/20 12:09:57] Get FCI voltage
+[2025/05/20 12:09:57] FCI1 Voltage: 220 volt
+[2025/05/20 12:09:57] FCI source 2 phase 2 FCI1 voltage check complete (U1)
+[2025/05/20 12:09:57] FCI2 Voltage: 219 volt
+[2025/05/20 12:09:57] FCI source 2 phase 2 FCI2 voltage check complete (U2)
+[2025/05/20 12:09:57] FCI3 Voltage: 219 volt
+[2025/05/20 12:09:57] FCI source 2 phase 2 FCI3 voltage check complete (U3)
+[2025/05/20 12:09:57] FCI4 Voltage: 219 volt
+[2025/05/20 12:09:57] FCI source 2 phase 2 FCI4 voltage check complete (U4)
+[2025/05/20 12:09:57] FCI5 Voltage: 219 volt
+[2025/05/20 12:09:57] FCI source 2 phase 2 FCI5 voltage check complete (U5)
+[2025/05/20 12:09:57] FCI6 Voltage: 219 volt
+[2025/05/20 12:09:57] FCI source 2 phase 2 FCI6 voltage check complete (U6)
+[2025/05/20 12:09:57] COM4
+[2025/05/20 12:09:57] Start up test fixture
+[2025/05/20 12:09:59] Get FCI voltage
+[2025/05/20 12:09:59] FCI1 Voltage: 222 volt
+[2025/05/20 12:09:59] FCI source 2 phase 2 FCI1 voltage check complete (U7)
+[2025/05/20 12:09:59] FCI2 Voltage: 221 volt
+[2025/05/20 12:09:59] FCI source 2 phase 2 FCI2 voltage check complete (U8)
+[2025/05/20 12:09:59] FCI3 Voltage: 212 volt
+[2025/05/20 12:09:59] FCI source 2 phase 2 FCI3 voltage check complete (U9)
+[2025/05/20 12:09:59] FCI4 Voltage: 211 volt
+[2025/05/20 12:09:59] FCI source 2 phase 2 FCI4 voltage check complete (U10)
+[2025/05/20 12:09:59] FCI5 Voltage: 226 volt
+[2025/05/20 12:09:59] FCI source 2 phase 2 FCI5 voltage check complete (U11)
+[2025/05/20 12:09:59] FCI6 Voltage: 226 volt
+[2025/05/20 12:09:59] FCI source 2 phase 2 FCI6 voltage check complete (U12)
+[2025/05/20 12:09:59] COM5
+[2025/05/20 12:09:59] Start up test fixture
+[2025/05/20 12:10:02] Get FCI voltage
+[2025/05/20 12:10:02] FCI1 Voltage: 218 volt
+[2025/05/20 12:10:02] FCI source 2 phase 2 FCI1 voltage check complete (U13)
+[2025/05/20 12:10:02] FCI2 Voltage: 218 volt
+[2025/05/20 12:10:02] FCI source 2 phase 2 FCI2 voltage check complete (U14)
+[2025/05/20 12:10:02] FCI3 Voltage: 217 volt
+[2025/05/20 12:10:02] FCI source 2 phase 2 FCI3 voltage check complete (U15)
+[2025/05/20 12:10:02] FCI4 Voltage: 218 volt
+[2025/05/20 12:10:02] FCI source 2 phase 2 FCI4 voltage check complete (U16)
+[2025/05/20 12:10:02] FCI5 Voltage: 217 volt
+[2025/05/20 12:10:02] FCI source 2 phase 2 FCI5 voltage check complete (U17)
+[2025/05/20 12:10:02] FCI6 Voltage: 217 volt
+[2025/05/20 12:10:02] FCI source 2 phase 2 FCI6 voltage check complete (U18)
+[2025/05/20 12:10:02] COM8
+[2025/05/20 12:10:02] Start up test fixture
+[2025/05/20 12:10:04] Get FCI voltage
+[2025/05/20 12:10:04] FCI1 Voltage: 219 volt
+[2025/05/20 12:10:04] FCI source 2 phase 2 FCI1 voltage check complete (U19)
+[2025/05/20 12:10:04] FCI2 Voltage: 219 volt
+[2025/05/20 12:10:04] FCI source 2 phase 2 FCI2 voltage check complete (U20)
+[2025/05/20 12:10:04] FCI3 Voltage: 219 volt
+[2025/05/20 12:10:04] FCI source 2 phase 2 FCI3 voltage check complete (U21)
+[2025/05/20 12:10:04] FCI4 Voltage: 220 volt
+[2025/05/20 12:10:04] FCI source 2 phase 2 FCI4 voltage check complete (U22)
+[2025/05/20 12:10:04] FCI5 Voltage: 220 volt
+[2025/05/20 12:10:04] FCI source 2 phase 2 FCI5 voltage check complete (U23)
+[2025/05/20 12:10:04] FCI6 Voltage: 219 volt
+[2025/05/20 12:10:04] FCI source 2 phase 2 FCI6 voltage check complete (U24)
+[2025/05/20 12:10:04] COM9
+[2025/05/20 12:10:04] Start up test fixture
+[2025/05/20 12:10:06] Get FCI voltage
+[2025/05/20 12:10:06] FCI1 Voltage: 225 volt
+[2025/05/20 12:10:06] FCI source 2 phase 2 FCI1 voltage check complete (U25)
+[2025/05/20 12:10:06] FCI2 Voltage: 220 volt
+[2025/05/20 12:10:06] FCI source 2 phase 2 FCI2 voltage check complete (U26)
+[2025/05/20 12:10:06] FCI3 Voltage: 223 volt
+[2025/05/20 12:10:06] FCI source 2 phase 2 FCI3 voltage check complete (U27)
+[2025/05/20 12:10:06] FCI4 Voltage: 220 volt
+[2025/05/20 12:10:06] FCI source 2 phase 2 FCI4 voltage check complete (U28)
+[2025/05/20 12:10:06] FCI5 Voltage: 220 volt
+[2025/05/20 12:10:06] FCI source 2 phase 2 FCI5 voltage check complete (U29)
+[2025/05/20 12:10:06] FCI6 Voltage: 220 volt
+[2025/05/20 12:10:06] FCI source 2 phase 2 FCI6 voltage check complete (U30)
+[2025/05/20 12:10:06] COM10
+[2025/05/20 12:10:06] Start up test fixture
+[2025/05/20 12:10:08] Get FCI voltage
+[2025/05/20 12:10:08] FCI1 Voltage: 221 volt
+[2025/05/20 12:10:08] FCI source 2 phase 2 FCI1 voltage check complete (U31)
+[2025/05/20 12:10:08] FCI2 Voltage: 221 volt
+[2025/05/20 12:10:08] FCI source 2 phase 2 FCI2 voltage check complete (U32)
+[2025/05/20 12:10:08] FCI3 Voltage: 226 volt
+[2025/05/20 12:10:08] FCI source 2 phase 2 FCI3 voltage check complete (U33)
+[2025/05/20 12:10:08] FCI4 Voltage: 225 volt
+[2025/05/20 12:10:08] FCI source 2 phase 2 FCI4 voltage check complete (U34)
+[2025/05/20 12:10:08] FCI5 Voltage: 226 volt
+[2025/05/20 12:10:08] FCI source 2 phase 2 FCI5 voltage check complete (U35)
+[2025/05/20 12:10:08] FCI6 Voltage: 225 volt
+[2025/05/20 12:10:08] FCI source 2 phase 2 FCI6 voltage check complete (U36)
+[2025/05/20 12:10:08] COM7
+[2025/05/20 12:10:08] Start up test fixture
+[2025/05/20 12:10:10] Get FCI voltage
+[2025/05/20 12:10:10] FCI1 Voltage: 216 volt
+[2025/05/20 12:10:10] FCI source 2 phase 2 FCI1 voltage check complete (U37)
+[2025/05/20 12:10:10] FCI2 Voltage: 215 volt
+[2025/05/20 12:10:10] FCI source 2 phase 2 FCI2 voltage check complete (U38)
+[2025/05/20 12:10:10] FCI3 Voltage: 215 volt
+[2025/05/20 12:10:10] FCI source 2 phase 2 FCI3 voltage check complete (U39)
+[2025/05/20 12:10:10] FCI4 Voltage: 219 volt
+[2025/05/20 12:10:10] FCI source 2 phase 2 FCI4 voltage check complete (U40)
+[2025/05/20 12:10:10] FCI5 Voltage: 216 volt
+[2025/05/20 12:10:10] FCI source 2 phase 2 FCI5 voltage check complete (U41)
+[2025/05/20 12:10:10] FCI6 Voltage: 216 volt
+[2025/05/20 12:10:10] FCI source 2 phase 2 FCI6 voltage check complete (U42)
+[2025/05/20 12:10:10] COM6
+[2025/05/20 12:10:10] Start up test fixture
+[2025/05/20 12:10:12] Get FCI voltage
+[2025/05/20 12:10:12] FCI1 Voltage: 221 volt
+[2025/05/20 12:10:12] FCI source 2 phase 2 FCI1 voltage check complete (U43)
+[2025/05/20 12:10:12] FCI2 Voltage: 222 volt
+[2025/05/20 12:10:12] FCI source 2 phase 2 FCI2 voltage check complete (U44)
+[2025/05/20 12:10:12] FCI3 Voltage: 226 volt
+[2025/05/20 12:10:12] FCI source 2 phase 2 FCI3 voltage check complete (U45)
+[2025/05/20 12:10:12] FCI4 Voltage: 226 volt
+[2025/05/20 12:10:12] FCI source 2 phase 2 FCI4 voltage check complete (U46)
+[2025/05/20 12:10:12] FCI5 Voltage: 226 volt
+[2025/05/20 12:10:12] FCI source 2 phase 2 FCI5 voltage check complete (U47)
+[2025/05/20 12:10:12] FCI6 Voltage: 214 volt
+[2025/05/20 12:10:12] FCI source 2 phase 2 FCI6 voltage check complete (U48)
+[2025/05/20 12:10:12] ======================================
+[2025/05/20 12:10:12] [Check FCI AC Source 2 Phase 3 Output Voltage]
+[2025/05/20 12:10:12] ======================================
+[2025/05/20 12:10:12] Set AC source phase 3 output to 220 volt
+[2025/05/20 12:10:12] AC Source Write >>> '*CLS'
+[2025/05/20 12:10:12] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 12:10:12] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/20 12:10:13] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/20 12:10:14] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 220'
+[2025/05/20 12:10:18] COM11
+[2025/05/20 12:10:18] Start up test fixture
+[2025/05/20 12:10:20] Get FCI voltage
+[2025/05/20 12:10:20] FCI1 Voltage: 219 volt
+[2025/05/20 12:10:20] FCI source 2 phase 3 FCI1 voltage check complete (U1)
+[2025/05/20 12:10:20] FCI2 Voltage: 219 volt
+[2025/05/20 12:10:20] FCI source 2 phase 3 FCI2 voltage check complete (U2)
+[2025/05/20 12:10:20] FCI3 Voltage: 220 volt
+[2025/05/20 12:10:20] FCI source 2 phase 3 FCI3 voltage check complete (U3)
+[2025/05/20 12:10:20] FCI4 Voltage: 219 volt
+[2025/05/20 12:10:20] FCI source 2 phase 3 FCI4 voltage check complete (U4)
+[2025/05/20 12:10:20] FCI5 Voltage: 219 volt
+[2025/05/20 12:10:20] FCI source 2 phase 3 FCI5 voltage check complete (U5)
+[2025/05/20 12:10:20] FCI6 Voltage: 219 volt
+[2025/05/20 12:10:20] FCI source 2 phase 3 FCI6 voltage check complete (U6)
+[2025/05/20 12:10:20] COM4
+[2025/05/20 12:10:20] Start up test fixture
+[2025/05/20 12:10:22] Get FCI voltage
+[2025/05/20 12:10:22] FCI1 Voltage: 220 volt
+[2025/05/20 12:10:22] FCI source 2 phase 3 FCI1 voltage check complete (U7)
+[2025/05/20 12:10:22] FCI2 Voltage: 221 volt
+[2025/05/20 12:10:22] FCI source 2 phase 3 FCI2 voltage check complete (U8)
+[2025/05/20 12:10:22] FCI3 Voltage: 225 volt
+[2025/05/20 12:10:22] FCI source 2 phase 3 FCI3 voltage check complete (U9)
+[2025/05/20 12:10:22] FCI4 Voltage: 226 volt
+[2025/05/20 12:10:22] FCI source 2 phase 3 FCI4 voltage check complete (U10)
+[2025/05/20 12:10:22] FCI5 Voltage: 224 volt
+[2025/05/20 12:10:22] FCI source 2 phase 3 FCI5 voltage check complete (U11)
+[2025/05/20 12:10:22] FCI6 Voltage: 225 volt
+[2025/05/20 12:10:22] FCI source 2 phase 3 FCI6 voltage check complete (U12)
+[2025/05/20 12:10:22] COM5
+[2025/05/20 12:10:22] Start up test fixture
+[2025/05/20 12:10:24] Get FCI voltage
+[2025/05/20 12:10:24] FCI1 Voltage: 216 volt
+[2025/05/20 12:10:24] FCI source 2 phase 3 FCI1 voltage check complete (U13)
+[2025/05/20 12:10:24] FCI2 Voltage: 213 volt
+[2025/05/20 12:10:24] FCI source 2 phase 3 FCI2 voltage check complete (U14)
+[2025/05/20 12:10:24] FCI3 Voltage: 217 volt
+[2025/05/20 12:10:24] FCI source 2 phase 3 FCI3 voltage check complete (U15)
+[2025/05/20 12:10:24] FCI4 Voltage: 213 volt
+[2025/05/20 12:10:24] FCI source 2 phase 3 FCI4 voltage check complete (U16)
+[2025/05/20 12:10:24] FCI5 Voltage: 217 volt
+[2025/05/20 12:10:24] FCI source 2 phase 3 FCI5 voltage check complete (U17)
+[2025/05/20 12:10:24] FCI6 Voltage: 213 volt
+[2025/05/20 12:10:24] FCI source 2 phase 3 FCI6 voltage check complete (U18)
+[2025/05/20 12:10:24] COM8
+[2025/05/20 12:10:24] Start up test fixture
+[2025/05/20 12:10:26] Get FCI voltage
+[2025/05/20 12:10:26] FCI1 Voltage: 219 volt
+[2025/05/20 12:10:26] FCI source 2 phase 3 FCI1 voltage check complete (U19)
+[2025/05/20 12:10:26] FCI2 Voltage: 219 volt
+[2025/05/20 12:10:26] FCI source 2 phase 3 FCI2 voltage check complete (U20)
+[2025/05/20 12:10:26] FCI3 Voltage: 220 volt
+[2025/05/20 12:10:26] FCI source 2 phase 3 FCI3 voltage check complete (U21)
+[2025/05/20 12:10:26] FCI4 Voltage: 219 volt
+[2025/05/20 12:10:26] FCI source 2 phase 3 FCI4 voltage check complete (U22)
+[2025/05/20 12:10:26] FCI5 Voltage: 219 volt
+[2025/05/20 12:10:26] FCI source 2 phase 3 FCI5 voltage check complete (U23)
+[2025/05/20 12:10:26] FCI6 Voltage: 219 volt
+[2025/05/20 12:10:26] FCI source 2 phase 3 FCI6 voltage check complete (U24)
+[2025/05/20 12:10:26] COM9
+[2025/05/20 12:10:26] Start up test fixture
+[2025/05/20 12:10:28] Get FCI voltage
+[2025/05/20 12:10:28] FCI1 Voltage: 225 volt
+[2025/05/20 12:10:28] FCI source 2 phase 3 FCI1 voltage check complete (U25)
+[2025/05/20 12:10:28] FCI2 Voltage: 220 volt
+[2025/05/20 12:10:28] FCI source 2 phase 3 FCI2 voltage check complete (U26)
+[2025/05/20 12:10:28] FCI3 Voltage: 220 volt
+[2025/05/20 12:10:28] FCI source 2 phase 3 FCI3 voltage check complete (U27)
+[2025/05/20 12:10:28] FCI4 Voltage: 223 volt
+[2025/05/20 12:10:28] FCI source 2 phase 3 FCI4 voltage check complete (U28)
+[2025/05/20 12:10:28] FCI5 Voltage: 227 volt
+[2025/05/20 12:10:28] FCI source 2 phase 3 FCI5 voltage check complete (U29)
+[2025/05/20 12:10:28] FCI6 Voltage: 220 volt
+[2025/05/20 12:10:28] FCI source 2 phase 3 FCI6 voltage check complete (U30)
+[2025/05/20 12:10:28] COM10
+[2025/05/20 12:10:28] Start up test fixture
+[2025/05/20 12:10:31] Get FCI voltage
+[2025/05/20 12:10:31] FCI1 Voltage: 221 volt
+[2025/05/20 12:10:31] FCI source 2 phase 3 FCI1 voltage check complete (U31)
+[2025/05/20 12:10:31] FCI2 Voltage: 221 volt
+[2025/05/20 12:10:31] FCI source 2 phase 3 FCI2 voltage check complete (U32)
+[2025/05/20 12:10:31] FCI3 Voltage: 226 volt
+[2025/05/20 12:10:31] FCI source 2 phase 3 FCI3 voltage check complete (U33)
+[2025/05/20 12:10:31] FCI4 Voltage: 211 volt
+[2025/05/20 12:10:31] FCI source 2 phase 3 FCI4 voltage check complete (U34)
+[2025/05/20 12:10:31] FCI5 Voltage: 226 volt
+[2025/05/20 12:10:31] FCI source 2 phase 3 FCI5 voltage check complete (U35)
+[2025/05/20 12:10:31] FCI6 Voltage: 226 volt
+[2025/05/20 12:10:31] FCI source 2 phase 3 FCI6 voltage check complete (U36)
+[2025/05/20 12:10:31] COM7
+[2025/05/20 12:10:31] Start up test fixture
+[2025/05/20 12:10:33] Get FCI voltage
+[2025/05/20 12:10:33] FCI1 Voltage: 219 volt
+[2025/05/20 12:10:33] FCI source 2 phase 3 FCI1 voltage check complete (U37)
+[2025/05/20 12:10:33] FCI2 Voltage: 215 volt
+[2025/05/20 12:10:33] FCI source 2 phase 3 FCI2 voltage check complete (U38)
+[2025/05/20 12:10:33] FCI3 Voltage: 216 volt
+[2025/05/20 12:10:33] FCI source 2 phase 3 FCI3 voltage check complete (U39)
+[2025/05/20 12:10:33] FCI4 Voltage: 222 volt
+[2025/05/20 12:10:33] FCI source 2 phase 3 FCI4 voltage check complete (U40)
+[2025/05/20 12:10:33] FCI5 Voltage: 218 volt
+[2025/05/20 12:10:33] FCI source 2 phase 3 FCI5 voltage check complete (U41)
+[2025/05/20 12:10:33] FCI6 Voltage: 220 volt
+[2025/05/20 12:10:33] FCI source 2 phase 3 FCI6 voltage check complete (U42)
+[2025/05/20 12:10:33] COM6
+[2025/05/20 12:10:33] Start up test fixture
+[2025/05/20 12:10:35] Get FCI voltage
+[2025/05/20 12:10:35] FCI1 Voltage: 221 volt
+[2025/05/20 12:10:35] FCI source 2 phase 3 FCI1 voltage check complete (U43)
+[2025/05/20 12:10:35] FCI2 Voltage: 221 volt
+[2025/05/20 12:10:35] FCI source 2 phase 3 FCI2 voltage check complete (U44)
+[2025/05/20 12:10:35] FCI3 Voltage: 212 volt
+[2025/05/20 12:10:35] FCI source 2 phase 3 FCI3 voltage check complete (U45)
+[2025/05/20 12:10:35] FCI4 Voltage: 226 volt
+[2025/05/20 12:10:35] FCI source 2 phase 3 FCI4 voltage check complete (U46)
+[2025/05/20 12:10:35] FCI5 Voltage: 225 volt
+[2025/05/20 12:10:35] FCI source 2 phase 3 FCI5 voltage check complete (U47)
+[2025/05/20 12:10:35] FCI6 Voltage: 226 volt
+[2025/05/20 12:10:35] FCI source 2 phase 3 FCI6 voltage check complete (U48)
+[2025/05/20 12:10:35] Set AC source all phases output 0 volt
+[2025/05/20 12:10:35] AC Source Write >>> '*CLS'
+[2025/05/20 12:10:35] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 12:10:35] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/20 12:10:36] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/20 12:10:37] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/20 12:10:41] FCI test Pass
+[2025/05/20 12:10:42] Test elapsed time: 0:02:24.099999
+[2025/05/20 12:10:42] ######################################################################
+[2025/05/20 12:10:42] Test11: Current Detect Test
+[2025/05/20 12:10:42] Timestamp: [2025-05-20 12:10:42]
+[2025/05/20 12:10:42] ######################################################################
+[2025/05/20 12:10:42] ======================================
+[2025/05/20 12:10:42] [Source 1 Current Detect Test]
+[2025/05/20 12:10:42] ======================================
+[2025/05/20 12:10:42] Set AC source all phases output 0 volt
+[2025/05/20 12:10:42] AC Source Write >>> '*CLS'
+[2025/05/20 12:10:42] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 12:10:42] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/20 12:10:43] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/20 12:10:44] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/20 12:10:51] Turn source 1 relays on
+[2025/05/20 12:10:52] COM11
+[2025/05/20 12:10:52] S1/S2 relays are off
+[2025/05/20 12:10:54] Turn source 1 relay on
+[2025/05/20 12:10:56] S1 relay is on
+[2025/05/20 12:10:58] COM4
+[2025/05/20 12:10:58] S1/S2 relays are off
+[2025/05/20 12:11:00] Turn source 1 relay on
+[2025/05/20 12:11:02] S1 relay is on
+[2025/05/20 12:11:04] COM5
+[2025/05/20 12:11:05] S1/S2 relays are off
+[2025/05/20 12:11:07] Turn source 1 relay on
+[2025/05/20 12:11:09] S1 relay is on
+[2025/05/20 12:11:11] COM8
+[2025/05/20 12:11:11] S1/S2 relays are off
+[2025/05/20 12:11:13] Turn source 1 relay on
+[2025/05/20 12:11:15] S1 relay is on
+[2025/05/20 12:11:17] COM9
+[2025/05/20 12:11:17] S1/S2 relays are off
+[2025/05/20 12:11:19] Turn source 1 relay on
+[2025/05/20 12:11:21] S1 relay is on
+[2025/05/20 12:11:23] COM10
+[2025/05/20 12:11:23] S1/S2 relays are off
+[2025/05/20 12:11:25] Turn source 1 relay on
+[2025/05/20 12:11:27] S1 relay is on
+[2025/05/20 12:11:29] COM7
+[2025/05/20 12:11:29] S1/S2 relays are off
+[2025/05/20 12:11:31] Turn source 1 relay on
+[2025/05/20 12:11:33] S1 relay is on
+[2025/05/20 12:11:35] COM6
+[2025/05/20 12:11:35] S1/S2 relays are off
+[2025/05/20 12:11:37] Turn source 1 relay on
+[2025/05/20 12:11:39] S1 relay is on
+[2025/05/20 12:11:42] Set AC source output to 208 volt
+[2025/05/20 12:11:42] AC Source Write >>> '*CLS'
+[2025/05/20 12:11:42] AC Source Write >>> 'INST:EDIT ALL'
+[2025/05/20 12:11:42] AC Source Write >>> 'VOLTage:AC 208'
+[2025/05/20 12:11:43] Turn AC source output on
+[2025/05/20 12:11:43] AC Source Write >>> 'OUTPut?'
+[2025/05/20 12:11:43] AC Source Return >>> 'ON'
+[2025/05/20 12:12:10] Init to filesystem
+[2025/05/20 12:12:10] Try 1:
+[2025/05/20 12:12:11] b'\r\r\n'
+[2025/05/20 12:12:11] b'login: '
+[2025/05/20 12:12:11] Login phase
+[2025/05/20 12:12:12] b'root\r\n'
+[2025/05/20 12:12:12] b'Password: '
+[2025/05/20 12:12:12] Login phase Pass
+[2025/05/20 12:12:12] Password phase
+[2025/05/20 12:12:13] b'\r\n'
+[2025/05/20 12:12:21] b'WcsCli# '
+[2025/05/20 12:12:21] Password phase Pass
+[2025/05/20 12:12:21] Initial gain/offset parameter
+[2025/05/20 12:12:21] Transfer adccalibration.ini from host to RM
+[2025/05/20 12:12:21] Set network interface eth0 to static
+[2025/05/20 12:12:21] b'set network static -i eth0 -a 192.168.0.100 -s 255.255.255.0 -g 192.168. \r0.1\r\n'
+[2025/05/20 12:12:23] b'    Completion Code: Success\r\n'
+[2025/05/20 12:12:23] b'WcsCli# '
+[2025/05/20 12:12:23] b'set manager tftp get -s 192.168.0.101 -f adccalibration.ini\r\n'
+[2025/05/20 12:12:33] b'    Completion Code: Success\r\n'
+[2025/05/20 12:12:33] b'WcsCli# '
+[2025/05/20 12:12:33] Write calibration data to PMDU EEPROM
+[2025/05/20 12:12:35] b'set manager powermeter calibration -f adccalibration.ini\r\n'
+[2025/05/20 12:12:35] b'    Completion Code: Success\r\n'
+[2025/05/20 12:12:35] b'WcsCli# '
+[2025/05/20 12:12:35] Write ADC calibration to EEPROM(B:1 D:51) Pass
+[2025/05/20 12:12:37] b'show manager powermeter calibration\r\n'
+[2025/05/20 12:12:37] b'    Current: \r\n'
+[2025/05/20 12:12:37] b'        Feed1: \r\n'
+[2025/05/20 12:12:37] b'            Phase1: \r\n'
+[2025/05/20 12:12:37] b'                Gain: 16384\r\n'
+[2025/05/20 12:12:37] b'                Offset: 0\r\n'
+[2025/05/20 12:12:37] b'            Phase2: \r\n'
+[2025/05/20 12:12:37] b'                Gain: 16384\r\n'
+[2025/05/20 12:12:37] b'                Offset: 0\r\n'
+[2025/05/20 12:12:37] b'            Phase3: \r\n'
+[2025/05/20 12:12:37] b'                Gain: 16384\r\n'
+[2025/05/20 12:12:37] b'                Offset: 0\r\n'
+[2025/05/20 12:12:37] b'        Feed2: \r\n'
+[2025/05/20 12:12:37] b'            Phase1: \r\n'
+[2025/05/20 12:12:37] b'                Gain: 16384\r\n'
+[2025/05/20 12:12:37] b'                Offset: 0\r\n'
+[2025/05/20 12:12:37] b'            Phase2: \r\n'
+[2025/05/20 12:12:37] b'                Gain: 16384\r\n'
+[2025/05/20 12:12:37] b'                Offset: 0\r\n'
+[2025/05/20 12:12:37] b'            Phase3: \r\n'
+[2025/05/20 12:12:37] b'                Gain: 16384\r\n'
+[2025/05/20 12:12:37] b'                Offset: 0\r\n'
+[2025/05/20 12:12:37] b'    Voltage: \r\n'
+[2025/05/20 12:12:37] b'        Feed1: \r\n'
+[2025/05/20 12:12:37] b'            Phase1: \r\n'
+[2025/05/20 12:12:37] b'                Gain: 16384\r\n'
+[2025/05/20 12:12:37] b'                Offset: 0\r\n'
+[2025/05/20 12:12:37] b'            Phase2: \r\n'
+[2025/05/20 12:12:37] b'                Gain: 16384\r\n'
+[2025/05/20 12:12:37] b'                Offset: 0\r\n'
+[2025/05/20 12:12:37] b'            Phase3: \r\n'
+[2025/05/20 12:12:37] b'                Gain: 16384\r\n'
+[2025/05/20 12:12:37] b'                Offset: 0\r\n'
+[2025/05/20 12:12:37] b'        Feed2: \r\n'
+[2025/05/20 12:12:37] b'            Phase1: \r\n'
+[2025/05/20 12:12:37] b'                Gain: 16384\r\n'
+[2025/05/20 12:12:37] b'                Offset: 0\r\n'
+[2025/05/20 12:12:37] b'            Phase2: \r\n'
+[2025/05/20 12:12:37] b'                Gain: 16384\r\n'
+[2025/05/20 12:12:37] b'                Offset: 0\r\n'
+[2025/05/20 12:12:37] b'            Phase3: \r\n'
+[2025/05/20 12:12:37] b'                Gain: 16384\r\n'
+[2025/05/20 12:12:37] b'                Offset: 0\r\n'
+[2025/05/20 12:12:37] b'    Completion Code: Success\r\n'
+[2025/05/20 12:12:37] b'WcsCli# '
+[2025/05/20 12:12:37] Set AC load 1 to 5 amp
+[2025/05/20 12:12:37] AC Load 1 Write >>> '*CLS'
+[2025/05/20 12:12:37] AC Load 1 Write >>> 'CURR 5.0'
+[2025/05/20 12:12:37] Set AC load 2 to 10 amp
+[2025/05/20 12:12:37] AC Load 2 Write >>> '*CLS'
+[2025/05/20 12:12:37] AC Load 2 Write >>> 'CURR 10.0'
+[2025/05/20 12:12:37] Set AC load 3 to 15 amp
+[2025/05/20 12:12:37] AC Load 3 Write >>> '*CLS'
+[2025/05/20 12:12:37] AC Load 3 Write >>> 'CURR 15.0'
+[2025/05/20 12:12:39] Turn AC load on
+[2025/05/20 12:12:39] AC Load 1 Write >>> '*CLS'
+[2025/05/20 12:12:39] AC Load 1 Write >>> 'LOAD?'
+[2025/05/20 12:12:39] AC Load 1 Return >>> '0'
+[2025/05/20 12:12:39] AC Load 1 Write >>> 'LOAD ON'
+[2025/05/20 12:12:39] AC Load 2 Write >>> '*CLS'
+[2025/05/20 12:12:39] AC Load 2 Write >>> 'LOAD?'
+[2025/05/20 12:12:39] AC Load 2 Return >>> '0'
+[2025/05/20 12:12:39] AC Load 2 Write >>> 'LOAD ON'
+[2025/05/20 12:12:39] AC Load 3 Write >>> '*CLS'
+[2025/05/20 12:12:39] AC Load 3 Write >>> 'LOAD?'
+[2025/05/20 12:12:39] AC Load 3 Return >>> '0'
+[2025/05/20 12:12:39] AC Load 3 Write >>> 'LOAD ON'
+[2025/05/20 12:12:49] Check phase R/S/T PRU current
+[2025/05/20 12:12:49] Get phase current
+[2025/05/20 12:12:49] Read power meter value from RM
+[2025/05/20 12:12:51] b'sh manager powermeter reading\r\n'
+[2025/05/20 12:12:51] b'    Feed1Phase1CurrentInAmperes: 5.0082\r\n'
+[2025/05/20 12:12:51] b'    Feed1Phase1PowerInWatts: 1064.0303\r\n'
+[2025/05/20 12:12:51] b'    Feed1Phase1VoltageInVolts: 212.6279\r\n'
+[2025/05/20 12:12:51] b'    Feed1Phase2CurrentInAmperes: 10.0469\r\n'
+[2025/05/20 12:12:51] b'    Feed1Phase2PowerInWatts: 2124.2942\r\n'
+[2025/05/20 12:12:51] b'    Feed1Phase2VoltageInVolts: 211.574\r\n'
+[2025/05/20 12:12:51] b'    Feed1Phase3CurrentInAmperes: 15.1991\r\n'
+[2025/05/20 12:12:51] b'    Feed1Phase3PowerInWatts: 3224.1061\r\n'
+[2025/05/20 12:12:51] b'    Feed1Phase3VoltageInVolts: 212.2063\r\n'
+[2025/05/20 12:12:51] b'    Feed1PowerStatus: Healthy\r\n'
+[2025/05/20 12:12:51] b'    Feed2Phase1CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:12:51] b'    Feed2Phase1PowerInWatts: 0.0\r\n'
+[2025/05/20 12:12:51] b'    Feed2Phase1VoltageInVolts: 212.9441\r\n'
+[2025/05/20 12:12:51] b'    Feed2Phase2CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:12:51] b'    Feed2Phase2PowerInWatts: 0.0\r\n'
+[2025/05/20 12:12:51] b'    Feed2Phase2VoltageInVolts: 212.4171\r\n'
+[2025/05/20 12:12:51] b'    Feed2Phase3CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:12:51] b'    Feed2Phase3PowerInWatts: 0.0\r\n'
+[2025/05/20 12:12:51] b'    Feed2Phase3VoltageInVolts: 212.7596\r\n'
+[2025/05/20 12:12:51] b'    Feed2PowerStatus: Healthy\r\n'
+[2025/05/20 12:12:51] b'    MaxPowerInWatts: 6470.811\r\n'
+[2025/05/20 12:12:51] b'    PowerDrawnInWatts: 6412.4306\r\n'
+[2025/05/20 12:12:51] b'    PowerFactor: 1.0\r\n'
+[2025/05/20 12:12:51] b'    RealPowerInWatts: 6427.4965\r\n'
+[2025/05/20 12:12:51] b'    Completion Code: Success\r\n'
+[2025/05/20 12:12:51] b'WcsCli# '
+[2025/05/20 12:12:51] PRU S1 RIpru1 Current: 5.008200 amp
+[2025/05/20 12:12:51] PRU S1 SIpru1 Current: 10.046900 amp
+[2025/05/20 12:12:51] PRU S1 TIpru1 Current: 15.199100 amp
+[2025/05/20 12:12:51] Check phase current
+[2025/05/20 12:12:51] S1 current R phase detect Pass
+[2025/05/20 12:12:51] S1 current S phase detect Pass
+[2025/05/20 12:12:51] S1 current T phase detect Pass
+[2025/05/20 12:12:51] Source 1 current detect test Pass
+[2025/05/20 12:12:51] ======================================
+[2025/05/20 12:12:51] [Source 2 Current Detect Test]
+[2025/05/20 12:12:51] ======================================
+[2025/05/20 12:12:51] Set AC source all phases output 0 volt
+[2025/05/20 12:12:51] AC Source Write >>> '*CLS'
+[2025/05/20 12:12:51] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 12:12:51] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/20 12:12:52] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/20 12:12:53] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/20 12:13:00] Turn source 2 relays on
+[2025/05/20 12:13:02] COM11
+[2025/05/20 12:13:02] Turn relay off
+[2025/05/20 12:13:05] S1/S2 relays are off
+[2025/05/20 12:13:07] Turn source 2 relay on
+[2025/05/20 12:13:09] S2 relay is on
+[2025/05/20 12:13:11] COM4
+[2025/05/20 12:13:11] Turn relay off
+[2025/05/20 12:13:13] S1/S2 relays are off
+[2025/05/20 12:13:15] Turn source 2 relay on
+[2025/05/20 12:13:17] S2 relay is on
+[2025/05/20 12:13:19] COM5
+[2025/05/20 12:13:19] Turn relay off
+[2025/05/20 12:13:21] S1/S2 relays are off
+[2025/05/20 12:13:23] Turn source 2 relay on
+[2025/05/20 12:13:25] S2 relay is on
+[2025/05/20 12:13:27] COM8
+[2025/05/20 12:13:27] Turn relay off
+[2025/05/20 12:13:29] S1/S2 relays are off
+[2025/05/20 12:13:31] Turn source 2 relay on
+[2025/05/20 12:13:33] S2 relay is on
+[2025/05/20 12:13:35] COM9
+[2025/05/20 12:13:35] Turn relay off
+[2025/05/20 12:13:37] S1/S2 relays are off
+[2025/05/20 12:13:39] Turn source 2 relay on
+[2025/05/20 12:13:41] S2 relay is on
+[2025/05/20 12:13:43] COM10
+[2025/05/20 12:13:43] Turn relay off
+[2025/05/20 12:13:45] S1/S2 relays are off
+[2025/05/20 12:13:47] Turn source 2 relay on
+[2025/05/20 12:13:49] S2 relay is on
+[2025/05/20 12:13:51] COM7
+[2025/05/20 12:13:51] Turn relay off
+[2025/05/20 12:13:53] S1/S2 relays are off
+[2025/05/20 12:13:55] Turn source 2 relay on
+[2025/05/20 12:13:57] S2 relay is on
+[2025/05/20 12:13:59] COM6
+[2025/05/20 12:13:59] Turn relay off
+[2025/05/20 12:14:01] S1/S2 relays are off
+[2025/05/20 12:14:03] Turn source 2 relay on
+[2025/05/20 12:14:05] S2 relay is on
+[2025/05/20 12:14:09] Set AC source output to 208 volt
+[2025/05/20 12:14:09] AC Source Write >>> '*CLS'
+[2025/05/20 12:14:09] AC Source Write >>> 'INST:EDIT ALL'
+[2025/05/20 12:14:09] AC Source Write >>> 'VOLTage:AC 208'
+[2025/05/20 12:14:09] Turn AC source output on
+[2025/05/20 12:14:09] AC Source Write >>> 'OUTPut?'
+[2025/05/20 12:14:09] AC Source Return >>> 'ON'
+[2025/05/20 12:14:36] Init to filesystem
+[2025/05/20 12:14:36] Try 1:
+[2025/05/20 12:14:38] b'\r\r\n'
+[2025/05/20 12:14:38] b'login: '
+[2025/05/20 12:14:38] Login phase
+[2025/05/20 12:14:39] b'root\r\n'
+[2025/05/20 12:14:39] b'Password: '
+[2025/05/20 12:14:39] Login phase Pass
+[2025/05/20 12:14:39] Password phase
+[2025/05/20 12:14:39] b'\r\n'
+[2025/05/20 12:14:47] b'WcsCli# '
+[2025/05/20 12:14:47] Password phase Pass
+[2025/05/20 12:14:47] Set AC load 1 to 5 amp
+[2025/05/20 12:14:47] AC Load 1 Write >>> '*CLS'
+[2025/05/20 12:14:47] AC Load 1 Write >>> 'CURR 5.0'
+[2025/05/20 12:14:47] Set AC load 2 to 10 amp
+[2025/05/20 12:14:47] AC Load 2 Write >>> '*CLS'
+[2025/05/20 12:14:47] AC Load 2 Write >>> 'CURR 10.0'
+[2025/05/20 12:14:47] Set AC load 3 to 15 amp
+[2025/05/20 12:14:47] AC Load 3 Write >>> '*CLS'
+[2025/05/20 12:14:47] AC Load 3 Write >>> 'CURR 15.0'
+[2025/05/20 12:14:49] Turn AC load on
+[2025/05/20 12:14:49] AC Load 1 Write >>> '*CLS'
+[2025/05/20 12:14:49] AC Load 1 Write >>> 'LOAD?'
+[2025/05/20 12:14:49] AC Load 1 Return >>> '0'
+[2025/05/20 12:14:49] AC Load 1 Write >>> 'LOAD ON'
+[2025/05/20 12:14:49] AC Load 2 Write >>> '*CLS'
+[2025/05/20 12:14:49] AC Load 2 Write >>> 'LOAD?'
+[2025/05/20 12:14:50] AC Load 2 Return >>> '0'
+[2025/05/20 12:14:50] AC Load 2 Write >>> 'LOAD ON'
+[2025/05/20 12:14:50] AC Load 3 Write >>> '*CLS'
+[2025/05/20 12:14:50] AC Load 3 Write >>> 'LOAD?'
+[2025/05/20 12:14:50] AC Load 3 Return >>> '0'
+[2025/05/20 12:14:50] AC Load 3 Write >>> 'LOAD ON'
+[2025/05/20 12:15:00] Check phase R/S/T PRU current
+[2025/05/20 12:15:00] Get phase current
+[2025/05/20 12:15:00] Read power meter value from RM
+[2025/05/20 12:15:01] b'sh manager powermeter reading\r\n'
+[2025/05/20 12:15:01] b'    Feed1Phase1CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:15:01] b'    Feed1Phase1PowerInWatts: 0.0\r\n'
+[2025/05/20 12:15:01] b'    Feed1Phase1VoltageInVolts: 212.4171\r\n'
+[2025/05/20 12:15:01] b'    Feed1Phase2CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:15:01] b'    Feed1Phase2PowerInWatts: 0.0\r\n'
+[2025/05/20 12:15:01] b'    Feed1Phase2VoltageInVolts: 211.8902\r\n'
+[2025/05/20 12:15:01] b'    Feed1Phase3CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:15:01] b'    Feed1Phase3PowerInWatts: 0.0\r\n'
+[2025/05/20 12:15:01] b'    Feed1Phase3VoltageInVolts: 212.2063\r\n'
+[2025/05/20 12:15:01] b'    Feed1PowerStatus: Healthy\r\n'
+[2025/05/20 12:15:01] b'    Feed2Phase1CurrentInAmperes: 5.078\r\n'
+[2025/05/20 12:15:01] b'    Feed2Phase1PowerInWatts: 1082.8627\r\n'
+[2025/05/20 12:15:01] b'    Feed2Phase1VoltageInVolts: 213.2866\r\n'
+[2025/05/20 12:15:01] b'    Feed2Phase2CurrentInAmperes: 10.0469\r\n'
+[2025/05/20 12:15:01] b'    Feed2Phase2PowerInWatts: 2128.0607\r\n'
+[2025/05/20 12:15:01] b'    Feed2Phase2VoltageInVolts: 211.8902\r\n'
+[2025/05/20 12:15:01] b'    Feed2Phase3CurrentInAmperes: 15.1685\r\n'
+[2025/05/20 12:15:01] b'    Feed2Phase3PowerInWatts: 3205.2737\r\n'
+[2025/05/20 12:15:01] b'    Feed2Phase3VoltageInVolts: 211.9692\r\n'
+[2025/05/20 12:15:01] b'    Feed2PowerStatus: Healthy\r\n'
+[2025/05/20 12:15:01] b'    MaxPowerInWatts: 6459.5116\r\n'
+[2025/05/20 12:15:01] b'    PowerDrawnInWatts: 6416.1971\r\n'
+[2025/05/20 12:15:02] b'    PowerFactor: 0.9973\r\n'
+[2025/05/20 12:15:02] b'    RealPowerInWatts: 6416.1971\r\n'
+[2025/05/20 12:15:02] b'    Completion Code: Success\r\n'
+[2025/05/20 12:15:02] b'WcsCli# '
+[2025/05/20 12:15:02] PRU S2 RIpru1 Current: 5.078000 amp
+[2025/05/20 12:15:02] PRU S2 SIpru1 Current: 10.046900 amp
+[2025/05/20 12:15:02] PRU S2 TIpru1 Current: 15.168500 amp
+[2025/05/20 12:15:02] Check phase current
+[2025/05/20 12:15:02] S2 current R phase detect Pass
+[2025/05/20 12:15:02] S2 current S phase detect Pass
+[2025/05/20 12:15:02] S2 current T phase detect Pass
+[2025/05/20 12:15:02] Source 2 current detect test Pass
+[2025/05/20 12:15:02] Turn AC source output off
+[2025/05/20 12:15:02] AC Source Write >>> 'OUTPut?'
+[2025/05/20 12:15:02] AC Source Return >>> 'ON'
+[2025/05/20 12:15:02] AC Source Write >>> 'OUTPut OFF'
+[2025/05/20 12:15:04] Output is 'ON' then turn 'OFF'
+[2025/05/20 12:15:06] Turn source relays off
+[2025/05/20 12:15:06] COM11
+[2025/05/20 12:15:06] Turn relay off
+[2025/05/20 12:15:08] S1/S2 relays are off
+[2025/05/20 12:15:10] COM4
+[2025/05/20 12:15:10] Turn relay off
+[2025/05/20 12:15:12] S1/S2 relays are off
+[2025/05/20 12:15:14] COM5
+[2025/05/20 12:15:14] Turn relay off
+[2025/05/20 12:15:16] S1/S2 relays are off
+[2025/05/20 12:15:18] COM8
+[2025/05/20 12:15:18] Turn relay off
+[2025/05/20 12:15:20] S1/S2 relays are off
+[2025/05/20 12:15:22] COM9
+[2025/05/20 12:15:22] Turn relay off
+[2025/05/20 12:15:24] S1/S2 relays are off
+[2025/05/20 12:15:26] COM10
+[2025/05/20 12:15:26] Turn relay off
+[2025/05/20 12:15:28] S1/S2 relays are off
+[2025/05/20 12:15:30] COM7
+[2025/05/20 12:15:30] Turn relay off
+[2025/05/20 12:15:32] S1/S2 relays are off
+[2025/05/20 12:15:34] COM6
+[2025/05/20 12:15:35] Turn relay off
+[2025/05/20 12:15:37] S1/S2 relays are off
+[2025/05/20 12:15:40] Current detect test Pass
+[2025/05/20 12:15:40] Test elapsed time: 0:04:57.940001
+[2025/05/20 12:15:40] ######################################################################
+[2025/05/20 12:15:40] Test12: Calibration Test
+[2025/05/20 12:15:40] Timestamp: [2025-05-20 12:15:40]
+[2025/05/20 12:15:40] ######################################################################
+[2025/05/20 12:15:40] ======================================
+[2025/05/20 12:15:40] [Get Calibration Point Value]
+[2025/05/20 12:15:40] ======================================
+[2025/05/20 12:15:40] Set AC source all phases output 0 volt
+[2025/05/20 12:15:40] AC Source Write >>> '*CLS'
+[2025/05/20 12:15:40] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 12:15:40] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/20 12:15:41] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/20 12:15:42] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/20 12:15:49] Turn source 1 relays on
+[2025/05/20 12:15:49] COM11
+[2025/05/20 12:15:49] S1/S2 relays are off
+[2025/05/20 12:15:51] Turn source 1 relay on
+[2025/05/20 12:15:53] S1 relay is on
+[2025/05/20 12:15:55] COM4
+[2025/05/20 12:15:55] S1/S2 relays are off
+[2025/05/20 12:15:57] Turn source 1 relay on
+[2025/05/20 12:15:59] S1 relay is on
+[2025/05/20 12:16:01] COM5
+[2025/05/20 12:16:02] S1/S2 relays are off
+[2025/05/20 12:16:04] Turn source 1 relay on
+[2025/05/20 12:16:06] S1 relay is on
+[2025/05/20 12:16:08] COM8
+[2025/05/20 12:16:08] S1/S2 relays are off
+[2025/05/20 12:16:10] Turn source 1 relay on
+[2025/05/20 12:16:12] S1 relay is on
+[2025/05/20 12:16:14] COM9
+[2025/05/20 12:16:14] S1/S2 relays are off
+[2025/05/20 12:16:16] Turn source 1 relay on
+[2025/05/20 12:16:18] S1 relay is on
+[2025/05/20 12:16:20] COM10
+[2025/05/20 12:16:20] S1/S2 relays are off
+[2025/05/20 12:16:22] Turn source 1 relay on
+[2025/05/20 12:16:24] S1 relay is on
+[2025/05/20 12:16:26] COM7
+[2025/05/20 12:16:26] S1/S2 relays are off
+[2025/05/20 12:16:28] Turn source 1 relay on
+[2025/05/20 12:16:30] S1 relay is on
+[2025/05/20 12:16:32] COM6
+[2025/05/20 12:16:32] S1/S2 relays are off
+[2025/05/20 12:16:34] Turn source 1 relay on
+[2025/05/20 12:16:36] S1 relay is on
+[2025/05/20 12:16:39] Get source 1 voltage calibration point value
+[2025/05/20 12:16:39] Set AC source output to 190 volt
+[2025/05/20 12:16:39] AC Source Write >>> '*CLS'
+[2025/05/20 12:16:39] AC Source Write >>> 'INST:EDIT ALL'
+[2025/05/20 12:16:39] AC Source Write >>> 'VOLTage:AC 190'
+[2025/05/20 12:16:40] Turn AC source output on
+[2025/05/20 12:16:40] AC Source Write >>> 'OUTPut?'
+[2025/05/20 12:16:40] AC Source Return >>> 'OFF'
+[2025/05/20 12:16:40] Output is 'OFF' then turn 'ON'
+[2025/05/20 12:16:40] AC Source Write >>> 'OUTPut ON'
+[2025/05/20 12:17:07] Init to filesystem
+[2025/05/20 12:17:07] Try 1:
+[2025/05/20 12:17:08] b'\r\r\n'
+[2025/05/20 12:17:08] b'login: '
+[2025/05/20 12:17:08] Login phase
+[2025/05/20 12:17:10] b'root\r\n'
+[2025/05/20 12:17:10] b'Password: '
+[2025/05/20 12:17:10] Login phase Pass
+[2025/05/20 12:17:10] Password phase
+[2025/05/20 12:17:10] b'\r\n'
+[2025/05/20 12:17:18] b'WcsCli# '
+[2025/05/20 12:17:18] Password phase Pass
+[2025/05/20 12:17:18] Initial gain/offset parameter
+[2025/05/20 12:17:18] Transfer adccalibration.ini from host to RM
+[2025/05/20 12:17:18] Set network interface eth0 to static
+[2025/05/20 12:17:19] b'set network static -i eth0 -a 192.168.0.100 -s 255.255.255.0 -g 192.168. \r0.1\r\n'
+[2025/05/20 12:17:20] b'    Completion Code: Success\r\n'
+[2025/05/20 12:17:20] b'WcsCli# '
+[2025/05/20 12:17:21] b'set manager tftp get -s 192.168.0.101 -f adccalibration.ini\r\n'
+[2025/05/20 12:17:29] b'    Completion Code: Success\r\n'
+[2025/05/20 12:17:29] b'WcsCli# '
+[2025/05/20 12:17:29] Write calibration data to PMDU EEPROM
+[2025/05/20 12:17:30] b'set manager powermeter calibration -f adccalibration.ini\r\n'
+[2025/05/20 12:17:30] b'    Completion Code: Success\r\n'
+[2025/05/20 12:17:30] b'WcsCli# '
+[2025/05/20 12:17:30] Write ADC calibration to EEPROM(B:1 D:51) Pass
+[2025/05/20 12:17:32] b'show manager powermeter calibration\r\n'
+[2025/05/20 12:17:32] b'    Current: \r\n'
+[2025/05/20 12:17:32] b'        Feed1: \r\n'
+[2025/05/20 12:17:32] b'            Phase1: \r\n'
+[2025/05/20 12:17:32] b'                Gain: 16384\r\n'
+[2025/05/20 12:17:32] b'                Offset: 0\r\n'
+[2025/05/20 12:17:32] b'            Phase2: \r\n'
+[2025/05/20 12:17:32] b'                Gain: 16384\r\n'
+[2025/05/20 12:17:32] b'                Offset: 0\r\n'
+[2025/05/20 12:17:32] b'            Phase3: \r\n'
+[2025/05/20 12:17:32] b'                Gain: 16384\r\n'
+[2025/05/20 12:17:32] b'                Offset: 0\r\n'
+[2025/05/20 12:17:32] b'        Feed2: \r\n'
+[2025/05/20 12:17:32] b'            Phase1: \r\n'
+[2025/05/20 12:17:32] b'                Gain: 16384\r\n'
+[2025/05/20 12:17:32] b'                Offset: 0\r\n'
+[2025/05/20 12:17:32] b'            Phase2: \r\n'
+[2025/05/20 12:17:32] b'                Gain: 16384\r\n'
+[2025/05/20 12:17:32] b'                Offset: 0\r\n'
+[2025/05/20 12:17:32] b'            Phase3: \r\n'
+[2025/05/20 12:17:32] b'                Gain: 16384\r\n'
+[2025/05/20 12:17:32] b'                Offset: 0\r\n'
+[2025/05/20 12:17:32] b'    Voltage: \r\n'
+[2025/05/20 12:17:32] b'        Feed1: \r\n'
+[2025/05/20 12:17:32] b'            Phase1: \r\n'
+[2025/05/20 12:17:32] b'                Gain: 16384\r\n'
+[2025/05/20 12:17:32] b'                Offset: 0\r\n'
+[2025/05/20 12:17:32] b'            Phase2: \r\n'
+[2025/05/20 12:17:32] b'                Gain: 16384\r\n'
+[2025/05/20 12:17:32] b'                Offset: 0\r\n'
+[2025/05/20 12:17:32] b'            Phase3: \r\n'
+[2025/05/20 12:17:32] b'                Gain: 16384\r\n'
+[2025/05/20 12:17:32] b'                Offset: 0\r\n'
+[2025/05/20 12:17:32] b'        Feed2: \r\n'
+[2025/05/20 12:17:32] b'            Phase1: \r\n'
+[2025/05/20 12:17:32] b'                Gain: 16384\r\n'
+[2025/05/20 12:17:32] b'                Offset: 0\r\n'
+[2025/05/20 12:17:32] b'            Phase2: \r\n'
+[2025/05/20 12:17:32] b'                Gain: 16384\r\n'
+[2025/05/20 12:17:32] b'                Offset: 0\r\n'
+[2025/05/20 12:17:32] b'            Phase3: \r\n'
+[2025/05/20 12:17:32] b'                Gain: 16384\r\n'
+[2025/05/20 12:17:32] b'                Offset: 0\r\n'
+[2025/05/20 12:17:32] b'    Completion Code: Success\r\n'
+[2025/05/20 12:17:32] b'WcsCli# '
+[2025/05/20 12:17:32] Set AC load to 10 amp
+[2025/05/20 12:17:32] AC Load 1 Write >>> '*CLS'
+[2025/05/20 12:17:32] AC Load 1 Write >>> 'CURR 10.0'
+[2025/05/20 12:17:32] AC Load 2 Write >>> '*CLS'
+[2025/05/20 12:17:32] AC Load 2 Write >>> 'CURR 10.0'
+[2025/05/20 12:17:32] AC Load 3 Write >>> '*CLS'
+[2025/05/20 12:17:32] AC Load 3 Write >>> 'CURR 10.0'
+[2025/05/20 12:17:34] Turn AC load on
+[2025/05/20 12:17:34] AC Load 1 Write >>> '*CLS'
+[2025/05/20 12:17:34] AC Load 1 Write >>> 'LOAD?'
+[2025/05/20 12:17:34] AC Load 1 Return >>> '0'
+[2025/05/20 12:17:34] AC Load 1 Write >>> 'LOAD ON'
+[2025/05/20 12:17:34] AC Load 2 Write >>> '*CLS'
+[2025/05/20 12:17:34] AC Load 2 Write >>> 'LOAD?'
+[2025/05/20 12:17:34] AC Load 2 Return >>> '0'
+[2025/05/20 12:17:34] AC Load 2 Write >>> 'LOAD ON'
+[2025/05/20 12:17:35] AC Load 3 Write >>> '*CLS'
+[2025/05/20 12:17:35] AC Load 3 Write >>> 'LOAD?'
+[2025/05/20 12:17:35] AC Load 3 Return >>> '0'
+[2025/05/20 12:17:35] AC Load 3 Write >>> 'LOAD ON'
+[2025/05/20 12:17:45] === Calibration Point 1 - WT500 Voltage ===
+[2025/05/20 12:17:45] Read power meter value from WT500
+[2025/05/20 12:17:45] Meter Write >>> '*CLS'
+[2025/05/20 12:17:45] Meter Write >>> 'NUMeric:NORMAL:VALue?'
+[2025/05/20 12:17:45] Meter Return >>> '189.79E+00,10.052E+00,1.9077E+03,189.60E+00,10.010E+00,1.8979E+03,189.85E+00,10.027E+00,1.9035E+03'
+[2025/05/20 12:17:45] WT500 S1 RVac1 Voltage: 189.79 volt
+[2025/05/20 12:17:45] WT500 S1 SVac1 Voltage: 189.60 volt
+[2025/05/20 12:17:45] WT500 S1 TVac1 Voltage: 189.85 volt
+[2025/05/20 12:17:45] === Calibration Point 1 - PRU Voltage ===
+[2025/05/20 12:17:45] Read power meter value from RM
+[2025/05/20 12:17:46] b'sh manager powermeter reading\r\n'
+[2025/05/20 12:17:46] b'    Feed1Phase1CurrentInAmperes: 10.0818\r\n'
+[2025/05/20 12:17:46] b'    Feed1Phase1PowerInWatts: 1952.9194\r\n'
+[2025/05/20 12:17:46] b'    Feed1Phase1VoltageInVolts: 193.9472\r\n'
+[2025/05/20 12:17:46] b'    Feed1Phase2CurrentInAmperes: 10.0644\r\n'
+[2025/05/20 12:17:46] b'    Feed1Phase2PowerInWatts: 1949.1529\r\n'
+[2025/05/20 12:17:46] b'    Feed1Phase2VoltageInVolts: 193.8418\r\n'
+[2025/05/20 12:17:46] b'    Feed1Phase3CurrentInAmperes: 10.1124\r\n'
+[2025/05/20 12:17:46] b'    Feed1Phase3PowerInWatts: 1960.4523\r\n'
+[2025/05/20 12:17:46] b'    Feed1Phase3VoltageInVolts: 193.9472\r\n'
+[2025/05/20 12:17:46] b'    Feed1PowerStatus: Healthy\r\n'
+[2025/05/20 12:17:46] b'    Feed2Phase1CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:17:46] b'    Feed2Phase1PowerInWatts: 0.0\r\n'
+[2025/05/20 12:17:46] b'    Feed2Phase1VoltageInVolts: 194.0789\r\n'
+[2025/05/20 12:17:46] b'    Feed2Phase2CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:17:46] b'    Feed2Phase2PowerInWatts: 0.0\r\n'
+[2025/05/20 12:17:46] b'    Feed2Phase2VoltageInVolts: 194.0789\r\n'
+[2025/05/20 12:17:46] b'    Feed2Phase3CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:17:46] b'    Feed2Phase3PowerInWatts: 0.0\r\n'
+[2025/05/20 12:17:46] b'    Feed2Phase3VoltageInVolts: 194.4215\r\n'
+[2025/05/20 12:17:46] b'    Feed2PowerStatus: Healthy\r\n'
+[2025/05/20 12:17:46] b'    MaxPowerInWatts: 5888.89\r\n'
+[2025/05/20 12:17:46] b'    PowerDrawnInWatts: 5862.5246\r\n'
+[2025/05/20 12:17:46] b'    PowerFactor: 0.9971\r\n'
+[2025/05/20 12:17:46] b'    RealPowerInWatts: 5845.5755\r\n'
+[2025/05/20 12:17:46] b'    Completion Code: Success\r\n'
+[2025/05/20 12:17:46] b'WcsCli# '
+[2025/05/20 12:17:46] PRU S1 RVpru1 Voltage: 193.9472 volt
+[2025/05/20 12:17:46] PRU S1 SVpru1 Voltage: 193.8418 volt
+[2025/05/20 12:17:46] PRU S1 TVpru1 Voltage: 193.9472 volt
+[2025/05/20 12:17:46] Set AC source output to 250 volt
+[2025/05/20 12:17:46] AC Source Write >>> '*CLS'
+[2025/05/20 12:17:46] AC Source Write >>> 'INST:EDIT ALL'
+[2025/05/20 12:17:46] AC Source Write >>> 'VOLTage:AC 250'
+[2025/05/20 12:17:56] === Calibration Point 2 - WT500 Voltage ===
+[2025/05/20 12:17:56] Read power meter value from WT500
+[2025/05/20 12:17:56] Meter Write >>> '*CLS'
+[2025/05/20 12:17:56] Meter Write >>> 'NUMeric:NORMAL:VALue?'
+[2025/05/20 12:17:56] Meter Return >>> '249.92E+00,10.053E+00,2.5123E+03,249.69E+00,10.014E+00,2.5003E+03,249.95E+00,10.031E+00,2.5072E+03'
+[2025/05/20 12:17:56] WT500 S1 RVac2 Voltage: 249.92 volt
+[2025/05/20 12:17:56] WT500 S1 SVac2 Voltage: 249.69 volt
+[2025/05/20 12:17:56] WT500 S1 TVac2 Voltage: 249.95 volt
+[2025/05/20 12:17:56] === Calibration Point 2 - PRU Voltage ===
+[2025/05/20 12:17:56] Read power meter value from RM
+[2025/05/20 12:17:58] b'sh manager powermeter reading\r\n'
+[2025/05/20 12:17:58] b'    Feed1Phase1CurrentInAmperes: 10.0818\r\n'
+[2025/05/20 12:17:58] b'    Feed1Phase1PowerInWatts: 2574.3884\r\n'
+[2025/05/20 12:17:58] b'    Feed1Phase1VoltageInVolts: 255.496\r\n'
+[2025/05/20 12:17:58] b'    Feed1Phase2CurrentInAmperes: 10.0513\r\n'
+[2025/05/20 12:17:58] b'    Feed1Phase2PowerInWatts: 2576.2717\r\n'
+[2025/05/20 12:17:58] b'    Feed1Phase2VoltageInVolts: 255.7595\r\n'
+[2025/05/20 12:17:58] b'    Feed1Phase3CurrentInAmperes: 10.1429\r\n'
+[2025/05/20 12:17:58] b'    Feed1Phase3PowerInWatts: 2598.8705\r\n'
+[2025/05/20 12:17:58] b'    Feed1Phase3VoltageInVolts: 256.2864\r\n'
+[2025/05/20 12:17:58] b'    Feed1PowerStatus: Faulty (Phase 1 OV Fault, Phase 2 OV Fault, Phase 3 OV Fault)\r\n'
+[2025/05/20 12:17:58] b'    Feed2Phase1CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:17:58] b'    Feed2Phase1PowerInWatts: 0.0\r\n'
+[2025/05/20 12:17:58] b'    Feed2Phase1VoltageInVolts: 256.5499\r\n'
+[2025/05/20 12:17:58] b'    Feed2Phase2CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:17:58] b'    Feed2Phase2PowerInWatts: 0.0\r\n'
+[2025/05/20 12:17:58] b'    Feed2Phase2VoltageInVolts: 255.1535\r\n'
+[2025/05/20 12:17:58] b'    Feed2Phase3CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:17:58] b'    Feed2Phase3PowerInWatts: 0.0\r\n'
+[2025/05/20 12:17:58] b'    Feed2Phase3VoltageInVolts: 254.969\r\n'
+[2025/05/20 12:17:58] b'    Feed2PowerStatus: Faulty (Phase 1 OV Fault, Phase 2 OV Fault, Phase 3 OV Fault)\r\n'
+[2025/05/20 12:17:58] b'    MaxPowerInWatts: 9806.0282\r\n'
+[2025/05/20 12:17:58] b'    PowerDrawnInWatts: 7749.5306\r\n'
+[2025/05/20 12:17:58] b'    PowerFactor: 0.9985\r\n'
+[2025/05/20 12:17:58] b'    RealPowerInWatts: 7723.1653\r\n'
+[2025/05/20 12:17:58] b'    Completion Code: Success\r\n'
+[2025/05/20 12:17:58] b'WcsCli# '
+[2025/05/20 12:17:58] PRU S1 RVpru2 Voltage: 255.496000 volt
+[2025/05/20 12:17:58] PRU S1 SVpru2 Voltage: 255.759500 volt
+[2025/05/20 12:17:58] PRU S1 TVpru2 Voltage: 256.286400 volt
+[2025/05/20 12:17:58] === Voltage Gain ===
+[2025/05/20 12:17:58] R Voltage RVGain: 0.97695
+[2025/05/20 12:17:58] R Voltage RVGainCMD: 16006
+[2025/05/20 12:17:58] S Voltage SVGain: 0.97048
+[2025/05/20 12:17:58] S Voltage SVGainCMD: 15900
+[2025/05/20 12:17:58] T Voltage TVGain: 0.96408
+[2025/05/20 12:17:58] T Voltage TVGainCMD: 15795
+[2025/05/20 12:17:58] === Voltage Offset ===
+[2025/05/20 12:17:58] R Voltage RVOffset: 0.21360
+[2025/05/20 12:17:58] R Voltage RVoffsetCMD: 8
+[2025/05/20 12:17:58] S Voltage SVOffset: 1.38006
+[2025/05/20 12:17:58] S Voltage SVoffsetCMD: 52
+[2025/05/20 12:17:58] T Voltage TVOffset: 2.76931
+[2025/05/20 12:17:58] T Voltage TVoffsetCMD: 105
+[2025/05/20 12:17:58] Get source 1 current calibration point value
+[2025/05/20 12:17:58] Set AC source output to 208 volt
+[2025/05/20 12:17:58] AC Source Write >>> '*CLS'
+[2025/05/20 12:17:58] AC Source Write >>> 'INST:EDIT ALL'
+[2025/05/20 12:17:58] AC Source Write >>> 'VOLTage:AC 208'
+[2025/05/20 12:17:58] Turn AC source output on
+[2025/05/20 12:17:58] AC Source Write >>> 'OUTPut?'
+[2025/05/20 12:17:58] AC Source Return >>> 'ON'
+[2025/05/20 12:18:03] Set AC load to 3.0 amp
+[2025/05/20 12:18:03] AC Load 1 Write >>> '*CLS'
+[2025/05/20 12:18:03] AC Load 1 Write >>> 'CURR 3.0'
+[2025/05/20 12:18:03] AC Load 2 Write >>> '*CLS'
+[2025/05/20 12:18:03] AC Load 2 Write >>> 'CURR 3.0'
+[2025/05/20 12:18:04] AC Load 3 Write >>> '*CLS'
+[2025/05/20 12:18:04] AC Load 3 Write >>> 'CURR 3.0'
+[2025/05/20 12:18:04] Turn AC load on
+[2025/05/20 12:18:04] AC Load 1 Write >>> '*CLS'
+[2025/05/20 12:18:04] AC Load 1 Write >>> 'LOAD?'
+[2025/05/20 12:18:04] AC Load 1 Return >>> '1'
+[2025/05/20 12:18:04] AC Load 2 Write >>> '*CLS'
+[2025/05/20 12:18:04] AC Load 2 Write >>> 'LOAD?'
+[2025/05/20 12:18:04] AC Load 2 Return >>> '1'
+[2025/05/20 12:18:04] AC Load 3 Write >>> '*CLS'
+[2025/05/20 12:18:04] AC Load 3 Write >>> 'LOAD?'
+[2025/05/20 12:18:04] AC Load 3 Return >>> '1'
+[2025/05/20 12:18:14] === Calibration Point 1 - WT500 Current ===
+[2025/05/20 12:18:14] Read power meter value from WT500
+[2025/05/20 12:18:14] Meter Write >>> '*CLS'
+[2025/05/20 12:18:14] Meter Write >>> 'NUMeric:NORMAL:VALue?'
+[2025/05/20 12:18:14] Meter Return >>> '208.19E+00,3.046E+00,0.6340E+03,208.04E+00,3.013E+00,0.6268E+03,208.16E+00,3.021E+00,0.6288E+03'
+[2025/05/20 12:18:14] WT500 S1 RIac1 Current: 3.046 amp
+[2025/05/20 12:18:14] WT500 S1 SIac1 Current: 3.013 amp
+[2025/05/20 12:18:14] WT500 S1 TIac1 Current: 3.021 amp
+[2025/05/20 12:18:14] === Calibration Point 1 - PRU Current ===
+[2025/05/20 12:18:14] Read power meter value from RM
+[2025/05/20 12:18:15] b'sh manager powermeter reading\r\n'
+[2025/05/20 12:18:15] b'    Feed1Phase1CurrentInAmperes: 3.0058\r\n'
+[2025/05/20 12:18:15] b'    Feed1Phase1PowerInWatts: 638.4182\r\n'
+[2025/05/20 12:18:15] b'    Feed1Phase1VoltageInVolts: 213.1549\r\n'
+[2025/05/20 12:18:15] b'    Feed1Phase2CurrentInAmperes: 2.9927\r\n'
+[2025/05/20 12:18:15] b'    Feed1Phase2PowerInWatts: 634.6517\r\n'
+[2025/05/20 12:18:15] b'    Feed1Phase2VoltageInVolts: 212.4171\r\n'
+[2025/05/20 12:18:15] b'    Feed1Phase3CurrentInAmperes: 3.0058\r\n'
+[2025/05/20 12:18:15] b'    Feed1Phase3PowerInWatts: 636.535\r\n'
+[2025/05/20 12:18:15] b'    Feed1Phase3VoltageInVolts: 212.4171\r\n'
+[2025/05/20 12:18:15] b'    Feed1PowerStatus: Faulty (Phase 1 OV Fault, Phase 2 OV Fault, Phase 3 OV Fault)\r\n'
+[2025/05/20 12:18:15] b'    Feed2Phase1CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:18:15] b'    Feed2Phase1PowerInWatts: 0.0\r\n'
+[2025/05/20 12:18:15] b'    Feed2Phase1VoltageInVolts: 213.2866\r\n'
+[2025/05/20 12:18:15] b'    Feed2Phase2CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:18:15] b'    Feed2Phase2PowerInWatts: 0.0\r\n'
+[2025/05/20 12:18:15] b'    Feed2Phase2VoltageInVolts: 212.6279\r\n'
+[2025/05/20 12:18:15] b'    Feed2Phase3CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:18:15] b'    Feed2Phase3PowerInWatts: 0.0\r\n'
+[2025/05/20 12:18:15] b'    Feed2Phase3VoltageInVolts: 213.0495\r\n'
+[2025/05/20 12:18:15] b'    Feed2PowerStatus: Faulty (Phase 1 OV Fault, Phase 2 OV Fault, Phase 3 OV Fault)\r\n'
+[2025/05/20 12:18:15] b'    MaxPowerInWatts: 9806.0282\r\n'
+[2025/05/20 12:18:15] b'    PowerDrawnInWatts: 1909.6049\r\n'
+[2025/05/20 12:18:15] b'    PowerFactor: 1.0\r\n'
+[2025/05/20 12:18:15] b'    RealPowerInWatts: 1922.7876\r\n'
+[2025/05/20 12:18:15] b'    Completion Code: Success\r\n'
+[2025/05/20 12:18:15] b'WcsCli# '
+[2025/05/20 12:18:15] PRU S1 RIpru1 Current: 3.005800 amp
+[2025/05/20 12:18:15] PRU S1 SIpru1 Current: 2.992700 amp
+[2025/05/20 12:18:15] PRU S1 TIpru1 Current: 3.005800 amp
+[2025/05/20 12:18:15] Set AC load to 15.0 amp
+[2025/05/20 12:18:15] AC Load 1 Write >>> '*CLS'
+[2025/05/20 12:18:15] AC Load 1 Write >>> 'CURR 15.0'
+[2025/05/20 12:18:15] AC Load 2 Write >>> '*CLS'
+[2025/05/20 12:18:16] AC Load 2 Write >>> 'CURR 15.0'
+[2025/05/20 12:18:16] AC Load 3 Write >>> '*CLS'
+[2025/05/20 12:18:16] AC Load 3 Write >>> 'CURR 15.0'
+[2025/05/20 12:18:26] === Calibration Point 2 - WT500 Current ===
+[2025/05/20 12:18:26] Read power meter value from WT500
+[2025/05/20 12:18:26] Meter Write >>> '*CLS'
+[2025/05/20 12:18:26] Meter Write >>> 'NUMeric:NORMAL:VALue?'
+[2025/05/20 12:18:26] Meter Return >>> '207.61E+00,15.052E+00,3.1249E+03,207.30E+00,15.008E+00,3.1112E+03,207.67E+00,15.034E+00,3.1220E+03'
+[2025/05/20 12:18:26] WT500 S1 RIac2 Current: 15.052 amp
+[2025/05/20 12:18:26] WT500 S1 SIac2 Current: 15.008 amp
+[2025/05/20 12:18:26] WT500 S1 TIac2 Current: 15.034 amp
+[2025/05/20 12:18:26] === Calibration Point 2 - PRU Current ===
+[2025/05/20 12:18:26] Read power meter value from RM
+[2025/05/20 12:18:28] b'sh manager powermeter reading\r\n'
+[2025/05/20 12:18:28] b'    Feed1Phase1CurrentInAmperes: 15.1031\r\n'
+[2025/05/20 12:18:28] b'    Feed1Phase1PowerInWatts: 3199.6239\r\n'
+[2025/05/20 12:18:28] b'    Feed1Phase1VoltageInVolts: 211.8638\r\n'
+[2025/05/20 12:18:28] b'    Feed1Phase2CurrentInAmperes: 15.0856\r\n'
+[2025/05/20 12:18:28] b'    Feed1Phase2PowerInWatts: 3193.9742\r\n'
+[2025/05/20 12:18:28] b'    Feed1Phase2VoltageInVolts: 211.7848\r\n'
+[2025/05/20 12:18:28] b'    Feed1Phase3CurrentInAmperes: 15.1991\r\n'
+[2025/05/20 12:18:28] b'    Feed1Phase3PowerInWatts: 3222.2228\r\n'
+[2025/05/20 12:18:28] b'    Feed1Phase3VoltageInVolts: 212.1009\r\n'
+[2025/05/20 12:18:28] b'    Feed1PowerStatus: Faulty (Phase 1 OV Fault, Phase 2 OV Fault, Phase 3 OV Fault)\r\n'
+[2025/05/20 12:18:28] b'    Feed2Phase1CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:18:28] b'    Feed2Phase1PowerInWatts: 0.0\r\n'
+[2025/05/20 12:18:28] b'    Feed2Phase1VoltageInVolts: 212.6279\r\n'
+[2025/05/20 12:18:28] b'    Feed2Phase2CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:18:28] b'    Feed2Phase2PowerInWatts: 0.0\r\n'
+[2025/05/20 12:18:28] b'    Feed2Phase2VoltageInVolts: 211.7848\r\n'
+[2025/05/20 12:18:28] b'    Feed2Phase3CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:18:28] b'    Feed2Phase3PowerInWatts: 0.0\r\n'
+[2025/05/20 12:18:28] b'    Feed2Phase3VoltageInVolts: 211.6794\r\n'
+[2025/05/20 12:18:28] b'    Feed2PowerStatus: Faulty (Phase 1 OV Fault, Phase 2 OV Fault, Phase 3 OV Fault)\r\n'
+[2025/05/20 12:18:28] b'    MaxPowerInWatts: 9806.0282\r\n'
+[2025/05/20 12:18:28] b'    PowerDrawnInWatts: 9615.821\r\n'
+[2025/05/20 12:18:28] b'    PowerFactor: 0.998\r\n'
+[2025/05/20 12:18:28] b'    RealPowerInWatts: 9600.7551\r\n'
+[2025/05/20 12:18:28] b'    Completion Code: Success\r\n'
+[2025/05/20 12:18:28] b'WcsCli# '
+[2025/05/20 12:18:28] PRU S1 RIpru2 Current: 15.103100 amp
+[2025/05/20 12:18:28] PRU S1 SIpru2 Current: 15.085600 amp
+[2025/05/20 12:18:28] PRU S1 TIpru2 Current: 15.199100 amp
+[2025/05/20 12:18:28] === Current Gain ===
+[2025/05/20 12:18:28] R Current RIGain: 0.99245
+[2025/05/20 12:18:28] R Current RIGainCMD: 16260
+[2025/05/20 12:18:28] S Current SIGain: 0.99190
+[2025/05/20 12:18:28] S Current SIGainCMD: 16251
+[2025/05/20 12:18:28] T Current TIGain: 0.98521
+[2025/05/20 12:18:28] T Current TIGainCMD: 16141
+[2025/05/20 12:18:28] === Current Offset ===
+[2025/05/20 12:18:28] R Current RIOffset: 0.06289
+[2025/05/20 12:18:28] R Current RIoffsetCMD: 14
+[2025/05/20 12:18:28] S Current SIOffset: 0.04453
+[2025/05/20 12:18:28] S Current SIoffsetCMD: 10
+[2025/05/20 12:18:28] T Current TIOffset: 0.05965
+[2025/05/20 12:18:28] T Current TIoffsetCMD: 13
+[2025/05/20 12:18:28] Get source 1 calibration point value Pass
+[2025/05/20 12:18:28] Set AC source all phases output 0 volt
+[2025/05/20 12:18:28] AC Source Write >>> '*CLS'
+[2025/05/20 12:18:28] AC Source Write >>> 'INST:EDIT EACH'
+[2025/05/20 12:18:28] AC Source Write >>> 'INST:SEL output1 ; :VOLTage:AC 0'
+[2025/05/20 12:18:29] AC Source Write >>> 'INST:SEL output2 ; :VOLTage:AC 0'
+[2025/05/20 12:18:30] AC Source Write >>> 'INST:SEL output3 ; :VOLTage:AC 0'
+[2025/05/20 12:18:37] Turn source 2 relays on
+[2025/05/20 12:18:40] COM11
+[2025/05/20 12:18:40] Turn relay off
+[2025/05/20 12:18:42] S1/S2 relays are off
+[2025/05/20 12:18:44] Turn source 2 relay on
+[2025/05/20 12:18:46] S2 relay is on
+[2025/05/20 12:18:48] COM4
+[2025/05/20 12:18:48] Turn relay off
+[2025/05/20 12:18:50] S1/S2 relays are off
+[2025/05/20 12:18:52] Turn source 2 relay on
+[2025/05/20 12:18:54] S2 relay is on
+[2025/05/20 12:18:56] COM5
+[2025/05/20 12:18:56] Turn relay off
+[2025/05/20 12:18:58] S1/S2 relays are off
+[2025/05/20 12:19:00] Turn source 2 relay on
+[2025/05/20 12:19:02] S2 relay is on
+[2025/05/20 12:19:04] COM8
+[2025/05/20 12:19:04] Turn relay off
+[2025/05/20 12:19:06] S1/S2 relays are off
+[2025/05/20 12:19:08] Turn source 2 relay on
+[2025/05/20 12:19:10] S2 relay is on
+[2025/05/20 12:19:12] COM9
+[2025/05/20 12:19:12] Turn relay off
+[2025/05/20 12:19:14] S1/S2 relays are off
+[2025/05/20 12:19:16] Turn source 2 relay on
+[2025/05/20 12:19:18] S2 relay is on
+[2025/05/20 12:19:20] COM10
+[2025/05/20 12:19:20] Turn relay off
+[2025/05/20 12:19:22] S1/S2 relays are off
+[2025/05/20 12:19:24] Turn source 2 relay on
+[2025/05/20 12:19:26] S2 relay is on
+[2025/05/20 12:19:28] COM7
+[2025/05/20 12:19:28] Turn relay off
+[2025/05/20 12:19:30] S1/S2 relays are off
+[2025/05/20 12:19:32] Turn source 2 relay on
+[2025/05/20 12:19:34] S2 relay is on
+[2025/05/20 12:19:36] COM6
+[2025/05/20 12:19:36] Turn relay off
+[2025/05/20 12:19:38] S1/S2 relays are off
+[2025/05/20 12:19:40] Turn source 2 relay on
+[2025/05/20 12:19:42] S2 relay is on
+[2025/05/20 12:19:45] Get source 2 voltage calibration point value
+[2025/05/20 12:19:45] Set AC source output to 190 volt
+[2025/05/20 12:19:45] AC Source Write >>> '*CLS'
+[2025/05/20 12:19:45] AC Source Write >>> 'INST:EDIT ALL'
+[2025/05/20 12:19:45] AC Source Write >>> 'VOLTage:AC 190'
+[2025/05/20 12:19:45] Turn AC source output on
+[2025/05/20 12:19:45] AC Source Write >>> 'OUTPut?'
+[2025/05/20 12:19:45] AC Source Return >>> 'ON'
+[2025/05/20 12:20:13] Init to filesystem
+[2025/05/20 12:20:13] Try 1:
+[2025/05/20 12:20:14] b'\r\r\n'
+[2025/05/20 12:20:14] b'login: '
+[2025/05/20 12:20:14] Login phase
+[2025/05/20 12:20:15] b'root\r\n'
+[2025/05/20 12:20:15] b'Password: '
+[2025/05/20 12:20:15] Login phase Pass
+[2025/05/20 12:20:15] Password phase
+[2025/05/20 12:20:16] b'\r\n'
+[2025/05/20 12:20:24] b'WcsCli# '
+[2025/05/20 12:20:24] Password phase Pass
+[2025/05/20 12:20:24] Set AC load to 10 amp
+[2025/05/20 12:20:24] AC Load 1 Write >>> '*CLS'
+[2025/05/20 12:20:24] AC Load 1 Write >>> 'CURR 10.0'
+[2025/05/20 12:20:24] AC Load 2 Write >>> '*CLS'
+[2025/05/20 12:20:24] AC Load 2 Write >>> 'CURR 10.0'
+[2025/05/20 12:20:24] AC Load 3 Write >>> '*CLS'
+[2025/05/20 12:20:24] AC Load 3 Write >>> 'CURR 10.0'
+[2025/05/20 12:20:26] Turn AC load on
+[2025/05/20 12:20:26] AC Load 1 Write >>> '*CLS'
+[2025/05/20 12:20:26] AC Load 1 Write >>> 'LOAD?'
+[2025/05/20 12:20:26] AC Load 1 Return >>> '0'
+[2025/05/20 12:20:27] AC Load 1 Write >>> 'LOAD ON'
+[2025/05/20 12:20:27] AC Load 2 Write >>> '*CLS'
+[2025/05/20 12:20:27] AC Load 2 Write >>> 'LOAD?'
+[2025/05/20 12:20:27] AC Load 2 Return >>> '0'
+[2025/05/20 12:20:27] AC Load 2 Write >>> 'LOAD ON'
+[2025/05/20 12:20:27] AC Load 3 Write >>> '*CLS'
+[2025/05/20 12:20:27] AC Load 3 Write >>> 'LOAD?'
+[2025/05/20 12:20:27] AC Load 3 Return >>> '0'
+[2025/05/20 12:20:27] AC Load 3 Write >>> 'LOAD ON'
+[2025/05/20 12:20:37] === Calibration Point 1 - WT500 Voltage ===
+[2025/05/20 12:20:37] Read power meter value from WT500
+[2025/05/20 12:20:37] Meter Write >>> '*CLS'
+[2025/05/20 12:20:37] Meter Write >>> 'NUMeric:NORMAL:VALue?'
+[2025/05/20 12:20:37] Meter Return >>> '189.77E+00,10.055E+00,1.9080E+03,189.65E+00,10.012E+00,1.8987E+03,189.86E+00,10.025E+00,1.9033E+03'
+[2025/05/20 12:20:37] WT500 S2 RVac1 Voltage: 189.77 volt
+[2025/05/20 12:20:37] WT500 S2 SVac1 Voltage: 189.65 volt
+[2025/05/20 12:20:37] WT500 S2 TVac1 Voltage: 189.86 volt
+[2025/05/20 12:20:37] === Calibration Point 1 - PRU Voltage ===
+[2025/05/20 12:20:37] Read power meter value from RM
+[2025/05/20 12:20:38] b'sh manager powermeter reading\r\n'
+[2025/05/20 12:20:38] b'    Feed1Phase1CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:20:38] b'    Feed1Phase1PowerInWatts: 0.0\r\n'
+[2025/05/20 12:20:38] b'    Feed1Phase1VoltageInVolts: 194.0789\r\n'
+[2025/05/20 12:20:38] b'    Feed1Phase2CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:20:38] b'    Feed1Phase2PowerInWatts: 0.0\r\n'
+[2025/05/20 12:20:38] b'    Feed1Phase2VoltageInVolts: 193.3676\r\n'
+[2025/05/20 12:20:38] b'    Feed1Phase3CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:20:38] b'    Feed1Phase3PowerInWatts: 0.0\r\n'
+[2025/05/20 12:20:38] b'    Feed1Phase3VoltageInVolts: 194.2897\r\n'
+[2025/05/20 12:20:39] b'    Feed1PowerStatus: Faulty (Phase 1 UV Fault, Phase 3 UV Fault)\r\n'
+[2025/05/20 12:20:39] b'    Feed2Phase1CurrentInAmperes: 10.156\r\n'
+[2025/05/20 12:20:39] b'    Feed2Phase1PowerInWatts: 1951.0361\r\n'
+[2025/05/20 12:20:39] b'    Feed2Phase1VoltageInVolts: 193.3676\r\n'
+[2025/05/20 12:20:39] b'    Feed2Phase2CurrentInAmperes: 10.0949\r\n'
+[2025/05/20 12:20:39] b'    Feed2Phase2PowerInWatts: 1956.6859\r\n'
+[2025/05/20 12:20:39] b'    Feed2Phase2VoltageInVolts: 193.9472\r\n'
+[2025/05/20 12:20:39] b'    Feed2Phase3CurrentInAmperes: 10.0164\r\n'
+[2025/05/20 12:20:39] b'    Feed2Phase3PowerInWatts: 1935.9702\r\n'
+[2025/05/20 12:20:39] b'    Feed2Phase3VoltageInVolts: 193.3676\r\n'
+[2025/05/20 12:20:39] b'    Feed2PowerStatus: Faulty (Phase 1 UV Fault, Phase 3 UV Fault)\r\n'
+[2025/05/20 12:20:39] b'    MaxPowerInWatts: 5896.4229\r\n'
+[2025/05/20 12:20:39] b'    PowerDrawnInWatts: 5843.6922\r\n'
+[2025/05/20 12:20:39] b'    PowerFactor: 0.9922\r\n'
+[2025/05/20 12:20:39] b'    RealPowerInWatts: 5821.0934\r\n'
+[2025/05/20 12:20:39] b'    Completion Code: Success\r\n'
+[2025/05/20 12:20:39] b'WcsCli# '
+[2025/05/20 12:20:39] PRU S2 RVpru1 Voltage: 193.3676 volt
+[2025/05/20 12:20:39] PRU S2 SVpru1 Voltage: 193.9472 volt
+[2025/05/20 12:20:39] PRU S2 TVpru1 Voltage: 193.3676 volt
+[2025/05/20 12:20:39] Set AC source output to 250 volt
+[2025/05/20 12:20:39] AC Source Write >>> '*CLS'
+[2025/05/20 12:20:39] AC Source Write >>> 'INST:EDIT ALL'
+[2025/05/20 12:20:39] AC Source Write >>> 'VOLTage:AC 250'
+[2025/05/20 12:20:49] === Calibration Point 2 - WT500 Voltage ===
+[2025/05/20 12:20:49] Read power meter value from WT500
+[2025/05/20 12:20:49] Meter Write >>> '*CLS'
+[2025/05/20 12:20:49] Meter Write >>> 'NUMeric:NORMAL:VALue?'
+[2025/05/20 12:20:49] Meter Return >>> '249.93E+00,10.048E+00,2.5112E+03,249.75E+00,10.012E+00,2.5004E+03,249.97E+00,10.031E+00,2.5075E+03'
+[2025/05/20 12:20:49] WT500 S2 RVac2 Voltage: 249.93 volt
+[2025/05/20 12:20:49] WT500 S2 SVac2 Voltage: 249.75 volt
+[2025/05/20 12:20:49] WT500 S2 TVac2 Voltage: 249.97 volt
+[2025/05/20 12:20:49] === Calibration Point 2 - PRU Voltage ===
+[2025/05/20 12:20:49] Read power meter value from RM
+[2025/05/20 12:20:50] b'sh manager powermeter reading\r\n'
+[2025/05/20 12:20:50] b'    Feed1Phase1CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:20:50] b'    Feed1Phase1PowerInWatts: 0.0\r\n'
+[2025/05/20 12:20:50] b'    Feed1Phase1VoltageInVolts: 255.417\r\n'
+[2025/05/20 12:20:50] b'    Feed1Phase2CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:20:50] b'    Feed1Phase2PowerInWatts: 0.0\r\n'
+[2025/05/20 12:20:50] b'    Feed1Phase2VoltageInVolts: 254.6002\r\n'
+[2025/05/20 12:20:50] b'    Feed1Phase3CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:20:50] b'    Feed1Phase3PowerInWatts: 0.0\r\n'
+[2025/05/20 12:20:50] b'    Feed1Phase3VoltageInVolts: 255.8385\r\n'
+[2025/05/20 12:20:50] b'    Feed1PowerStatus: Faulty (Phase 1 OV Fault, Phase 1 UV Fault, Phase 2 OV Fault, Phase 3 OV Fault, Phase 3 UV Fault)\r\n'
+[2025/05/20 12:20:50] b'    Feed2Phase1CurrentInAmperes: 10.1124\r\n'
+[2025/05/20 12:20:50] b'    Feed2Phase1PowerInWatts: 2580.0381\r\n'
+[2025/05/20 12:20:50] b'    Feed2Phase1VoltageInVolts: 255.3116\r\n'
+[2025/05/20 12:20:50] b'    Feed2Phase2CurrentInAmperes: 10.0513\r\n'
+[2025/05/20 12:20:50] b'    Feed2Phase2PowerInWatts: 2563.089\r\n'
+[2025/05/20 12:20:50] b'    Feed2Phase2VoltageInVolts: 255.1271\r\n'
+[2025/05/20 12:20:50] b'    Feed2Phase3CurrentInAmperes: 10.0818\r\n'
+[2025/05/20 12:20:50] b'    Feed2Phase3PowerInWatts: 2578.1549\r\n'
+[2025/05/20 12:20:50] b'    Feed2Phase3VoltageInVolts: 255.7595\r\n'
+[2025/05/20 12:20:50] b'    Feed2PowerStatus: Faulty (Phase 1 OV Fault, Phase 1 UV Fault, Phase 2 OV Fault, Phase 3 OV Fault, Phase 3 UV Fault)\r\n'
+[2025/05/20 12:20:50] b'    MaxPowerInWatts: 10080.9812\r\n'
+[2025/05/20 12:20:50] b'    PowerDrawnInWatts: 7721.282\r\n'
+[2025/05/20 12:20:50] b'    PowerFactor: 0.9949\r\n'
+[2025/05/20 12:20:50] b'    RealPowerInWatts: 7681.734\r\n'
+[2025/05/20 12:20:50] b'    Completion Code: Success\r\n'
+[2025/05/20 12:20:50] b'WcsCli# '
+[2025/05/20 12:20:50] PRU S2 RVpru2 Voltage: 255.311600 volt
+[2025/05/20 12:20:50] PRU S2 SVpru2 Voltage: 255.127100 volt
+[2025/05/20 12:20:50] PRU S2 TVpru2 Voltage: 255.759500 volt
+[2025/05/20 12:20:50] === Voltage Gain ===
+[2025/05/20 12:20:50] R Voltage RVGain: 0.97120
+[2025/05/20 12:20:50] R Voltage RVGainCMD: 15912
+[2025/05/20 12:20:50] S Voltage SVGain: 0.98235
+[2025/05/20 12:20:50] S Voltage SVGainCMD: 16094
+[2025/05/20 12:20:50] T Voltage TVGain: 0.96343
+[2025/05/20 12:20:50] T Voltage TVGainCMD: 15784
+[2025/05/20 12:20:51] === Voltage Offset ===
+[2025/05/20 12:20:51] R Voltage RVOffset: 1.87143
+[2025/05/20 12:20:51] R Voltage RVoffsetCMD: 71
+[2025/05/20 12:20:51] S Voltage SVOffset: -0.77379
+[2025/05/20 12:20:51] S Voltage SVoffsetCMD: 32797
+[2025/05/20 12:20:51] T Voltage TVOffset: 3.46456
+[2025/05/20 12:20:51] T Voltage TVoffsetCMD: 131
+[2025/05/20 12:20:51] Get source 2 current calibration point value
+[2025/05/20 12:20:51] Set AC source output to 208 volt
+[2025/05/20 12:20:51] AC Source Write >>> '*CLS'
+[2025/05/20 12:20:51] AC Source Write >>> 'INST:EDIT ALL'
+[2025/05/20 12:20:51] AC Source Write >>> 'VOLTage:AC 208'
+[2025/05/20 12:20:51] Turn AC source output on
+[2025/05/20 12:20:51] AC Source Write >>> 'OUTPut?'
+[2025/05/20 12:20:51] AC Source Return >>> 'ON'
+[2025/05/20 12:20:56] Set AC load to 3.0 amp
+[2025/05/20 12:20:56] AC Load 1 Write >>> '*CLS'
+[2025/05/20 12:20:56] AC Load 1 Write >>> 'CURR 3.0'
+[2025/05/20 12:20:56] AC Load 2 Write >>> '*CLS'
+[2025/05/20 12:20:56] AC Load 2 Write >>> 'CURR 3.0'
+[2025/05/20 12:20:56] AC Load 3 Write >>> '*CLS'
+[2025/05/20 12:20:56] AC Load 3 Write >>> 'CURR 3.0'
+[2025/05/20 12:20:56] Turn AC load on
+[2025/05/20 12:20:56] AC Load 1 Write >>> '*CLS'
+[2025/05/20 12:20:56] AC Load 1 Write >>> 'LOAD?'
+[2025/05/20 12:20:56] AC Load 1 Return >>> '1'
+[2025/05/20 12:20:56] AC Load 2 Write >>> '*CLS'
+[2025/05/20 12:20:56] AC Load 2 Write >>> 'LOAD?'
+[2025/05/20 12:20:56] AC Load 2 Return >>> '1'
+[2025/05/20 12:20:56] AC Load 3 Write >>> '*CLS'
+[2025/05/20 12:20:56] AC Load 3 Write >>> 'LOAD?'
+[2025/05/20 12:20:56] AC Load 3 Return >>> '1'
+[2025/05/20 12:21:06] === Calibration Point 1 - WT500 Current ===
+[2025/05/20 12:21:06] Read power meter value from WT500
+[2025/05/20 12:21:06] Meter Write >>> '*CLS'
+[2025/05/20 12:21:06] Meter Write >>> 'NUMeric:NORMAL:VALue?'
+[2025/05/20 12:21:07] Meter Return >>> '208.19E+00,3.047E+00,0.6342E+03,208.02E+00,3.013E+00,0.6266E+03,208.18E+00,3.020E+00,0.6287E+03'
+[2025/05/20 12:21:07] WT500 S2 RIac1 Current: 3.047 amp
+[2025/05/20 12:21:07] WT500 S2 SIac1 Current: 3.013 amp
+[2025/05/20 12:21:07] WT500 S2 TIac1 Current: 3.020 amp
+[2025/05/20 12:21:07] === Calibration Point 1 - PRU Current ===
+[2025/05/20 12:21:07] Read power meter value from RM
+[2025/05/20 12:21:08] b'sh manager powermeter reading\r\n'
+[2025/05/20 12:21:08] b'    Feed1Phase1CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:21:08] b'    Feed1Phase1PowerInWatts: 0.0\r\n'
+[2025/05/20 12:21:08] b'    Feed1Phase1VoltageInVolts: 213.1812\r\n'
+[2025/05/20 12:21:08] b'    Feed1Phase2CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:21:08] b'    Feed1Phase2PowerInWatts: 0.0\r\n'
+[2025/05/20 12:21:08] b'    Feed1Phase2VoltageInVolts: 211.7848\r\n'
+[2025/05/20 12:21:08] b'    Feed1Phase3CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:21:08] b'    Feed1Phase3PowerInWatts: 0.0\r\n'
+[2025/05/20 12:21:08] b'    Feed1Phase3VoltageInVolts: 212.9441\r\n'
+[2025/05/20 12:21:08] b'    Feed1PowerStatus: Faulty (Phase 1 OV Fault, Phase 1 UV Fault, Phase 2 OV Fault, Phase 3 OV Fault, Phase 3 UV Fault)\r\n'
+[2025/05/20 12:21:08] b'    Feed2Phase1CurrentInAmperes: 3.032\r\n'
+[2025/05/20 12:21:08] b'    Feed2Phase1PowerInWatts: 644.0679\r\n'
+[2025/05/20 12:21:08] b'    Feed2Phase1VoltageInVolts: 212.8387\r\n'
+[2025/05/20 12:21:08] b'    Feed2Phase2CurrentInAmperes: 3.0058\r\n'
+[2025/05/20 12:21:08] b'    Feed2Phase2PowerInWatts: 636.535\r\n'
+[2025/05/20 12:21:08] b'    Feed2Phase2VoltageInVolts: 212.1009\r\n'
+[2025/05/20 12:21:08] b'    Feed2Phase3CurrentInAmperes: 3.0058\r\n'
+[2025/05/20 12:21:08] b'    Feed2Phase3PowerInWatts: 640.3014\r\n'
+[2025/05/20 12:21:08] b'    Feed2Phase3VoltageInVolts: 213.4974\r\n'
+[2025/05/20 12:21:08] b'    Feed2PowerStatus: Faulty (Phase 1 OV Fault, Phase 1 UV Fault, Phase 2 OV Fault, Phase 3 OV Fault, Phase 3 UV Fault)\r\n'
+[2025/05/20 12:21:08] b'    MaxPowerInWatts: 10080.9812\r\n'
+[2025/05/20 12:21:08] b'    PowerDrawnInWatts: 1920.9043\r\n'
+[2025/05/20 12:21:08] b'    PowerFactor: 1.0\r\n'
+[2025/05/20 12:21:08] b'    RealPowerInWatts: 1920.9043\r\n'
+[2025/05/20 12:21:08] b'    Completion Code: Success\r\n'
+[2025/05/20 12:21:08] b'WcsCli# '
+[2025/05/20 12:21:08] PRU S2 RIpru1 Current: 3.032000 amp
+[2025/05/20 12:21:08] PRU S2 SIpru1 Current: 3.005800 amp
+[2025/05/20 12:21:08] PRU S2 TIpru1 Current: 3.005800 amp
+[2025/05/20 12:21:08] Set AC load to 15.0 amp
+[2025/05/20 12:21:08] AC Load 1 Write >>> '*CLS'
+[2025/05/20 12:21:08] AC Load 1 Write >>> 'CURR 15.0'
+[2025/05/20 12:21:09] AC Load 2 Write >>> '*CLS'
+[2025/05/20 12:21:09] AC Load 2 Write >>> 'CURR 15.0'
+[2025/05/20 12:21:09] AC Load 3 Write >>> '*CLS'
+[2025/05/20 12:21:09] AC Load 3 Write >>> 'CURR 15.0'
+[2025/05/20 12:21:19] === Calibration Point 2 - WT500 Current ===
+[2025/05/20 12:21:19] Read power meter value from WT500
+[2025/05/20 12:21:19] Meter Write >>> '*CLS'
+[2025/05/20 12:21:19] Meter Write >>> 'NUMeric:NORMAL:VALue?'
+[2025/05/20 12:21:19] Meter Return >>> '207.62E+00,15.047E+00,3.1241E+03,207.31E+00,15.009E+00,3.1114E+03,207.67E+00,15.031E+00,3.1214E+03'
+[2025/05/20 12:21:19] WT500 S2 RIac2 Current: 15.047 amp
+[2025/05/20 12:21:19] WT500 S2 SIac2 Current: 15.009 amp
+[2025/05/20 12:21:19] WT500 S2 TIac2 Current: 15.031 amp
+[2025/05/20 12:21:19] === Calibration Point 2 - PRU Current ===
+[2025/05/20 12:21:19] Read power meter value from RM
+[2025/05/20 12:21:21] b'sh manager powermeter reading\r\n'
+[2025/05/20 12:21:21] b'    Feed1Phase1CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:21:21] b'    Feed1Phase1PowerInWatts: 0.0\r\n'
+[2025/05/20 12:21:21] b'    Feed1Phase1VoltageInVolts: 211.9956\r\n'
+[2025/05/20 12:21:21] b'    Feed1Phase2CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:21:21] b'    Feed1Phase2PowerInWatts: 0.0\r\n'
+[2025/05/20 12:21:21] b'    Feed1Phase2VoltageInVolts: 211.7848\r\n'
+[2025/05/20 12:21:21] b'    Feed1Phase3CurrentInAmperes: 0.0\r\n'
+[2025/05/20 12:21:21] b'    Feed1Phase3PowerInWatts: 0.0\r\n'
+[2025/05/20 12:21:21] b'    Feed1Phase3VoltageInVolts: 212.4171\r\n'
+[2025/05/20 12:21:21] b'    Feed1PowerStatus: Faulty (Phase 1 OV Fault, Phase 1 UV Fault, Phase 2 OV Fault, Phase 3 OV Fault, Phase 3 UV Fault)\r\n'
+[2025/05/20 12:21:21] b'    Feed2Phase1CurrentInAmperes: 15.1947\r\n'
+[2025/05/20 12:21:21] b'    Feed2Phase1PowerInWatts: 3225.9893\r\n'
+[2025/05/20 12:21:21] b'    Feed2Phase1VoltageInVolts: 212.3117\r\n'
+[2025/05/20 12:21:21] b'    Feed2Phase2CurrentInAmperes: 15.1642\r\n'
+[2025/05/20 12:21:21] b'    Feed2Phase2PowerInWatts: 3218.4563\r\n'
+[2025/05/20 12:21:21] b'    Feed2Phase2VoltageInVolts: 212.2063\r\n'
+[2025/05/20 12:21:21] b'    Feed2Phase3CurrentInAmperes: 15.1554\r\n'
+[2025/05/20 12:21:21] b'    Feed2Phase3PowerInWatts: 3225.9893\r\n'
+[2025/05/20 12:21:21] b'    Feed2Phase3VoltageInVolts: 212.9441\r\n'
+[2025/05/20 12:21:21] b'    Feed2PowerStatus: Faulty (Phase 1 OV Fault, Phase 1 UV Fault, Phase 2 OV Fault, Phase 3 OV Fault, Phase 3 UV Fault)\r\n'
+[2025/05/20 12:21:21] b'    MaxPowerInWatts: 10080.9812\r\n'
+[2025/05/20 12:21:21] b'    PowerDrawnInWatts: 9670.4349\r\n'
+[2025/05/20 12:21:21] b'    PowerFactor: 0.992\r\n'
+[2025/05/20 12:21:21] b'    RealPowerInWatts: 9593.2221\r\n'
+[2025/05/20 12:21:21] b'    Completion Code: Success\r\n'
+[2025/05/20 12:21:21] b'WcsCli# '
+[2025/05/20 12:21:21] PRU S2 RIpru2 Current: 15.194700 amp
+[2025/05/20 12:21:21] PRU S2 SIpru2 Current: 15.164200 amp
+[2025/05/20 12:21:21] PRU S2 TIpru2 Current: 15.155400 amp
+[2025/05/20 12:21:21] === Current Gain ===
+[2025/05/20 12:21:21] R Current RIGain: 0.98662
+[2025/05/20 12:21:21] R Current RIGainCMD: 16164
+[2025/05/20 12:21:21] S Current SIGain: 0.98664
+[2025/05/20 12:21:21] S Current SIGainCMD: 16165
+[2025/05/20 12:21:21] T Current TIGain: 0.98859
+[2025/05/20 12:21:21] T Current TIGainCMD: 16197
+[2025/05/20 12:21:21] === Current Offset ===
+[2025/05/20 12:21:21] R Current RIOffset: 0.05556
+[2025/05/20 12:21:21] R Current RIoffsetCMD: 12
+[2025/05/20 12:21:21] S Current SIOffset: 0.04735
+[2025/05/20 12:21:21] S Current SIoffsetCMD: 10
+[2025/05/20 12:21:21] T Current TIOffset: 0.04849
+[2025/05/20 12:21:21] T Current TIoffsetCMD: 11
+[2025/05/20 12:21:21] Get source 2 calibration point value Pass
+[2025/05/20 12:21:21] Get calibration point value Pass
+[2025/05/20 12:21:21] ======================================
+[2025/05/20 12:21:21] [Write Calibration Data to EEPROM]
+[2025/05/20 12:21:21] ======================================
+[2025/05/20 12:21:21] Update ADC calibration file
+[2025/05/20 12:21:21] Transfer adccalibration.txt from host to RM
+[2025/05/20 12:21:21] Set network interface eth0 to static
+[2025/05/20 12:21:22] b'set network static -i eth0 -a 192.168.0.100 -s 255.255.255.0 -g 192.168. \r0.1\r\n'
+[2025/05/20 12:21:22] b'    Completion Code: Success\r\n'
+[2025/05/20 12:21:22] b'WcsCli# '
+[2025/05/20 12:21:23] b'set manager tftp get -s 192.168.0.101 -f adccalibration.txt\r\n'
+[2025/05/20 12:21:33] b'set manager tftp get -s 192.168.0.101 -f adccalibration.txt\r\n'
+[2025/05/20 12:21:36] b'    Status Description: timeout\r\n'
+[2025/05/20 12:21:36] b'    Completion Code: Failure\r\n'
+[2025/05/20 12:21:36] b'WcsCli# set manager tftp get -s 192.168.0.101 -f adccalibration.txt\r\n'
+[2025/05/20 12:21:37] b'set manager tftp get -s 192.168.0.101 -f adccalibration.txt\r\n'
+[2025/05/20 12:21:47] b'set manager tftp get -s 192.168.0.101 -f adccalibration.txt\r\n'
+[2025/05/20 12:21:49] b'    Completion Code: Success\r\n'
+[2025/05/20 12:21:49] b'WcsCli# set manager tftp get -s 192.168.0.101 -f adccalibration.txt\r\n'
+[2025/05/20 12:21:49] Write calibration data to PMDU EEPROM
+[2025/05/20 12:21:49] b'set manager powermeter calibration -f adccalibration.txt\r\n'
+[2025/05/20 12:21:54] Write ADC calibration to EEPROM(B:1 D:51) Fail
+[2025/05/20 12:21:54] Write calibration data to PMDU EEPROM Fail
+[2025/05/20 12:21:54] Write calibration data to EEPROM Fail
+[2025/05/20 12:21:54] Test elapsed time: 0:06:14.290000
+[2025/05/20 12:21:54] Turn AC source output off
+[2025/05/20 12:21:54] AC Source Write >>> 'OUTPut?'
+[2025/05/20 12:21:54] AC Source Return >>> 'ON'
+[2025/05/20 12:21:54] AC Source Write >>> 'OUTPut OFF'
+[2025/05/20 12:21:56] Output is 'ON' then turn 'OFF'
+[2025/05/20 12:21:57] Switch the 4/5-wire configuration to off
+[2025/05/20 12:21:58] b'Reset'
+[2025/05/20 12:22:00] Switch the 4/5-wire configuration to off Pass
+[2025/05/20 12:22:03] COM11
+[2025/05/20 12:22:03] Turn relay off
+[2025/05/20 12:22:05] S1/S2 relays are off
+[2025/05/20 12:22:07] COM4
+[2025/05/20 12:22:07] Turn relay off
+[2025/05/20 12:22:09] S1/S2 relays are off
+[2025/05/20 12:22:11] COM5
+[2025/05/20 12:22:11] Turn relay off
+[2025/05/20 12:22:13] S1/S2 relays are off
+[2025/05/20 12:22:15] COM8
+[2025/05/20 12:22:15] Turn relay off
+[2025/05/20 12:22:17] S1/S2 relays are off
+[2025/05/20 12:22:19] COM9
+[2025/05/20 12:22:19] Turn relay off
+[2025/05/20 12:22:21] S1/S2 relays are off
+[2025/05/20 12:22:23] COM10
+[2025/05/20 12:22:23] Turn relay off
+[2025/05/20 12:22:25] S1/S2 relays are off
+[2025/05/20 12:22:27] COM7
+[2025/05/20 12:22:28] Turn relay off
+[2025/05/20 12:22:30] S1/S2 relays are off
+[2025/05/20 12:22:32] COM6
+[2025/05/20 12:22:32] Turn relay off
+[2025/05/20 12:22:34] S1/S2 relays are off
+[2025/05/20 12:22:37] Failed tests:
+[2025/05/20 12:22:37]     Test12: Calibration Test | Get source 1 calibration point value Pass / Get source 2 calibration point value Pass / Get calibration point value Pass / Write calibration data to EEPROM Fail
+[2025/05/20 12:22:37] ===========================================================
+[2025/05/20 12:22:37] [END] 2025-05-20 12:22:37
+[2025/05/20 12:22:37] Total elapsed time: 0:25:42.280000

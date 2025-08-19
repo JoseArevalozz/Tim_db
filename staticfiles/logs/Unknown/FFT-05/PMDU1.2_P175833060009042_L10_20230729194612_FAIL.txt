@@ -1,0 +1,180 @@
+[2023/07/29 19:46:44] Foxconn Test Program Rev: PROD051 (non-SFC)
+[2023/07/29 19:46:44] Description: PMDU1.2 PMDU L10 Test
+[2023/07/29 19:46:44] Support package version: 1.1.8.16
+[2023/07/29 19:46:44] Factory: RMA
+[2023/07/29 19:46:44] Station ID: PMDU-FFT003
+[2023/07/29 19:46:46] ======================================
+[2023/07/29 19:46:46] [M2010 L10 48U Test]
+[2023/07/29 19:46:46] ======================================
+[2023/07/29 19:46:46]  48U configuration set pass
+[2023/07/29 19:46:49] Start Timestamp: [2023-07-29 19:46:49]
+[2023/07/29 19:46:49] ======================================
+[2023/07/29 19:46:49] [AC Source 61830 Initialization]
+[2023/07/29 19:46:49] ======================================
+[2023/07/29 19:46:49] Chroma ATE,61512,001984,2.10 Feb 21 2022
+
+[2023/07/29 19:46:49] Three Phase Mode - [Checked]
+[2023/07/29 19:46:49] VOLTage:RANGe HIGH - [Checked]
+[2023/07/29 19:46:49] VOLTage:LIMit:AC 300 - [Checked]
+[2023/07/29 19:46:49] Set VOLTage:RANGe HIGH - [Checked]
+[2023/07/29 19:46:49] Set Frequency 60 Hz - [Checked]
+[2023/07/29 19:46:49] ======================================
+[2023/07/29 19:46:49] AC Source 61830 Initialization - [Complete]
+[2023/07/29 19:46:49] ======================================
+
+[2023/07/29 19:46:49] ======================================
+[2023/07/29 19:46:49] [AC Load 63800 Initialization]
+[2023/07/29 19:46:49] ======================================
+[2023/07/29 19:46:50] ===Load 1 : GPIB ADDRESS 0x8 (GPIB0::1::INSTR)===
+[2023/07/29 19:46:50] Chroma,63804,3338,1.70
+
+[2023/07/29 19:46:50] Constant Current Mode - [Checked]
+[2023/07/29 19:46:50] CURR:PEAK:MAX 50 Amp - [Checked]
+[2023/07/29 19:46:50] ===Load 2 : GPIB ADDRESS 0x28 (GPIB0::2::INSTR)===
+[2023/07/29 19:46:50] Chroma,63804,3312,1.70
+
+[2023/07/29 19:46:50] Constant Current Mode - [Checked]
+[2023/07/29 19:46:50] CURR:PEAK:MAX 50 Amp - [Checked]
+[2023/07/29 19:46:50] ===Load 3 : GPIB ADDRESS 0x22 (GPIB0::3::INSTR)===
+[2023/07/29 19:46:50] Chroma,63804,3318,1.70
+
+[2023/07/29 19:46:50] Constant Current Mode - [Checked]
+[2023/07/29 19:46:50] CURR:PEAK:MAX 50 Amp - [Checked]
+[2023/07/29 19:46:50] ======================================
+[2023/07/29 19:46:50] AC Load 63800 Initialization - [Complete]
+[2023/07/29 19:46:50] ======================================
+
+[2023/07/29 19:46:50] ======================================
+[2023/07/29 19:46:50] [Meter WT500 Initialization]
+[2023/07/29 19:46:50] ======================================
+[2023/07/29 19:46:50] YOKOGAWA,760203,C2YH30003V,F1.31
+
+[2023/07/29 19:46:51] ======================================
+[2023/07/29 19:46:51] Meter WT500 Initialization - [Complete]
+[2023/07/29 19:46:51] ======================================
+
+[2023/07/29 19:46:51] ######################################################################
+[2023/07/29 19:46:51] Test1: 5V Relay Test via C13
+[2023/07/29 19:46:51] Timestamp: [2023-07-29 19:46:51]
+[2023/07/29 19:46:51] ######################################################################
+[2023/07/29 19:46:51] ======================================
+[2023/07/29 19:46:51] [Check 5 Wire Connection]
+[2023/07/29 19:46:51] ======================================
+[2023/07/29 19:46:51] AC Source Quit
+[2023/07/29 19:46:55] Switch to 4 wire: OFF [b'Off_4']
+[2023/07/29 19:47:00] Switch to 5 wire: OFF [b'Off_5']
+[2023/07/29 19:47:05] Switch to 5 wire: ON / 4 wire: OFF [b'On_5']
+[2023/07/29 19:47:05] COM11
+[2023/07/29 19:47:06] S1/S2 relays are off
+[2023/07/29 19:47:06] COM4
+[2023/07/29 19:47:06] S1/S2 relays are off
+[2023/07/29 19:47:06] COM5
+[2023/07/29 19:47:06] S1/S2 relays are off
+[2023/07/29 19:47:06] COM8
+[2023/07/29 19:47:06] S1/S2 relays are off
+[2023/07/29 19:47:06] COM9
+[2023/07/29 19:47:07] S1/S2 relays are off
+[2023/07/29 19:47:07] COM10
+[2023/07/29 19:47:07] S1/S2 relays are off
+[2023/07/29 19:47:07] COM7
+[2023/07/29 19:47:07] S1/S2 relays are off
+[2023/07/29 19:47:07] COM6
+[2023/07/29 19:47:08] S1/S2 relays are off
+[2023/07/29 19:47:08] [Set AC Source Output 120 Volt]
+[2023/07/29 19:47:09] Output is OFF then Turn ON
+[2023/07/29 19:47:09] AC Source Output
+[2023/07/29 19:47:19] Phase R Voltage = 120.03 volt - 5 Wire Connection Check - [PASS]
+[2023/07/29 19:47:19] Phase S Voltage = 120.13 volt - 5 Wire Connection Check - [PASS]
+[2023/07/29 19:47:19] Phase T Voltage = 120.02 volt - 5 Wire Connection Check - [PASS]
+[2023/07/29 19:47:19] Set AC Source Output OFF
+[2023/07/29 19:47:25] ======================================
+[2023/07/29 19:47:25] [C13 Outlet Voltage Detection Test]
+[2023/07/29 19:47:25] ======================================
+[2023/07/29 19:47:25] ===Check C13 Outlet Voltage Source 1 Phase 1===
+[2023/07/29 19:47:25] Set AC Source Output ON
+[2023/07/29 19:47:34] Check [CS1P11]
+[2023/07/29 19:47:34] C13 AC Voltage : 221 Volt Check Complete
+[2023/07/29 19:47:34] Check [CS1P12]
+[2023/07/29 19:47:34] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/29 19:47:34] ===Check C13 Outlet Voltage Source 1 Phase 2===
+[2023/07/29 19:47:34] Set AC Source Output ON
+[2023/07/29 19:47:42] Check [CS1P2]
+[2023/07/29 19:47:42] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/29 19:47:42] ===Check C13 Outlet Voltage Source 1 Phase 3===
+[2023/07/29 19:47:42] Set AC Source Output ON
+[2023/07/29 19:47:51] Check [CS1P3]
+[2023/07/29 19:47:51] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/29 19:47:51] ===Check C13 Outlet Voltage Source 2 Phase 1===
+[2023/07/29 19:47:51] Set AC Source Output ON
+[2023/07/29 19:47:59] Check [CS2P11]
+[2023/07/29 19:47:59] C13 AC Voltage : 221 Volt Check Complete
+[2023/07/29 19:47:59] Check [CS2P12]
+[2023/07/29 19:47:59] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/29 19:47:59] ===Check C13 Outlet Voltage Source 2 Phase 2===
+[2023/07/29 19:47:59] Set AC Source Output ON
+[2023/07/29 19:48:08] Check [CS2P2]
+[2023/07/29 19:48:08] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/29 19:48:08] ===Check C13 Outlet Voltage Source 2 Phase 3===
+[2023/07/29 19:48:08] Set AC Source Output ON
+[2023/07/29 19:48:16] Check [CS2P3]
+[2023/07/29 19:48:16] C13 AC Voltage : 222 Volt Check Complete
+[2023/07/29 19:48:16] Set AC Source Output OFF
+[2023/07/29 19:48:20] ======================================
+[2023/07/29 19:48:20] [Relay Control Signals Detection Test w/ Y Cable Connection to C13]
+[2023/07/29 19:48:20] ======================================
+[2023/07/29 19:48:20] [Set AC Source Output 220 Volt]
+[2023/07/29 19:48:21] AC Source Output
+[2023/07/29 19:48:21] Turn on the Rack Manager
+[2023/07/29 19:48:24] 2023-07-29 19:48:24.310000 Init to Filesystem Start ...
+[2023/07/29 19:48:54] Pass - Init to Login
+[2023/07/29 19:48:59] Pass - Wait for Password
+[2023/07/29 19:49:08] Pass - Wait for WcsCli
+[2023/07/29 19:49:12] Check RC4 [CS2P11]
+[2023/07/29 19:49:14] C13 AC Voltage 168 out of range - [209.00 Volt~231.00 Volt]
+[2023/07/29 19:49:17] Check RC4 [CS2P11]
+[2023/07/29 19:49:20] C13 AC Voltage : 220 Volt Check Complete
+[2023/07/29 19:49:22] Check RC4 [CS2P11]
+[2023/07/29 19:49:24] C13 AC Voltage 169 out of range - [209.00 Volt~231.00 Volt]
+[2023/07/29 19:49:27] Check RC3 [CS2P12]
+[2023/07/29 19:49:29] C13 AC Voltage : 221 Volt Check Complete
+[2023/07/29 19:49:31] Check RC3 [CS2P12]
+[2023/07/29 19:49:34] C13 AC Voltage : 221 Volt Check Complete
+[2023/07/29 19:49:36] Check RC3 [CS2P12]
+[2023/07/29 19:49:38] C13 AC Voltage : 221 Volt Check Complete
+[2023/07/29 19:51:11] Check RC3 [CS2P12]
+[2023/07/29 19:51:13] C13 AC Voltage : 221 Volt Check Complete
+[2023/07/29 19:51:15] Check RC3 [CS2P12]
+[2023/07/29 19:51:17] C13 AC Voltage : 221 Volt Check Complete
+[2023/07/29 19:51:20] Check RC3 [CS2P12]
+[2023/07/29 19:51:22] C13 AC Voltage : 221 Volt Check Complete
+[2023/07/29 19:51:54] Check RC3 [CS2P12]
+[2023/07/29 19:51:56] C13 AC Voltage : 221 Volt Check Complete
+[2023/07/29 19:51:58] Check RC3 [CS2P12]
+[2023/07/29 19:52:00] C13 AC Voltage : 221 Volt Check Complete
+[2023/07/29 19:52:03] Check RC3 [CS2P12]
+[2023/07/29 19:52:05] C13 AC Voltage : 221 Volt Check Complete
+[2023/07/29 19:52:05] Test elapsed time: 0:05:13.899999
+[2023/07/29 19:52:05] Output is ON then Turn OFF
+[2023/07/29 19:52:05] AC Source Quit
+[2023/07/29 19:52:05] Failed tests:
+[2023/07/29 19:52:05]     Test1: 5V Relay Test via C13 | Check RC3 CS2P12 Fail (when relays off)
+[2023/07/29 19:52:05] AC Source Quit
+[2023/07/29 19:52:09] Switch to 4/5 wire: OFF [b'Reset']
+[2023/07/29 19:52:09] COM11
+[2023/07/29 19:52:09] Turn Relay OFF
+[2023/07/29 19:52:09] COM4
+[2023/07/29 19:52:10] Turn Relay OFF
+[2023/07/29 19:52:10] COM5
+[2023/07/29 19:52:10] Turn Relay OFF
+[2023/07/29 19:52:10] COM8
+[2023/07/29 19:52:10] Turn Relay OFF
+[2023/07/29 19:52:10] COM9
+[2023/07/29 19:52:10] Turn Relay OFF
+[2023/07/29 19:52:10] COM10
+[2023/07/29 19:52:10] Turn Relay OFF
+[2023/07/29 19:52:10] COM7
+[2023/07/29 19:52:10] Turn Relay OFF
+[2023/07/29 19:52:10] COM6
+[2023/07/29 19:52:11] Turn Relay OFF
+[2023/07/29 19:52:11] End Timestamp: [2023-07-29 19:52:11]
+[2023/07/29 19:52:11] Test Duration : 05m:21s
