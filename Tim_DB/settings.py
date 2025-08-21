@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'forms_db.middleware.QARedirectMiddleware',
+    'forms_db.middleware.QARedirectMiddleware',
 ]
 
 ROOT_URLCONF = 'Tim_DB.urls'
