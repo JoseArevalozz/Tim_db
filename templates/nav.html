@@ -128,10 +128,10 @@
                         </h2>
                         <div id="collapseReports" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                             <div class="accordion-body px-0 py-1">
-                                <a href="{% url 'menuMetricas' %}" class="d-block text-white py-2 px-3 mb-1 rounded text-decoration-none" style="background-color: rgba(255,255,255,0.1);">
+                                <a href="{% url 'yield_dashboard' %}" class="d-block text-white py-2 px-3 mb-1 rounded text-decoration-none" style="background-color: rgba(255,255,255,0.1);">
                                     <i class="bi bi-percent me-2"></i>Yields
                                 </a>
-                                <a href="{% url 'menuMetricas' %}" class="d-block text-white py-2 px-3 mb-1 rounded text-decoration-none" style="background-color: rgba(255,255,255,0.1);">
+                                <a href="{% url 'weekly_failure_report' %}" class="d-block text-white py-2 px-3 mb-1 rounded text-decoration-none" style="background-color: rgba(255,255,255,0.1);">
                                     <i class="bi bi-bar-chart-line me-2"></i>Failure analytics
                                 </a>
                                 <a href="{% url 'tableRejects' %}" class="d-block text-white py-2 px-3 mb-1 rounded text-decoration-none" style="background-color: rgba(255,255,255,0.1);">
@@ -157,22 +157,34 @@
                                 <form method="POST" class="d-flex flex-column">
                                     {% csrf_token %}
                                     {% if employe.pmd == True%}
-                                    <button class="btn text-white text-start py-2 px-3 mb-1 rounded" value="PMDU" name="bt-project" type="submit" style="background-color: rgba(255,255,255,0.1);">
+                                    <button class="btn text-white text-start py-2 px-3 mb-1 rounded" 
+                                        value="PMDU{% if employe.privileges|slice:'-1:' == 'S' %}S{% endif %}"
+                                        name="bt-project" type="submit" 
+                                        style="background-color: rgba(255,255,255,0.1);">
                                         <i class="bi bi-check-circle me-2"></i>PMDU
                                     </button>
                                     {% endif %}
                                     {% if employe.dell == True%}
-                                    <button class="btn text-white text-start py-2 px-3 mb-1 rounded" value="DELL" name="bt-project" type="submit" style="background-color: rgba(255,255,255,0.1);">
+                                    <button class="btn text-white text-start py-2 px-3 mb-1 rounded" 
+                                        value="DELL{% if employe.privileges|slice:'-1:' == 'S' %}S{% endif %}"
+                                        name="bt-project" type="submit" 
+                                        style="background-color: rgba(255,255,255,0.1);">
                                         <i class="bi bi-check-circle me-2"></i>DELL
                                     </button>
                                     {% endif %}
                                     {% if employe.switch == True%}
-                                    <button class="btn text-white text-start py-2 px-3 mb-1 rounded" value="1G-SW" name="bt-project" type="submit" style="background-color: rgba(255,255,255,0.1);">
+                                    <button class="btn text-white text-start py-2 px-3 mb-1 rounded" 
+                                        value="1G-SW{% if employe.privileges|slice:'-1:' == 'S' %}S{% endif %}"
+                                        name="bt-project" type="submit" 
+                                        style="background-color: rgba(255,255,255,0.1);">
                                         <i class="bi bi-check-circle me-2"></i>1G-SW
                                     </button>
                                     {% endif %}
                                     {% if employe.sony == True%}
-                                    <button class="btn text-white text-start py-2 px-3 mb-1 rounded" value="SONY" name="bt-project" type="submit" style="background-color: rgba(255,255,255,0.1);">
+                                    <button class="btn text-white text-start py-2 px-3 mb-1 rounded" 
+                                        value="SONY{% if employe.privileges|slice:'-1:' == 'S' %}S{% endif %}"
+                                        name="bt-project" type="submit" 
+                                        style="background-color: rgba(255,255,255,0.1);">
                                         <i class="bi bi-check-circle me-2"></i>SONY
                                     </button>
                                     {% endif %}

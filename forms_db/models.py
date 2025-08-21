@@ -12,6 +12,7 @@ class Employes(models.Model):
     dell = models.BooleanField(default=False)
     switch = models.BooleanField(default=False)
     sony = models.BooleanField(default=False)
+    QA = models.BooleanField(default=False)
     mail = models.CharField(max_length=100, null=True)
     privileges = models.CharField(max_length=10)
     created = models.DateTimeField(auto_now=True)

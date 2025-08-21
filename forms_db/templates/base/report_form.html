@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+
 <div class="container mt-4">
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
@@ -97,10 +98,13 @@
                 <div class="col-md-6 mb-4">
                     {{ charts.failure_categories|safe }}
                 </div>
+                {% if employe.QA == False%}
                 <div class="col-md-6 mb-4">
                     {{ charts.station_tests|safe }}
                 </div>
+                {% endif %}
             </div>
+            
             
             <!-- Tabla Detallada -->
             <div class="table-responsive mt-4">
@@ -132,7 +136,7 @@
                     </tbody>
                 </table>
             </div>
-            
+            {% if employe.QA == False%}
             <!-- Desglose por estación -->
             <div class="card mt-4">
                 <div class="card-header">
@@ -159,6 +163,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>
@@ -189,6 +194,69 @@
                     <button type="submit" class="btn btn-primary">Generar Reporte</button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+<!-- Información de SNs por categoría -->
+<div class="card mt-4">
+    <div class="card-header">
+        <h6>SNs por Categoría de Falla</h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header bg-danger text-white">
+                        Material ({{ report_data.material_count }})
+                    </div>
+                    <div class="card-body" style="max-height: 200px; overflow-y: auto;">
+                        {% for sn in report_data.material_sns %}
+                        <span class="badge bg-secondary mb-1">{{ sn }}</span>
+                        {% empty %}
+                        <p class="text-muted">No hay SNs</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header bg-warning text-dark">
+                        Workmanship ({{ report_data.workmanship_count }})
+                    </div>
+                    <div class="card-body" style="max-height: 200px; overflow-y: auto;">
+                        {% for sn in report_data.workmanship_sns %}
+                        <span class="badge bg-secondary mb-1">{{ sn }}</span>
+                        {% empty %}
+                        <p class="text-muted">No hay SNs</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        NDF ({{ report_data.ndf_count }})
+                    </div>
+                    <div class="card-body" style="max-height: 200px; overflow-y: auto;">
+                        {% for sn in report_data.ndf_sns %}
+                        <span class="badge bg-secondary mb-1">{{ sn }}</span>
+                        {% empty %}
+                        <p class="text-muted">No hay SNs</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        Reparados ({{ report_data.repaired_count }})
+                    </div>
+                    <div class="card-body">
+                        <h4>{{ report_data.repair_rate }}%</h4>
+                        <small>de {{ report_data.failed_sns_count }} fallas</small>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

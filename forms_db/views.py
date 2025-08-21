@@ -1179,6 +1179,10 @@ def weekly_failure_report(request):
     
     # Determinar si es supervisor
     is_supervisor = employe.privileges.endswith('S')
+
+    if not is_supervisor and not employe.QA:
+        HttpResponse("Acceso denegado. Solo personal autorizado puede ver este reporte.", status=403)
+        return redirect("menuMetricas")
     base_project = employe.privileges[:-1] if is_supervisor else employe.privileges
     
     # Obtener proyectos disponibles
@@ -1351,12 +1355,13 @@ def generate_report_data(project, start_date, end_date, report_type):
         test_date__lt=end_date
     ).select_related('uut', 'station').order_by('uut__sn', 'test_date')
     
-    # 2. Inicializar variables (manteniendo nombres originales)
+    # 2. Inicializar variables
     total_tests = test_history.count()
     passed = test_history.filter(status=True).count()
     failed = test_history.filter(status=False).count()
     
-    # Variables para categorías de falla (nombres originales)
+    # Variables para categorías de falla (solo primera falla por SN)
+    processed_sns = set()
     ndf_count = 0
     material_count = 0
     workmanship_count = 0
@@ -1366,27 +1371,44 @@ def generate_report_data(project, start_date, end_date, report_type):
     repaired_count = 0
     failed_sns_count = 0
     
+    # Diccionarios para tracking de SNs por categoría
+    material_sns = set()
+    workmanship_sns = set()
+    operator_sns = set()
+    ndf_sns = set()
+    
     # 3. Procesar cada SN único
     current_sn = None
-    has_failed = False
+    has_failed_in_period = False
     first_fail_date = None
+    
+    # Lista para trackear SNs que fallaron
+    failed_sns_info = []
     
     for test in test_history:
         if test.uut.sn != current_sn:
-            # Nuevo SN, reiniciar seguimiento
-            if current_sn and has_failed:
+            # Nuevo SN, procesar el anterior si falló
+            if current_sn and has_failed_in_period:
                 failed_sns_count += 1
-                if test.status:  # Si el último estado fue PASS
-                    repaired_count += 1
+                failed_sns_info.append({
+                    'sn': current_sn,
+                    'first_fail_date': first_fail_date
+                })
             
+            # Reiniciar para nuevo SN
             current_sn = test.uut.sn
-            has_failed = False
+            has_failed_in_period = False
             first_fail_date = None
         
-        # Si es una falla dentro del período
-        if not test.status and (test.test_date >= start_date and test.test_date < end_date):
-            if not has_failed:
-                has_failed = True
+        # Si es una falla dentro del período y es la primera falla de este SN
+        if (not test.status and 
+            (test.test_date >= start_date and test.test_date < end_date) and
+            current_sn not in processed_sns):
+            
+            has_failed_in_period = True
+            processed_sns.add(current_sn)
+            
+            if first_fail_date is None:
                 first_fail_date = test.test_date
             
             # Buscar falla correspondiente en Failures
@@ -1397,29 +1419,45 @@ def generate_report_data(project, start_date, end_date, report_type):
             
             if related_failure:
                 category = related_failure.rootCauseCategory
+                
                 if category == 'Material':
                     material_count += 1
+                    material_sns.add(current_sn)
                 elif category == 'Workmanship':
                     workmanship_count += 1
+                    workmanship_sns.add(current_sn)
                 elif category == 'Operador':
                     operator_count += 1
-                    ndf_count += 1  # Operador cuenta como NDF también
+                    operator_sns.add(current_sn)
+                    ndf_count += 1
+                    ndf_sns.add(current_sn)
                 else:  # NDF
                     ndf_count += 1
+                    ndf_sns.add(current_sn)
     
-    # Contar el último SN si falló
-    if current_sn and has_failed:
+    # Procesar el último SN si falló
+    if current_sn and has_failed_in_period:
         failed_sns_count += 1
-        # Verificar si tiene PASS después de la primera falla
-        has_pass_after_fail = TestHistory.objects.filter(
-            uut__sn=current_sn,
+        failed_sns_info.append({
+            'sn': current_sn,
+            'first_fail_date': first_fail_date
+        })
+    
+    # 4. Verificar reparaciones para cada SN que falló
+    for sn_info in failed_sns_info:
+        # Buscar el primer PASS después de la primera falla dentro del período
+        first_pass_after_fail = TestHistory.objects.filter(
+            uut__sn=sn_info['sn'],
             status=True,
-            test_date__gt=first_fail_date
-        ).exists()
-        if has_pass_after_fail:
+            test_date__gt=sn_info['first_fail_date'],
+            test_date__gte=start_date,
+            test_date__lt=end_date
+        ).order_by('test_date').first()
+        
+        if first_pass_after_fail:
             repaired_count += 1
     
-    # 4. Calcular valores requeridos
+    # 5. Calcular valores
     real_failures = material_count + workmanship_count
     yield_pct = round((passed / total_tests * 100), 2) if total_tests > 0 else 0
     failure_pct = round((failed / total_tests * 100), 2) if total_tests > 0 else 0
@@ -1427,7 +1465,7 @@ def generate_report_data(project, start_date, end_date, report_type):
     real_failure_pct = round((real_failures / total_tests * 100), 2) if total_tests > 0 else 0
     repair_rate = round((repaired_count / failed_sns_count * 100), 2) if failed_sns_count > 0 else 0
     
-    # 5. Pruebas por estación (original)
+    # 6. Pruebas por estación
     stations = Station.objects.filter(stationProject=project)
     station_data = {
         station.stationName: test_history.filter(station=station).count()
@@ -1435,9 +1473,9 @@ def generate_report_data(project, start_date, end_date, report_type):
         if test_history.filter(station=station).exists()
     }
     
-    # 6. Retornar estructura COMPATIBLE
+    # 7. Retornar estructura
     return {
-        # Campos originales
+        # Campos principales
         'total_tests': total_tests,
         'passed': passed,
         'failed': failed,
@@ -1454,13 +1492,20 @@ def generate_report_data(project, start_date, end_date, report_type):
         'start_date': start_date,
         'end_date': end_date,
         
-        # Nuevos campos para Repair Fail (con aliases para compatibilidad)
+        # Campos de reparación
         'repaired_count': repaired_count,
         'repair_rate': repair_rate,
-        'recovered_count': repaired_count,  # Alias
-        'recovery_rate': repair_rate,       # Alias
-        'failed_sns_count': failed_sns_count  # Para referencia
+        'recovered_count': repaired_count,
+        'recovery_rate': repair_rate,
+        'failed_sns_count': failed_sns_count,
+        
+        # SNs por categoría
+        'material_sns': list(material_sns),
+        'workmanship_sns': list(workmanship_sns),
+        'operator_sns': list(operator_sns),
+        'ndf_sns': list(ndf_sns)
     }
+
 def create_charts(report_data, report_type):
     charts = {}
     
