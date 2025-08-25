@@ -82,10 +82,9 @@ class Command(BaseCommand):
                     raise ValueError("No se pudo extraer el número de serie del log")
                 
                 uut = self.register_uut(log_info, is_pass)
-                test_history = self.register_test_history(uut, ip, estacion_nombre, log_info, is_pass)
-                
                 if not is_pass:
                     self.register_failure(uut, ip, estacion_nombre, log_info)
+                test_history = self.register_test_history(uut, ip, estacion_nombre, log_info, is_pass)
                 
                 self.stdout.write(self.style.SUCCESS(
                     f"Procesado (GDL): {filename} | SN: {log_info['sn']} | {'PASS' if is_pass else 'FAIL'}"
@@ -235,7 +234,7 @@ class Command(BaseCommand):
             ))
             return ''
 
-    # ... [Los métodos register_uut, register_test_history, register_failure permanecen iguales] ...
+
 
     def register_uut(self, log_info, is_pass):
         """Registra o actualiza una UUT en la base de datos"""
