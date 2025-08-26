@@ -1680,13 +1680,22 @@ def project_yield_dashboard(request):
 def generate_dashboard_data(projects, start_date, end_date, selected_project=None, selected_station=None, show_ndf_only=False):
     all_projects_data = {}
     current_time = timezone.now()
+    
     for project in projects:
         try:
-            # Obtener todas las pruebas en el período
+            # Obtener todas las pruebas en el período con filtros aplicados
+            test_history_filters = {
+                'uut__pn_b__project': project,
+                'test_date__gte': start_date,
+                'test_date__lt': end_date
+            }
+            
+            # Aplicar filtro de estación si está seleccionada
+            if selected_station:
+                test_history_filters['station__stationName'] = selected_station
+            
             test_history = TestHistory.objects.filter(
-                uut__pn_b__project=project,
-                test_date__gte=start_date,
-                test_date__lt=end_date
+                **test_history_filters
             ).select_related('uut', 'station')
             
             # Obtener solo las pruebas fallidas
@@ -1701,26 +1710,45 @@ def generate_dashboard_data(projects, start_date, end_date, selected_project=Non
                 'Operador': 0
             }
             
-            # Procesar cada prueba fallida
+            # Procesar cada prueba fallida INDIVIDUALMENTE
             for test in failed_tests:
-                # Buscar análisis de falla con margen de 1 minuto antes
-                failure = Failures.objects.filter(
-                    sn_f__sn=test.uut.sn,
-                    failureDate__range=(
-                        test.test_date - timedelta(minutes=1),  # 1 minuto antes
-                        current_time  # Hasta el momento actual
-                    )
-                ).order_by('-failureDate').first()  # Tomar el MÁS RECIENTE
+                # Para CADA prueba, buscar el análisis de falla más cercano en tiempo
+                failure_filters = {
+                    'sn_f__sn': test.uut.sn,
+                }
                 
-                if not failure:
-                    # Si no encontramos en el rango cercano, buscar cualquier análisis para este SN
-                    failure = Failures.objects.filter(
-                        sn_f__sn=test.uut.sn
-                    ).order_by('failureDate').first()
+                # Si solo queremos NDF, aplicar filtro adicional
+                if show_ndf_only:
+                    failure_filters['rootCauseCategory'] = 'NDF'
                 
-                if failure:
-                    error_msg = failure.id_er.message if failure.id_er else "Error no especificado"
-                    category = failure.rootCauseCategory
+                # Buscar TODAS las fallas para este SN y luego encontrar la más cercana a esta prueba específica
+                possible_failures = Failures.objects.filter(
+                    **failure_filters
+                ).select_related('id_er')
+                
+                # Encontrar la falla más cercana en tiempo a esta prueba específica
+                closest_failure = None
+                min_time_diff = None
+                
+                for failure in possible_failures:
+                    # Solo considerar fallas que ocurrieron DESPUÉS de la prueba (o con margen muy pequeño antes)
+                    # Esto evita asociar fallas anteriores a pruebas posteriores
+                    time_diff = (failure.failureDate - test.test_date).total_seconds()
+                    
+                    # Permitir un margen de 1 minuto antes (por posibles desfases de tiempo)
+                    # y sin límite máximo después (para análisis que pueden tardar días/semanas)
+                    if time_diff >= -60:  # 1 minuto antes como máximo
+                        if min_time_diff is None or abs(time_diff) < abs(min_time_diff):
+                            min_time_diff = time_diff
+                            closest_failure = failure
+                
+                # Si no encontramos una falla cercana pero show_ndf_only es True, saltar esta falla
+                if show_ndf_only and not closest_failure:
+                    continue
+                
+                if closest_failure:
+                    error_msg = closest_failure.id_er.message if closest_failure.id_er else "Error no especificado"
+                    category = closest_failure.rootCauseCategory
                     
                     # Actualizar contadores
                     if category == 'Operador':
@@ -1731,18 +1759,24 @@ def generate_dashboard_data(projects, start_date, end_date, selected_project=Non
                     
                     error_messages.append({
                         'id_er__message': error_msg,
-                        'count': 1,  # Cada falla cuenta como 1
+                        'count': 1,
                         'category': category,
-                        'station': test.station.stationName if test.station else None
+                        'station': test.station.stationName if test.station else None,
+                        'test_date': test.test_date,
+                        'failure_date': closest_failure.failureDate,
+                        'time_diff_hours': round(min_time_diff / 3600, 2) if min_time_diff else None
                     })
-                else:
-                    # Si no hay falla registrada, contar como NDF
+                elif not show_ndf_only:
+                    # Si no hay falla registrada y no estamos filtrando solo NDF, contar como NDF
                     category_counts['NDF'] += 1
                     error_messages.append({
                         'id_er__message': "Falla no analizada",
                         'count': 1,
                         'category': 'NDF',
-                        'station': test.station.stationName if test.station else None
+                        'station': test.station.stationName if test.station else None,
+                        'test_date': test.test_date,
+                        'failure_date': None,
+                        'time_diff_hours': None
                     })
             
             # Agrupar mensajes idénticos
@@ -1752,25 +1786,44 @@ def generate_dashboard_data(projects, start_date, end_date, selected_project=Non
                 if key not in grouped_errors:
                     grouped_errors[key] = error.copy()
                     grouped_errors[key]['stations'] = set()
+                    grouped_errors[key]['test_dates'] = []
+                    grouped_errors[key]['failure_dates'] = []
+                    grouped_errors[key]['time_diffs'] = []
                 else:
                     grouped_errors[key]['count'] += 1
                 
                 if error['station']:
                     grouped_errors[key]['stations'].add(error['station'])
+                if error['test_date']:
+                    grouped_errors[key]['test_dates'].append(error['test_date'])
+                if error['failure_date']:
+                    grouped_errors[key]['failure_dates'].append(error['failure_date'])
+                if error['time_diff_hours']:
+                    grouped_errors[key]['time_diffs'].append(error['time_diff_hours'])
             
             # Formatear estaciones para visualización
             sorted_errors = []
             for error in grouped_errors.values():
                 error['stations'] = ', '.join(error['stations']) if error['stations'] else 'Varias'
+                # Calcular tiempo promedio entre prueba y análisis (para debugging)
+                if error['time_diffs']:
+                    error['avg_time_diff_hours'] = round(sum(error['time_diffs']) / len(error['time_diffs']), 2)
+                else:
+                    error['avg_time_diff_hours'] = None
                 sorted_errors.append(error)
             
             # Ordenar por frecuencia
             sorted_errors.sort(key=lambda x: x['count'], reverse=True)
             
-            # Cálculos básicos
+            # Cálculos básicos (ajustados para el filtro NDF)
             total_tests = test_history.count()
             passed = test_history.filter(status=True).count()
-            failed = failed_tests.count()
+            
+            # Si estamos filtrando solo NDF, las fallas son solo las que procesamos
+            if show_ndf_only:
+                failed = len(error_messages)  # Solo contamos las fallas NDF que procesamos
+            else:
+                failed = failed_tests.count()
             
             # Porcentajes
             yield_pct = round((passed / total_tests * 100), 2) if total_tests > 0 else 0
@@ -1780,9 +1833,13 @@ def generate_dashboard_data(projects, start_date, end_date, selected_project=Non
                 (category_counts['Material'] + category_counts['Workmanship']) / total_tests * 100, 2
             ) if total_tests > 0 else 0
 
-            # Pruebas por estación
+            # Pruebas por estación (con filtro aplicado)
             station_data = {}
-            stations = Station.objects.filter(stationProject=project)
+            station_filters = {'stationProject': project}
+            if selected_station:
+                station_filters['stationName'] = selected_station
+                
+            stations = Station.objects.filter(**station_filters)
             
             for station in stations:
                 station_tests = test_history.filter(station=station)
@@ -1846,6 +1903,7 @@ def generate_dashboard_data(projects, start_date, end_date, selected_project=Non
         'start_date': start_date,
         'end_date': end_date,
     }
+
 
 def create_interactive_charts(dashboard_data, report_type, selected_project=None, selected_station=None):
     charts = {}

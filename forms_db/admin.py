@@ -31,9 +31,9 @@ class FormUuts(admin.ModelAdmin):
     ordering = ("sn",)
     
 class FormFailures(admin.ModelAdmin):
-    list_display = ("sn_f", "status", "failureDate")
-    search_fields = ("sn_f", "status", "failureDate")
-    list_filter = ("sn_f", "status", "failureDate")
+    list_display = ("sn_f","rootCauseCategory","id_er", "status", "failureDate")
+    search_fields = ("sn_f","rootCauseCategory","id_er", "status", "failureDate")
+    list_filter = ("sn_f","rootCauseCategory","id_er", "status", "failureDate")
     ordering = ("sn_f",)
 
 class FormBooms(admin.ModelAdmin):
