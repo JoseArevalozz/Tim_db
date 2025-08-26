@@ -1617,8 +1617,9 @@ def project_yield_dashboard(request):
         selected_project = request.GET.get('project')
         selected_station = request.GET.get('station')
         show_ndf_only = request.GET.get('ndf_only', 'false') == 'true'
+        show_trends = request.GET.get('show_trends', 'false') == 'true'
         
-        # Generar datos
+        # Generar datos principales
         dashboard_data = generate_dashboard_data(
             available_projects,
             date_range['start'],
@@ -1627,6 +1628,18 @@ def project_yield_dashboard(request):
             selected_station,
             show_ndf_only
         )
+        
+        # Generar datos de tendencia si está activado
+        trends_data = None
+        if show_trends and selected_project:
+            trends_data = generate_trends_data(
+                selected_project,
+                date_range['start'],
+                date_range['end'],
+                report_type,
+                selected_station,
+                show_ndf_only
+            )
         
         # Verificar si hay datos
         has_data = any(data['total_tests'] > 0 for data in dashboard_data['all_projects'].values())
@@ -1639,6 +1652,7 @@ def project_yield_dashboard(request):
             'selected_project': selected_project,
             'selected_station': selected_station,
             'show_ndf_only': show_ndf_only,
+            'show_trends': show_trends,
             'report_type': report_type,
             'start_date': date_range['start'].strftime('%Y-%m-%d'),
             'end_date': date_range['end'].strftime('%Y-%m-%d'),
@@ -1669,6 +1683,10 @@ def project_yield_dashboard(request):
             except Exception as e:
                 print(f"Error creating charts: {str(e)}")
                 context['chart_error'] = str(e)
+            
+            # Añadir datos de tendencia al contexto
+            if trends_data:
+                context['trends_data'] = trends_data
         
         return render(request, 'base/yield_dashboard.html', context)
 
@@ -2180,3 +2198,156 @@ def generate_yield_excel_report(request, employe):
     
     wb.save(response)
     return response
+
+def generate_trends_data(project, start_date, end_date, report_type, selected_station=None, show_ndf_only=False):
+    """
+    Genera datos de tendencia para comparar con períodos anteriores
+    """
+    trends_data = {
+        'current_period': {},
+        'previous_periods': [],
+        'error_trends': {},
+        'summary_trends': {}
+    }
+    
+    # Definir el número de períodos anteriores a mostrar según el report_type
+    if report_type == 'day':
+        periods = 7  # Últimos 7 días
+        delta = timedelta(days=1)
+    elif report_type == 'week':
+        periods = 4  # Últimas 4 semanas
+        delta = timedelta(weeks=1)
+    elif report_type == 'month':
+        periods = 6  # Últimos 6 meses
+        delta = timedelta(days=30)  # Aproximadamente 1 mes
+    elif report_type == 'year':
+        periods = 3  # Últimos 3 años
+        delta = timedelta(days=365)  # Aproximadamente 1 año
+    else:  # custom
+        # Para custom, usar el mismo rango de días pero períodos anteriores
+        custom_days = (end_date - start_date).days
+        periods = 4 if custom_days <= 7 else 3
+        delta = timedelta(days=custom_days)
+    
+    # Generar datos para el período actual
+    current_data = generate_dashboard_data(
+        [project], start_date, end_date, project, selected_station, show_ndf_only
+    )
+    
+    if project in current_data['all_projects']:
+        trends_data['current_period'] = current_data['all_projects'][project]
+    
+    # Generar datos para períodos anteriores
+    for i in range(1, periods + 1):
+        period_start = start_date - (delta * i)
+        period_end = end_date - (delta * i)
+        
+        period_data = generate_dashboard_data(
+            [project], period_start, period_end, project, selected_station, show_ndf_only
+        )
+        
+        if project in period_data['all_projects']:
+            period_info = {
+                'start_date': period_start,
+                'end_date': period_end,
+                'data': period_data['all_projects'][project],
+                'period_number': i
+            }
+            trends_data['previous_periods'].append(period_info)
+    
+    # Calcular tendencias de errores
+    trends_data = calculate_error_trends(trends_data)
+    
+    return trends_data
+
+def calculate_error_trends(trends_data):
+    """
+    Calcula las tendencias de los mensajes de error a través del tiempo
+    """
+    if not trends_data['current_period'] or not trends_data['previous_periods']:
+        return trends_data
+    
+    # Recolectar todos los mensajes de error únicos a través de todos los períodos
+    all_error_messages = set()
+    
+    # Del período actual
+    for error in trends_data['current_period'].get('error_messages', []):
+        all_error_messages.add((error['id_er__message'], error['category']))
+    
+    # De períodos anteriores
+    for period in trends_data['previous_periods']:
+        for error in period['data'].get('error_messages', []):
+            all_error_messages.add((error['id_er__message'], error['category']))
+    
+    # Calcular tendencia para cada mensaje de error
+    error_trends = {}
+    for message, category in all_error_messages:
+        error_trends[(message, category)] = {
+            'current_count': 0,
+            'previous_counts': [],
+            'trend': 'stable',  # stable, increasing, decreasing
+            'trend_percentage': 0
+        }
+    
+    # Contar ocurrencias en el período actual
+    for error in trends_data['current_period'].get('error_messages', []):
+        key = (error['id_er__message'], error['category'])
+        if key in error_trends:
+            error_trends[key]['current_count'] = error['count']
+    
+    # Contar ocurrencias en períodos anteriores
+    for i, period in enumerate(trends_data['previous_periods']):
+        for error in period['data'].get('error_messages', []):
+            key = (error['id_er__message'], error['category'])
+            if key in error_trends:
+                # Asegurar que la lista tenga la longitud correcta
+                while len(error_trends[key]['previous_counts']) <= i:
+                    error_trends[key]['previous_counts'].append(0)
+                error_trends[key]['previous_counts'][i] = error['count']
+    
+    # Calcular tendencia
+    for key, trend_info in error_trends.items():
+        if trend_info['previous_counts']:
+            # Usar el período más reciente para comparar
+            previous_count = trend_info['previous_counts'][0]
+            current_count = trend_info['current_count']
+            
+            if previous_count > 0:
+                percentage_change = ((current_count - previous_count) / previous_count) * 100
+                trend_info['trend_percentage'] = round(percentage_change, 1)
+                
+                if percentage_change > 10:
+                    trend_info['trend'] = 'increasing'
+                elif percentage_change < -10:
+                    trend_info['trend'] = 'decreasing'
+                else:
+                    trend_info['trend'] = 'stable'
+    
+    trends_data['error_trends'] = error_trends
+    
+    # Calcular tendencias de resumen (yield, fallas, etc.)
+    summary_trends = {
+        'yield': [],
+        'failure_rate': [],
+        'ndf_rate': [],
+        'real_failure_rate': []
+    }
+    
+    # Período actual
+    current = trends_data['current_period']
+    summary_trends['yield'].append(current.get('yield_pct', 0))
+    summary_trends['failure_rate'].append(current.get('failure_pct', 0))
+    summary_trends['ndf_rate'].append(current.get('ndf_pct', 0))
+    summary_trends['real_failure_rate'].append(current.get('real_failure_pct', 0))
+    
+    # Períodos anteriores
+    for period in trends_data['previous_periods']:
+        data = period['data']
+        summary_trends['yield'].append(data.get('yield_pct', 0))
+        summary_trends['failure_rate'].append(data.get('failure_pct', 0))
+        summary_trends['ndf_rate'].append(data.get('ndf_pct', 0))
+        summary_trends['real_failure_rate'].append(data.get('real_failure_pct', 0))
+    
+    trends_data['summary_trends'] = summary_trends
+    
+    return trends_data

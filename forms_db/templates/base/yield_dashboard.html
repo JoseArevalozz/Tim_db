@@ -24,19 +24,19 @@
                 <!-- Selector de Periodo -->
                 <div class="col-md-6">
                     <div class="btn-group w-100 mb-3">
-                        <a href="?{% if selected_project %}project={{ selected_project }}&{% endif %}report_type=day" 
+                        <a href="?{% if selected_project %}project={{ selected_project }}&{% endif %}{% if show_trends %}show_trends=true&{% endif %}report_type=day" 
                            class="btn {% if report_type == 'day' %}btn-primary{% else %}btn-outline-primary{% endif %}">
                             Día
                         </a>
-                        <a href="?{% if selected_project %}project={{ selected_project }}&{% endif %}report_type=week" 
+                        <a href="?{% if selected_project %}project={{ selected_project }}&{% endif %}{% if show_trends %}show_trends=true&{% endif %}report_type=week" 
                            class="btn {% if report_type == 'week' %}btn-primary{% else %}btn-outline-primary{% endif %}">
                             Semana
                         </a>
-                        <a href="?{% if selected_project %}project={{ selected_project }}&{% endif %}report_type=month" 
+                        <a href="?{% if selected_project %}project={{ selected_project }}&{% endif %}{% if show_trends %}show_trends=true&{% endif %}report_type=month" 
                            class="btn {% if report_type == 'month' %}btn-primary{% else %}btn-outline-primary{% endif %}">
                             Mes
                         </a>
-                        <a href="?{% if selected_project %}project={{ selected_project }}&{% endif %}report_type=year" 
+                        <a href="?{% if selected_project %}project={{ selected_project }}&{% endif %}{% if show_trends %}show_trends=true&{% endif %}report_type=year" 
                            class="btn {% if report_type == 'year' %}btn-primary{% else %}btn-outline-primary{% endif %}">
                             Año
                         </a>
@@ -55,6 +55,9 @@
                         <input type="hidden" name="end_date" value="{{ end_date }}">
                         {% if selected_station %}
                         <input type="hidden" name="station" value="{{ selected_station }}">
+                        {% endif %}
+                        {% if show_trends %}
+                        <input type="hidden" name="show_trends" value="true">
                         {% endif %}
                         
                         <div class="input-group mb-3">
@@ -76,6 +79,16 @@
                                 Mostrar solo NDF
                             </label>
                         </div>
+
+                        <!-- Botón para activar/desactivar tendencias -->
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" id="show_trends" name="show_trends" 
+                                value="true" {% if show_trends %}checked{% endif %}
+                                onchange="toggleTrends(this)">
+                            <label class="form-check-label" for="show_trends">
+                                Mostrar tendencias
+                            </label>
+                        </div>
                         {% endif %}
                     </form>
                 </div>
@@ -89,6 +102,9 @@
                 {% endif %}
                 {% if selected_station %}
                 <span class="badge bg-secondary ms-2">Estación: {{ selected_station }}</span>
+                {% endif %}
+                {% if show_trends %}
+                <span class="badge bg-info ms-2">Tendencias activadas</span>
                 {% endif %}
             </div>
         </div>
@@ -177,6 +193,9 @@
                         {% if show_ndf_only %}
                         <input type="hidden" name="ndf_only" value="true">
                         {% endif %}
+                        {% if show_trends %}
+                        <input type="hidden" name="show_trends" value="true">
+                        {% endif %}
                         
                         <div class="input-group mb-3">
                             <label class="input-group-text" for="stationSelect">Estación</label>
@@ -253,7 +272,7 @@
                 </div>
                 {% endif %}
                 
-                <!-- Mensajes de error -->
+                <!-- Mensajes de error en tabla (formato original) -->
                 <div class="mb-4">
                     <h5>
                         Mensajes de Error más Comunes
@@ -303,6 +322,62 @@
                         </div>
                     {% endif %}
                 </div>
+                
+                <!-- Mensajes de error con SNs (nuevo formato) -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5>
+                            Detalles de Mensajes de Error con SNs
+                            {% if selected_station %}
+                                <span class="badge bg-secondary ms-2">Filtrado por estación: {{ selected_station }}</span>
+                            {% endif %}
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        {% if project_data.error_messages %}
+                            <div class="row">
+                                {% for error in project_data.error_messages %}
+                                <div class="col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <strong>{{ error.id_er__message|default:"Sin mensaje" }}</strong>
+                                                <span class="badge 
+                                                    {% if error.category == 'NDF' %}bg-info
+                                                    {% elif error.category == 'Material' %}bg-danger
+                                                    {% elif error.category == 'Workmanship' %}bg-warning
+                                                    {% else %}bg-secondary{% endif %} ms-2">
+                                                    {{ error.category|default:"Desconocida" }}
+                                                </span>
+                                            </div>
+                                            <span class="badge bg-primary">{{ error.count }} fallas</span>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="small text-muted mb-2">
+                                                Estaciones: {{ error.stations }}
+                                            </p>
+                                            <div style="max-height: 150px; overflow-y: auto;">
+                                                <h6 class="small">SNs que fallaron ({{ error.sns_list|length }}):</h6>
+                                                <div class="d-flex flex-wrap gap-1">
+                                                    {% for sn in error.sns_list %}
+                                                    <span class="badge bg-secondary">{{ sn }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-warning">
+                                No se encontraron mensajes de error
+                                {% if selected_station %}para la estación {{ selected_station }}{% endif %}
+                                en el período seleccionado.
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
         {% endif %}
@@ -314,7 +389,152 @@
             </a>
         </div>
     {% endif %}
+
+    <!-- Sección de Tendencias -->
+    {% if show_trends and trends_data and selected_project %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5><i class="fas fa-chart-line me-2"></i>Tendencias - {{ selected_project }}</h5>
+        </div>
+        <div class="card-body">
+            
+            <!-- Gráficas de tendencias de resumen -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">Tendencia de Yield</div>
+                        <div class="card-body">
+                            <canvas id="yieldTrendChart" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">Tendencia de Fallas</div>
+                        <div class="card-body">
+                            <canvas id="failureTrendChart" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tendencias de mensajes de error -->
+            <h6>Tendencias de Mensajes de Error</h6>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>Mensaje de Error</th>
+                            <th>Categoría</th>
+                            <th>Actual</th>
+                            <th>Anterior</th>
+                            <th>Tendencia</th>
+                            <th>Cambio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for key, trend in trends_data.error_trends.items %}
+                        <tr>
+                            <td>{{ key.0 }}</td>
+                            <td>
+                                <span class="badge 
+                                    {% if key.1 == 'NDF' %}bg-info
+                                    {% elif key.1 == 'Material' %}bg-danger
+                                    {% elif key.1 == 'Workmanship' %}bg-warning
+                                    {% else %}bg-secondary{% endif %}">
+                                    {{ key.1 }}
+                                </span>
+                            </td>
+                            <td>{{ trend.current_count }}</td>
+                            <td>{{ trend.previous_counts.0|default:0 }}</td>
+                            <td>
+                                {% if trend.trend == 'increasing' %}
+                                <span class="text-danger"><i class="fas fa-arrow-up"></i> Aumentando</span>
+                                {% elif trend.trend == 'decreasing' %}
+                                <span class="text-success"><i class="fas fa-arrow-down"></i> Disminuyendo</span>
+                                {% else %}
+                                <span class="text-muted"><i class="fas fa-minus"></i> Estable</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if trend.trend_percentage > 0 %}
+                                <span class="text-danger">+{{ trend.trend_percentage }}%</span>
+                                {% elif trend.trend_percentage < 0 %}
+                                <span class="text-success">{{ trend.trend_percentage }}%</span>
+                                {% else %}
+                                <span class="text-muted">0%</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript para gráficas de tendencias -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Datos para las gráficas de tendencia
+        const trendData = {
+            labels: [
+                'Actual', 
+                {% for period in trends_data.previous_periods reversed %}
+                'Período -{{ period.period_number }}'{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ],
+            datasets: [
+                {
+                    label: 'Yield (%)',
+                    data: {{ trends_data.summary_trends.yield|safe }},
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }
+            ]
+        };
+
+        // Inicializar gráficas
+        document.addEventListener('DOMContentLoaded', function() {
+            new Chart(document.getElementById('yieldTrendChart'), {
+                type: 'line',
+                data: trendData,
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            new Chart(document.getElementById('failureTrendChart'), {
+                type: 'line',
+                data: {
+                    ...trendData,
+                    datasets: [{
+                        label: 'Tasa de Fallas (%)',
+                        data: {{ trends_data.summary_trends.failure_rate|safe }},
+                        borderColor: 'rgb(255, 99, 132)',
+                        tension: 0.1
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        });
+    </script>
+    {% endif %}
 </div>
+
+
+<script>
+function toggleTrends(checkbox) {
+    const form = checkbox.closest('form');
+    if (!checkbox.checked) {
+        // Si se desactiva, añadir un hidden input con valor false
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'show_trends';
+        hiddenInput.value = 'false';
+        form.appendChild(hiddenInput);
+    }
+    form.submit();
+}
+</script>
 
 <!-- Modal para rango de fechas personalizado -->
 <div class="modal fade" id="dateRangeModal" tabindex="-1">
@@ -331,6 +551,12 @@
                 {% endif %}
                 {% if selected_station %}
                 <input type="hidden" name="station" value="{{ selected_station }}">
+                {% endif %}
+                {% if show_ndf_only %}
+                <input type="hidden" name="ndf_only" value="true">
+                {% endif %}
+                {% if show_trends %}
+                <input type="hidden" name="show_trends" value="true">
                 {% endif %}
                 <div class="modal-body">
                     <div class="mb-3">
@@ -350,66 +576,6 @@
                 </div>
             </form>
         </div>
-    </div>
-</div>
-
-<!-- Mensajes de error con SNs -->
-<div class="card mb-4">
-    <div class="card-header">
-        <h5>
-            Mensajes de Error más Comunes
-            {% if selected_station %}
-                <span class="badge bg-secondary ms-2">Filtrado por estación: {{ selected_station }}</span>
-                <a href="?{% for key, value in request.GET.items %}{% if key != 'station' %}{{ key }}={{ value }}&{% endif %}{% endfor %}" 
-                   class="btn btn-sm btn-outline-secondary ms-2">
-                    <i class="fas fa-times"></i> Quitar filtro
-                </a>
-            {% endif %}
-        </h5>
-    </div>
-    <div class="card-body">
-        {% if project_data.error_messages %}
-            <div class="row">
-                {% for error in project_data.error_messages %}
-                <div class="col-md-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <div>
-                                <strong>{{ error.id_er__message|default:"Sin mensaje" }}</strong>
-                                <span class="badge 
-                                    {% if error.category == 'NDF' %}bg-info
-                                    {% elif error.category == 'Material' %}bg-danger
-                                    {% elif error.category == 'Workmanship' %}bg-warning
-                                    {% else %}bg-secondary{% endif %} ms-2">
-                                    {{ error.category|default:"Desconocida" }}
-                                </span>
-                            </div>
-                            <span class="badge bg-primary">{{ error.count }} fallas</span>
-                        </div>
-                        <div class="card-body">
-                            <p class="small text-muted mb-2">
-                                Estaciones: {{ error.stations }}
-                            </p>
-                            <div style="max-height: 150px; overflow-y: auto;">
-                                <h6 class="small">SNs que fallaron ({{ error.sns_list|length }}):</h6>
-                                <div class="d-flex flex-wrap gap-1">
-                                    {% for sn in error.sns_list %}
-                                    <span class="badge bg-secondary">{{ sn }}</span>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        {% else %}
-            <div class="alert alert-warning">
-                No se encontraron mensajes de error
-                {% if selected_station %}para la estación {{ selected_station }}{% endif %}
-                en el período seleccionado.
-            </div>
-        {% endif %}
     </div>
 </div>
 
