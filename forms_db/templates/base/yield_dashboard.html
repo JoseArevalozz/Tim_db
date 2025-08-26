@@ -353,6 +353,66 @@
     </div>
 </div>
 
+<!-- Mensajes de error con SNs -->
+<div class="card mb-4">
+    <div class="card-header">
+        <h5>
+            Mensajes de Error más Comunes
+            {% if selected_station %}
+                <span class="badge bg-secondary ms-2">Filtrado por estación: {{ selected_station }}</span>
+                <a href="?{% for key, value in request.GET.items %}{% if key != 'station' %}{{ key }}={{ value }}&{% endif %}{% endfor %}" 
+                   class="btn btn-sm btn-outline-secondary ms-2">
+                    <i class="fas fa-times"></i> Quitar filtro
+                </a>
+            {% endif %}
+        </h5>
+    </div>
+    <div class="card-body">
+        {% if project_data.error_messages %}
+            <div class="row">
+                {% for error in project_data.error_messages %}
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>{{ error.id_er__message|default:"Sin mensaje" }}</strong>
+                                <span class="badge 
+                                    {% if error.category == 'NDF' %}bg-info
+                                    {% elif error.category == 'Material' %}bg-danger
+                                    {% elif error.category == 'Workmanship' %}bg-warning
+                                    {% else %}bg-secondary{% endif %} ms-2">
+                                    {{ error.category|default:"Desconocida" }}
+                                </span>
+                            </div>
+                            <span class="badge bg-primary">{{ error.count }} fallas</span>
+                        </div>
+                        <div class="card-body">
+                            <p class="small text-muted mb-2">
+                                Estaciones: {{ error.stations }}
+                            </p>
+                            <div style="max-height: 150px; overflow-y: auto;">
+                                <h6 class="small">SNs que fallaron ({{ error.sns_list|length }}):</h6>
+                                <div class="d-flex flex-wrap gap-1">
+                                    {% for sn in error.sns_list %}
+                                    <span class="badge bg-secondary">{{ sn }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-warning">
+                No se encontraron mensajes de error
+                {% if selected_station %}para la estación {{ selected_station }}{% endif %}
+                en el período seleccionado.
+            </div>
+        {% endif %}
+    </div>
+</div>
+
 <!-- Script básico para Plotly -->
 <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 {% endblock %}

@@ -1732,7 +1732,6 @@ def generate_dashboard_data(projects, start_date, end_date, selected_project=Non
                 
                 for failure in possible_failures:
                     # Solo considerar fallas que ocurrieron DESPUÉS de la prueba (o con margen muy pequeño antes)
-                    # Esto evita asociar fallas anteriores a pruebas posteriores
                     time_diff = (failure.failureDate - test.test_date).total_seconds()
                     
                     # Permitir un margen de 1 minuto antes (por posibles desfases de tiempo)
@@ -1762,6 +1761,7 @@ def generate_dashboard_data(projects, start_date, end_date, selected_project=Non
                         'count': 1,
                         'category': category,
                         'station': test.station.stationName if test.station else None,
+                        'sn': test.uut.sn,  # Añadir el SN
                         'test_date': test.test_date,
                         'failure_date': closest_failure.failureDate,
                         'time_diff_hours': round(min_time_diff / 3600, 2) if min_time_diff else None
@@ -1774,43 +1774,36 @@ def generate_dashboard_data(projects, start_date, end_date, selected_project=Non
                         'count': 1,
                         'category': 'NDF',
                         'station': test.station.stationName if test.station else None,
+                        'sn': test.uut.sn,  # Añadir el SN
                         'test_date': test.test_date,
                         'failure_date': None,
                         'time_diff_hours': None
                     })
             
-            # Agrupar mensajes idénticos
+            # Agrupar mensajes idénticos con sus SNs
             grouped_errors = {}
             for error in error_messages:
                 key = (error['id_er__message'], error['category'])
                 if key not in grouped_errors:
-                    grouped_errors[key] = error.copy()
-                    grouped_errors[key]['stations'] = set()
-                    grouped_errors[key]['test_dates'] = []
-                    grouped_errors[key]['failure_dates'] = []
-                    grouped_errors[key]['time_diffs'] = []
-                else:
-                    grouped_errors[key]['count'] += 1
+                    grouped_errors[key] = {
+                        'id_er__message': error['id_er__message'],
+                        'category': error['category'],
+                        'count': 0,
+                        'sns': set(),
+                        'stations': set()
+                    }
                 
+                grouped_errors[key]['count'] += 1
+                grouped_errors[key]['sns'].add(error['sn'])
                 if error['station']:
                     grouped_errors[key]['stations'].add(error['station'])
-                if error['test_date']:
-                    grouped_errors[key]['test_dates'].append(error['test_date'])
-                if error['failure_date']:
-                    grouped_errors[key]['failure_dates'].append(error['failure_date'])
-                if error['time_diff_hours']:
-                    grouped_errors[key]['time_diffs'].append(error['time_diff_hours'])
             
-            # Formatear estaciones para visualización
+            # Convertir a lista y ordenar
             sorted_errors = []
-            for error in grouped_errors.values():
-                error['stations'] = ', '.join(error['stations']) if error['stations'] else 'Varias'
-                # Calcular tiempo promedio entre prueba y análisis (para debugging)
-                if error['time_diffs']:
-                    error['avg_time_diff_hours'] = round(sum(error['time_diffs']) / len(error['time_diffs']), 2)
-                else:
-                    error['avg_time_diff_hours'] = None
-                sorted_errors.append(error)
+            for error_key, error_data in grouped_errors.items():
+                error_data['sns_list'] = list(error_data['sns'])
+                error_data['stations'] = ', '.join(error_data['stations']) if error_data['stations'] else 'Varias'
+                sorted_errors.append(error_data)
             
             # Ordenar por frecuencia
             sorted_errors.sort(key=lambda x: x['count'], reverse=True)
@@ -1869,6 +1862,7 @@ def generate_dashboard_data(projects, start_date, end_date, selected_project=Non
                 'error_messages': sorted_errors[:10],  # Top 10 mensajes
                 'start_date': start_date,
                 'end_date': end_date,
+                'selected_station': selected_station,
             }
             
             all_projects_data[project] = project_data
@@ -1893,6 +1887,7 @@ def generate_dashboard_data(projects, start_date, end_date, selected_project=Non
                 'error_messages': [],
                 'start_date': start_date,
                 'end_date': end_date,
+                'selected_station': selected_station,
             }
     
     return {
@@ -1903,7 +1898,6 @@ def generate_dashboard_data(projects, start_date, end_date, selected_project=Non
         'start_date': start_date,
         'end_date': end_date,
     }
-
 
 def create_interactive_charts(dashboard_data, report_type, selected_project=None, selected_station=None):
     charts = {}
