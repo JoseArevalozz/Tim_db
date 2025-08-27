@@ -1687,6 +1687,21 @@ def project_yield_dashboard(request):
             # Añadir datos de tendencia al contexto
             if trends_data:
                 context['trends_data'] = trends_data
+
+            try:
+                context['charts'] = create_interactive_charts(
+                    dashboard_data, 
+                    report_type, 
+                    selected_project, 
+                    selected_station
+                )
+    
+                # Añadir gráficas de tendencia de errores si hay datos de tendencia
+                if trends_data:
+                    context['error_trend_charts'] = create_error_trend_charts(trends_data, selected_project)        
+            except Exception as e:
+                print(f"Error creating charts: {str(e)}")
+                context['chart_error'] = str(e)
         
         return render(request, 'base/yield_dashboard.html', context)
 
@@ -1988,6 +2003,60 @@ def create_interactive_charts(dashboard_data, report_type, selected_project=None
                 clickmode='event+select'
             )
             charts['project_stations'] = plot(fig2, output_type='div', include_plotlyjs=False)
+        
+        # 3. Gráfica de mensajes de error (solo si hay proyecto seleccionado y mensajes de error)
+        if project_data.get('error_messages'):
+            # Filtrar mensajes con count > 0
+            error_messages = [error for error in project_data['error_messages'] if error['count'] > 0]
+            
+            if error_messages:
+                fig3 = go.Figure()
+                
+                # Limitar a los 15 mensajes más frecuentes para mejor visualización
+                top_errors = sorted(error_messages, key=lambda x: x['count'], reverse=True)[:15]
+                
+                # Acortar los mensajes muy largos para el eje X
+                short_messages = [msg['id_er__message'][:50] + '...' if len(msg['id_er__message']) > 50 else msg['id_er__message'] 
+                                 for msg in top_errors]
+                
+                counts = [msg['count'] for msg in top_errors]
+                categories = [msg['category'] for msg in top_errors]
+                
+                # Colores por categoría
+                color_map = {
+                    'Material': 'red',
+                    'Workmanship': 'orange',
+                    'NDF': 'blue',
+                    'Operador': 'green',
+                    'Desconocida': 'gray'
+                }
+                
+                colors = [color_map.get(category, 'gray') for category in categories]
+                
+                fig3.add_trace(go.Bar(
+                    x=short_messages,
+                    y=counts,
+                    marker_color=colors,
+                    hovertemplate=(
+                        "<b>%{x}</b><br>" +
+                        "Cantidad: %{y}<br>" +
+                        "Categoría: %{customdata}" +
+                        "<extra></extra>"
+                    ),
+                    customdata=categories
+                ))
+                
+                fig3.update_layout(
+                    title=f"Mensajes de Error - {selected_project}",
+                    xaxis_title="Mensaje de Error",
+                    yaxis_title="Cantidad de Fallas",
+                    hovermode="closest",
+                    showlegend=False,
+                    xaxis_tickangle=-45,
+                    height=500
+                )
+                
+                charts['error_messages'] = plot(fig3, output_type='div', include_plotlyjs=False)
     
     return charts
 
@@ -2286,7 +2355,8 @@ def calculate_error_trends(trends_data):
             'current_count': 0,
             'previous_counts': [],
             'trend': 'stable',  # stable, increasing, decreasing
-            'trend_percentage': 0
+            'trend_percentage': 0,
+            'history': []  # Para la gráfica de tendencia
         }
     
     # Contar ocurrencias en el período actual
@@ -2294,16 +2364,19 @@ def calculate_error_trends(trends_data):
         key = (error['id_er__message'], error['category'])
         if key in error_trends:
             error_trends[key]['current_count'] = error['count']
+            error_trends[key]['history'].insert(0, error['count'])  # Período actual al inicio
     
-    # Contar ocurrencias en períodos anteriores
+    # Contar ocurrencias en períodos anteriores y construir historial
     for i, period in enumerate(trends_data['previous_periods']):
+        period_errors = {}
         for error in period['data'].get('error_messages', []):
             key = (error['id_er__message'], error['category'])
-            if key in error_trends:
-                # Asegurar que la lista tenga la longitud correcta
-                while len(error_trends[key]['previous_counts']) <= i:
-                    error_trends[key]['previous_counts'].append(0)
-                error_trends[key]['previous_counts'][i] = error['count']
+            period_errors[key] = error['count']
+        
+        for key in error_trends:
+            count = period_errors.get(key, 0)
+            error_trends[key]['previous_counts'].append(count)
+            error_trends[key]['history'].append(count)
     
     # Calcular tendencia
     for key, trend_info in error_trends.items():
@@ -2351,3 +2424,57 @@ def calculate_error_trends(trends_data):
     trends_data['summary_trends'] = summary_trends
     
     return trends_data
+
+def create_error_trend_charts(trends_data, selected_project):
+    """
+    Crea gráficas de tendencia individuales para cada mensaje de error
+    """
+    error_trend_charts = {}
+    
+    if not trends_data.get('error_trends'):
+        return error_trend_charts
+    
+    for (message, category), trend_info in trends_data['error_trends'].items():
+        if not trend_info['history'] or sum(trend_info['history']) == 0:
+            continue
+        
+        # Crear labels para los períodos
+        periods = ['Actual']
+        for i in range(1, len(trend_info['history'])):
+            periods.append(f'Período -{i}')
+        
+        # Invertir el orden para que el más antiguo vaya primero
+        history = list(reversed(trend_info['history']))
+        periods = list(reversed(periods))
+        
+        fig = go.Figure()
+        
+        fig.add_trace(go.Scatter(
+            x=periods,
+            y=history,
+            mode='lines+markers',
+            name=message[:30] + '...' if len(message) > 30 else message,
+            line=dict(width=3),
+            marker=dict(size=8),
+            hovertemplate=(
+                "<b>%{x}</b><br>" +
+                "Cantidad: %{y}<br>" +
+                f"Categoría: {category}" +
+                "<extra></extra>"
+            )
+        ))
+        
+        fig.update_layout(
+            title=f"Tendencia: {message[:50]}{'...' if len(message) > 50 else ''}",
+            xaxis_title="Períodos",
+            yaxis_title="Cantidad de Fallas",
+            hovermode="closest",
+            height=400,
+            showlegend=False
+        )
+        
+        # Usar el mensaje como key (limitar longitud para evitar problemas)
+        chart_key = f"error_trend_{hash(message) % 10000}"
+        error_trend_charts[chart_key] = plot(fig, output_type='div', include_plotlyjs=False)
+    
+    return error_trend_charts
