@@ -400,22 +400,12 @@
             
             <!-- Gráficas de tendencias de resumen -->
             <div class="row mb-4">
-                <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">Tendencia de Yield</div>
                         <div class="card-body">
-                            <canvas id="yieldTrendChart" height="200"></canvas>
+                            <canvas id="yieldTrendChart" height="400"></canvas>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">Tendencia de Fallas</div>
-                        <div class="card-body">
-                            <canvas id="failureTrendChart" height="200"></canvas>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- Gráfica de mensajes de error -->
@@ -467,52 +457,60 @@
     </div>
 
     <!-- JavaScript para gráficas de tendencias -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        // Datos para las gráficas de tendencia
-        const trendData = {
-            labels: [
-                'Actual', 
-                {% for period in trends_data.previous_periods reversed %}
-                'Período -{{ period.period_number }}'{% if not forloop.last %},{% endif %}
-                {% endfor %}
-            ],
-            datasets: [
-                {
-                    label: 'Yield (%)',
-                    data: {{ trends_data.summary_trends.yield|safe }},
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
-                }
-            ]
-        };
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Datos para las gráficas de tendencia en orden cronológico
+    const trendData = {
+        labels: {{ trends_data.summary_trends.periods|safe }},
+        datasets: [
+            {
+                label: 'Yield (%)',
+                data: {{ trends_data.summary_trends.yield|safe }},
+                borderColor: 'rgb(75, 192, 192)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                tension: 0.3,
+                fill: true
+            }
+        ]
+    };
 
-        // Inicializar gráficas
-        document.addEventListener('DOMContentLoaded', function() {
-            new Chart(document.getElementById('yieldTrendChart'), {
-                type: 'line',
-                data: trendData,
-                options: { responsive: true, maintainAspectRatio: false }
-            });
-
-            new Chart(document.getElementById('failureTrendChart'), {
-                type: 'line',
-                data: {
-                    ...trendData,
-                    datasets: [{
-                        label: 'Tasa de Fallas (%)',
-                        data: {{ trends_data.summary_trends.failure_rate|safe }},
-                        borderColor: 'rgb(255, 99, 132)',
-                        tension: 0.1
-                    }]
+    // Inicializar gráficas
+    document.addEventListener('DOMContentLoaded', function() {
+        // Solo gráfica de Yield (quitamos la de fallas)
+        new Chart(document.getElementById('yieldTrendChart'), {
+            type: 'line',
+            data: trendData,
+            options: { 
+                responsive: true, 
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Tendencia de Yield'
+                    }
                 },
-                options: { responsive: true, maintainAspectRatio: false }
-            });
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Yield (%)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Períodos'
+                        }
+                    }
+                }
+            }
         });
+    });
     </script>
     {% endif %}
 </div>
-
 <style>
 .plotly-graph-div {
     width: 100%;

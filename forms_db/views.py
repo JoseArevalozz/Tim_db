@@ -2336,53 +2336,73 @@ def calculate_error_trends(trends_data):
     if not trends_data['current_period'] or not trends_data['previous_periods']:
         return trends_data
     
+    # Ordenar períodos anteriores de más antiguo a más reciente
+    sorted_periods = sorted(trends_data['previous_periods'], key=lambda x: x['start_date'])
+    trends_data['previous_periods'] = sorted_periods
+    
     # Recolectar todos los mensajes de error únicos a través de todos los períodos
     all_error_messages = set()
     
-    # Del período actual
-    for error in trends_data['current_period'].get('error_messages', []):
+    # Del período actual - SOLO los del top 3
+    current_top_errors = sorted(trends_data['current_period'].get('error_messages', []), 
+                               key=lambda x: x['count'], reverse=True)[:3]
+    
+    for error in current_top_errors:
         all_error_messages.add((error['id_er__message'], error['category']))
     
-    # De períodos anteriores
+    # De períodos anteriores - solo mensajes que están en el top 3 actual
     for period in trends_data['previous_periods']:
-        for error in period['data'].get('error_messages', []):
-            all_error_messages.add((error['id_er__message'], error['category']))
+        period_errors = period['data'].get('error_messages', [])
+        for current_message, current_category in all_error_messages:
+            # Buscar este mensaje en el período anterior
+            for error in period_errors:
+                if (error['id_er__message'] == current_message and 
+                    error['category'] == current_category):
+                    all_error_messages.add((current_message, current_category))
+                    break
     
-    # Calcular tendencia para cada mensaje de error
+    # Calcular tendencia para cada mensaje de error (solo top 3 actual)
     error_trends = {}
     for message, category in all_error_messages:
         error_trends[(message, category)] = {
             'current_count': 0,
             'previous_counts': [],
-            'trend': 'stable',  # stable, increasing, decreasing
+            'trend': 'stable',
             'trend_percentage': 0,
-            'history': []  # Para la gráfica de tendencia
+            'history': [],
+            'periods': ['Actual']  # Nombres de períodos para la gráfica
         }
     
-    # Contar ocurrencias en el período actual
-    for error in trends_data['current_period'].get('error_messages', []):
+    # Contar ocurrencias en el período actual (solo top 3)
+    for error in current_top_errors:
         key = (error['id_er__message'], error['category'])
         if key in error_trends:
             error_trends[key]['current_count'] = error['count']
-            error_trends[key]['history'].insert(0, error['count'])  # Período actual al inicio
+            error_trends[key]['history'].append(error['count'])
     
-    # Contar ocurrencias en períodos anteriores y construir historial
+    # Contar ocurrencias en períodos anteriores (en orden cronológico)
     for i, period in enumerate(trends_data['previous_periods']):
-        period_errors = {}
-        for error in period['data'].get('error_messages', []):
-            key = (error['id_er__message'], error['category'])
-            period_errors[key] = error['count']
+        period_name = f"Período -{i+1}"
+        period_errors = period['data'].get('error_messages', [])
         
         for key in error_trends:
-            count = period_errors.get(key, 0)
+            message, category = key
+            count = 0
+            # Buscar este mensaje en el período
+            for error in period_errors:
+                if error['id_er__message'] == message and error['category'] == category:
+                    count = error['count']
+                    break
+            
             error_trends[key]['previous_counts'].append(count)
             error_trends[key]['history'].append(count)
+            error_trends[key]['periods'].append(period_name)
     
     # Calcular tendencia
     for key, trend_info in error_trends.items():
         if trend_info['previous_counts']:
-            # Usar el período más reciente para comparar
-            previous_count = trend_info['previous_counts'][0]
+            # Usar el período más reciente para comparar (último de la lista)
+            previous_count = trend_info['previous_counts'][-1] if trend_info['previous_counts'] else 0
             current_count = trend_info['current_count']
             
             if previous_count > 0:
@@ -2395,31 +2415,40 @@ def calculate_error_trends(trends_data):
                     trend_info['trend'] = 'decreasing'
                 else:
                     trend_info['trend'] = 'stable'
+            elif current_count > 0:
+                trend_info['trend'] = 'increasing'
+                trend_info['trend_percentage'] = 100
     
     trends_data['error_trends'] = error_trends
     
-    # Calcular tendencias de resumen (yield, fallas, etc.)
+    # Calcular tendencias de resumen en orden cronológico correcto
     summary_trends = {
         'yield': [],
         'failure_rate': [],
         'ndf_rate': [],
-        'real_failure_rate': []
+        'real_failure_rate': [],
+        'periods': ['Actual']  # Períodos en orden correcto
     }
     
-    # Período actual
+    # Períodos anteriores (de más antiguo a más reciente)
+    for i, period in enumerate(trends_data['previous_periods']):
+        summary_trends['periods'].append(f'Período -{i+1}')
+    
+    # Datos en orden cronológico (más antiguo primero)
+    # Períodos anteriores primero
+    for period in trends_data['previous_periods']:
+        data = period['data']
+        summary_trends['yield'].insert(0, data.get('yield_pct', 0))
+        summary_trends['failure_rate'].insert(0, data.get('failure_pct', 0))
+        summary_trends['ndf_rate'].insert(0, data.get('ndf_pct', 0))
+        summary_trends['real_failure_rate'].insert(0, data.get('real_failure_pct', 0))
+    
+    # Período actual al final
     current = trends_data['current_period']
     summary_trends['yield'].append(current.get('yield_pct', 0))
     summary_trends['failure_rate'].append(current.get('failure_pct', 0))
     summary_trends['ndf_rate'].append(current.get('ndf_pct', 0))
     summary_trends['real_failure_rate'].append(current.get('real_failure_pct', 0))
-    
-    # Períodos anteriores
-    for period in trends_data['previous_periods']:
-        data = period['data']
-        summary_trends['yield'].append(data.get('yield_pct', 0))
-        summary_trends['failure_rate'].append(data.get('failure_pct', 0))
-        summary_trends['ndf_rate'].append(data.get('ndf_pct', 0))
-        summary_trends['real_failure_rate'].append(data.get('real_failure_pct', 0))
     
     trends_data['summary_trends'] = summary_trends
     
@@ -2427,7 +2456,7 @@ def calculate_error_trends(trends_data):
 
 def create_error_trend_charts(trends_data, selected_project):
     """
-    Crea gráficas de tendencia individuales para cada mensaje de error
+    Crea gráficas de tendencia individuales para los top 3 mensajes de error del período actual
     """
     error_trend_charts = {}
     
@@ -2438,24 +2467,21 @@ def create_error_trend_charts(trends_data, selected_project):
         if not trend_info['history'] or sum(trend_info['history']) == 0:
             continue
         
-        # Crear labels para los períodos
-        periods = ['Actual']
-        for i in range(1, len(trend_info['history'])):
-            periods.append(f'Período -{i}')
-        
-        # Invertir el orden para que el más antiguo vaya primero
-        history = list(reversed(trend_info['history']))
-        periods = list(reversed(periods))
+        # Orden correcto: más antiguo -> más reciente
+        history = trend_info['history']
+        periods = trend_info['periods']
         
         fig = go.Figure()
         
         fig.add_trace(go.Scatter(
             x=periods,
             y=history,
-            mode='lines+markers',
+            mode='lines+markers+text',
             name=message[:30] + '...' if len(message) > 30 else message,
-            line=dict(width=3),
-            marker=dict(size=8),
+            line=dict(width=3, color=get_color_for_category(category)),
+            marker=dict(size=8, color=get_color_for_category(category)),
+            text=history,
+            textposition="top center",
             hovertemplate=(
                 "<b>%{x}</b><br>" +
                 "Cantidad: %{y}<br>" +
@@ -2465,16 +2491,27 @@ def create_error_trend_charts(trends_data, selected_project):
         ))
         
         fig.update_layout(
-            title=f"Tendencia: {message[:50]}{'...' if len(message) > 50 else ''}",
-            xaxis_title="Períodos",
+            title=f"Tendencia: {message[:40]}{'...' if len(message) > 40 else ''}",
+            xaxis_title="Períodos ",
             yaxis_title="Cantidad de Fallas",
             hovermode="closest",
             height=400,
-            showlegend=False
+            showlegend=False,
+            xaxis_tickangle=-45
         )
         
-        # Usar el mensaje como key (limitar longitud para evitar problemas)
         chart_key = f"error_trend_{hash(message) % 10000}"
         error_trend_charts[chart_key] = plot(fig, output_type='div', include_plotlyjs=False)
     
     return error_trend_charts
+
+def get_color_for_category(category):
+    """Devuelve color según categoría"""
+    color_map = {
+        'Material': 'red',
+        'Workmanship': 'orange',
+        'NDF': 'blue',
+        'Operador': 'green',
+        'Desconocida': 'gray'
+    }
+    return color_map.get(category, 'gray')
