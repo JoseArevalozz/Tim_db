@@ -2407,7 +2407,7 @@ def calculate_error_trends(trends_data):
             
             if previous_count > 0:
                 percentage_change = ((current_count - previous_count) / previous_count) * 100
-                trend_info['trend_percentage'] = round(percentage_change, 1)
+                trend_info['trend_percentage'] = percentage_change
                 
                 if percentage_change > 10:
                     trend_info['trend'] = 'increasing'
