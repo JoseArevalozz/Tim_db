@@ -2507,7 +2507,7 @@ def create_error_trend_charts(trends_data, selected_project):
                 x=0.5,
                 xanchor='center'
             ),
-            xaxis_title="Períodos (Más antiguo ← → Más reciente)",
+            xaxis_title="Períodos ",
             yaxis_title="Cantidad de Fallas",
             hovermode="closest",
             height=450,  # Más alto para acomodar título multilínea

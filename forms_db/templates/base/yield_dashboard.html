@@ -517,59 +517,6 @@
 {% endif %}
         </div>
     </div>
-    <!-- Tendencias de mensajes de error -->
-    <h6>Tendencias de Top 3 Mensajes de Error del Período Actual</h6>
-    <div class="table-responsive">
-        <table class="table table-striped table-sm">
-            <thead>
-                <tr>
-                    <th>Mensaje de Error</th>
-                    <th>Categoría</th>
-                    <th>Actual</th>
-                    <th>Anterior</th>
-                    <th>Tendencia</th>
-                    <th>Cambio</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for key, trend in trends_data.error_trends.items %}
-                {% if trend.current_count > 0 %}  <!-- Solo mostrar si tiene datos en el período actual -->
-                <tr>
-                    <td>{{ key.0|truncatewords:5 }}</td>
-                    <td>
-                        <span class="badge 
-                            {% if key.1 == 'NDF' %}bg-info
-                            {% elif key.1 == 'Material' %}bg-danger
-                            {% elif key.1 == 'Workmanship' %}bg-warning
-                            {% else %}bg-secondary{% endif %}">
-                            {{ key.1 }}
-                        </span>
-                    </td>
-                    <td><strong>{{ trend.current_count }}</strong></td>
-                    <td>{{ trend.previous_counts.0|default:0 }}</td>
-                    <td>
-                        {% if trend.trend == 'increasing' %}
-                        <span class="text-danger"><i class="fas fa-arrow-up"></i> Aumentando</span>
-                        {% elif trend.trend == 'decreasing' %}
-                        <span class="text-success"><i class="fas fa-arrow-down"></i> Disminuyendo</span>
-                        {% else %}
-                        <span class="text-muted"><i class="fas fa-minus"></i> Estable</span>
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if trend.trend_percentage > 0 %}
-                        <span class="text-danger">+{{ trend.trend_percentage }}%</span>
-                        {% elif trend.trend_percentage < 0 %}
-                        <span class="text-success">{{ trend.trend_percentage }}%</span>
-                        {% else %}
-                        <span class="text-muted">0%</span>
-                        {% endif %}
-                    </td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
     </div>
     <!-- JavaScript para gráficas de tendencias -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
