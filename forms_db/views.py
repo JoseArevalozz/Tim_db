@@ -2417,7 +2417,7 @@ def calculate_error_trends(trends_data):
                     trend_info['trend'] = 'stable'
             elif current_count > 0:
                 trend_info['trend'] = 'increasing'
-                trend_info['trend_percentage'] = 100
+                #trend_info['trend_percentage'] = 100
     
     trends_data['error_trends'] = error_trends
     
