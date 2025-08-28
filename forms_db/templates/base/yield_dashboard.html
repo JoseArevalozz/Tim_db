@@ -428,90 +428,241 @@
             </div>
             {% endif %}
 
-            <!-- Gráficas de tendencia individuales por mensaje de error -->
-            {% if error_trend_charts and show_trends %}
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h5><i class="fas fa-chart-line me-2"></i>Tendencias Individuales por Mensaje de Error</h5>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        {% for chart_key, chart_html in error_trend_charts.items %}
-                        <div class="col-md-6 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    {{ chart_html|safe }}
-                                </div>
-                            </div>
-                        </div>
-                        {% if forloop.counter|divisibleby:2 %}
-                    </div>
-                    <div class="row">
-                        {% endif %}
-                        {% endfor %}
+            <!-- Tendencias de mensajes de error -->
+<h6>Tendencias de Top 3 Mensajes de Error del Período Actual</h6>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th style="width: 40%">Mensaje de Error</th>
+                <th>Categoría</th>
+                <th>Actual</th>
+                <th>Anterior</th>
+                <th>Tendencia</th>
+                <th>Cambio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, trend in trends_data.error_trends.items %}
+            {% if trend.current_count > 0 %}
+            <tr>
+                <td>
+                    <span class="error-message" 
+                          title="{{ key.0 }}"
+                          style="word-wrap: break-word; white-space: pre-wrap;">
+                        {{ key.0 }}
+                    </span>
+                </td>
+                <td>
+                    <span class="badge 
+                        {% if key.1 == 'NDF' %}bg-info
+                        {% elif key.1 == 'Material' %}bg-danger
+                        {% elif key.1 == 'Workmanship' %}bg-warning
+                        {% else %}bg-secondary{% endif %}">
+                        {{ key.1 }}
+                    </span>
+                </td>
+                <td><strong>{{ trend.current_count }}</strong></td>
+                <td>{{ trend.previous_counts.0|default:0 }}</td>
+                <td>
+                    {% if trend.trend == 'increasing' %}
+                    <span class="text-danger"><i class="fas fa-arrow-up"></i> Aumentando</span>
+                    {% elif trend.trend == 'decreasing' %}
+                    <span class="text-success"><i class="fas fa-arrow-down"></i> Disminuyendo</span>
+                    {% else %}
+                    <span class="text-muted"><i class="fas fa-minus"></i> Estable</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if trend.trend_percentage > 0 %}
+                    <span class="text-danger">+{{ trend.trend_percentage }}%</span>
+                    {% elif trend.trend_percentage < 0 %}
+                    <span class="text-success">{{ trend.trend_percentage }}%</span>
+                    {% else %}
+                    <span class="text-muted">0%</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Gráficas de tendencia individuales por mensaje de error -->
+{% if error_trend_charts and show_trends %}
+<div class="card mb-4">
+    <div class="card-header">
+        <h5><i class="fas fa-chart-line me-2"></i>Tendencias de Top 3 Mensajes de Error</h5>
+        <p class="small text-muted mb-0">Mensajes de error completos con tendencia histórica</p>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            {% for chart_key, chart_html in error_trend_charts.items %}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        {{ chart_html|safe }}
                     </div>
                 </div>
             </div>
+            {% if forloop.counter|divisibleby:2 %}
+        </div>
+        <div class="row">
             {% endif %}
+            {% endfor %}
         </div>
     </div>
-
+</div>
+{% endif %}
+        </div>
+    </div>
+    <!-- Tendencias de mensajes de error -->
+    <h6>Tendencias de Top 3 Mensajes de Error del Período Actual</h6>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>Mensaje de Error</th>
+                    <th>Categoría</th>
+                    <th>Actual</th>
+                    <th>Anterior</th>
+                    <th>Tendencia</th>
+                    <th>Cambio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, trend in trends_data.error_trends.items %}
+                {% if trend.current_count > 0 %}  <!-- Solo mostrar si tiene datos en el período actual -->
+                <tr>
+                    <td>{{ key.0|truncatewords:5 }}</td>
+                    <td>
+                        <span class="badge 
+                            {% if key.1 == 'NDF' %}bg-info
+                            {% elif key.1 == 'Material' %}bg-danger
+                            {% elif key.1 == 'Workmanship' %}bg-warning
+                            {% else %}bg-secondary{% endif %}">
+                            {{ key.1 }}
+                        </span>
+                    </td>
+                    <td><strong>{{ trend.current_count }}</strong></td>
+                    <td>{{ trend.previous_counts.0|default:0 }}</td>
+                    <td>
+                        {% if trend.trend == 'increasing' %}
+                        <span class="text-danger"><i class="fas fa-arrow-up"></i> Aumentando</span>
+                        {% elif trend.trend == 'decreasing' %}
+                        <span class="text-success"><i class="fas fa-arrow-down"></i> Disminuyendo</span>
+                        {% else %}
+                        <span class="text-muted"><i class="fas fa-minus"></i> Estable</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if trend.trend_percentage > 0 %}
+                        <span class="text-danger">+{{ trend.trend_percentage }}%</span>
+                        {% elif trend.trend_percentage < 0 %}
+                        <span class="text-success">{{ trend.trend_percentage }}%</span>
+                        {% else %}
+                        <span class="text-muted">0%</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     <!-- JavaScript para gráficas de tendencias -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     // Datos para las gráficas de tendencia en orden cronológico
-    const trendData = {
-        labels: {{ trends_data.summary_trends.periods|safe }},
-        datasets: [
-            {
-                label: 'Yield (%)',
-                data: {{ trends_data.summary_trends.yield|safe }},
-                borderColor: 'rgb(75, 192, 192)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                tension: 0.3,
-                fill: true
-            }
-        ]
-    };
+const trendData = {
+    labels: {{ trends_data.summary_trends.periods|safe }},
+    datasets: [
+        {
+            label: 'Yield (%)',
+            data: {{ trends_data.summary_trends.yield|safe }},
+            borderColor: 'rgb(75, 192, 192)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            tension: 0.3,
+            fill: true
+        }
+    ]
+};
 
-    // Inicializar gráficas
-    document.addEventListener('DOMContentLoaded', function() {
-        // Solo gráfica de Yield (quitamos la de fallas)
-        new Chart(document.getElementById('yieldTrendChart'), {
-            type: 'line',
-            data: trendData,
-            options: { 
-                responsive: true, 
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Tendencia de Yield'
+// Inicializar gráficas
+document.addEventListener('DOMContentLoaded', function() {
+    const yieldChart = new Chart(document.getElementById('yieldTrendChart'), {
+        type: 'line',
+        data: trendData,
+        options: { 
+            responsive: true, 
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Tendencia de Yield (%) - Orden Cronológico',
+                    font: {
+                        size: 16
                     }
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100,
-                        title: {
-                            display: true,
-                            text: 'Yield (%)'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Períodos'
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `Yield: ${context.raw.toFixed(2)}%`;
                         }
                     }
                 }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    title: {
+                        display: true,
+                        text: 'Yield (%)'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Períodos (← Más antiguo | Más reciente →)'
+                    }
+                }
             }
-        });
+        }
     });
+});
     </script>
     {% endif %}
 </div>
 <style>
+/* Estilos para mensajes de error largos */
+.error-message {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    max-height: 100px;
+    overflow-y: auto;
+    display: block;
+    font-size: 0.9em;
+    line-height: 1.3;
+}
+
+/* Ajustes para las gráficas de Plotly */
+.plotly-graph-div .gtitle {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+}
+
+/* Mejorar visualización de tablas */
+.table td {
+    vertical-align: middle;
+}
+
+/* Ajustar altura de las tarjetas de gráficas */
+.card .js-plotly-plot {
+    min-height: 400px;
+}
 .plotly-graph-div {
     width: 100%;
     height: 100%;

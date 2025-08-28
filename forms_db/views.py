@@ -2349,7 +2349,7 @@ def calculate_error_trends(trends_data):
     
     for error in current_top_errors:
         all_error_messages.add((error['id_er__message'], error['category']))
-    
+
     # De períodos anteriores - solo mensajes que están en el top 3 actual
     for period in trends_data['previous_periods']:
         period_errors = period['data'].get('error_messages', [])
@@ -2427,23 +2427,20 @@ def calculate_error_trends(trends_data):
         'failure_rate': [],
         'ndf_rate': [],
         'real_failure_rate': [],
-        'periods': ['Actual']  # Períodos en orden correcto
+        'periods': []  # Períodos en orden correcto
     }
     
-    # Períodos anteriores (de más antiguo a más reciente)
+    # Períodos anteriores primero (más antiguos)
     for i, period in enumerate(trends_data['previous_periods']):
-        summary_trends['periods'].append(f'Período -{i+1}')
-    
-    # Datos en orden cronológico (más antiguo primero)
-    # Períodos anteriores primero
-    for period in trends_data['previous_periods']:
+        summary_trends['periods'].append(f'Período -{len(trends_data["previous_periods"]) - i}')
         data = period['data']
-        summary_trends['yield'].insert(0, data.get('yield_pct', 0))
-        summary_trends['failure_rate'].insert(0, data.get('failure_pct', 0))
-        summary_trends['ndf_rate'].insert(0, data.get('ndf_pct', 0))
-        summary_trends['real_failure_rate'].insert(0, data.get('real_failure_pct', 0))
+        summary_trends['yield'].append(data.get('yield_pct', 0))
+        summary_trends['failure_rate'].append(data.get('failure_pct', 0))
+        summary_trends['ndf_rate'].append(data.get('ndf_pct', 0))
+        summary_trends['real_failure_rate'].append(data.get('real_failure_pct', 0))
     
-    # Período actual al final
+    # Período actual al final (más reciente)
+    summary_trends['periods'].append('Actual')
     current = trends_data['current_period']
     summary_trends['yield'].append(current.get('yield_pct', 0))
     summary_trends['failure_rate'].append(current.get('failure_pct', 0))
@@ -2477,7 +2474,7 @@ def create_error_trend_charts(trends_data, selected_project):
             x=periods,
             y=history,
             mode='lines+markers+text',
-            name=message[:30] + '...' if len(message) > 30 else message,
+            name=message,  # Nombre completo para el legend
             line=dict(width=3, color=get_color_for_category(category)),
             marker=dict(size=8, color=get_color_for_category(category)),
             text=history,
@@ -2490,14 +2487,33 @@ def create_error_trend_charts(trends_data, selected_project):
             )
         ))
         
+        # Dividir el mensaje largo en múltiples líneas
+        wrapped_message = ""
+        words = message.split()
+        current_line = ""
+        
+        for word in words:
+            if len(current_line + word) <= 40:
+                current_line += word + " "
+            else:
+                wrapped_message += current_line + "<br>"
+                current_line = word + " "
+        wrapped_message += current_line
+        
         fig.update_layout(
-            title=f"Tendencia: {message[:40]}{'...' if len(message) > 40 else ''}",
-            xaxis_title="Períodos ",
+            title=dict(
+                text=f"<b>{wrapped_message}</b>",
+                font=dict(size=12),
+                x=0.5,
+                xanchor='center'
+            ),
+            xaxis_title="Períodos (Más antiguo ← → Más reciente)",
             yaxis_title="Cantidad de Fallas",
             hovermode="closest",
-            height=400,
+            height=450,  # Más alto para acomodar título multilínea
             showlegend=False,
-            xaxis_tickangle=-45
+            xaxis_tickangle=-45,
+            margin=dict(t=100, b=100)  # Más margen para título y ejes
         )
         
         chart_key = f"error_trend_{hash(message) % 10000}"
