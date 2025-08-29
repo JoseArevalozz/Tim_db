@@ -2405,25 +2405,29 @@ def calculate_error_trends(trends_data):
             previous_count = trend_info['previous_counts'][-1] if trend_info['previous_counts'] else 0
             current_count = trend_info['current_count']
             
-            if previous_count > 0:
+            # Calcular cambio porcentual con protección contra división por cero
+            if previous_count == 0:
+                if current_count == 0:
+                    # Ambos son 0: no hay cambio
+                    trend_info['trend_percentage'] = 0.0
+                    trend_info['trend'] = 'stable'
+                else:
+                    # De 0 a cualquier valor positivo: cambio del 100%+
+                    trend_info['trend_percentage'] = 100.0
+                    trend_info['trend'] = 'increasing'
+            else:
+                # Calcular porcentaje normal
                 percentage_change = ((current_count - previous_count) / previous_count) * 100
-                trend_info['trend_percentage'] = percentage_change
+                # Limitar a 2 decimales
+                trend_info['trend_percentage'] = round(percentage_change, 2)
                 
+                # Determinar tendencia basada en umbral del 10%
                 if percentage_change > 10:
                     trend_info['trend'] = 'increasing'
                 elif percentage_change < -10:
                     trend_info['trend'] = 'decreasing'
                 else:
                     trend_info['trend'] = 'stable'
-                
-            elif current_count > 0:
-                trend_info['trend'] = 'increasing'
-                if previous_count > 0:
-                    percentage_change = ((current_count - previous_count) / previous_count) * 100
-                    trend_info['trend_percentage'] = percentage_change
-                else:
-                    # Cuando previous_count es 0, el cambio es infinito o indefinido
-                    trend_info['trend_percentage'] = 100  # o algún valor por defecto
     
     trends_data['error_trends'] = error_trends
     
