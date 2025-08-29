@@ -2415,9 +2415,15 @@ def calculate_error_trends(trends_data):
                     trend_info['trend'] = 'decreasing'
                 else:
                     trend_info['trend'] = 'stable'
+                
             elif current_count > 0:
                 trend_info['trend'] = 'increasing'
-                #trend_info['trend_percentage'] = 100
+                if previous_count > 0:
+                    percentage_change = ((current_count - previous_count) / previous_count) * 100
+                    trend_info['trend_percentage'] = percentage_change
+                else:
+                    # Cuando previous_count es 0, el cambio es infinito o indefinido
+                    trend_info['trend_percentage'] = 100  # o algún valor por defecto
     
     trends_data['error_trends'] = error_trends
     
