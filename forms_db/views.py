@@ -2401,10 +2401,10 @@ def calculate_error_trends(trends_data):
     # Calcular tendencia
     for key, trend_info in error_trends.items():
         if trend_info['previous_counts']:
-            # Usar el período más reciente para comparar (último de la lista)
-            previous_count = trend_info['previous_counts'][-1] if trend_info['previous_counts'] else 0
+            # CORREGIR: Tomar el PRIMER elemento (más reciente) en lugar del último
+            previous_count = trend_info['previous_counts'][0] if trend_info['previous_counts'] else 0
             current_count = trend_info['current_count']
-            
+        
             # Calcular cambio porcentual con protección contra división por cero
             if previous_count == 0:
                 if current_count == 0:
@@ -2420,7 +2420,7 @@ def calculate_error_trends(trends_data):
                 percentage_change = ((current_count - previous_count) / previous_count) * 100
                 # Limitar a 2 decimales
                 trend_info['trend_percentage'] = round(percentage_change, 2)
-                
+            
                 # Determinar tendencia basada en umbral del 10%
                 if percentage_change > 10:
                     trend_info['trend'] = 'increasing'
