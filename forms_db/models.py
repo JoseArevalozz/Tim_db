@@ -12,6 +12,7 @@ class Employes(models.Model):
     dell = models.BooleanField(default=False)
     switch = models.BooleanField(default=False)
     sony = models.BooleanField(default=False)
+    RowMM = models.BooleanField(default=False)
     QA = models.BooleanField(default=False)
     mail = models.CharField(max_length=100, null=True)
     privileges = models.CharField(max_length=10)
@@ -21,8 +22,8 @@ class Employes(models.Model):
          return self.employeeName
       
 class Booms(models.Model):
-    projects = (('DELL', 'DELL'), ('PMDU', 'PMDU'), ('1G-SW', '1G-SW'), ('SONY', 'SONY'))
-    list_products = (('Senna','Senna'), ('Pathfinder','Pathfinder'), ('Sojouner','Sojouner'), ('Hook','Hook'), ('Outlander','Outlander'), ('Minerrall Well','Minerrall Well'), ('MMCs','MCCs'), ('Fornax SAM','Fornax SAM'), ('Fornax DIB','Fornax DIB'), ('Fornax CIT','Fornax CIT'), ('Indus DIB','Indus DIB'), ('Indus BOP','Indus BOP'), ('Indus SAM','Indus SAM'), ('Indus CIT','Indus CIT'), ('PMDU','PMDU'), ('Switch','Switch'), ('Kura', 'Kura'), ('Sled', 'Sled'), ('Rack', 'Rack'))
+    projects = (('DELL', 'DELL'), ('PMDU', 'PMDU'), ('1G-SW', '1G-SW'), ('SONY', 'SONY'), ('RWMM','RWMM'))
+    list_products = (('Senna','Senna'), ('Pathfinder','Pathfinder'), ('Sojouner','Sojouner'), ('Hook','Hook'), ('Outlander','Outlander'), ('Minerrall Well','Minerrall Well'), ('MMCs','MCCs'), ('Fornax SAM','Fornax SAM'), ('Fornax DIB','Fornax DIB'), ('Fornax CIT','Fornax CIT'), ('Indus DIB','Indus DIB'), ('Indus BOP','Indus BOP'), ('Indus SAM','Indus SAM'), ('Indus CIT','Indus CIT'), ('PMDU','PMDU'), ('Switch','Switch'), ('Kura', 'Kura'), ('Sled', 'Sled'), ('Rack', 'Rack'),('Row Manager','Row Manager'))
     
     pn = models.CharField(max_length=50, primary_key=True,)
     employee_e = models.ForeignKey(Employes, on_delete=models.SET_NULL, blank=True, null=True,)
