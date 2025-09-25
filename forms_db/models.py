@@ -22,7 +22,7 @@ class Employes(models.Model):
          return self.employeeName
       
 class Booms(models.Model):
-    projects = (('DELL', 'DELL'), ('PMDU', 'PMDU'), ('1G-SW', '1G-SW'), ('SONY', 'SONY'), ('RWMM','RWMM'))
+    projects = (('DELL', 'DELL'), ('PMDU', 'PMDU'), ('1G-SW', '1G-SW'), ('SONY', 'SONY'), ('ROWM','ROWM'))
     list_products = (('Senna','Senna'), ('Pathfinder','Pathfinder'), ('Sojouner','Sojouner'), ('Hook','Hook'), ('Outlander','Outlander'), ('Minerrall Well','Minerrall Well'), ('MMCs','MCCs'), ('Fornax SAM','Fornax SAM'), ('Fornax DIB','Fornax DIB'), ('Fornax CIT','Fornax CIT'), ('Indus DIB','Indus DIB'), ('Indus BOP','Indus BOP'), ('Indus SAM','Indus SAM'), ('Indus CIT','Indus CIT'), ('PMDU','PMDU'), ('Switch','Switch'), ('Kura', 'Kura'), ('Sled', 'Sled'), ('Rack', 'Rack'),('Row Manager','Row Manager'))
     
     pn = models.CharField(max_length=50, primary_key=True,)
@@ -49,7 +49,7 @@ class Uut(models.Model):
          return self.sn
 
 class Station(models.Model):
-    projects = (('DELL', 'DELL'), ('PMDU', 'PMDU'), ('1G-SW', '1G-SW'), ('SONY', 'SONY'))
+    projects = (('DELL', 'DELL'), ('PMDU', 'PMDU'), ('1G-SW', '1G-SW'), ('SONY', 'SONY'),('ROWM','ROWM'))
     
     stationProject = models.CharField(max_length=50, choices=projects )
     stationName = models.CharField(max_length=50)

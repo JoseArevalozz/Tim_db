@@ -1305,6 +1305,7 @@ def get_available_projects(employe):
     if employe.dell: projects.append('DELL')
     if employe.switch: projects.append('1G-SW')
     if employe.sony: projects.append('SONY')
+    if employe.RowMM: projects.append('ROWM')
     return projects
 
 def get_date_range(report_type, request):
