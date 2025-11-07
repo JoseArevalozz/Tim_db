@@ -1,0 +1,542 @@
+import os
+import paramiko
+import re
+from pathlib import Path
+from django.core.management.base import BaseCommand
+from django.utils import timezone
+from datetime import datetime
+from django.conf import settings
+from django.contrib.auth.models import User
+from forms_db.models import Uut, TestHistory, Station, Employes, Booms, Failures, ErrorMessages
+
+class Command(BaseCommand):
+    help = 'Actualiza logs de prueba desde estaciones remotas para proyecto TIM'
+    
+    def handle(self, *args, **options):#######################################aqui
+        estaciones_dict = {
+            "10.12.199.150": "RUNIN 01",
+            "10.12.199.155": "RUNIN 02", 
+            "10.12.199.160": "RUNIN 03",
+            "10.12.199.165": "RUNIN 04",
+            "10.12.199.140": "BFT 01",
+            "10.12.199.145": "BFT 02",
+            "10.12.199.170": "FCA 01",
+            "10.12.199.175": "FCA 02"
+}
+        
+        for ip, estacion_nombre in estaciones_dict.items():
+            try:
+                self.process_station(ip, estacion_nombre)
+            except Exception as e:
+                self.stdout.write(self.style.ERROR(f'Error en estación {estacion_nombre}: {str(e)}'))
+
+    def process_station(self, ip, estacion_nombre):
+        client = paramiko.SSHClient()
+        client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        
+        try:
+            client.connect(ip, port=22, username='PMDU', password='Msft02.', timeout=10)##################################### aqui
+            sftp = client.open_sftp()
+            
+            try:
+                # Verificar/Crear directorio TIM log remoto
+                try:
+                    sftp.stat('C:/LOG/TIM')
+                except FileNotFoundError:
+                    sftp.mkdir('C:/LOG/TIM')
+                
+                archivos_remotos = sftp.listdir('C:/LOG/TIM')
+                
+                for archivo in archivos_remotos:
+                    if archivo.endswith((".txt")) and ("[FAIL]" in archivo or "[PASS]" in archivo):
+                        try:
+                            self.process_single_file(sftp, archivo, ip, estacion_nombre)
+                        except Exception as e:
+                            self.stdout.write(self.style.WARNING(f'Error procesando {archivo}: {str(e)}'))
+            finally:
+                sftp.close()
+        except Exception as e:
+            self.stdout.write(self.style.ERROR(f'Error de conexión con {ip}: {str(e)}'))
+        finally:
+            client.close()
+
+    def process_single_file(self, sftp, filename, ip, estacion_nombre):
+        remote_path = f"C:/LOG/TIM/{filename}"
+        remote_backup_path = f"C:/LOG/TIM/processed/{filename}"
+        is_pass = "PASS" in filename
+        
+        try:
+            # 1. Primero guardar copia local del archivo original
+            log_info = self.save_local_copy(sftp, remote_path, filename, estacion_nombre)
+            
+            # 2. Luego mover el archivo remoto
+            try:
+                sftp.mkdir('C:/LOG/TIM/processed')
+            except:
+                pass  # El directorio ya existe
+            
+            sftp.rename(remote_path, remote_backup_path)
+            
+            # 3. Solo registrar en BD si es GDL
+            if log_info.get('factory', '').upper() == 'GDL':
+                if not log_info['sn']:
+                    raise ValueError("No se pudo extraer el número de serie del log")
+                
+                uut = self.register_uut(log_info, is_pass)
+                test_history = self.register_test_history(uut, ip, estacion_nombre, log_info, is_pass)
+                
+                if not is_pass:
+                    self.register_failure(uut, ip, estacion_nombre, log_info)
+                
+                self.stdout.write(self.style.SUCCESS(
+                    f"Procesado (GDL): {filename} | SN: {log_info['sn']} | {'PASS' if is_pass else 'FAIL'}"
+                ))
+            else:
+                self.stdout.write(self.style.SUCCESS(
+                    f"Procesado (No-GDL): {filename} | SN: {log_info.get('sn', 'N/A')}"
+                ))
+                
+        except Exception as e:
+            self.stdout.write(self.style.ERROR(
+                f'Error procesando archivo {filename}: {str(e)}'
+            ))
+            raise
+
+    def save_local_copy(self, sftp, remote_path, filename, estacion_nombre):
+        """Guarda copia local exacta del archivo original y devuelve la información parseada"""
+        try:
+            # Obtener ruta base según configuración
+            base_dir = Path(settings.STATIC_ROOT)
+            
+            # Leer y parsear el archivo remoto primero
+            with sftp.open(remote_path, 'r') as remote_file:
+                # Leer todo el contenido para guardar copia exacta
+                file_content = remote_file.read()
+                
+                # Volver al inicio para parsear
+                remote_file.seek(0)
+                log_info = self.parse_log_file(remote_file, filename, estacion_nombre)
+            
+            # Determinar proyecto (usar 'unknown' si no se puede determinar)
+            project = self.determine_project(log_info)
+            
+            # Crear ruta completa local
+            local_dir = base_dir / 'logs' / 'tim' / project / estacion_nombre
+            local_path = local_dir / filename
+            
+            # Asegurar que el directorio existe
+            local_dir.mkdir(parents=True, exist_ok=True)
+            
+            # Guardar copia exacta del archivo original
+            with open(local_path, 'wb') as local_file:
+                local_file.write(file_content)
+            
+            self.stdout.write(self.style.SUCCESS(
+                f'Copia local guardada en: {local_path}'
+            ))
+            
+            return log_info
+            
+        except Exception as e:
+            self.stdout.write(self.style.ERROR(
+                f'Error guardando copia local {filename}: {str(e)}'
+            ))
+            raise
+
+    def parse_log_file(self, remote_file, filename, estacion_nombre):
+        """Extrae información del archivo de log para proyecto TIM"""
+        info = {
+            'sn': '',
+            'operator_id': None,
+            'part_number': None,
+            'log_datetime': None,
+            'error_message': None,
+            'station_id': None,
+            'factory': None,
+            'raw_content': ''
+        }
+        
+        try:
+            # Leer todo el contenido primero
+            raw_content = remote_file.read()
+            info['raw_content'] = raw_content
+            
+            # Volver al inicio para parsear línea por línea
+            remote_file.seek(0)
+            
+            for linea in remote_file:
+                linea = linea.strip()
+                
+                # Extraer SN del formato [FCR1F89N84112]
+                if not info['sn'] and linea.startswith('[') and ']' in linea:
+                    possible_sn = linea.split(']')[0][1:]
+                    if possible_sn.startswith('FCR') and len(possible_sn) >= 10:
+                        info['sn'] = possible_sn
+                
+                # Extraer fecha/hora del formato [2025_09_01 23_27_03]
+                elif not info['log_datetime'] and '[' in linea and ']' in linea and '_' in linea:
+                    try:
+                        date_part = linea.split('[')[1].split(']')[0]
+                        # Convertir 2025_09_01 23_27_03 a 2025-09-01 23:27:03
+                        datetime_str = date_part.replace('_', '-', 3).replace('_', ':', 2)
+                        info['log_datetime'] = datetime.strptime(datetime_str, '%Y-%m-%d %H:%M:%S')
+                    except ValueError:
+                        pass
+                
+                # Extraer station ID
+                elif not info['station_id'] and ']' in linea and any(x in linea for x in ['BFT', 'RUNIN', 'FCA']):
+                    parts = linea.split(']')
+                    if len(parts) > 1:
+                        station_part = parts[1]
+                        if 'BFT' in station_part:
+                            info['station_id'] = 'BFT'
+                        elif 'RUNIN' in station_part:
+                            info['station_id'] = 'RUNIN' 
+                        elif 'FCA' in station_part:
+                            info['station_id'] = 'FCA'
+                
+                # Extraer operator ID si está disponible
+                elif not info['operator_id'] and "Operator:" in linea:
+                    info['operator_id'] = linea.split("Operator:")[1].strip()
+                
+                # Extraer part number
+                elif not info['part_number'] and "Part Number:" in linea:
+                    info['part_number'] = linea.split("Part Number:")[1].strip()[:12]
+                
+                # Extraer factory
+                elif not info['factory'] and "Factory:" in linea:
+                    info['factory'] = linea.split("Factory:")[1].strip()
+            
+            # Si es archivo FAIL, extraer mensaje de error estandarizado
+            if "FAIL" in filename and not info['error_message']:
+                info['error_message'] = self.extract_standardized_error(
+                    info['raw_content'], info['station_id'], filename
+                )
+            
+            # Fallbacks si no se encontró información
+            if not info['sn']:
+                info['sn'] = self.extract_serial_from_filename(filename)
+            if not info['log_datetime']:
+                info['log_datetime'] = self.extract_datetime_from_filename(filename)
+            if not info['station_id']:
+                info['station_id'] = self.determine_station_type(estacion_nombre)
+            
+            return info
+            
+        except Exception as e:
+            self.stdout.write(self.style.WARNING(f'Error leyendo archivo {filename}: {str(e)}'))
+            return info
+
+    def extract_standardized_error(self, raw_content, station_type, filename):
+        """Convierte mensajes de error crudos a mensajes estandarizados"""
+        
+        # Mapeo de patrones de error a mensajes estandarizados por estación
+        error_patterns = {
+            'BFT': [
+                # USB Function test fail
+                (r"USB.*[Ff]unction.*test.*fail|ERROR: read reg error", "USB Function test fail"),
+                
+                # BootROM data crash
+                (r"BootROM: Bad header.*|BootROM: Trying UART", "BootROM data crash"),
+                
+                # Port Link down
+                (r"port.*link down", "Port Link down"),
+                
+                # DRAM initialization failed
+                (r"DRAM initialization failed|DDR3.*FAILED", "DRAM initialization failed"),
+                
+                # Fail LED test
+                (r"operator fail LED test", "Fail LED test"),
+                
+                # Linespeed fail port
+                (r"linespeed.*fail.*port|FAILED: Linespeed test", "Linespeed fail port"),
+                
+                # Button reset test fail
+                (r"checkreset.*timeout", "Button reset test fail"),
+                
+                # Root initiated a new r/w session
+                (r"root.*initiated.*new.*r/w session", "Root initiated a new r/w session"),
+                
+                # Telnet connection is abnormal
+                (r"telnet connection is abnormal", "Telnet connection is abnormal"),
+                
+                # Wait prompt DIAG
+                (r"Wait prompt.*DIAG.*timeout", "Wait prompt DIAG"),
+                
+                # Run command fail
+                (r"run command.*fail", "Run command fail"),
+                
+                # Check version fail
+                (r"check version fail", "Check version fail"),
+                
+                # ERROR: data mismatch
+                (r"ERROR: data mismatch|Pattern mismatch", "ERROR: data mismatch"),
+            ],
+            
+            'RUNIN': [
+                # Check temperature items fail
+                (r"temp.*out of range|check temp value fail", "Check temperature items fail"),
+                
+                # FAILED: SMI test, ERROR: data mismatch
+                (r"FAILED: Memory Test|memtest.*fail", "FAILED: SMI test, ERROR: data mismatch"),
+                
+                # Port 49 and 50 SFP time out
+                (r"Port 49.*50.*time out|linespeed.*port 49-50", "Port 49 and 50 SFP time out,after waiting 30 seconds"),
+                
+                # LineSpeed fail ports
+                (r"FAILED: Linespeed test port.*10M", "LineSpeed fail ports"),
+                
+                # Port all status test fail
+                (r"run command.*port all status.*fail", "Port all status test fail"),
+                
+                # Port Links Down
+                (r"Port.*link down", "Port Links Down"),
+                
+                # I2C test all test fail
+                (r"i2ctest.*fail", "I2C test all test fail"),
+            ],
+            
+            'FCA': [
+                # BootROM data crash
+                (r"BootROM: Bad header", "BootROM data crash"),
+                
+                # Press x to choose XMODEM...
+                (r"Press x to choose XMODEM", "Press x to choose XMODEM..."),
+                
+                # Ping test fail
+                (r"ping.*fail|ping failed.*host.*not alive", "Ping test fail"),
+                
+                # ERROR: can't get kernel image!
+                (r"ERROR: can't get kernel image", "ERROR: can't get kernel image!"),
+                
+                # root' initiated a new r/w session
+                (r"root.*initiated.*new.*r/w session", "root' initiated a new r/w session"),
+            ]
+        }
+        
+        # Buscar patrones según el tipo de estación
+        patterns = error_patterns.get(station_type, [])
+        for pattern, standardized_message in patterns:
+            if re.search(pattern, raw_content, re.IGNORECASE | re.DOTALL):
+                return standardized_message
+        
+        # Si no se encuentra patrón, usar fallback
+        return self.extract_fallback_error(raw_content)
+
+    def extract_fallback_error(self, raw_content):
+        """Extrae mensaje de error cuando no se encuentra patrón específico"""
+        # Buscar líneas que contengan palabras clave de error
+        error_keywords = ['fail', 'error', 'timeout', 'crash', 'bad', 'wrong']
+        lines = raw_content.split('\n')
+        
+        for line in lines:
+            line_lower = line.lower()
+            if any(keyword in line_lower for keyword in error_keywords):
+                # Limpiar y acortar el mensaje
+                clean_line = line.strip()
+                if len(clean_line) > 100:
+                    clean_line = clean_line[:100] + "..."
+                return clean_line
+        
+        # Último recurso: primeras líneas del contenido
+        first_lines = '\n'.join(lines[:3])
+        if len(first_lines) > 150:
+            first_lines = first_lines[:150] + "..."
+        return first_lines
+
+    def determine_station_type(self, estacion_nombre):
+        """Determina el tipo de estación basado en el nombre"""
+        if 'BFT' in estacion_nombre:
+            return 'BFT'
+        elif 'RUNIN' in estacion_nombre:
+            return 'RUNIN'
+        elif 'FCA' in estacion_nombre:
+            return 'FCA'
+        else:
+            return 'UNKNOWN'
+
+    def determine_project(self, log_info):
+        """Determina el proyecto basado en el part number"""
+        if not log_info.get('part_number'):
+            return 'unknown'
+        
+        try:
+            boom = Booms.objects.filter(pn=log_info['part_number']).first()
+            return boom.project.lower() if boom else 'unknown'
+        except Exception as e:
+            self.stdout.write(self.style.WARNING(
+                f'Error al determinar proyecto para PN {log_info.get("part_number")}: {str(e)}'
+            ))
+            return 'unknown'
+
+    def extract_datetime_from_filename(self, filename):
+        """Extrae fecha/hora del nombre del archivo"""
+        try:
+            # Formato: [FCR1F89N84112][2025_09_01 23_27_03]BFT[FAIL].txt
+            match = re.search(r'\[(\d{4}_\d{2}_\d{2} \d{2}_\d{2}_\d{2})\]', filename)
+            if match:
+                datetime_str = match.group(1).replace('_', '-', 3).replace('_', ':', 2)
+                return datetime.strptime(datetime_str, '%Y-%m-%d %H:%M:%S')
+        except (ValueError, AttributeError) as e:
+            self.stdout.write(self.style.WARNING(
+                f'Error extrayendo fecha de {filename}: {str(e)}'
+            ))
+        
+        return timezone.now()
+
+    def extract_serial_from_filename(self, filename):
+        """Extrae número de serie del nombre del archivo"""
+        try:
+            # Formato: [FCR1F89N84112][2025_09_01 23_27_03]BFT[FAIL].txt
+            match = re.search(r'\[(FCR[A-Z0-9]+)\]', filename)
+            if match:
+                return match.group(1)
+        except (AttributeError, ValueError) as e:
+            self.stdout.write(self.style.WARNING(
+                f'Error extrayendo SN de {filename}: {str(e)}'
+            ))
+        
+        return ''
+
+    def register_uut(self, log_info, is_pass):
+        """Registra o actualiza una UUT en la base de datos"""
+        try:
+            # Primero verificar si la UUT ya existe
+            existing_uut = Uut.objects.filter(sn=log_info['sn']).first()
+        
+            if existing_uut:
+                # Si ya existe, no modificamos su estado, solo devolvemos el objeto
+                self.stdout.write(self.style.WARNING(
+                    f'UUT existente encontrada: {log_info["sn"]}. No se modificará el estado.'
+                ))
+                return existing_uut
+
+            employee = None
+            if log_info['operator_id']:
+                try:
+                    user = User.objects.get(username=log_info['operator_id'].strip())
+                    employee = Employes.objects.get(employeeNumber=user)
+                except (User.DoesNotExist, Employes.DoesNotExist):
+                    employee = None
+                    self.stdout.write(self.style.WARNING(
+                    f'Empleado {log_info["operator_id"]} no encontrado'
+                    ))
+            
+            pn_b = None
+            if log_info['part_number']:
+                pn_b = Booms.objects.filter(pn=log_info['part_number']).first()
+                if not pn_b:
+                    self.stdout.write(self.style.WARNING(
+                        f'Part Number {log_info["part_number"]} no encontrado en Booms'
+                    ))
+            
+            uut, created = Uut.objects.update_or_create(
+                sn=log_info['sn'],
+                defaults={
+                    'date': log_info['log_datetime'] or timezone.now(),
+                    'employee_e': employee,
+                    'pn_b': pn_b,
+                    'status': not is_pass
+                }
+            )
+            
+            if created:
+                self.stdout.write(self.style.SUCCESS(f'Nueva UUT creada: {log_info["sn"]}'))
+            
+            return uut
+            
+        except Exception as e:
+            raise ValueError(f'Error registrando UUT: {str(e)}')
+
+    def register_test_history(self, uut, ip, estacion_nombre, log_info, is_pass):
+        """Registra el historial de pruebas"""
+        try:
+            # Usar la estación de la IP, no del log
+            station, _ = Station.objects.get_or_create(stationName=estacion_nombre)
+
+            employee = None
+            if log_info['operator_id']:
+                try:
+                    user = User.objects.get(username=log_info['operator_id'].strip())
+                    employee = Employes.objects.get(employeeNumber=user)
+                except (User.DoesNotExist, Employes.DoesNotExist):
+                    employee = None
+                    self.stdout.write(self.style.WARNING(
+                    f'Empleado {log_info["operator_id"]} no encontrado'
+                    ))
+            
+            return TestHistory.objects.create(
+                uut=uut,
+                station=station,
+                employee_e=employee,
+                status=is_pass,
+                test_date=log_info['log_datetime'] or timezone.now()
+            )
+            
+        except Exception as e:
+            raise ValueError(f'Error registrando TestHistory: {str(e)}')
+
+    def register_failure(self, uut, ip, estacion_nombre, log_info):
+        """Registra una falla en la base de datos"""
+        try:
+            # Usar la estación de la IP, no del log
+            station, _ = Station.objects.get_or_create(stationName=estacion_nombre)
+            
+            employee = None
+            if log_info['operator_id']:
+                try:
+                    user = User.objects.get(username=log_info['operator_id'].strip())
+                    employee = Employes.objects.get(employeeNumber=user)
+                except (User.DoesNotExist, Employes.DoesNotExist):
+                    employee = None
+                    self.stdout.write(self.style.WARNING(
+                    f'Empleado {log_info["operator_id"]} no encontrado'
+                    ))
+            
+            hour = log_info['log_datetime'].hour if log_info['log_datetime'] else timezone.now().hour
+            shift = '1' if 6 <= hour < 14 else '2' if 14 <= hour < 22 else '3'
+            
+            error_message_obj = None
+            if log_info['error_message']:
+                try:
+                    pn_b = Booms.objects.filter(pn=log_info['part_number']).first() if log_info['part_number'] else None
+                    error_message_obj, created = ErrorMessages.objects.get_or_create(
+                        message=log_info['error_message'],
+                        defaults={
+                            'employee_e': employee,
+                            'pn_b': pn_b,
+                            'date': timezone.now()
+                        }
+                    )
+                    if created:
+                        self.stdout.write(self.style.SUCCESS(
+                            f'Nuevo mensaje de error registrado: {log_info["error_message"]}'
+                        ))
+                except Exception as e:
+                    self.stdout.write(self.style.ERROR(
+                        f'Error creando ErrorMessage: {str(e)}'
+                    ))
+            
+            failure = Failures.objects.create(
+                id_s=station,
+                sn_f=uut,
+                failureDate=log_info['log_datetime'] or timezone.now(),
+                id_er=error_message_obj,
+                employee_e=employee,
+                shiftFailure=shift,
+                analysis='',
+                rootCause='',
+                status="False",
+                defectSymptom=log_info.get('error_message', 'No especificado'),
+                correctiveActions='',
+                comments=f'Error detectado automáticamente desde estación {estacion_nombre}'
+            )
+            
+            self.stdout.write(self.style.SUCCESS(
+                f'Falla registrada para SN: {uut.sn} - {log_info.get("error_message", "Error no especificado")}'
+            ))
+            
+            return failure
+            
+        except Exception as e:
+            raise ValueError(f'Error registrando Falla: {str(e)}')
